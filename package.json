@@ -1,13 +1,17 @@
 {
   "name": "home-sync",
   "version": "0.0.0",
+  "main": "electron.js",
   "scripts": {
+    "dist:clean": "rimraf dist",
+    "inst:clean": "rimraf inst",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --no-hmr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:HomeSync": "node dist/HomeSync/server/server.mjs"
+    "ssr:HomeSync": "npm run dist:clean && ng build && node --inspect-brk dist/HomeSync/server/server.mjs",
+    "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder"
   },
   "prettier": {
     "overrides": [
@@ -30,6 +34,8 @@
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.0",
     "express": "^5.1.0",
+    "ngx-cookie-service": "^20.0.1",
+    "ngx-cookie-service-ssr": "^20.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -41,6 +47,8 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -48,5 +56,21 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.2"
+  },
+  "build": {
+    "appId": "com.home.sync.application",
+    "productName": "Home Sync",
+    "directories": {
+      "output": "inst"
+    },
+    "files": [
+      "dist/",
+      "electron.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    }
   }
 }
