@@ -15,36 +15,40 @@
     "target": "ES2022",
     "module": "preserve",
     "baseUrl": "src",
+    "reverseModuleSuffix": true,
     "paths": {
-      "@commons/services/*": [
+      "@services/*": [
         "app/commons/services/*"
       ],
-      "@commons/pipes/*": [
+      "@pipes/*": [
         "app/commons/pipes/*"
       ],
-      "@commons/validators/*": [
+      "@validators/*": [
         "app/commons/validators/*"
       ],
-      "@commons/constants/*": [
+      "@constants/*": [
         "app/commons/constants/*"
       ],
-      "@commons/directives/*": [
+      "@directives/*": [
         "app/commons/directives/*"
       ],
-      "@commons/interceptors/*": [
+      "@interceptors/*": [
         "app/commons/interceptors/*"
       ],
-      "@commons/interfaces/*": [
+      "@interfaces/*": [
         "app/commons/interfaces/*"
       ],
-      "@layouts/components/*": [
+      "@components/*": [
         "app/layouts/components/*"
       ],
-      "@layouts/elements/*": [
+      "@elements/*": [
         "app/layouts/elements/*"
       ],
-      "@layouts/pages/*": [
+      "@pages/*": [
         "app/layouts/pages/*"
+      ],
+      "@beforeApp/*": [
+        "../*"
       ]
     }
   },

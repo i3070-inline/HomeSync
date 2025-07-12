@@ -12,6 +12,35 @@
           "changeDetection": "OnPush",
           "standalone": true,
           "viewEncapsulation": "Emulated"
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true,
+          "standalone": true,
+          "flat": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true,
+          "flat": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true,
+          "flat": true,
+          "functional": false
+        },
+        "@schematics/angular:interface": {
+          "prefix": "I",
+          "type": "interface"
+        },
+        "@schematics/angular:directive": {
+          "standalone": true,
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true,
+          "flat": true
         }
       },
       "root": "",

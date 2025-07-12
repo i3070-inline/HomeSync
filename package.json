@@ -2,6 +2,7 @@
   "name": "home-sync",
   "version": "0.0.0",
   "main": "electron.js",
+  "displayName": "Home Sync",
   "scripts": {
     "dist:clean": "rimraf dist",
     "inst:clean": "rimraf inst",
@@ -25,6 +26,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cdk": "^20.1.0",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
     "@angular/core": "^20.1.0",
