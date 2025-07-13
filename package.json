@@ -7,7 +7,7 @@
     "dist:clean": "rimraf dist",
     "inst:clean": "rimraf inst",
     "ng": "ng",
-    "build": "ng build",
+    "build": "ng build --base-href ./",
     "start": "ng serve --no-hmr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

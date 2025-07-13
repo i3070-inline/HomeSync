@@ -14,40 +14,42 @@
 				<use [attr.href]="'./icons/settings-icon.svg#settings-icon'">
 				</use>
 			</svg>
-			<app-overlay-container-element *ngIf="trigger.overlayContainerService.isOpened()"
-			                               [backDropClasses]="['cdk-overlay-transparent-backdrop']"
-			                               [hasContainerBackground]="false"
-			                               [positions]="[{ originX: 'end',
+			@if (trigger.overlayContainerService.isOpened()) {
+				<app-overlay-container-element
+						[backDropClasses]="['cdk-overlay-transparent-backdrop']"
+						[hasContainerBackground]="false"
+						[positions]="[{ originX: 'end',
 						            originY: 'bottom',
 						            overlayX: 'end',
 						            overlayY: 'top',
 						            offsetY: 5}]">
-				<div class="background__settings">
-					<div class="background__settings-content">
-						<ng-content select="[settings-container]"></ng-content>
-					</div>
-					<div class="background__settings-tools">
-						@let width = "15rem";
-						<app-select-element
-								[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+					<div class="background__settings">
+						<div class="background__settings-content">
+							<ng-content select="[settings-container]"></ng-content>
+						</div>
+						<div class="background__settings-tools">
+							@let width = "15rem";
+							<app-select-element
+									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
 						                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.THEME.ACTION' | translate}"
-								[width]="width">
-						</app-select-element>
-						<app-select-element (
-						                    [placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+									[width]="width">
+							</app-select-element>
+							<app-select-element
+									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
 						                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
-						                    [width]="width">
-						</app-select-element>
-						<app-select-element
-								[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+									[width]="width">
+							</app-select-element>
+							<app-select-element
+									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
 						                    description:'SETTINGS.ANIMATION.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.ANIMATION.ACTION' | translate}"
-								[width]="width"></app-select-element>
+									[width]="width"></app-select-element>
+						</div>
 					</div>
-				</div>
-			</app-overlay-container-element>
+				</app-overlay-container-element>
+			}
 		</button>
 	</header>
 	@if (isUsingScrollToBottom() && showTopScroll()) {
