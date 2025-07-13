@@ -12,7 +12,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 export class OverlayBaseDirective implements AfterViewInit {
 	//region Members
 	protected readonly destroyRef = inject(DestroyRef);
-	protected readonly overlayContainerService = inject(OverlayContainerService);
+	public readonly overlayContainerService = inject(OverlayContainerService);
 	public openDelayMs = input<number>(0);
 	private showSubject = new Subject<void>();
 	private hideSubject = new Subject<void>();

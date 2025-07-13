@@ -1,0 +1,98 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.login-page {
+	display: grid;
+	place-items: center;
+	position: relative;
+}
+.login-form__container--desktop {
+	display: grid;
+	grid-column-gap: calc(var(--standart-padding) / 2);
+	grid-template-areas:"login-form register-form";
+	grid-template-columns: repeat(2, 1fr);
+	height: clamp(30rem, 70%, 50rem);
+	justify-self: center;
+	position: relative;
+	width: clamp(40rem, 60%, 70rem);
+	@include blur-effect();
+}
+.login-form__container--mobile {
+	display: grid;
+	max-height: 90%;
+	max-width: 85vw;
+	width: 85vw;
+	::ng-deep .swiper-slide.swiper-slide-visible {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		border-radius: var(--border-radius);
+		box-shadow: var(--base-shadow)
+	}
+	::ng-deep .swiper-slide-shadow {
+		background: transparent;
+	}
+	::ng-deep .swiper-slide:not(.swiper-slide-visible) {
+		opacity: 0;
+	}
+}
+%form {
+	display: grid;
+	height: 100%;
+}
+.login {
+	@extend %form;
+	grid-area: login-form;
+}
+.register {
+	@extend %form;
+	grid-area: register-form;
+}
+.form-cover {
+	cursor: pointer;
+	height: 100%;
+	left: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	transform-origin: center;
+	width: 50%;
+	@include blur-effect($blur-pixels: 30px);
+}
+%circle-base {
+	border-radius: 50%;
+	box-shadow: var(--inset-active-shadow);
+	position: absolute;
+	@include transition-builder($transition-shadow, $transition-position);
+}
+.form-cover__circle--top {
+	@extend %circle-base;
+	height: 22rem;
+	right: 0;
+	top: 0;
+	transform: translate(50%, -50%);
+	width: 22rem;
+}
+.form-cover__circle--bottom {
+	@extend %circle-base;
+	bottom: 0;
+	height: 17rem;
+	left: 0;
+	transform: translate(-50%, 50%);
+	width: 17rem;
+}
+.form-cover__text {
+	cursor: text;
+	left: 50%;
+	padding: var(--standart-padding);
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+}
+@include respond-to-multiple("tel", "mob") {
+	.login-page {
+		overflow-x: hidden;
+	}
+	.login-form__container--desktop {
+		display: none;
+	}
+}

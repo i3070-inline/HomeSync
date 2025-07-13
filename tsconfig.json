@@ -15,7 +15,6 @@
     "target": "ES2022",
     "module": "preserve",
     "baseUrl": "src",
-    "reverseModuleSuffix": true,
     "paths": {
       "@services/*": [
         "app/commons/services/*"
@@ -31,6 +30,9 @@
       ],
       "@directives/*": [
         "app/commons/directives/*"
+      ],
+      "@utils/*": [
+        "app/commons/utils/*"
       ],
       "@interceptors/*": [
         "app/commons/interceptors/*"
@@ -49,6 +51,9 @@
       ],
       "@beforeApp/*": [
         "../*"
+      ],
+      "swiper_angular": [
+        "node_modules/swiper/angular"
       ]
     }
   },

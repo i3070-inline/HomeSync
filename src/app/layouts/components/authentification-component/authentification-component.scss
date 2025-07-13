@@ -1,0 +1,83 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.form-login {
+	align-items: center;
+	display: grid;
+	grid-template-rows: 1fr max-content max-content max-content 1fr max-content;
+	padding: calc(var(--standart-padding) * 2);
+	--margin-top-botton: calc(var(--standart-padding) * 1.7);
+}
+.login-text {
+	font-size: 2rem;
+	font-weight: 700;
+	grid-row: 1/2;
+	grid-row: 1/2;
+	justify-self: center;
+	margin: var(--margin-top-botton) 0;
+	overflow-wrap: break-word;
+	text-align: center;
+	text-shadow: var(--text-base-shadow);
+	white-space: normal;
+	word-break: break-word;
+	&.disabled {
+		@extend %disabled;
+	}
+}
+.login-username {
+	grid-row: 2/3;
+	margin: var(--margin-top-botton) 0;
+}
+.login-password {
+	grid-row: 3/4;
+	margin: var(--margin-top-botton) 0;
+}
+.login-hyperlink {
+	grid-row: 4/5;
+	margin: var(--margin-top-botton) 0.5rem;
+	text-wrap: nowrap;
+	@extend %hyperlink;
+	@include apply-shadow-on-action($isUsingHover: false, $isUsingFocusVisible: false, $isUsingActive: false, $isUsingFocusVisibleAnimation: true);
+	&.disabled {
+		@extend %disabled;
+	}
+}
+.login-button {
+	@extend %neo-btn;
+	grid-row: 5/6;
+	justify-self: center;
+	margin: var(--margin-top-botton) 0;
+	min-width: 10rem;
+}
+.information-container {
+	align-items: center;
+	display: none;
+	flex-direction: row;
+	grid-row: 6/7;
+	place-self: center;
+	&.disabled {
+		@extend %disabled;
+	}
+}
+.information-icon {
+	height: 1.2rem;
+	width: 1.2rem;
+}
+.information-text {
+	font-size: 0.8rem;
+	font-weight: 400;
+	margin-left: calc(var(--standart-padding) / 2);
+	overflow-wrap: break-word;
+	white-space: normal;
+	word-break: break-word;
+}
+@include respond-to-multiple("tel", "mob") {
+	.login-text {
+		font-size: 1.5rem;
+	}
+	.login-hyperlink {
+		margin: auto;
+	}
+	.information-container {
+		display: flex;
+	}
+}

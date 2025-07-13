@@ -1,0 +1,86 @@
+<button #host
+        #trigger="appOverlayDropdownClickExport"
+        (blur)="onTouched()"
+        [class.empty]="empty()"
+        [class.focused]="!trigger.overlayContainerService.isClosing()"
+        [class.showFloatedPlaceholder]="showFloatedPlaceholder()"
+        [disabled]="disabled()"
+        [style.height]="height()"
+        [style.max-height]="maxHeight()"
+        [style.max-width]="maxWidth()"
+        [style.min-height]="minHeight()"
+        [style.min-width]="minWidth()"
+        [style.width]="width()"
+        appOverlayDropdownClick
+        class="select-container">
+	<div class="select-container__item">
+		@if (selectedValue()?.iconPath; as iconPath) {
+			<svg [style.color]="selectedValue()?.iconColor || 'inherit'"
+			     class="select-container__item-icon">
+				@if (iconPath.includes(".svg")) {
+					<use [attr.href]="iconPath"></use>
+				} @else {
+					<image [attr.href]="iconPath"
+					       height="100%"
+					       width="100%"></image>
+				}
+			</svg>
+		}
+		<span class="select-container__item-text">{{selectedValue()?.name}}</span>
+	</div>
+	@if (clearIconIsVisible() && !empty()) {
+		<button (click)="onClearClick($event)"
+		        class="select-container__clear-button">
+			<svg class="select-container__clear-button-icon">
+				<use [attr.href]="'./icons/user-clear-icon.svg#user-clear-icon'"></use>
+			</svg>
+		</button>
+	}
+	<span [class.closing]="trigger.overlayContainerService.isClosing()"
+	      class="select-container__item-arrow">&#x27A4;</span>
+	<div class="select-container__placeholder">
+		<svg *ngIf="placeholder()?.iconPath"
+		     class="select-container__placeholder-icon">
+			<use [attr.href]="placeholder()?.iconPath"></use>
+		</svg>
+		<span class="select-container__placeholder-text">
+			@let showDescription = !empty() || !trigger.overlayContainerService.isClosing();
+			{{showDescription ? placeholder()?.description : placeholder()?.action}}
+		</span>
+	</div>
+	<span class="select-container__error-text">
+		{{errorHint()}}
+	</span>
+	@if (trigger.overlayContainerService.isOpened()) {
+		<app-overlay-container-element
+				[backDropClasses]="['cdk-overlay-transparent-backdrop']"
+				[hasBackDrop]="true"
+				[hasContainerBackground]="false"
+				[padding]="'0.2rem'"
+				[width]="host.offsetWidth.toString()+'px'">
+			@for (item of itemSource(); track item.value) {
+				<div class="select-container__list-item"
+				     [class.selected]="item === selectedValue()"
+				     (click)="onSelectItem(item,trigger.overlayContainerService);"
+				     (keydown.space)="onSelectItem(item,trigger.overlayContainerService)"
+				     (keydown.enter)="onSelectItem(item,trigger.overlayContainerService)"
+				     [role]="'option'"
+				     appAccessibility>
+					@if (item.iconPath) {
+						<svg class="select-container__list-item-icon"
+						     [style.color]="item.iconColor || 'inherit'">
+							@if (item.iconPath.includes(".svg")) {
+								<use [attr.href]="item.iconPath"></use>
+							} @else {
+								<image width="100%"
+								       height="100%"
+								       [attr.href]="item.iconPath"></image>
+							}
+						</svg>
+					}
+					<span class="select-container__list-item-text">{{item.name}}</span>
+				</div>
+			}
+		</app-overlay-container-element>
+	}
+</button>

@@ -1,0 +1,41 @@
+@if (authentificationService.authForm(); as auth) {
+	<form [formGroup]="auth"
+	      class="form-login">
+		<h1 [class.disabled]="auth.disabled"
+		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM" | translate}}</h1>
+		<app-input-element [clearIconIsVisible]="true"
+		                   [formControlName]="'username'"
+
+		                   [inputType]="'text'"
+		                   [placeholder]="{iconPath:'./icons/user-icon.svg#user-icon',
+		                   description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
+		                   action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
+		                   class="login-username">
+		</app-input-element>
+		<app-input-element [eyeIconIsVisible]="true"
+		                   [formControlName]="'password'"
+
+		                   [inputType]="'password'"
+		                   [placeholder]="{iconPath:'./icons/password-icon.svg#password-icon',
+                           description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | translate,
+                           action: 'LOGIN_PAGE.PASSWORD.ACTION' | translate}"
+		                   class="login-password">
+		</app-input-element>
+		<a [class.disabled]="auth.disabled"
+		   [routerLink]="'/forgot-password'"
+		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
+		<button (click)="authentificationService.onSubmitAuthForm()"
+		        [disabled]="auth.disabled"
+		        class="login-button">
+			{{"LOGIN_PAGE.SIGN_IN_BUTTON" | translate}}
+		</button>
+		<div [class.disabled]="auth.disabled"
+		     class="information-container">
+			<svg class="information-icon">
+				<use [attr.href]="'./icons/information-icon.svg#information-icon'"></use>
+			</svg>
+			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | translate}}</span>
+		</div>
+	</form>
+}
+

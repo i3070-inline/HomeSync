@@ -1,0 +1,8 @@
+:root {
+	--transition-duration: 0.2s;
+	--transition-shake-style: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+	--transition-shoot-style: cubic-bezier(0.8, -0.25, 0.2, 1.25);
+	--transition-style: ease-in-out;
+	--long-transition-duration: 3s;
+	--medium-transition-duration: 1s;
+}

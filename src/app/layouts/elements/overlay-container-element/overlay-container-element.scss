@@ -1,0 +1,17 @@
+@use "placeholders" as *;
+@use "mixins" as *;
+.overlay {
+	@include blur-effect();
+	@extend %scrollbars;
+	min-height: 2.6rem;
+}
+.overlay__content {
+	display: grid;
+	grid-auto-flow: row;
+	overflow: auto;
+	white-space: nowrap;
+	&.disable-pointer-events {
+		pointer-events: none;
+		user-select: none;
+	}
+}

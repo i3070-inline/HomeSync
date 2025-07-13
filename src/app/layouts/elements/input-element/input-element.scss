@@ -1,0 +1,95 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.input {
+	display: grid;
+	position: relative;
+	@include blur-effect($is-using-box-shadow: false);
+	padding: 0;
+	&.disabled {
+		@extend %disabled;
+	}
+}
+.input__field {
+	@extend %neo-input;
+	&.password {
+		letter-spacing: 0.1rem;
+		padding: 0.7rem 2.2rem 0.7rem 1rem;
+	}
+	&.clearable {
+		padding: 0.7rem 2.2rem 0.7rem 1rem;
+	}
+	&::-ms-reveal {
+		display: none;
+	}
+	:host.ng-invalid.ng-touched .input:not(.disabled) & {
+		outline: var(--error-color) 1px groove;
+	}
+}
+.input__field-eye-button {
+	@extend %neo-btn;
+	position: absolute;
+	align-self: center;
+	right: 0.7rem;
+	display: grid;
+	padding: 0;
+	border-radius: 50%;
+}
+.input__field-eye-button-icon {
+	align-self: center;
+	justify-self: center;
+	@extend %small-icon-dimensions;
+}
+.input__placeholder {
+	@include transition-builder($transition-base, $transition-position, $transition-transform);
+	align-items: center;
+	display: grid;
+	font-style: italic;
+	font-weight: 400;
+	grid-template-columns: auto 1fr;
+	left: 0.7rem;
+	opacity: 0.7;
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	user-select: none;
+	.input__field.focused.showFloatedPlaceholder ~ &,
+	.input__field:not(.empty) ~ & {
+		font-style: normal;
+		font-weight: 500;
+		transform: translateY(-120%);
+		top: 0;
+		left: 0;
+		opacity: 1;
+	}
+	.input__field:not(.empty):not(.showFloatedPlaceholder) ~ &,
+	.input__field.focused:not(.showFloatedPlaceholder) ~ & {
+		display: none;
+	}
+}
+.input__placeholder-icon {
+	@extend %small-icon-dimensions;
+	margin-right: 0.3rem;
+	&.invisible {
+		display: none;
+	}
+}
+.input__placeholder-text {
+	font-style: inherit;
+	font-weight: inherit;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+	margin-right: 0.7rem;
+	text-overflow: ellipsis;
+}
+.input-error-text {
+	@extend %error-text;
+	position: absolute;
+	top: 100%;
+	margin: 0.2rem;
+	opacity: 0;
+	:host.ng-invalid.ng-touched .input:not(.disabled) & {
+		opacity: 1;
+	}
+}

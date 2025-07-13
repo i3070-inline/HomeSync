@@ -1,0 +1,33 @@
+@use "mixins" as *;
+@use "swiper/css" as *;
+@use "swiper/css/effect-cards" as *;
+:root {
+	&.will-change {
+		will-change: background-color, background, color, text-shadow, box-shadow;
+	}
+}
+* {
+	background: transparent;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	&::selection {
+		background: var(--info-color);
+	}
+	&:focus, &:focus-visible {
+		outline: none;
+	}
+	@include transition-builder($transition-base);
+}
+html,
+body {
+	background: var(--background-color);
+	color: var(--text-main-color);
+	font-family: "Manrope", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	overflow: hidden;
+	-webkit-overflow-scrolling: auto;
+	overscroll-behavior: none;
+	@include responsiveFont()
+}

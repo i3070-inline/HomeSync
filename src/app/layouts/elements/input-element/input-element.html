@@ -1,0 +1,47 @@
+<div [class.disabled]="disabled()"
+     class="input">
+	<input #inputElement
+	       (blur)="onBlur()"
+	       (focus)="onFocus()"
+	       (ngModelChange)="onValueChange($event)"
+	       [autocomplete]="autocomplete()"
+	       [class.clearable]="inputType() !== 'password' && clearIconIsVisible()"
+	       [class.empty]="empty()"
+	       [class.focused]="focused()"
+	       [class.password]="inputType() === 'password'"
+	       [class.showFloatedPlaceholder]="showFloatedPlaceholder()"
+	       [disabled]="disabled()"
+	       [ngModel]="value()"
+	       [type]="inputTypeSignal()"
+	       class="input__field">
+	@if (eyeIconIsVisible() && inputType() === "password" && !empty()) {
+		<button class="input__field-eye-button"
+		        (click)="onPasswordVisibility()">
+			<svg class="input__field-eye-button-icon">
+				<use [attr.href]="inputTypeSignal() === 'password' ? './icons/user-eye-icon.svg#user-eye-icon' :
+				'./icons/user-eye-off-icon.svg#user-eye-off-icon'"></use>
+			</svg>
+		</button>
+	}
+	@if (clearIconIsVisible() && inputType() !== "password" && !empty()) {
+		<button class="input__field-eye-button"
+		        (click)="onClearValue();inputElement.focus()">
+			<svg class="input__field-eye-button-icon">
+				<use [attr.href]="'./icons/user-clear-icon.svg#user-clear-icon'"></use>
+			</svg>
+		</button>
+	}
+	<div class="input__placeholder">
+		<svg [class.invisible]="!placeholder()?.iconPath"
+		     class="input__placeholder-icon">
+			<use [attr.href]="placeholder()?.iconPath"></use>
+		</svg>
+		<span class="input__placeholder-text">
+			@let showDesc = (!empty() || focused()) && showFloatedPlaceholder();
+			{{ showDesc ? placeholder()?.description : placeholder()?.action }}
+		</span>
+	</div>
+	<span class="input-error-text">
+		{{ inputErrorHint() }}
+	</span>
+</div>

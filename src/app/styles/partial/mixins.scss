@@ -1,0 +1,131 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+$transition-base: (
+		background-color,
+		background,
+		color,
+		opacity,
+);
+$transition-shadow: (
+		text-shadow,
+		box-shadow,
+);
+$transition-transform: (
+		transform,
+		scalse,
+		rotate,
+		skew,
+		perspective,
+		translate,
+		translateX,
+		translateY,
+		translateZ,
+);
+$transition-position: (
+		top,
+		bottom,
+		left,
+		right,
+		inset,
+);
+@mixin transition-builder($lists...) {
+	$all-properties: ();
+	@each $list in $lists {
+		@each $property in $list {
+			$all-properties: list.append($all-properties, $property, comma);
+		}
+	}
+	transition-property: $all-properties;
+	transition-duration: var(--transition-duration);
+	transition-timing-function: var(--transition-style);
+}
+@mixin apply-shadow-on-action($shadow-type: "base", $isUsingHover: true, $isUsingFocusVisible: true, $isUsingActive: true , $isUsingFocusVisibleAnimation: true) {
+	@include transition-builder($transition-base, $transition-shadow);
+	@if $isUsingHover {
+		&:hover {
+			box-shadow: var(--#{$shadow-type}-hover-shadow);
+		}
+	}
+	@if $isUsingFocusVisible {
+		&:focus-visible {
+			box-shadow: var(--#{$shadow-type}-hover-shadow);
+		}
+	}
+	@if $isUsingFocusVisibleAnimation {
+		&:focus-visible {
+			animation: shake var(--medium-transition-duration) var(--transition-shake-style) both infinite;
+		}
+	}
+	@if $isUsingActive {
+		&:active {
+			box-shadow: var(--#{$shadow-type}-active-shadow);
+		}
+	}
+}
+@mixin respond-to($breakpoint) {
+	$media-query: null;
+	@if $breakpoint == "exDesk" {
+		$media-query: "(min-width: 1501px)";
+	} @else if $breakpoint == "desk" {
+		$media-query: "(min-width: 1200px) and (max-width: 1500px)";
+	} @else if $breakpoint == "lap" {
+		$media-query: "(min-width: 992px) and (max-width: 1199px)";
+	} @else if $breakpoint == "tab" {
+		$media-query: "(min-width: 577px) and (max-width: 991px)";
+	} @else if $breakpoint == "mob" {
+		$media-query: "(min-width: 401px) and (max-width: 576px)";
+	} @else if $breakpoint == "tel" {
+		$media-query: "(min-width: 1px) and (max-width: 400px)";
+	}
+	@if $media-query {
+		@media #{$media-query} {
+			@content;
+		}
+	}
+}
+@mixin respond-to-multiple($breakpoints...) {
+	@each $bp in $breakpoints {
+		@include respond-to($bp) {
+			@content;
+		}
+	}
+}
+@mixin responsiveFont($defaultFont : 1rem) {
+	@include respond-to("tel") {
+		font-size: $defaultFont - 0.18rem;
+	}
+	@include respond-to("mob") {
+		font-size: $defaultFont - 0.15rem;
+	}
+	@include respond-to("tab") {
+		font-size: $defaultFont - 0.12rem;
+	}
+	@include respond-to("lap") {
+		font-size: $defaultFont - 0.09rem;
+	}
+	@include respond-to("desk") {
+		font-size: $defaultFont - 0.06rem;
+	}
+	@include respond-to("exDesk") {
+		font-size: $defaultFont;
+	}
+}
+@mixin blur-effect($border-radius: var(--border-radius), $blur-pixels:  10px , $is-using-box-shadow: true , $shadow-type: var(--base-shadow) , $z-index : -1) {
+	@include transition-builder($transition-base, $transition-shadow);
+	z-index: 0;
+	//for working need to some position , relative, fixed , not absolute
+	@if $is-using-box-shadow {
+		box-shadow: $shadow-type;
+	}
+	border-radius: $border-radius;
+	&::before {
+		position: absolute;
+		-webkit-backdrop-filter: blur($blur-pixels);
+		backdrop-filter: blur($blur-pixels);
+		content: "";
+		inset: 0;
+		z-index: $z-index;
+		border-radius: $border-radius;
+	}
+}

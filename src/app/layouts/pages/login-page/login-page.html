@@ -1,0 +1,53 @@
+<app-template-component>
+	<div class="login-page">
+		@if (!mediaQueryService.isMob() && !mediaQueryService.isTel()) {
+			<div class="login-form__container--desktop">
+				<app-authentification-component class="login"></app-authentification-component>
+				<app-register-component class="register"></app-register-component>
+				<div (@switchPageAnimation.done)="onAnimationDone($event)"
+				     (@switchPageAnimation.start)="onAnimationStart()"
+				     (click)="onSwitchPage()"
+				     [@switchPageAnimation]="{value: currentPage() , params:{
+			     duration : duration(), transition : transitionShoot()
+			     }}"
+				     class="form-cover">
+					<div [@circleRightAnimation]="{value: currentPage() , params:{
+			     duration : circleDuration(), transition : transitionShoot()
+			     }}"
+					     class="form-cover__circle--top">
+					</div>
+					<p [@opacityTextAnimation]="currentPage()"
+					   class="form-cover__text">
+						{{
+							currentPage() === 'register' ? 'Already have an account?' :
+									'Don\'t have an account yet?'
+						}}
+					</p>
+					<div [@circleLeftAnimation]="{value: currentPage() , params:{
+			     duration : circleDuration(), transition : transitionShoot()
+			     }}"
+					     class="form-cover__circle--bottom"></div>
+				</div>
+			</div>
+		}
+
+
+		<!--		<swiper (slideChange)="onSwipeChanged($event)"-->
+		<!--		        *ngIf="mediaQueryService.isMob() || mediaQueryService.isTel()"-->
+		<!--		        [effect]="'cards'"-->
+		<!--		        [grabCursor]="true"-->
+		<!--		        [longSwipesRatio]="0.3"-->
+		<!--		        [loop]="true"-->
+		<!--		        [runCallbacksOnInit]="true"-->
+		<!--		        [shortSwipes]="false"-->
+		<!--		        [speed]="speedSwiper()"-->
+		<!--		        class="login-form__container&#45;&#45;mobile">-->
+		<!--			<ng-template swiperSlide>-->
+		<!--				<app-authentification-component class="login"></app-authentification-component>-->
+		<!--			</ng-template>-->
+		<!--			<ng-template swiperSlide>-->
+		<!--				<app-register-component class="register"></app-register-component>-->
+		<!--			</ng-template>-->
+		<!--		</swiper>-->
+	</div>
+</app-template-component>

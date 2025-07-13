@@ -1,0 +1,37 @@
+<ng-template
+		(backdropClick)="overlayContainerService.hide()"
+		(detach)="overlayContainerService.hide()"
+		(overlayKeydown)="$event.key === 'Escape' && hasBackDrop() && overlayContainerService.hide()"
+		[cdkConnectedOverlayBackdropClass]="backDropClasses()"
+		[cdkConnectedOverlayDisableClose]="!hasBackDrop()"
+		[cdkConnectedOverlayHasBackdrop]="hasBackDrop()"
+		[cdkConnectedOverlayOpen]="overlayContainerService.isOpened()"
+		[cdkConnectedOverlayOrigin]="origin"
+		[cdkConnectedOverlayPositions]="positions()"
+		[cdkConnectedOverlayPush]="true"
+		[cdkConnectedOverlayScrollStrategy]="scrollStrategies()"
+		[cdkConnectedOverlayTransformOriginOn]="'main'"
+		[cdkConnectedOverlayViewportMargin]="5"
+		cdkConnectedOverlay>
+	<main (@scaleAnimation.done)="onAnimationDone($event)"
+	      [@scaleAnimation]="{value: overlayContainerService.animationState(),
+    							params: { duration: duration(), transition: transition() }}"
+	      [cdkTrapFocusAutoCapture]="hasBackDrop()"
+	      [cdkTrapFocus]="hasBackDrop()"
+	      [style.background-color]="hasContainerBackground() ? 'var(--background-color)' : 'transparent'"
+	      class="overlay">
+		<section [style.height]="height()"
+		         [style.max-height]="maxHeight()"
+		         [style.max-width]="maxWidth()"
+		         [style.min-height]="minHeight()"
+		         [style.min-width]="minWidth()"
+		         [style.padding]="padding()"
+		         [style.pointer-events]="pointerEvents()"
+		         [style.user-select]="pointerEvents()"
+		         [style.width]="width()"
+		         cdkFocusInitial
+		         class="overlay__content">
+			<ng-content></ng-content>
+		</section>
+	</main>
+</ng-template>
