@@ -10,12 +10,12 @@ import {
 } from "@angular/core";
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {IPlaceholderModel} from "@interfaces/select-item-placeholder-model.interface";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {OverlayContainerService} from "@services/overlay-container.service";
 import {AccessibilityDirective} from "@directives/accessibility.directive";
-import {NgIf} from "@angular/common";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
+import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
+import {buildIconSvgPath} from "@utils/path-icon-helper";
 
 @Component({
 	selector: "app-select-element",
@@ -23,7 +23,6 @@ import {OverlayContainerElement} from "@elements/overlay-container-element/overl
 	imports: [
 		OverlayDropdownClickDirective,
 		AccessibilityDirective,
-		NgIf,
 		OverlayContainerElement
 	],
 	templateUrl: "./select-element.html",
@@ -89,4 +88,5 @@ export class SelectElement implements ControlValueAccessor {
 		this.disabled.set(isDisabled);
 	}
 	//endregion
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 }

@@ -4,6 +4,7 @@ import {RegisterService} from "@services/register.service";
 import {InputElement} from "@elements/input-element/input-element";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TranslatePipe} from "@ngx-translate/core";
+import {buildIconSvgPath} from "@utils/path-icon-helper";
 
 @Component({
 	selector: "app-register-component",
@@ -23,4 +24,5 @@ export class RegisterComponent {
 	public readonly validatorHandlerService = inject(ValidatorHandlerService);
 	public readonly registerService = inject(RegisterService);
 	//endregion
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 }

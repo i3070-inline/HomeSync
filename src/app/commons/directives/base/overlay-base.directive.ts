@@ -6,7 +6,6 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
 	standalone: true,
-	providers: [OverlayContainerService],
 	hostDirectives: [CdkOverlayOrigin]
 })
 export class OverlayBaseDirective implements AfterViewInit {

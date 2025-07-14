@@ -11,7 +11,9 @@ import {
 	ViewEncapsulation
 } from "@angular/core";
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {IPlaceholderModel} from "@interfaces/select-item-placeholder-model.interface";
+import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
+import {buildIconSvgPath} from "@utils/path-icon-helper";
+
 
 type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 
@@ -35,6 +37,7 @@ type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 })
 export class InputElement implements ControlValueAccessor, OnInit {
 	//region Members
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 	public placeholder = input<IPlaceholderModel | null>(null);
 	public inputType = input.required<typeInput>();
 	public eyeIconIsVisible = input<boolean>(false);
@@ -96,4 +99,5 @@ export class InputElement implements ControlValueAccessor, OnInit {
 		this.disabled.set(isDisabled);
 	}
 	//endregion
+
 }

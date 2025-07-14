@@ -2,7 +2,7 @@
 	<header [style.height.rem]="headerHeight()"
 	        class="background__header">
 		<button [routerLink]="'/main'"
-		        class="background__header-title">{{applicationDetails.name}}
+		        class="background__header-title">{{applicationDetails.name | titlecase}}
 		</button>
 		<div class="background__header-content">
 			<ng-content select="[header-conten]"></ng-content>
@@ -11,7 +11,7 @@
 		        appOverlayDropdownClick
 		        class="background__settings-button">
 			<svg class="background__settings-icon">
-				<use [attr.href]="'./icons/settings-icon.svg#settings-icon'">
+				<use [attr.href]="buildIconSvgPath('settings-icon')">
 				</use>
 			</svg>
 			@if (trigger.overlayContainerService.isOpened()) {
@@ -29,20 +29,21 @@
 						</div>
 						<div class="background__settings-tools">
 							@let width = "15rem";
-							<app-select-element
-									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+							<app-select-element [itemSource]="themeService.themes()"
+							                    (selectedValueChange)="themeService.onSelectedThemeChange($event)"
+									[placeholder]="{iconPath:buildIconSvgPath('theme-icon'),
 						                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.THEME.ACTION' | translate}"
 									[width]="width">
 							</app-select-element>
 							<app-select-element
-									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+									[placeholder]="{iconPath:buildIconSvgPath('language-icon'),
 						                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
 									[width]="width">
 							</app-select-element>
 							<app-select-element
-									[placeholder]="{iconPath:'./icons/animation-icon.svg#animation-icon',
+									[placeholder]="{iconPath:buildIconSvgPath('animation-icon'),
 						                    description:'SETTINGS.ANIMATION.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.ANIMATION.ACTION' | translate}"
 									[width]="width"></app-select-element>
@@ -81,7 +82,7 @@
 			   rel="noopener noreferrer"
 			   target="_blank">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="'./icons/github-icon.svg#github-icon'"
+					<use [attr.href]="buildIconSvgPath('github-icon')"
 					     class="github"></use>
 				</svg>
 			</a>
@@ -91,7 +92,7 @@
 			   rel="noopener noreferrer"
 			   target="_blank">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="'./icons/linkedin-icon.svg#linkedin-icon'"
+					<use [attr.href]="buildIconSvgPath('linkedin-icon')"
 					     class="linkedin"></use>
 				</svg>
 			</a>
@@ -102,7 +103,7 @@
 			   target="_blank"
 			   title="Send me an email">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="'./icons/email-icon.svg#email-icon'"
+					<use [attr.href]="buildIconSvgPath('email-icon')"
 					     class="email"></use>
 				</svg>
 			</a>

@@ -18,8 +18,8 @@
 		<button class="input__field-eye-button"
 		        (click)="onPasswordVisibility()">
 			<svg class="input__field-eye-button-icon">
-				<use [attr.href]="inputTypeSignal() === 'password' ? './icons/user-eye-icon.svg#user-eye-icon' :
-				'./icons/user-eye-off-icon.svg#user-eye-off-icon'"></use>
+				<use [attr.href]="inputTypeSignal() === 'password' ? buildIconSvgPath('user-eye-icon') :
+					buildIconSvgPath('user-eye-off-icon')"></use>
 			</svg>
 		</button>
 	}
@@ -27,7 +27,7 @@
 		<button class="input__field-eye-button"
 		        (click)="onClearValue();inputElement.focus()">
 			<svg class="input__field-eye-button-icon">
-				<use [attr.href]="'./icons/user-clear-icon.svg#user-clear-icon'"></use>
+				<use [attr.href]="buildIconSvgPath('user-clear-icon')"></use>
 			</svg>
 		</button>
 	}

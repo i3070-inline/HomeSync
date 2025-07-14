@@ -5,6 +5,7 @@ import {TranslatePipe} from "@ngx-translate/core";
 import {RouterLink} from "@angular/router";
 import {AuthentificationService} from "@services/authentification.service";
 import {ValidatorHandlerService} from "@services/validator-handler.service";
+import {buildIconSvgPath} from "@utils/path-icon-helper";
 
 @Component({
   selector: 'app-authentification-component',
@@ -24,4 +25,5 @@ export class AuthentificationComponent {
 	public readonly validatorHandlerService = inject(ValidatorHandlerService);
 	public readonly authentificationService = inject(AuthentificationService);
 	//endregion
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 }

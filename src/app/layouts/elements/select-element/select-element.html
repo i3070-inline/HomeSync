@@ -32,17 +32,19 @@
 		<button (click)="onClearClick($event)"
 		        class="select-container__clear-button">
 			<svg class="select-container__clear-button-icon">
-				<use [attr.href]="'./icons/user-clear-icon.svg#user-clear-icon'"></use>
+				<use [attr.href]="buildIconSvgPath('user-clear-icon')"></use>
 			</svg>
 		</button>
 	}
 	<span [class.closing]="trigger.overlayContainerService.isClosing()"
 	      class="select-container__item-arrow">&#x27A4;</span>
 	<div class="select-container__placeholder">
-		<svg *ngIf="placeholder()?.iconPath"
-		     class="select-container__placeholder-icon">
-			<use [attr.href]="placeholder()?.iconPath"></use>
-		</svg>
+		@if (placeholder()?.iconPath; as placeholderIconPath) {
+			<svg [style.color]="placeholderIconPath || 'inherit'"
+			     class="select-container__placeholder-icon">
+				<use [attr.href]="placeholderIconPath"></use>
+			</svg>
+		}
 		<span class="select-container__placeholder-text">
 			@let showDescription = !empty() || !trigger.overlayContainerService.isClosing();
 			{{showDescription ? placeholder()?.description : placeholder()?.action}}

@@ -17,16 +17,20 @@ import {OverlayContainerElement} from "@elements/overlay-container-element/overl
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
 import {RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
+import {TitleCasePipe} from "@angular/common";
+import {buildIconSvgPath} from "@utils/path-icon-helper";
+import {ThemeHandlerService} from "@services/theme-handler.service";
 
 @Component({
 	selector: "app-template-component",
-	standalone : true,
+	standalone: true,
 	imports: [
 		SelectElement,
 		OverlayContainerElement,
 		OverlayDropdownClickDirective,
 		RouterLink,
-		TranslatePipe
+		TranslatePipe,
+		TitleCasePipe
 	],
 	templateUrl: "./template-component.html",
 	styleUrl: "./template-component.scss",
@@ -36,8 +40,9 @@ import {TranslatePipe} from "@ngx-translate/core";
 export class TemplateComponent implements AfterViewInit {
 	//region Members
 	protected readonly applicationDetails = applicationDetails;
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 	protected platformService = inject(PlatformService);
-	// protected themeService = inject(ThemeHandlerService);
+	protected themeService = inject(ThemeHandlerService);
 	// protected languageService = inject(LanguageHandlerService);
 	// protected animationService = inject(AnimationHandlerService);
 	private scrollContainer = viewChild<ElementRef>("scrollContainer");
