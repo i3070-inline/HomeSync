@@ -1,9 +1,6 @@
 @use "mixins" as *;
 @use "swiper/css" as *;
 @use "swiper/css/effect-cards" as *;
-:root {
-	will-change: background-color, background, color, text-shadow, box-shadow, opacity;
-}
 * {
 	background: transparent;
 	box-sizing: border-box;
