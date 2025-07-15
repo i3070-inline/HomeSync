@@ -61,6 +61,8 @@
               "src/app/styles/global/key-frames.scss",
               "src/app/styles/global/variables.scss",
               "src/app/styles/global/fonts.scss",
+              "src/app/styles/global/animations.scss",
+              "src/app/styles/global/colors.scss",
               "@angular/cdk/overlay-prebuilt.css"
             ],
             "stylePreprocessorOptions": {

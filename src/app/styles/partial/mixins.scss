@@ -29,6 +29,58 @@ $transition-position: (
 		right,
 		inset,
 );
+@mixin generate-shadows($top-shadow, $bottom-shadow) {
+	--base-shadow: -0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow},
+	inset 0 0 0 #{$top-shadow},
+	inset 0 0 0 #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+	--inset-shadow: -0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow},
+	inset -0.2rem -0.2rem 0.35rem #{$top-shadow},
+	inset 0.2rem 0.2rem 0.35rem #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+	--base-hover-shadow: -0.2rem -0.2rem 0.35rem #{$top-shadow},
+	0.2rem 0.2rem 0.35rem #{$bottom-shadow},
+	inset 0 0 0 #{$top-shadow},
+	inset 0 0 0 #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+	--inset-hover-shadow: -0.2rem -0.2rem 0.35rem #{$top-shadow},
+	0.2rem 0.2rem 0.35rem #{$bottom-shadow},
+	inset -0.35rem -0.35rem 0.35rem #{$top-shadow},
+	inset 0.35rem 0.35rem 0.35rem #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+	--base-active-shadow: -0.05rem -0.05rem 0.35rem #{$top-shadow},
+	0.05rem 0.05rem 0.35rem #{$bottom-shadow},
+	inset 0 0 0 #{$top-shadow},
+	inset 0 0 0 #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+	--inset-active-shadow: -0.05rem -0.05rem 0.35rem #{$top-shadow},
+	0.05rem 0.05rem 0.35rem #{$bottom-shadow},
+	inset -0.1rem -0.1rem 0.35rem #{$top-shadow},
+	inset 0.1rem 0.1rem 0.35rem #{$bottom-shadow},
+	-0.1rem -0.1rem 0.35rem #{$top-shadow},
+	0.1rem 0.1rem 0.35rem #{$bottom-shadow};
+}
+@mixin generate-colors-theme($theme-map, $percentage) {
+	@each $name, $color in $theme-map {
+		--#{$name}: #{color.scale($color,$lightness: $percentage) }
+	}
+}
+@mixin generate-text-shadow($top-shadow, $bottom-shadow) {
+	--text-base-shadow: -0.03rem -0.03rem 0.03rem #{$top-shadow},
+	0.03rem 0.03rem 0.03rem #{$bottom-shadow};
+}
+@mixin generate-vars($theme) {
+	@each $key, $value in $theme {
+		--#{$key}: #{$value};
+	}
+}
 @mixin transition-builder($lists...) {
 	$all-properties: ();
 	@each $list in $lists {

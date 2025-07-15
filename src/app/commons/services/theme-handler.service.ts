@@ -1,7 +1,9 @@
-import {Injectable, signal} from "@angular/core";
+import {inject, Injectable, signal} from "@angular/core";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {system} from "@constants/types";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
+import {PlatformService} from "@services/platform.service";
+import {LocalStorageService} from "@services/local-storage.service";
 
 type themeType = "light" | "dark" | system;
 
@@ -10,6 +12,8 @@ type themeType = "light" | "dark" | system;
 })
 export class ThemeHandlerService {
 	//region Members
+	private readonly localStorageService = inject(LocalStorageService);
+	private readonly platformService = inject(PlatformService);
 	private readonly localStorageKey = "theme";
 	public themes = signal<ISelectItemModel<themeType>[]>(
 		[
@@ -32,30 +36,31 @@ export class ThemeHandlerService {
 			}]);
 	public selectedTheme = signal<ISelectItemModel<themeType> | null>(null);
 	//endregion
+	//region Constructor
+	constructor() {
+		const cookieTheme = this.getStorageTheme();
+		if (!cookieTheme) return;
+		this.selectedTheme.set(this.themes().find(theme => theme.value === cookieTheme) || null);
+	}
+	//endregion
 	//region Methods
 	public onSelectedThemeChange(value: ISelectItemModel | null): void {
-		if (!value) return;
 		const theme = value as ISelectItemModel<themeType>;
 		if (!theme) return;
 		this.selectedTheme.set(theme);
 		this.setTheme(theme);
+		this.setStorageTheme(theme.value);
+	}
+	private getStorageTheme(): themeType | undefined {
+		return this.localStorageService.getItem<themeType>(this.localStorageKey);
 	}
 	private setTheme(theme: ISelectItemModel<themeType>): void {
-		const lightLinks = document.querySelectorAll('link[rel=stylesheet][media*=prefers-color-scheme][media*=light]');
-		const darkLinks = document.querySelectorAll('link[rel=stylesheet][media*=prefers-color-scheme][media*=dark]');
-		let lightMedia: string;
-		let darkMedia: string;
-
-		if (theme.value === 'system') {
-			lightMedia = '(prefers-color-scheme: light)';
-			darkMedia = '(prefers-color-scheme: dark)';
-		} else {
-			lightMedia = (theme.value === 'light') ? 'all' : 'not all';
-			darkMedia = (theme.value === 'dark') ? 'all' : 'not all';
-		}
-
-		lightLinks.forEach(link => (link as HTMLLinkElement).media = lightMedia);
-		darkLinks.forEach(link => (link as HTMLLinkElement).media = darkMedia);
+		this.platformService.runOnBrowserPlatform(() => {
+			document.documentElement.setAttribute(this.localStorageKey, theme.value);
+		});
+	}
+	private setStorageTheme(theme: themeType): void {
+		this.localStorageService.setItem<themeType>(this.localStorageKey, theme);
 	}
 	//endregion
 }

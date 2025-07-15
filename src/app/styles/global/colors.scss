@@ -1,0 +1,59 @@
+@use "mixins" as *;
+@use "sass:color" as *;
+@use "sass:map" as *;
+$theme-colors: (
+		primary-color: #01BAEF,
+		secondary-color: #0B4F6C,
+		accent-color: #008B8B,
+		error-color: scale(tomato, $lightness: -15%),
+		success-color: #4CAF50,
+		warning-color: #FFC107,
+		info-color: #77B6EA,
+);
+$theme-vars: (
+		light: (
+				background-color: #BDBDBD,
+				bottom-color-shadow: #00000050,
+				top-color-shadow: #F8FAFC95,
+				text-main-color: #000000CC,
+				text-muted-color: #6A8395,
+				background-picture: url("assets/icons/light-background.png"),
+				overlay-backdrop: #00000050,
+				percentage: 10%
+		),
+		dark: (
+				background-color: #33303A,
+				bottom-color-shadow: #00000080,
+				top-color-shadow: #C0C0C020,
+				text-main-color: #FFFFFF,
+				text-muted-color: #AAB8C2,
+				background-picture: url("assets/icons/dark-background.png"),
+				overlay-backdrop: #FFFFFF50,
+				percentage: 5%
+		)
+);
+@mixin apply-theme($theme, $percentage, $backdrop) {
+	@include generate-vars(get($theme-vars, $theme));
+	@include generate-colors-theme($theme-map: $theme-colors, $percentage: $percentage);
+	@include generate-text-shadow($top-shadow: var(--background-color), $bottom-shadow: var(--text-main-color));
+	@include generate-shadows($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
+	.overlay-backdrop {
+		background-color: $backdrop;
+	}
+}
+:root {
+	&[theme="dark"] {
+		@include apply-theme(dark, 5%, #FFFFFF50);
+	}
+	&[theme="light"] {
+		@include apply-theme(light, 10%, #00000050);
+	}
+	&[theme="system"] {
+		@media (prefers-color-scheme: light) {
+			@include apply-theme(light, 10%, #00000050);
+		}
+		@media (prefers-color-scheme: dark) {
+			@include apply-theme(dark, 5%, #FFFFFF50);
+		}
+	}
+}

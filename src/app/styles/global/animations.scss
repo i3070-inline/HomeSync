@@ -1,0 +1,39 @@
+@use "mixins" as *;
+@use "sass:map" as *;
+$transition-modes: (
+		active: (
+				transition-duration: 0.2s,
+				transition-shake-style: cubic-bezier(0.36, 0.07, 0.19, 0.97),
+				transition-shoot-style: cubic-bezier(0.8, -0.25, 0.2, 1.25),
+				transition-style: ease-in-out,
+				long-transition-duration: 3s,
+				medium-transition-duration: 1s
+		),
+		reduce: (
+				transition-duration: 0s,
+				transition-shake-style: none,
+				transition-shoot-style: none,
+				transition-style: none,
+				long-transition-duration: 0s,
+				medium-transition-duration: 0s
+		)
+);
+@mixin apply-motion-mode($mode) {
+	@include generate-vars(get($transition-modes, $mode));
+}
+:root {
+	&[theme="active"] {
+		@include apply-motion-mode(active);
+	}
+	&[theme="reduce"] {
+		@include apply-motion-mode(reduce);
+	}
+	&[theme="system"] {
+		@media (prefers-reduced-motion: reduce) {
+			@include apply-motion-mode(reduce);
+		}
+		@media (prefers-reduced-motion: no-preference) {
+			@include apply-motion-mode(active);
+		}
+	}
+}

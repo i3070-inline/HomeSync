@@ -30,11 +30,12 @@
 						<div class="background__settings-tools">
 							@let width = "15rem";
 							<app-select-element [itemSource]="themeService.themes()"
+							                    [selectedValue]="themeService.selectedTheme()"
 							                    (selectedValueChange)="themeService.onSelectedThemeChange($event)"
-									[placeholder]="{iconPath:buildIconSvgPath('theme-icon'),
+							                    [placeholder]="{iconPath:buildIconSvgPath('theme-icon'),
 						                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
 						                    action: 'SETTINGS.THEME.ACTION' | translate}"
-									[width]="width">
+							                    [width]="width">
 							</app-select-element>
 							<app-select-element
 									[placeholder]="{iconPath:buildIconSvgPath('language-icon'),

@@ -2,9 +2,7 @@
 @use "swiper/css" as *;
 @use "swiper/css/effect-cards" as *;
 :root {
-	&.will-change {
-		will-change: background-color, background, color, text-shadow, box-shadow;
-	}
+	will-change: background-color, background, color, text-shadow, box-shadow, opacity;
 }
 * {
 	background: transparent;
