@@ -1,6 +1,9 @@
 @use "mixins" as *;
 @use "swiper/css" as *;
 @use "swiper/css/effect-cards" as *;
+:root {
+	transition-duration: 0s;
+}
 * {
 	background: transparent;
 	box-sizing: border-box;
