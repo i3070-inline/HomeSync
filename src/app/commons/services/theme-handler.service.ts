@@ -56,7 +56,13 @@ export class ThemeHandlerService {
 	}
 	private setTheme(theme: ISelectItemModel<themeType>): void {
 		this.platformService.runOnBrowserPlatform(() => {
+			const animationKey = "animation";
+			const before = document.documentElement.getAttribute(animationKey);
+			document.documentElement.setAttribute(animationKey, "none");
 			document.documentElement.setAttribute(this.localStorageKey, theme.value);
+			setTimeout(() => {
+				document.documentElement.setAttribute(animationKey, before || "none");
+			}, 500);
 		});
 	}
 	private setStorageTheme(theme: themeType): void {
