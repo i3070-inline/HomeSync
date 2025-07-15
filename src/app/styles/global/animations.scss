@@ -11,9 +11,9 @@ $transition-modes: (
 		),
 		reduce: (
 				transition-duration: 0s,
-				transition-shake-style: none,
-				transition-shoot-style: none,
-				transition-style: none,
+				transition-shake-style: linear,
+				transition-shoot-style: linear,
+				transition-style: linear,
 				long-transition-duration: 0s,
 				medium-transition-duration: 0s
 		)
@@ -22,18 +22,18 @@ $transition-modes: (
 	@include generate-vars(get($transition-modes, $mode));
 }
 :root {
-	&[theme="active"] {
+	&[animation="active"] {
 		@include apply-motion-mode(active);
 	}
-	&[theme="reduce"] {
+	&[animation="reduce"] {
 		@include apply-motion-mode(reduce);
 	}
-	&[theme="system"] {
-		@media (prefers-reduced-motion: reduce) {
-			@include apply-motion-mode(reduce);
-		}
+	&[animation="system"] {
 		@media (prefers-reduced-motion: no-preference) {
 			@include apply-motion-mode(active);
+		}
+		@media (prefers-reduced-motion: reduce) {
+			@include apply-motion-mode(reduce);
 		}
 	}
 }

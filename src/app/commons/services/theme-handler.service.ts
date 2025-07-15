@@ -38,9 +38,9 @@ export class ThemeHandlerService {
 	//endregion
 	//region Constructor
 	constructor() {
-		const cookieTheme = this.getStorageTheme();
-		if (!cookieTheme) return;
-		this.selectedTheme.set(this.themes().find(theme => theme.value === cookieTheme) || null);
+		const storageTheme = this.getStorageTheme();
+		if (!storageTheme) return;
+		this.selectedTheme.set(this.themes().find(theme => theme.value === storageTheme) || null);
 	}
 	//endregion
 	//region Methods

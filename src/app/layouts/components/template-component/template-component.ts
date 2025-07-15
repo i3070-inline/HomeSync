@@ -20,6 +20,7 @@ import {TranslatePipe} from "@ngx-translate/core";
 import {TitleCasePipe} from "@angular/common";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
 import {ThemeHandlerService} from "@services/theme-handler.service";
+import {AnimationHandlerService} from "@services/animation-handler.service";
 
 @Component({
 	selector: "app-template-component",
@@ -43,8 +44,9 @@ export class TemplateComponent implements AfterViewInit {
 	protected readonly buildIconSvgPath = buildIconSvgPath;
 	protected platformService = inject(PlatformService);
 	protected themeService = inject(ThemeHandlerService);
+	protected animationService = inject(AnimationHandlerService);
 	// protected languageService = inject(LanguageHandlerService);
-	// protected animationService = inject(AnimationHandlerService);
+
 	private scrollContainer = viewChild<ElementRef>("scrollContainer");
 	public headerHeight = input<number>(4.5);
 	public footerHeight = input<number>(4);

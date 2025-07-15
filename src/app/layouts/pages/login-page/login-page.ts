@@ -27,6 +27,8 @@ import {MediaQueryService} from "@services/media-query.service";
 import {getCssVariablesValue} from "@utils/dom-helper";
 import type {Swiper} from "swiper/types";
 import {PlatformService} from "@services/platform.service";
+import {AnimationHandlerService} from "@services/animation-handler.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 type pagesType = "login" | "register";
 
@@ -89,6 +91,7 @@ type pagesType = "login" | "register";
 export class LoginPage {
 	//region Members
 	private readonly destroyRef = inject(DestroyRef);
+	private readonly animationHandlerService = inject(AnimationHandlerService);
 	private readonly authService = inject(AuthentificationService);
 	private readonly regService = inject(RegisterService);
 	private readonly platformService = inject(PlatformService);
@@ -98,7 +101,7 @@ export class LoginPage {
 	protected transitionShoot = signal<string>(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 	protected circleDuration = computed<string>(() => {
 		const duration = parseFloat(this.duration());
-		return duration ? `${duration / 1.1}s` : "0.6s";
+		return duration ? `${duration / 1.1}s` : "0s";
 	});
 	protected speedSwiper = signal<number | undefined>(
 		(() => {
@@ -106,6 +109,22 @@ export class LoginPage {
 			return result ? parseFloat(result) * 1000 : undefined;
 		})()
 	);
+	//endregion
+	//region Constructor
+	constructor() {
+		this.animationHandlerService.animationChanged$.pipe(
+			takeUntilDestroyed(this.destroyRef)
+		).subscribe(() => {
+			this.duration.set(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "1s");
+			this.transitionShoot.set(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
+			this.speedSwiper.set(
+				(() => {
+					const result = getCssVariablesValue(this.platformService, "transition-duration") || undefined;
+					return result ? parseFloat(result) * 1000 : undefined;
+				})()
+			);
+		});
+	}
 	//endregion
 	//region Methods
 	protected onSwitchPage() {

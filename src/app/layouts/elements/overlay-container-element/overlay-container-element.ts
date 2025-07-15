@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, input, signal, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, input, signal, ViewEncapsulation} from "@angular/core";
 import {animate, AnimationEvent, state, style, transition, trigger} from "@angular/animations";
 import {
 	CdkConnectedOverlay,
@@ -11,6 +11,8 @@ import {CdkTrapFocus} from "@angular/cdk/a11y";
 import {OverlayContainerService} from "@services/overlay-container.service";
 import {PlatformService} from "@services/platform.service";
 import {getCssVariablesValue} from "@utils/dom-helper";
+import {AnimationHandlerService} from "@services/animation-handler.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
 	selector: "app-overlay-container-element",
@@ -40,8 +42,10 @@ export class OverlayContainerElement {
 	protected origin = inject(CdkOverlayOrigin);
 	protected platformService = inject(PlatformService);
 	protected overlayContainerService = inject(OverlayContainerService);
-	protected transition = signal<string>(getCssVariablesValue(this.platformService,"transition-style") ?? "ease-in-out");
-	protected duration = signal<string>(getCssVariablesValue(this.platformService,"transition-duration") ?? "0.2s");
+	private readonly destroyRef = inject(DestroyRef);
+	private readonly animationHandlerService = inject(AnimationHandlerService);
+	protected transition = signal<string>(getCssVariablesValue(this.platformService, "transition-style") ?? "ease-in-out");
+	protected duration = signal<string>(getCssVariablesValue(this.platformService, "transition-duration") ?? "0.2s");
 	public backDropClasses = input<string[]>(["overlay-backdrop"]);
 	public pointerEvents = input<"auto" | "none">("auto");
 	public minWidth = input<string>("2rem");
@@ -52,7 +56,7 @@ export class OverlayContainerElement {
 	public height = input<string>("max-content");
 	public hasBackDrop = input<boolean>(true);
 	public hasContainerBackground = input<boolean>(true);
-	public padding = input<string>((getCssVariablesValue(this.platformService,"standart-padding") ?? "0"));
+	public padding = input<string>((getCssVariablesValue(this.platformService, "standart-padding") ?? "0"));
 	public scrollStrategies = input<ScrollStrategy>(this.scrollStrategyOptions.close());
 	public positions = input<ConnectedPosition[]>([{
 		originX: "center",
@@ -61,6 +65,16 @@ export class OverlayContainerElement {
 		overlayY: "top",
 		offsetY: 5
 	}]);
+	//endregion
+	//region Constructor
+	constructor() {
+		this.animationHandlerService.animationChanged$.pipe(
+			takeUntilDestroyed(this.destroyRef)
+		).subscribe(() => {
+			this.transition.set(getCssVariablesValue(this.platformService, "transition-style") ?? "ease-in-out");
+			this.duration.set(getCssVariablesValue(this.platformService, "transition-duration") ?? "0.2s");
+		})
+	}
 	//endregion
 	//region Methods
 	protected onAnimationDone(event: AnimationEvent) {
