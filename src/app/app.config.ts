@@ -3,9 +3,8 @@ import {PreloadAllModules, provideRouter, withPreloading, withViewTransitions} f
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
 import {provideAnimations} from "@angular/platform-browser/animations";
-import {EffectCards} from "swiper/modules";
-import SwiperCore from "swiper";
 import {provideTranslateService} from "@ngx-translate/core";
+import SwiperCore, {EffectCards} from "@swiper-base";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {

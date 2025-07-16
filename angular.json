@@ -63,7 +63,9 @@
               "src/app/styles/global/fonts.scss",
               "src/app/styles/global/animations.scss",
               "src/app/styles/global/colors.scss",
-              "@angular/cdk/overlay-prebuilt.css"
+              "@angular/cdk/overlay-prebuilt.css",
+              "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/swiper/modules/effect-cards/effect-cards.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

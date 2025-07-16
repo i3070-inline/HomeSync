@@ -30,24 +30,23 @@
 				</div>
 			</div>
 		}
-
-
-		<!--		<swiper (slideChange)="onSwipeChanged($event)"-->
-		<!--		        *ngIf="mediaQueryService.isMob() || mediaQueryService.isTel()"-->
-		<!--		        [effect]="'cards'"-->
-		<!--		        [grabCursor]="true"-->
-		<!--		        [longSwipesRatio]="0.3"-->
-		<!--		        [loop]="true"-->
-		<!--		        [runCallbacksOnInit]="true"-->
-		<!--		        [shortSwipes]="false"-->
-		<!--		        [speed]="speedSwiper()"-->
-		<!--		        class="login-form__container&#45;&#45;mobile">-->
-		<!--			<ng-template swiperSlide>-->
-		<!--				<app-authentification-component class="login"></app-authentification-component>-->
-		<!--			</ng-template>-->
-		<!--			<ng-template swiperSlide>-->
-		<!--				<app-register-component class="register"></app-register-component>-->
-		<!--			</ng-template>-->
-		<!--		</swiper>-->
+		@if (mediaQueryService.isMob() || mediaQueryService.isTel()) {
+			<swiper (slideChange)="onSwipeChanged($event)"
+			        [effect]="'cards'"
+			        [grabCursor]="true"
+			        [longSwipesRatio]="0.3"
+			        [loop]="true"
+			        [runCallbacksOnInit]="true"
+			        [shortSwipes]="false"
+			        [speed]="speedSwiper()"
+			        class="login-form__container--mobile">
+				<ng-template swiperSlide>
+					<app-authentification-component class="login"></app-authentification-component>
+				</ng-template>
+				<ng-template swiperSlide>
+					<app-register-component class="register"></app-register-component>
+				</ng-template>
+			</swiper>
+		}
 	</div>
 </app-template-component>

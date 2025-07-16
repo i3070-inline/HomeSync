@@ -18,9 +18,9 @@
 }
 .login-form__container--mobile {
 	display: grid;
+	width: 85vw;
 	max-height: 90%;
 	max-width: 85vw;
-	width: 85vw;
 	::ng-deep .swiper-slide.swiper-slide-visible {
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);

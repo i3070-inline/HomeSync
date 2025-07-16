@@ -29,6 +29,7 @@ import type {Swiper} from "swiper/types";
 import {PlatformService} from "@services/platform.service";
 import {AnimationHandlerService} from "@services/animation-handler.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {SwiperModule} from "@swiper-angular";
 
 type pagesType = "login" | "register";
 
@@ -38,7 +39,8 @@ type pagesType = "login" | "register";
 	imports: [
 		TemplateComponent,
 		AuthentificationComponent,
-		RegisterComponent
+		RegisterComponent,
+		SwiperModule
 	],
 	templateUrl: "./login-page.html",
 	styleUrl: "./login-page.scss",

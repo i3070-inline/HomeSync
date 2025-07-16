@@ -52,9 +52,8 @@
       "@beforeApp/*": [
         "../*"
       ],
-      "swiper_angular": [
-        "node_modules/swiper/angular"
-      ]
+      "@swiper-angular": ["../node_modules/swiper/angular"],
+      "@swiper-base" : ["../node_modules/swiper"]
     }
   },
   "angularCompilerOptions": {
