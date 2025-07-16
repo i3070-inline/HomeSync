@@ -36,11 +36,13 @@
 							                    action: 'SETTINGS.THEME.ACTION' | translate}"
 							                    [width]="width">
 							</app-select-element>
-							<app-select-element
-									[placeholder]="{iconPath:buildIconSvgPath('language-icon'),
-						                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
-						                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
-									[width]="width">
+							<app-select-element [itemSource]="languageService.languages()"
+							                    [selectedValue]="languageService.selectedLanguage()"
+							                    (selectedValueChange)="languageService.OnSelectedLanguageChange($event)"
+							                    [placeholder]="{iconPath:buildIconSvgPath('language-icon'),
+							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
+							                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
+							                    [width]="width">
 							</app-select-element>
 							<app-select-element [itemSource]="animationService.animations()"
 							                    [selectedValue]="animationService.selectedAnimation()"

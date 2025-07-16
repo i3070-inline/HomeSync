@@ -1,0 +1,56 @@
+{
+  "SETTINGS": {
+    "THEME": {
+      "DESCRIPTION": "Режим",
+      "ACTION": "Выберите режим",
+      "OPTIONS": {
+        "LIGHT": "Светлый режим",
+        "DARK": "Тёмный режим",
+        "SYSTEM": "Системный режим"
+      }
+    },
+    "LANGUAGE": {
+      "DESCRIPTION": "Язык",
+      "ACTION": "Выберите язык",
+      "OPTIONS": {
+        "ENGLISH": "Английский",
+        "ROMANIAN": "Румынский",
+        "RUSSIAN": "Русский"
+      }
+    },
+    "ANIMATION": {
+      "DESCRIPTION": "Предпочтение анимации",
+      "ACTION": "Выберите предпочтение анимации",
+      "OPTIONS": {
+        "ACTIVE": "Активный режим",
+        "REDUCE": "Уменьшенный режим",
+        "SYSTEM": "Системный режим"
+      }
+    }
+  },
+  "LOGIN_PAGE": {
+    "SIGN_INFO": "Свайпните, чтобы сменить форму",
+    "SIGN_UP_FORM": "Создайте аккаунт",
+    "SIGN_IN_FORM": "Войти в аккаунт",
+    "SIGN_UP_BUTTON": "Создать",
+    "SIGN_IN_BUTTON": "Войти",
+    "FORGOT_PASSWORD": "Забыли пароль ?",
+    "USERNAME": {
+      "DESCRIPTION": "Имя пользователя",
+      "ACTION": "Введите имя пользователя"
+    },
+    "PASSWORD": {
+      "DESCRIPTION": "Пароль",
+      "ACTION": "Введите пароль"
+    },
+    "CONFIRM_PASSWORD": {
+      "DESCRIPTION": "Подтвердите пароль",
+      "ACTION": "Повторно введите пароль"
+    }
+  },
+  "VALIDATORS": {
+    "REQUIRED": "Это поле обязательно для заполнения",
+    "MIN_LENGTH": "Не менее {{requiredLength}} символов",
+    "PASSWORD_MISMATCH": "Не совпадает с паролем"
+  }
+}

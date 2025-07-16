@@ -1,0 +1,56 @@
+{
+  "SETTINGS": {
+    "THEME": {
+      "DESCRIPTION": "Temă",
+      "ACTION": "Selectează tema",
+      "OPTIONS": {
+        "LIGHT": "Mod luminos",
+        "DARK": "Mod întunecat",
+        "SYSTEM": "Mod sistem"
+      }
+    },
+    "LANGUAGE": {
+      "DESCRIPTION": "Limbă",
+      "ACTION": "Selectează limba",
+      "OPTIONS": {
+        "ENGLISH": "Engleză",
+        "ROMANIAN": "Română",
+        "RUSSIAN": "Rusă"
+      }
+    },
+    "ANIMATION": {
+      "DESCRIPTION": "Preferință animație",
+      "ACTION": "Selectează preferința de animație",
+      "OPTIONS": {
+        "ACTIVE": "Mod activ",
+        "REDUCE": "Mod redus",
+        "SYSTEM": "Mod sistem"
+      }
+    }
+  },
+  "LOGIN_PAGE": {
+    "SIGN_INFO": "Glisează pentru a schimba formularele",
+    "SIGN_UP_FORM": "Creare cont",
+    "SIGN_IN_FORM": "Autentificare în cont",
+    "SIGN_UP_BUTTON": "Creează",
+    "SIGN_IN_BUTTON": "Autentificare",
+    "FORGOT_PASSWORD": "Ai uitat parola ?",
+    "USERNAME": {
+      "DESCRIPTION": "Nume utilizator",
+      "ACTION": "Introduceți numele de utilizator"
+    },
+    "PASSWORD": {
+      "DESCRIPTION": "Parolă",
+      "ACTION": "Introduceți parola"
+    },
+    "CONFIRM_PASSWORD": {
+      "DESCRIPTION": "Confirmă parola",
+      "ACTION": "Reintroduceți parola"
+    }
+  },
+  "VALIDATORS": {
+    "REQUIRED": "Acest câmp este obligatoriu",
+    "MIN_LENGTH": "Cel puțin {{requiredLength}} caractere",
+    "PASSWORD_MISMATCH": "Nu se potrivește cu parola"
+  }
+}

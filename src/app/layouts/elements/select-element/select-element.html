@@ -26,7 +26,7 @@
 				}
 			</svg>
 		}
-		<span class="select-container__item-text">{{selectedValue()?.name}}</span>
+		<span class="select-container__item-text">{{selectedValue()?.name || '' | translate}}</span>
 	</div>
 	@if (clearIconIsVisible() && !empty()) {
 		<button (click)="onClearClick($event)"
@@ -80,7 +80,7 @@
 							}
 						</svg>
 					}
-					<span class="select-container__list-item-text">{{item.name}}</span>
+					<span class="select-container__list-item-text">{{item.name | translate}}</span>
 				</div>
 			}
 		</app-overlay-container-element>

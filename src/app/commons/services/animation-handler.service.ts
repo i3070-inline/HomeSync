@@ -7,8 +7,9 @@ import {system} from "@constants/types";
 import {Observable, Subject} from "rxjs";
 
 type animationType = "active" | "reduce" | system;
+
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root"
 })
 export class AnimationHandlerService {
 	//region Members
@@ -21,13 +22,13 @@ export class AnimationHandlerService {
 		[
 			{
 				value: "active",
-				name: "SETTINGS.ANIMATION.OPTIONS.LIGHT",
+				name: "SETTINGS.ANIMATION.OPTIONS.ACTIVE",
 				iconPath: buildIconSvgPath("animation-active-icon"),
 				iconColor: "var(--success-color)"
 			},
 			{
 				value: "reduce",
-				name: "SETTINGS.ANIMATION.OPTIONS.DARK",
+				name: "SETTINGS.ANIMATION.OPTIONS.REDUCE",
 				iconPath: buildIconSvgPath("animation-reduce-icon"),
 				iconColor: "var(--error-color)"
 			},
@@ -41,7 +42,8 @@ export class AnimationHandlerService {
 	//region Constructor
 	constructor() {
 		const storageAnimation = this.getStorageTheme();
-		if (!storageAnimation) return;
+		this.setAnimation(storageAnimation);
+		this.setStorageAnimation(storageAnimation);
 		this.selectedAnimation.set(this.animations().find(theme => theme.value === storageAnimation) || null);
 	}
 	//endregion
@@ -50,16 +52,16 @@ export class AnimationHandlerService {
 		const animation = value as ISelectItemModel<animationType>;
 		if (!animation) return;
 		this.selectedAnimation.set(animation);
-		this.setAnimation(animation);
+		this.setAnimation(animation.value);
 		this.setStorageAnimation(animation.value);
 		this.animationChangedSubject.next(animation.value);
 	}
-	private getStorageTheme(): animationType | undefined {
-		return this.localStorageService.getItem<animationType>(this.localStorageKey);
+	public getStorageTheme(): animationType {
+		return this.localStorageService.getItem<animationType>(this.localStorageKey) || "system";
 	}
-	private setAnimation(theme: ISelectItemModel<animationType>): void {
+	private setAnimation(theme: animationType): void {
 		this.platformService.runOnBrowserPlatform(() => {
-			document.documentElement.setAttribute(this.localStorageKey, theme.value);
+			document.documentElement.setAttribute(this.localStorageKey, theme);
 		});
 	}
 	private setStorageAnimation(animation: animationType): void {

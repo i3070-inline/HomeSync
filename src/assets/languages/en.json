@@ -1,0 +1,56 @@
+{
+  "SETTINGS": {
+    "THEME": {
+      "DESCRIPTION": "Theme",
+      "ACTION": "Select your theme",
+      "OPTIONS": {
+        "LIGHT": "Light Mode",
+        "DARK": "Dark Mode",
+        "SYSTEM": "System Mode"
+      }
+    },
+    "LANGUAGE": {
+      "DESCRIPTION": "Language",
+      "ACTION": "Select your language",
+      "OPTIONS": {
+        "ENGLISH": "English",
+        "ROMANIAN": "Romanian",
+        "RUSSIAN": "Russian"
+      }
+    },
+    "ANIMATION": {
+      "DESCRIPTION": "Animation preference",
+      "ACTION": "Select your animation preference",
+      "OPTIONS": {
+        "ACTIVE": "Active Mode",
+        "REDUCE": "Reduce Mode",
+        "SYSTEM": "System Mode"
+      }
+    }
+  },
+  "LOGIN_PAGE": {
+    "SIGN_INFO": "Swipe to change between forms",
+    "SIGN_UP_FORM": "Create account",
+    "SIGN_IN_FORM": "Log in account",
+    "SIGN_UP_BUTTON": "Create",
+    "SIGN_IN_BUTTON": "Log in",
+    "FORGOT_PASSWORD": "Forgot Password ?",
+    "USERNAME": {
+      "DESCRIPTION": "Username",
+      "ACTION": "Enter your username"
+    },
+    "PASSWORD": {
+      "DESCRIPTION": "Password",
+      "ACTION": "Enter your password"
+    },
+    "CONFIRM_PASSWORD": {
+      "DESCRIPTION": "Confirm Password",
+      "ACTION": "Re-enter your password"
+    }
+  },
+  "VALIDATORS": {
+    "REQUIRED": "This field is required",
+    "MIN_LENGTH": "At least {{requiredLength}} characters",
+    "PASSWORD_MISMATCH": "Mismatch with password"
+  }
+}

@@ -48,18 +48,18 @@ export class ThemeHandlerService {
 		const theme = value as ISelectItemModel<themeType>;
 		if (!theme) return;
 		this.selectedTheme.set(theme);
-		this.setTheme(theme);
+		this.setTheme(theme.value);
 		this.setStorageTheme(theme.value);
 	}
 	private getStorageTheme(): themeType | undefined {
 		return this.localStorageService.getItem<themeType>(this.localStorageKey);
 	}
-	private setTheme(theme: ISelectItemModel<themeType>): void {
+	private setTheme(theme: themeType): void {
 		this.platformService.runOnBrowserPlatform(() => {
 			const animationKey = "animation";
 			const before = document.documentElement.getAttribute(animationKey);
 			document.documentElement.setAttribute(animationKey, "none");
-			document.documentElement.setAttribute(this.localStorageKey, theme.value);
+			document.documentElement.setAttribute(this.localStorageKey, theme);
 			setTimeout(() => {
 				document.documentElement.setAttribute(animationKey, before || "none");
 			}, 500);
