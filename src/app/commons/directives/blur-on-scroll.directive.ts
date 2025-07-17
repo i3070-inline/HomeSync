@@ -1,25 +1,32 @@
-import {Directive, ElementRef, HostListener, inject} from "@angular/core";
+import {AfterViewInit, DestroyRef, Directive, ElementRef, inject} from "@angular/core";
 import {PlatformService} from "@services/platform.service";
+import {debounceTime, filter, fromEvent, Subscription} from "rxjs";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
 	selector: "[appBlurOnScrollDirective]",
 	standalone: true
 })
-export class BlurOnScrollDirective {
+export class BlurOnScrollDirective implements AfterViewInit {
 	//region Members
-	private readonly elementRef = inject(ElementRef);
+	private readonly elementRef = inject(ElementRef<HTMLInputElement | HTMLTextAreaElement>);
 	private readonly platformService = inject(PlatformService);
-	@HostListener("window:scroll") onScroll(): void {
-		this.scrollHandler();
-	}
+	private readonly destroyRef = inject(DestroyRef);
 	//endregion
-	//region Methods
-	private scrollHandler(): void {
-		const el = this.elementRef.nativeElement;
-		if (!el) return;
+	//region Overrides
+	ngAfterViewInit(): void {
 		this.platformService.runOnBrowserPlatform(() => {
-			if (document.activeElement !== el) return;
-			el.blur();
+			const element = this.elementRef.nativeElement;
+			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
+			fromEvent(window, "scroll")
+				.pipe(
+					takeUntilDestroyed(this.destroyRef),
+					debounceTime(500),
+					filter(() => document.activeElement === this.elementRef.nativeElement)
+				)
+				.subscribe(() => {
+					this.elementRef.nativeElement.blur();
+				});
 		});
 	}
 	//endregion
