@@ -11,7 +11,7 @@ export class AuthentificationService {
 	private formBuilder = inject(FormBuilder);
 	public authForm = signal<FormGroup<ILoginModel>>(
 		this.formBuilder.group<ILoginModel>({
-			username: new FormControl<string | null>(null, [Validators.required]),
+			username: new FormControl<string | null>("1", [Validators.required]),
 			password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 		})
 	);
