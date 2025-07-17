@@ -1,35 +1,37 @@
-import {AfterViewInit, DestroyRef, Directive, ElementRef, inject} from "@angular/core";
+import {DestroyRef, Directive, ElementRef, HostListener, inject, input} from "@angular/core";
 import {PlatformService} from "@services/platform.service";
-import {debounceTime, filter, fromEvent, skipUntil, Subscription, switchMap, timer} from "rxjs";
+import {filter, fromEvent, timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
 	selector: "[appBlurOnScrollDirective]",
 	standalone: true
 })
-export class BlurOnScrollDirective implements AfterViewInit {
+export class BlurOnScrollDirective {
 	//region Members
 	private readonly elementRef = inject(ElementRef<HTMLInputElement | HTMLTextAreaElement>);
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
+	public delayMs = input<number>(500);
+	@HostListener("blur") onBlur(): void {
+		this.blurHandler();
+	}
 	//endregion
-	//region Overrides
-	ngAfterViewInit(): void {
+	//region Methods
+	private blurHandler(): void {
 		this.platformService.runOnBrowserPlatform(() => {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
-			timer(500)
-				.pipe(
+			timer(this.delayMs()).pipe(
+				takeUntilDestroyed(this.destroyRef)
+			).subscribe(() => {
+				fromEvent(window, "scroll").pipe(
 					takeUntilDestroyed(this.destroyRef),
-					switchMap(() =>
-						fromEvent(window, "scroll").pipe(
-							filter(() => document.activeElement === element)
-						)
-					)
-				)
-				.subscribe(() => {
+					filter(() => document.activeElement === element)
+				).subscribe(() => {
 					element.blur();
 				});
+			});
 		});
 	}
 	//endregion
