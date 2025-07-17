@@ -13,6 +13,7 @@ import {
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
+import {BlurOnScrollDirective} from "@directives/blur-on-scroll.directive";
 
 
 type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
@@ -21,7 +22,8 @@ type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 	selector: "app-input-element",
 	standalone: true,
 	imports: [
-		FormsModule
+		FormsModule,
+		BlurOnScrollDirective
 	],
 	templateUrl: "./input-element.html",
 	styleUrl: "./input-element.scss",
