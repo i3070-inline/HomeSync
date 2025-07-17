@@ -2,13 +2,13 @@
 @use "placeholders" as *;
 .background {
 	background: var(--background-color);
-	position: relative;
-	background-image: var(--background-picture);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
 	background-attachment: fixed;
+	background-image: var(--background-picture);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	height: 100dvh;
+	position: relative;
 	width: 100%;
 }
 .background__header {
@@ -16,29 +16,29 @@
 	display: grid;
 	grid-template-areas: "title content settings";
 	grid-template-columns: max-content 1fr max-content;
+	overflow: hidden;
 	padding: 0 var(--standart-padding);
 	pointer-events: none;
-	overflow: hidden;
-	position: sticky;
+	position: absolute;
 	top: 0;
 	width: 100%;
 	z-index: 2;
 }
 .background__header-title {
+	align-self: center;
+	cursor: pointer;
+	display: grid;
 	font-family: "Artistic", "Manrope", serif;
 	font-size: 3rem;
 	font-style: normal;
-	padding: 0;
 	font-weight: 1000;
 	grid-area: title;
-	align-self: center;
 	justify-self: center;
-	cursor: pointer;
-	display: grid;
-	text-shadow: var(--text-base-shadow);
-	text-align: center;
-	user-select: none;
+	padding: 0;
 	pointer-events: auto;
+	text-align: center;
+	text-shadow: var(--text-base-shadow);
+	user-select: none;
 	@extend %element-base;
 	@include blur-effect($border-radius: 0, $blur-pixels: 0, $is-using-box-shadow: false);
 	@include apply-shadow-on-action($isUsingHover: false, $isUsingFocusVisible: false, $isUsingActive: false, $isUsingFocusVisibleAnimation: true);
@@ -51,10 +51,10 @@
 }
 .background__settings-button {
 	@extend %neo-btn;
-	padding: 0;
 	align-self: center;
-	justify-self: center;
 	grid-area: settings;
+	justify-self: center;
+	padding: 0;
 	pointer-events: auto;
 }
 .background__settings-icon {
@@ -67,18 +67,18 @@
 	grid-template-rows: 1fr max-content;
 }
 .background__settings-content {
-	grid-area: content;
 	display: flex;
 	flex-direction: column;
+	grid-area: content;
 }
 .background__settings-tools {
-	grid-area: tools;
+	align-items: center;
 	display: flex;
+	flex-direction: column;
 	gap: calc(var(--standart-padding) * 2.5);
+	grid-area: tools;
 	justify-content: center;
 	padding-top: calc(var(--standart-padding) * 1.5);
-	align-items: center;
-	flex-direction: column;
 }
 %scroll-button {
 	@extend %neo-btn;
@@ -89,14 +89,14 @@
 	width: 2.5rem;
 	z-index: 2;
 	span {
-		transform-origin: center center;
 		scale: 1.2;
+		transform-origin: center center;
 	}
 }
 .background__scroll-button--top {
 	@extend %scroll-button;
-	top: calc(var(--header-height) + var(--standart-padding));
 	right: var(--standart-padding);
+	top: calc(var(--header-height) + var(--standart-padding));
 	span {
 		rotate: 90deg;
 	}
@@ -112,52 +112,53 @@
 .background__content {
 	display: grid;
 	height: 100%;
-	width: 100%;
+	-webkit-overflow-scrolling: auto;
+	overscroll-behavior: none;
+	padding-bottom: var(--footer-height);
+	padding-top: var(--header-height);
 	pointer-events: none;
 	position: relative;
-	overscroll-behavior: none;
-	-webkit-overflow-scrolling: auto;
+	width: 100%;
 	z-index: 1;
-	padding-bottom: calc(var(--footer-height) + var(--header-height));
 }
 .background__content-wrapper {
 	@extend %scrollbars;
-	overscroll-behavior: none;
-	-webkit-overflow-scrolling: auto;
-	position: relative;
 	display: grid;
 	overflow: auto;
+	-webkit-overflow-scrolling: auto;
+	overscroll-behavior: none;
 	pointer-events: auto;
+	position: relative;
 }
 .background__footer {
 	@include blur-effect($border-radius: 0 0 var(--border-radius) var(--border-radius), $shadow-type: var(--base-hover-shadow));
-	pointer-events: none;
-	position: sticky;
 	bottom: 0;
 	display: grid;
-	rotate: 180deg;
-	width: 100%;
-	overflow: hidden;
-	padding: 0 var(--standart-padding);
-	z-index: 2;
 	grid-template-areas: "links copyright";
 	grid-template-columns: 1fr max-content;
+	overflow: hidden;
+	padding: 0 var(--standart-padding);
+	pointer-events: none;
+	position: absolute;
+	rotate: 180deg;
+	width: 100%;
+	z-index: 2;
 }
 .background__footer-copyright {
 	align-self: center;
 	font-weight: 200;
-	rotate: -180deg;
 	grid-area: copyright;
+	rotate: -180deg;
 	text-shadow: var(--text-base-shadow);
 }
 .background__footer-media {
 	align-content: center;
 	display: grid;
 	grid-area: links;
-	rotate: -180deg;
 	grid-auto-flow: column;
 	grid-column-gap: 1rem;
 	justify-content: end;
+	rotate: -180deg;
 }
 .background__footer-link-icon {
 	@extend %icon-base;

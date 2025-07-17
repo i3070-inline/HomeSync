@@ -12,8 +12,12 @@ export const routes: Routes = [
 				pathMatch: "full"
 			},
 			{
-				path: "main",
+				path: "login",
 				loadComponent: () => import("@pages/login-page/login-page").then(value => value.LoginPage)
+			},
+			{
+				path: "main",
+				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage)
 			}
 		]
 	}
