@@ -2,7 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	computed,
-	DestroyRef,
+	DestroyRef, HostListener,
 	inject,
 	signal,
 	ViewEncapsulation
@@ -111,6 +111,12 @@ export class LoginPage {
 			return result ? parseFloat(result) * 1000 : undefined;
 		})()
 	);
+	private count = 0
+	@HostListener("window:resize")onResize() {
+		console.log("Resize event triggered");
+		this.authService.authForm().patchValue({ username: `Salut, ${this.count}!` });
+		this.count++;
+	}
 	//endregion
 	//region Constructor
 	constructor() {
