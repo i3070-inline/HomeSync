@@ -13,12 +13,12 @@ export class BlurOnScrollDirective {
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
 	public delayMs = input<number>(500);
-	@HostListener("blur") onBlur(): void {
-		this.blurHandler();
+	@HostListener("focus") onFocus(): void {
+		this.focusHandler();
 	}
 	//endregion
 	//region Methods
-	private blurHandler(): void {
+	private focusHandler(): void {
 		this.platformService.runOnBrowserPlatform(() => {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
