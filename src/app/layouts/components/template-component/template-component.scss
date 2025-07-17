@@ -2,14 +2,12 @@
 @use "placeholders" as *;
 .background {
 	background: var(--background-color);
-	background-attachment: scroll;
+	background-attachment: fixed;
 	background-image: var(--background-picture);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100dvh;
-	min-height: 100vh;
-	min-height: -webkit-fill-available;
+	height: 100vh;
 	position: relative;
 	width: 100%;
 }

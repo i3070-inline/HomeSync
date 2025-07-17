@@ -15,20 +15,13 @@
 	}
 	@include transition-builder($transition-base);
 }
-html {
-	overflow: hidden;
-}
+html,
 body {
 	background: var(--background-color);
 	color: var(--text-main-color);
 	font-family: "Manrope", sans-serif;
 	font-style: normal;
 	font-weight: 500;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
 	overflow: hidden;
 	overscroll-behavior: none;
 	@include responsiveFont()
