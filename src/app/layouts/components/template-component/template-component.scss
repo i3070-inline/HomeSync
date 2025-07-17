@@ -2,12 +2,12 @@
 @use "placeholders" as *;
 .background {
 	background: var(--background-color);
-	background-attachment: fixed;
+	background-attachment: scroll;
 	background-image: var(--background-picture);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100dvh;
+	height: calc(var(--vh, 1vh) * 100);
 	position: relative;
 	width: 100%;
 }
@@ -114,8 +114,6 @@
 	height: 100%;
 	-webkit-overflow-scrolling: auto;
 	overscroll-behavior: none;
-	padding-bottom: var(--footer-height);
-	padding-top: var(--header-height);
 	pointer-events: none;
 	position: relative;
 	width: 100%;

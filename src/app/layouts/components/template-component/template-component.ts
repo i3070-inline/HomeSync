@@ -3,7 +3,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
-	HostBinding,
+	HostListener,
 	inject,
 	input,
 	signal,
@@ -54,13 +54,9 @@ export class TemplateComponent implements AfterViewInit {
 	public isUsingScrollToBottom = input<boolean>(false);
 	public showTopScroll = signal<boolean>(true);
 	public showBottomScroll = signal<boolean>(true);
-	@HostBinding("style.--header-height.rem")
-	get headerHeightValue() {
-		return this.headerHeight();
-	}
-	@HostBinding("style.--footer-height.rem")
-	get footerHeightValue() {
-		return this.footerHeight();
+	@HostListener("window:resize")
+	onResize() {
+		this.updateVhVariable();
 	}
 	//endregion
 	//region Methods
@@ -78,6 +74,11 @@ export class TemplateComponent implements AfterViewInit {
 		const isScrollable = scrollHeight > clientHeight;
 		this.showTopScroll.set(scrollTop <= this.headerHeight() && isScrollable && this.isUsingScrollToBottom());
 		this.showBottomScroll.set((scrollTop + clientHeight >= scrollHeight - this.footerHeight()) && isScrollable && this.isUsingScrollToTop());
+	}
+	private updateVhVariable(): void {
+		this.platformService.runOnBrowserPlatform(() => {
+			document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+		});
 	}
 	protected scroll(direction: "top" | "bottom") {
 		const scrollContainer = this.scrollContainer()?.nativeElement;

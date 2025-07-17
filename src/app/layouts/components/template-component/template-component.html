@@ -60,11 +60,14 @@
 	</header>
 	@if (isUsingScrollToBottom() && showTopScroll()) {
 		<button (click)="scroll('bottom')"
-		        class="background__scroll-button--top">
+		        class="background__scroll-button--top"
+		        [style.--header-height.rem]="headerHeight()">
 			<span>&#x27A4;</span>
 		</button>
 	}
-	<main class="background__content">
+	<main [style.padding-bottom.rem]="footerHeight()"
+	      [style.padding-top.rem]="headerHeight()"
+	      class="background__content">
 		<section #scrollContainer
 		         (scroll)="onScroll()"
 		         class="background__content-wrapper">
@@ -73,7 +76,8 @@
 	</main>
 	@if (isUsingScrollToTop() && showBottomScroll()) {
 		<button (click)="scroll('top')"
-		        class="background__scroll-button--bottom">
+		        class="background__scroll-button--bottom"
+		        [style.--footer-height.rem]="footerHeight()">
 			<span>&#x27A4;</span>
 		</button>
 	}
