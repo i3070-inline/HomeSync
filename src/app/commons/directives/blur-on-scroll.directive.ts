@@ -1,6 +1,6 @@
 import {AfterViewInit, DestroyRef, Directive, ElementRef, inject} from "@angular/core";
 import {PlatformService} from "@services/platform.service";
-import {debounceTime, filter, fromEvent, skipUntil, Subscription, timer} from "rxjs";
+import {debounceTime, filter, fromEvent, skipUntil, Subscription, switchMap, timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
@@ -18,14 +18,17 @@ export class BlurOnScrollDirective implements AfterViewInit {
 		this.platformService.runOnBrowserPlatform(() => {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
-			fromEvent(window, "scroll")
+			timer(500)
 				.pipe(
 					takeUntilDestroyed(this.destroyRef),
-					skipUntil(timer(500)),
-					filter(() => document.activeElement === this.elementRef.nativeElement)
+					switchMap(() =>
+						fromEvent(window, "scroll").pipe(
+							filter(() => document.activeElement === element)
+						)
+					)
 				)
 				.subscribe(() => {
-					this.elementRef.nativeElement.blur();
+					element.blur();
 				});
 		});
 	}
