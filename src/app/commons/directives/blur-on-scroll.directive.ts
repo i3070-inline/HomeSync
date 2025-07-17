@@ -1,6 +1,6 @@
 import {AfterViewInit, DestroyRef, Directive, ElementRef, inject} from "@angular/core";
 import {PlatformService} from "@services/platform.service";
-import {debounceTime, filter, fromEvent, Subscription} from "rxjs";
+import {debounceTime, filter, fromEvent, skipUntil, Subscription, timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
@@ -21,7 +21,7 @@ export class BlurOnScrollDirective implements AfterViewInit {
 			fromEvent(window, "scroll")
 				.pipe(
 					takeUntilDestroyed(this.destroyRef),
-					debounceTime(500),
+					skipUntil(timer(500)),
 					filter(() => document.activeElement === this.elementRef.nativeElement)
 				)
 				.subscribe(() => {
