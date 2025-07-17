@@ -22,8 +22,7 @@ body {
 	font-family: "Manrope", sans-serif;
 	font-style: normal;
 	font-weight: 500;
-	overflow: unset;
-	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
 	overscroll-behavior: none;
 	@include responsiveFont()
 }
