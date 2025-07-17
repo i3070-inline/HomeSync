@@ -43,7 +43,7 @@ export class InputElement implements ControlValueAccessor, OnInit {
 	public eyeIconIsVisible = input<boolean>(false);
 	public clearIconIsVisible = input<boolean>(false);
 	public showFloatedPlaceholder = input<boolean>(true);
-	public autocomplete = input<"on" | "off">("on");
+	public autocomplete = input<"on" | "off">("off");
 	public inputErrorHint = input<string | null>(null);
 	public focused = signal<boolean>(false);
 	public value = signal<string | null>(null);
