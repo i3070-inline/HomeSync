@@ -27,7 +27,6 @@ export class BlurOnScrollDirective {
 			).subscribe(() => {
 				fromEvent(window, "scroll").pipe(
 					takeUntilDestroyed(this.destroyRef),
-					filter(() => document.activeElement === element)
 				).subscribe(() => {
 					element.blur();
 				});

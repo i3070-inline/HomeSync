@@ -15,7 +15,6 @@ import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
 import {BlurOnScrollDirective} from "@directives/blur-on-scroll.directive";
 
-
 type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 
 @Component({
@@ -101,5 +100,4 @@ export class InputElement implements ControlValueAccessor, OnInit {
 		this.disabled.set(isDisabled);
 	}
 	//endregion
-
 }
