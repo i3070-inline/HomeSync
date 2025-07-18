@@ -152,7 +152,6 @@ export class LoginPage {
 	}
 	protected onSwipeChanged(event: [swiper: Swiper]) {
 		const swiper = event[0];
-		console.log(swiper);
 		if (swiper.realIndex === 0) {
 			this.currentPage.set("login");
 			this.authService.setStateAuthForm(false);

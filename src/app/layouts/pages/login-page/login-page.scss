@@ -2,6 +2,7 @@
 @use "placeholders" as *;
 .login-page {
 	display: grid;
+	padding: 50px;
 	place-items: center;
 	position: relative;
 }
@@ -10,18 +11,21 @@
 	grid-column-gap: calc(var(--standart-padding) / 2);
 	grid-template-areas:"login-form register-form";
 	grid-template-columns: repeat(2, 1fr);
-	height: clamp(30rem, 70%, 50rem);
-	justify-self: center;
+	height: 60%;
+	max-height: 800px;
+	max-width: 1100px;
+	min-height: max-content;
+	min-width: max-content;
 	position: relative;
-	width: clamp(40rem, 60%, 70rem);
+	width: 50%;
 	@include blur-effect();
 }
 .login-form__container--mobile {
 	display: grid;
-	width: 85vw;
 	max-height: 90%;
 	max-width: 85vw;
-	::ng-deep .swiper-slide.swiper-slide-visible {
+	width: 85vw;
+	::ng-deep .swiper-slide {
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
 		border-radius: var(--border-radius);
@@ -91,6 +95,7 @@
 @include respond-to-multiple("tel", "mob") {
 	.login-page {
 		overflow-x: hidden;
+		padding: 0;
 	}
 	.login-form__container--desktop {
 		display: none;
