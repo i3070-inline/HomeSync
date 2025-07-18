@@ -30,6 +30,7 @@ import {PlatformService} from "@services/platform.service";
 import {AnimationHandlerService} from "@services/animation-handler.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
+import {TranslatePipe} from "@ngx-translate/core";
 
 type pagesType = "login" | "register";
 
@@ -40,7 +41,8 @@ type pagesType = "login" | "register";
 		TemplateComponent,
 		AuthentificationComponent,
 		RegisterComponent,
-		SwiperModule
+		SwiperModule,
+		TranslatePipe
 	],
 	templateUrl: "./login-page.html",
 	styleUrl: "./login-page.scss",

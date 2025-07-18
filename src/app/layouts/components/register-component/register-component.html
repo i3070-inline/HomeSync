@@ -2,7 +2,7 @@
 	<form [formGroup]="reg"
 	      class="form-register">
 		<h1 [class.disabled]="reg.disabled"
-		    class="register-text">{{"LOGIN_PAGE.SIGN_UP_FORM" | translate}}</h1>
+		    class="register-text">{{"LOGIN_PAGE.SIGN_UP_FORM.TITLE" | translate}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'username'"
 		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(reg.controls.username)"
@@ -32,7 +32,7 @@
 		</app-input-element>
 		<button (click)="registerService.onSubmitRegForm()"
 		        [disabled]="reg.disabled"
-		        class="register-button">{{"LOGIN_PAGE.SIGN_UP_BUTTON" | translate}}
+		        class="register-button">{{"LOGIN_PAGE.SIGN_UP_FORM.ACTION" | translate}}
 		</button>
 		<div [class.disabled]="reg.disabled"
 		     class="information-container">

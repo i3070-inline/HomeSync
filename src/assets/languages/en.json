@@ -30,10 +30,24 @@
   },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Swipe to change between forms",
-    "SIGN_UP_FORM": "Create account",
-    "SIGN_IN_FORM": "Log in account",
-    "SIGN_UP_BUTTON": "Create",
-    "SIGN_IN_BUTTON": "Log in",
+    "SIGN_UP_FORM": {
+      "TITLE": "Create account",
+      "ACTION": "Create"
+    },
+    "SIGN_IN_FORM": {
+      "TITLE": "Log in account",
+      "ACTION": "Log in"
+    },
+    "SIGN_IN_COVER": {
+      "TITLE": "Welcome!",
+      "DESCRIPTION": "Sign in if you already have an account or use the button below to register.",
+      "ACTION": "Register"
+    },
+    "SIGN_UP_COVER": {
+      "TITLE": "New here?",
+      "DESCRIPTION": "Register if you don't have an account yet or use the button below to sign in.",
+      "ACTION": "Sign in"
+    },
     "FORGOT_PASSWORD": "Forgot Password ?",
     "USERNAME": {
       "DESCRIPTION": "Username",

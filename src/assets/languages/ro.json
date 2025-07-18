@@ -30,10 +30,24 @@
   },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Glisează pentru a schimba formularele",
-    "SIGN_UP_FORM": "Creare cont",
-    "SIGN_IN_FORM": "Autentificare în cont",
-    "SIGN_UP_BUTTON": "Creează",
-    "SIGN_IN_BUTTON": "Autentificare",
+    "SIGN_UP_FORM": {
+      "TITLE": "Creare cont",
+      "ACTION": "Creează"
+    },
+    "SIGN_IN_FORM": {
+      "TITLE": "Autentificare în cont",
+      "ACTION": "Autentificare"
+    },
+    "SIGN_IN_COVER": {
+      "TITLE": "Bine ai venit!",
+      "DESCRIPTION": "Autentifică-te dacă ai deja cont sau folosește butonul de mai jos înregistrare.",
+      "ACTION": "Înregistrează-te"
+    },
+    "SIGN_UP_COVER": {
+      "TITLE": "Ești nou pe aici?",
+      "DESCRIPTION": "Înregistrează-te dacă nu ai încă cont sau folosește butonul de mai jos pentru autentificare.",
+      "ACTION": "Autentifică-te"
+    },
     "FORGOT_PASSWORD": "Ai uitat parola ?",
     "USERNAME": {
       "DESCRIPTION": "Nume utilizator",

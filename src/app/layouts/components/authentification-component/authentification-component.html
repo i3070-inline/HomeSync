@@ -2,7 +2,7 @@
 	<form [formGroup]="auth"
 	      class="form-login">
 		<h1 [class.disabled]="auth.disabled"
-		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM" | translate}}</h1>
+		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | translate}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'username'"
 		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(auth.controls.username)"
@@ -22,12 +22,12 @@
 		                   class="login-password">
 		</app-input-element>
 		<a [class.disabled]="auth.disabled"
-		   [routerLink]="'/forgot-password'"
+		   [routerLink]="'/main'"
 		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
 		<button (click)="authentificationService.onSubmitAuthForm()"
 		        [disabled]="auth.disabled"
 		        class="login-button">
-			{{"LOGIN_PAGE.SIGN_IN_BUTTON" | translate}}
+			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | translate}}
 		</button>
 		<div [class.disabled]="auth.disabled"
 		     class="information-container">

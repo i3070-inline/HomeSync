@@ -51,7 +51,6 @@
 	grid-area: register-form;
 }
 .form-cover {
-	cursor: pointer;
 	height: 100%;
 	left: 50%;
 	overflow: hidden;
@@ -61,14 +60,14 @@
 	width: 50%;
 	@include blur-effect($blur-pixels: 30px);
 }
-%circle-base {
-	border-radius: 50%;
+%box-base {
 	box-shadow: var(--inset-active-shadow);
 	position: absolute;
 	@include transition-builder($transition-shadow, $transition-position);
 }
 .form-cover__circle--top {
-	@extend %circle-base;
+	border-radius: 50%;
+	@extend %box-base;
 	height: 22rem;
 	right: 0;
 	top: 0;
@@ -76,21 +75,49 @@
 	width: 22rem;
 }
 .form-cover__circle--bottom {
-	@extend %circle-base;
+	border-radius: 50%;
+	@extend %box-base;
 	bottom: 0;
 	height: 17rem;
 	left: 0;
 	transform: translate(-50%, 50%);
 	width: 17rem;
 }
-.form-cover__text {
-	cursor: text;
+.form-cover__container {
+	display: grid;
+	grid-row-gap: var(--standart-padding);
+	height: max-content;
 	left: 50%;
+	max-width: 80%;
+	overflow: hidden;
 	padding: var(--standart-padding);
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	width: max-content;
+}
+.form-cover__text--info {
+	align-self: center;
+	border-radius: 25%;
+	cursor: text;
+	padding: var(--standart-padding) 0;
+	text-align: center;
+	text-shadow: var(--text-base-shadow);
 	width: 100%;
+}
+.form-cover__text {
+	font-size: 2rem;
+	place-self: center;
+	white-space: normal;
+	word-break: break-word;
+	text-align: center;
+	text-shadow: var(--text-base-shadow);
+	width: 100%;
+}
+.form-cover__button {
+	@extend %neo-btn;
+	min-width: 12rem;
+	place-self: center;
 }
 @include respond-to-multiple("tel", "mob") {
 	.login-page {
@@ -99,5 +126,10 @@
 	}
 	.login-form__container--desktop {
 		display: none;
+	}
+}
+@include respond-to("tab") {
+	.form-cover__text {
+		font-size: 1.5rem;
 	}
 }
