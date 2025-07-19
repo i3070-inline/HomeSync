@@ -95,6 +95,10 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: max-content;
+	&.isSwitching {
+		opacity: 0;
+		transition-duration: 0s;
+	}
 }
 .form-cover__text--info {
 	align-self: center;
@@ -102,17 +106,16 @@
 	cursor: text;
 	padding: var(--standart-padding) 0;
 	text-align: center;
-	text-shadow: var(--text-base-shadow);
 	width: 100%;
 }
 .form-cover__text {
 	font-size: 2rem;
 	place-self: center;
-	white-space: normal;
-	word-break: break-word;
 	text-align: center;
 	text-shadow: var(--text-base-shadow);
+	white-space: normal;
 	width: 100%;
+	word-break: break-word;
 }
 .form-cover__button {
 	@extend %neo-btn;

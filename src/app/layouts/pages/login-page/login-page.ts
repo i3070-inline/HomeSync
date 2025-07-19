@@ -2,7 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	computed,
-	DestroyRef, HostListener,
+	DestroyRef,
 	inject,
 	signal,
 	ViewEncapsulation
@@ -83,13 +83,7 @@ type pagesType = "login" | "register";
 					duration: "0.5s",
 					transition: "ease-in-out"
 				}
-			})]),
-		trigger("opacityTextAnimation", [
-			transition("login <=> register", [
-				style({opacity: 1}),
-				animate("0s", style({opacity: 0}))]
-			)
-		])
+			})])
 	]
 })
 export class LoginPage {
@@ -103,6 +97,7 @@ export class LoginPage {
 	protected currentPage = signal<pagesType>("login");
 	protected duration = signal<string>(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "1s");
 	protected transitionShoot = signal<string>(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
+	protected isSwitching = signal<boolean>(false);
 	protected circleDuration = computed<string>(() => {
 		const duration = parseFloat(this.duration());
 		return duration ? `${duration / 1.1}s` : "0s";
@@ -133,6 +128,7 @@ export class LoginPage {
 	//region Methods
 	protected onSwitchPage() {
 		this.currentPage.set(this.currentPage() === "login" ? "register" : "login");
+		this.isSwitching.set(true);
 	}
 	protected onAnimationStart(): void {
 		this.setFormsState(true);
@@ -147,6 +143,7 @@ export class LoginPage {
 		else if (event.toState === "void") {
 			this.setFormsState(false);
 		}
+		this.isSwitching.set(false);
 	}
 	private setFormsState(disable: boolean): void {
 		this.authService.setStateAuthForm(disable);

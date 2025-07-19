@@ -2,6 +2,7 @@ import {inject, Injectable, signal} from "@angular/core";
 import {LocalStorageService} from "@services/local-storage.service";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {TranslateService} from "@ngx-translate/core";
+import {PlatformService} from "@services/platform.service";
 
 type languageType = "ro" | "en" | "ru";
 
@@ -12,7 +13,8 @@ export class LanguageHandlerService {
 	//region Members
 	private readonly localStorageService = inject(LocalStorageService);
 	private readonly translateService = inject(TranslateService);
-	private readonly localStorageKey = "language";
+	private readonly platformService = inject(PlatformService);
+	private readonly localStorageKey = "lang";
 	public languages = signal<ISelectItemModel<languageType>[]>([
 		{
 			value: "en",
@@ -51,6 +53,9 @@ export class LanguageHandlerService {
 	private setLanguage(language: languageType): void {
 		this.translateService.setDefaultLang(language);
 		this.translateService.use(language);
+		this.platformService.runOnBrowserPlatform(() => {
+			document.documentElement.setAttribute(this.localStorageKey, language);
+		});
 	}
 	private getStorageLanguage(): languageType {
 		return this.localStorageService.getItem<languageType>(this.localStorageKey) || "en";

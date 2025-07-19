@@ -45,8 +45,8 @@
     },
     "SIGN_UP_COVER": {
       "TITLE": "New here?",
-      "DESCRIPTION": "Register if you don't have an account yet or use the button below to sign in.",
-      "ACTION": "Sign in"
+      "DESCRIPTION": "Register if you don't have an account yet or use the button below to log in.",
+      "ACTION": "Log in"
     },
     "FORGOT_PASSWORD": "Forgot Password ?",
     "USERNAME": {
