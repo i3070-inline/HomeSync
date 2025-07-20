@@ -15,7 +15,7 @@
 	max-height: 50rem;
 	max-width: 70rem;
 	min-height: 35rem;
-	min-width: 55rem;
+	min-width: 45rem;
 	position: relative;
 	width: 50%;
 	@include blur-effect();
@@ -109,7 +109,6 @@
 	font-size: 2rem;
 	place-self: center;
 	text-align: center;
-	text-shadow: var(--text-base-shadow);
 	white-space: normal;
 	width: 100%;
 	word-break: break-word;

@@ -6,6 +6,7 @@ $transition-base: (
 		background,
 		color,
 		opacity,
+		text-decoration,
 );
 $transition-shadow: (
 		text-shadow,
@@ -95,8 +96,10 @@ $transition-position: (
 @mixin apply-shadow-on-action($shadow-type: "base", $isUsingHover: true, $isUsingFocusVisible: true, $isUsingActive: true , $isUsingFocusVisibleAnimation: true) {
 	@include transition-builder($transition-base, $transition-shadow);
 	@if $isUsingHover {
-		&:hover {
-			box-shadow: var(--#{$shadow-type}-hover-shadow);
+		@media (hover: hover) {
+			&:hover {
+				box-shadow: var(--#{$shadow-type}-hover-shadow);
+			}
 		}
 	}
 	@if $isUsingFocusVisible {

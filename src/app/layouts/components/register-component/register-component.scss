@@ -17,7 +17,6 @@
 	margin: var(--margin-top-botton) 0;
 	font-weight: 700;
 	font-size: 2rem;
-	text-shadow: var(--text-base-shadow);
 	&.disabled {
 		@extend %disabled;
 	}
