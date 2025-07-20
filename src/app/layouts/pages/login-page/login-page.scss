@@ -14,8 +14,8 @@
 	height: 60%;
 	max-height: 800px;
 	max-width: 1100px;
-	min-height: 550px;
-	min-width: 850px;
+	min-height: max-content;
+	min-width: max-content;
 	position: relative;
 	width: 50%;
 	@include blur-effect();
