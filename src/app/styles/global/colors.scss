@@ -43,17 +43,17 @@ $theme-vars: (
 }
 :root {
 	&[theme="dark"] {
-		@include apply-theme(dark, 5%, #FFFFFF50);
+		@include apply-theme(dark, 10%, #FFFFFF50);
 	}
 	&[theme="light"] {
-		@include apply-theme(light, 10%, #00000050);
+		@include apply-theme(light, -10%, #00000050);
 	}
 	&[theme="system"] {
 		@media (prefers-color-scheme: light) {
-			@include apply-theme(light, 10%, #00000050);
+			@include apply-theme(light, -10%, #00000050);
 		}
 		@media (prefers-color-scheme: dark) {
-			@include apply-theme(dark, 5%, #FFFFFF50);
+			@include apply-theme(dark, 10%, #FFFFFF50);
 		}
 	}
 }
