@@ -86,14 +86,13 @@
 .form-cover__container {
 	display: grid;
 	grid-row-gap: var(--standart-padding);
-	height: auto;
+	height: 50%;
 	left: 50%;
-	max-width: 80%;
 	padding: var(--standart-padding);
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: auto;
+	width: 80%;
 	&.isSwitching {
 		opacity: 0;
 		transition-duration: 0s;
@@ -105,7 +104,6 @@
 	cursor: text;
 	padding: var(--standart-padding) 0;
 	text-align: center;
-	width: 100%;
 }
 .form-cover__text {
 	font-size: 2rem;
@@ -118,7 +116,7 @@
 }
 .form-cover__button {
 	@extend %neo-btn;
-	min-width: 12rem;
+	min-width: 10rem;
 	place-self: center;
 }
 @include respond-to-multiple("tel", "mob") {
