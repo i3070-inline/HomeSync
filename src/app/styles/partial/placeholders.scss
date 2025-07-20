@@ -79,6 +79,14 @@
 }
 %hyperlink {
 	color: var(--info-color);
-	text-decoration: none;
 	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+	@include transition-builder($transition-base, $transition-shadow);
+	&:hover {
+		text-shadow: var(--text-base-shadow);
+	}
+	&:focus-visible {
+		animation: shake var(--medium-transition-duration) var(--transition-shake-style) both infinite;
+		text-shadow: var(--text-base-shadow);
+	}
 }

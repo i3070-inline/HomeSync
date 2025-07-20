@@ -30,11 +30,11 @@
 	margin: var(--margin-top-botton) 0;
 }
 .login-hyperlink {
+	width: max-content;
 	grid-row: 4/5;
 	margin: var(--margin-top-botton) 0.5rem;
 	text-wrap: nowrap;
 	@extend %hyperlink;
-	@include apply-shadow-on-action($isUsingHover: false, $isUsingFocusVisible: false, $isUsingActive: false, $isUsingFocusVisibleAnimation: true);
 	&.disabled {
 		@extend %disabled;
 	}
