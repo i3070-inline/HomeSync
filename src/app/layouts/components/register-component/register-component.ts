@@ -23,6 +23,6 @@ export class RegisterComponent {
 	//region Members
 	public readonly validatorHandlerService = inject(ValidatorHandlerService);
 	public readonly registerService = inject(RegisterService);
-	//endregion
 	protected readonly buildIconSvgPath = buildIconSvgPath;
+	//endregion
 }

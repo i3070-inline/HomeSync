@@ -127,3 +127,8 @@
 		display: none;
 	}
 }
+@include respond-to-multiple("tab") {
+	.form-cover__text{
+		font-size: 1.5rem;
+	}
+}

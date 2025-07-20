@@ -24,6 +24,7 @@ export class AuthentificationComponent {
 	//region Members
 	public readonly validatorHandlerService = inject(ValidatorHandlerService);
 	public readonly authentificationService = inject(AuthentificationService);
-	//endregion
 	protected readonly buildIconSvgPath = buildIconSvgPath;
+	//endregion
+
 }
