@@ -23,7 +23,8 @@
 .login-form__container--mobile {
 	display: grid;
 	max-height: 90%;
-	max-width: 85vw;
+	max-width: 35rem;
+	min-width: 25rem;
 	width: 85vw;
 	::ng-deep .swiper-slide {
 		-webkit-backdrop-filter: blur(10px);
