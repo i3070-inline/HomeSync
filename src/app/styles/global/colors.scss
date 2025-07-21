@@ -30,28 +30,28 @@ $theme-vars: (
 				percentage: 5%
 		)
 );
-@mixin apply-theme($theme, $percentage, $backdrop) {
+@mixin apply-theme($theme, $percentage) {
 	@include generate-vars(get($theme-vars, $theme));
 	@include generate-colors-theme($theme-map: $theme-colors, $percentage: $percentage);
 	@include generate-text-shadow($top-shadow: var(--background-color), $bottom-shadow: var(--text-main-color));
 	@include generate-shadows($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 	.overlay-backdrop {
-		@include blur-effect($is-using-box-shadow: false);
+		@include blur-effect($blur-pixels:  5px,$is-using-box-shadow: false);
 	}
 }
 :root {
 	&[theme="dark"] {
-		@include apply-theme(dark, 10%, #FFFFFF50);
+		@include apply-theme(dark, 10%);
 	}
 	&[theme="light"] {
-		@include apply-theme(light, -10%, #00000050);
+		@include apply-theme(light, -10%);
 	}
 	&[theme="system"] {
 		@media (prefers-color-scheme: light) {
-			@include apply-theme(light, -10%, #00000050);
+			@include apply-theme(light, -10%);
 		}
 		@media (prefers-color-scheme: dark) {
-			@include apply-theme(dark, 10%, #FFFFFF50);
+			@include apply-theme(dark, 10%);
 		}
 	}
 }
