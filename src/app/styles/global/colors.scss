@@ -18,7 +18,6 @@ $theme-vars: (
 				text-main-color: #000000CC,
 				text-muted-color: #6A8395,
 				background-picture: url("assets/icons/light-background.png"),
-				overlay-backdrop: #00000050,
 				percentage: 10%
 		),
 		dark: (
@@ -28,7 +27,6 @@ $theme-vars: (
 				text-main-color: #FFFFFF,
 				text-muted-color: #AAB8C2,
 				background-picture: url("assets/icons/dark-background.png"),
-				overlay-backdrop: #FFFFFF50,
 				percentage: 5%
 		)
 );
@@ -38,7 +36,7 @@ $theme-vars: (
 	@include generate-text-shadow($top-shadow: var(--background-color), $bottom-shadow: var(--text-main-color));
 	@include generate-shadows($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 	.overlay-backdrop {
-		background-color: $backdrop;
+		@include blur-effect($is-using-box-shadow: false);
 	}
 }
 :root {
