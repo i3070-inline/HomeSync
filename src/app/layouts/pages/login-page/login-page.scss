@@ -22,8 +22,10 @@
 }
 .login-form__container--mobile {
 	display: grid;
+
+	align-self: center;
 	height: max-content;
-	width: 85dvw;
+	width: 80dvw;
 	::ng-deep .swiper-slide {
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
@@ -119,7 +121,7 @@
 }
 @include respond-to-multiple("tel", "mob") {
 	.login-page {
-		padding: 0;
+		padding: 10px;
 		overflow-x: hidden;
 	}
 	.login-form__container--desktop {
