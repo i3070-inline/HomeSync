@@ -22,10 +22,12 @@
 }
 .login-form__container--mobile {
 	display: grid;
-	max-height: 90%;
-	max-width: 35rem;
-	min-width: 25rem;
-	width: 85vw;
+	height: max-content;
+	::ng-deep .swiper-wrapper {
+		max-width: 25rem;
+		min-width: 20rem;
+		width: 85%;
+	}
 	::ng-deep .swiper-slide {
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
@@ -121,15 +123,14 @@
 }
 @include respond-to-multiple("tel", "mob") {
 	.login-page {
-		overflow-x: hidden;
-		padding: 0;
+		padding: 10px;
 	}
 	.login-form__container--desktop {
 		display: none;
 	}
 }
 @include respond-to-multiple("tab") {
-	.form-cover__text{
+	.form-cover__text {
 		font-size: 1.5rem;
 	}
 }
