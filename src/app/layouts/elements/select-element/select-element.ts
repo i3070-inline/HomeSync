@@ -41,6 +41,7 @@ import {TranslatePipe} from "@ngx-translate/core";
 })
 export class SelectElement implements ControlValueAccessor {
 	//region Members
+	protected readonly buildIconSvgPath = buildIconSvgPath;
 	public placeholder = input<IPlaceholderModel | null>(null);
 	public minWidth = input<string>("15rem");
 	public maxWidth = input<string>("auto");
@@ -90,5 +91,4 @@ export class SelectElement implements ControlValueAccessor {
 		this.disabled.set(isDisabled);
 	}
 	//endregion
-	protected readonly buildIconSvgPath = buildIconSvgPath;
 }

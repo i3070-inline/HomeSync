@@ -24,7 +24,7 @@
 		<a [class.disabled]="auth.disabled"
 		   [routerLink]="'/main'"
 		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
-		<button (click)="authentificationService.onSubmitAuthForm()"
+		<button (click)="submitAuthForm()"
 		        [disabled]="auth.disabled"
 		        class="login-button">
 			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | translate}}

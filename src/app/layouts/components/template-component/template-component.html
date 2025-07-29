@@ -16,6 +16,7 @@
 			</svg>
 			@if (trigger.overlayContainerService.isOpened()) {
 				<app-overlay-container-element [hasContainerBackground]="false"
+				                               [backDropClasses]="['overlay-backdrop']"
 				                               [positions]="[{ originX: 'end',
 				                               originY: 'bottom',
 				                               overlayX: 'end',

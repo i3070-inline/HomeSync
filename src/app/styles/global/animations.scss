@@ -36,4 +36,10 @@ $transition-modes: (
 			@include apply-motion-mode(reduce);
 		}
 	}
+	.modal-animate-in {
+		animation: model-open var(--transition-duration) var(--transition-style) forwards;
+	}
+	.modal-animate-out {
+		animation: model-close var(--transition-duration) var(--transition-style) forwards;
+	}
 }

@@ -114,7 +114,7 @@ export class LoginPage {
 		this.animationHandlerService.animationChanged$.pipe(
 			takeUntilDestroyed(this.destroyRef)
 		).subscribe(() => {
-			this.duration.set(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "1s");
+			this.duration.set(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "0s");
 			this.transitionShoot.set(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 			this.speedSwiper.set(
 				(() => {

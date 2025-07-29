@@ -1,9 +1,11 @@
 @use "placeholders" as *;
 @use "mixins" as *;
 .overlay {
-	@include blur-effect();
 	@extend %scrollbars;
 	min-height: 2.6rem;
+	&.hasBlur{
+		@include blur-effect();
+	}
 }
 .overlay__content {
 	display: grid;

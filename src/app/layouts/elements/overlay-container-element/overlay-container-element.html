@@ -18,6 +18,7 @@
     							params: { duration: duration(), transition: transition() }}"
 	      [cdkTrapFocusAutoCapture]="hasBackDrop()"
 	      [cdkTrapFocus]="hasBackDrop()"
+	      [class.hasBlur]="hasContainerBlur()"
 	      [style.background-color]="hasContainerBackground() ? 'var(--background-color)' : 'transparent'"
 	      class="overlay">
 		<section [style.height]="height()"

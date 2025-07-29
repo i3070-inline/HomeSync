@@ -26,3 +26,9 @@ body {
 	overscroll-behavior: none;
 	@include responsiveFont()
 }
+.overlay-backdrop {
+	& + .cdk-overlay-connected-position-bounding-box, & + .cdk-global-overlay-wrapper {
+		-webkit-backdrop-filter: blur(5px);
+		backdrop-filter: blur(5px);
+	}
+}

@@ -21,8 +21,9 @@ import {buildIconSvgPath} from "@utils/path-icon-helper";
 })
 export class RegisterComponent {
 	//region Members
-	public readonly validatorHandlerService = inject(ValidatorHandlerService);
-	public readonly registerService = inject(RegisterService);
 	protected readonly buildIconSvgPath = buildIconSvgPath;
+	protected readonly validatorHandlerService = inject(ValidatorHandlerService);
+	protected readonly registerService = inject(RegisterService);
+
 	//endregion
 }

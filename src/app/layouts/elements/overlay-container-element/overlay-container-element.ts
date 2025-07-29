@@ -45,8 +45,8 @@ export class OverlayContainerElement {
 	private readonly destroyRef = inject(DestroyRef);
 	private readonly animationHandlerService = inject(AnimationHandlerService);
 	protected transition = signal<string>(getCssVariablesValue(this.platformService, "transition-style") ?? "ease-in-out");
-	protected duration = signal<string>(getCssVariablesValue(this.platformService, "transition-duration") ?? "0.2s");
-	public backDropClasses = input<string[]>(["overlay-backdrop"]);
+	protected duration = signal<string>(getCssVariablesValue(this.platformService, "transition-duration") ?? "0s");
+	public backDropClasses = input<string[]>([]);
 	public pointerEvents = input<"auto" | "none">("auto");
 	public minWidth = input<string>("2rem");
 	public maxWidth = input<string>("none");
@@ -54,8 +54,9 @@ export class OverlayContainerElement {
 	public maxHeight = input<string>("none");
 	public width = input<string>("max-content");
 	public height = input<string>("max-content");
+	public hasContainerBlur = input<boolean>(true);
 	public hasBackDrop = input<boolean>(true);
-	public hasContainerBackground = input<boolean>(true);
+	public hasContainerBackground = input<boolean>(false);
 	public padding = input<string>((getCssVariablesValue(this.platformService, "standart-padding") ?? "0"));
 	public scrollStrategies = input<ScrollStrategy>(this.scrollStrategyOptions.close());
 	public positions = input<ConnectedPosition[]>([{
@@ -72,8 +73,8 @@ export class OverlayContainerElement {
 			takeUntilDestroyed(this.destroyRef)
 		).subscribe(() => {
 			this.transition.set(getCssVariablesValue(this.platformService, "transition-style") ?? "ease-in-out");
-			this.duration.set(getCssVariablesValue(this.platformService, "transition-duration") ?? "0.2s");
-		})
+			this.duration.set(getCssVariablesValue(this.platformService, "transition-duration") ?? "0s");
+		});
 	}
 	//endregion
 	//region Methods
