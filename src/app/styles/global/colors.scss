@@ -18,7 +18,6 @@ $theme-vars: (
 				text-main-color: #000000CC,
 				text-muted-color: #6A8395,
 				background-picture: url("assets/icons/light-background.png"),
-				percentage: 10%
 		),
 		dark: (
 				background-color: #33303A,
@@ -27,7 +26,6 @@ $theme-vars: (
 				text-main-color: #FFFFFF,
 				text-muted-color: #AAB8C2,
 				background-picture: url("assets/icons/dark-background.png"),
-				percentage: 5%
 		)
 );
 @mixin apply-theme($theme, $percentage) {

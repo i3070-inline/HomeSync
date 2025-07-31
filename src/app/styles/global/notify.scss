@@ -12,16 +12,15 @@
 	z-index: 1000;
 }
 .notyf__toast {
-	@include blur-effect();
-	@include apply-shadow-on-action($isUsingActive: false);
 	animation: scale-in var(--transition-duration) forwards;
 	display: block;
-	flex-shrink: 0;
 	max-width: 35rem;
 	overflow: hidden;
 	pointer-events: auto;
 	position: relative;
 	transform-origin: bottom right;
+	@include blur-effect();
+	@include apply-shadow-on-action($isUsingActive: false);
 }
 .notyf__toast--disappear {
 	animation: scale-out var(--transition-duration) forwards;
@@ -44,9 +43,9 @@
 .notyf__dismiss-btn {
 	aspect-ratio: 1/1;
 	cursor: pointer;
-	@extend %neo-btn;
 	place-self: center;
 	position: relative;
+	@extend %neo-btn;
 }
 .notyf__dismiss-btn::after {
 	aspect-ratio: 1/1;
