@@ -1,18 +1,21 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from "@angular/core";
 import {TemplateComponent} from "@components/template-component/template-component";
-import {RouterLink} from "@angular/router";
+import {NotifyHandlerService} from "@services/notify-handler.service";
 
 @Component({
 	selector: "app-main-page",
 	standalone: true,
-	imports: [
-		TemplateComponent,
-		RouterLink
-	],
+	imports: [TemplateComponent],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPage {
+	private readonly notifyService = inject(NotifyHandlerService);
+	public onClick() {
+		const gg = this.notifyService.showNotification("info", "Успешное уведомление 1!", {
+			timeout: 5000
+		});
+	}
 }

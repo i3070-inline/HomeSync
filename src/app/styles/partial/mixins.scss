@@ -170,7 +170,6 @@ $transition-position: (
 }
 @mixin blur-effect($border-radius: var(--border-radius), $blur-pixels:  10px , $is-using-box-shadow: true , $shadow-type: var(--base-shadow) , $z-index : -1) {
 	@include transition-builder($transition-base, $transition-shadow);
-	z-index: 0;
 	//for working need to some position , relative, fixed , not absolute
 	@if $is-using-box-shadow {
 		box-shadow: $shadow-type;

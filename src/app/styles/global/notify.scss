@@ -1,0 +1,106 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.notyf {
+	align-items: flex-end;
+	display: flex;
+	flex-direction: column;
+	inset: 0;
+	justify-content: flex-end;
+	padding: 5rem 1rem;
+	pointer-events: none;
+	position: fixed;
+	z-index: 1000;
+}
+.notyf__toast {
+	@include blur-effect();
+	@include apply-shadow-on-action($isUsingActive: false);
+	animation: scale-in var(--transition-duration) forwards;
+	display: block;
+	flex-shrink: 0;
+	max-width: 35rem;
+	overflow: hidden;
+	pointer-events: auto;
+	position: relative;
+	transform-origin: bottom right;
+}
+.notyf__toast--disappear {
+	animation: scale-out var(--transition-duration) forwards;
+	transform-origin: bottom right;
+}
+.notyf__toast--upper {
+	margin-bottom: 1rem;
+}
+.notyf__toast--lower {
+	margin-top: 1rem;
+}
+.notyf__wrapper {
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: var(--standart-padding);
+	padding: var(--standart-padding);
+	place-items: center;
+	position: relative;
+}
+.notyf__dismiss-btn {
+	aspect-ratio: 1/1;
+	cursor: pointer;
+	@extend %neo-btn;
+	place-self: center;
+	position: relative;
+}
+.notyf__dismiss-btn::after {
+	aspect-ratio: 1/1;
+	background-color: var(--text-main-color);
+	content: "";
+	left: 50%;
+	-webkit-mask: url("/assets/icons/user-delete-icon.svg") no-repeat center;
+	mask: url("/assets/icons/user-delete-icon.svg") no-repeat center;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 2rem;
+}
+.notyf__message {
+	position: relative;
+	vertical-align: middle;
+}
+.notyf__icon {
+	display: grid;
+	place-items: center;
+}
+%notyf-icon-base {
+	aspect-ratio: 1 / 1;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	width: 2rem;
+}
+.notyf__icon--success {
+	@extend %notyf-icon-base;
+	background-color: var(--success-color);
+	-webkit-mask-image: url("/assets/icons/check-circle-icon.svg");
+	mask-image: url("/assets/icons/check-circle-icon.svg");
+}
+.notyf__icon--error {
+	@extend %notyf-icon-base;
+	background-color: var(--error-color);
+	-webkit-mask-image: url("/assets/icons/error-circle-icon.svg");
+	mask-image: url("/assets/icons/error-circle-icon.svg");
+}
+.notyf__icon--info {
+	@extend %notyf-icon-base;
+	background-color: var(--info-color);
+	-webkit-mask-image: url("/assets/icons/info-circle-icon.svg");
+	mask-image: url("/assets/icons/info-circle-icon.svg");
+}
+.notyf__icon--warning {
+	@extend %notyf-icon-base;
+	background-color: var(--warning-color);
+	-webkit-mask-image: url("/assets/icons/warning-circle-icon.svg");
+	mask-image: url("/assets/icons/warning-circle-icon.svg");
+}
