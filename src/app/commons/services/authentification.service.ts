@@ -17,14 +17,13 @@ export class AuthentificationService {
 	//endregion
 	//region Methods
 	public isAuthFormValid(): boolean {
-		this.authForm().markAllAsTouched();
+		this.authForm().markAllAsDirty();
 		return this.authForm().valid;
 	}
 	public handlerAfterSuccessAuth(): void {
 		const password = this.authForm().controls.password;
 		password.reset();
 		password.markAsPristine();
-		password.markAsUntouched();
 	}
 	public setStateAuthForm(disabled: boolean): void {
 		disabled ? this.authForm().disable() : this.authForm().enable();

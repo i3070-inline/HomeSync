@@ -23,9 +23,7 @@ export abstract class SettingsHandlerBase<T extends string> {
 	private init(): void {
 		const storageValue = this.getStorageValue();
 		this.setStorageValue(storageValue);
-		console.log("Storage value:", storageValue);
 		this.selectedOption.set(this.options().find(option => option.value === storageValue) || null);
-		console.log(this.selectedOption());
 		this.handlingChanges(storageValue);
 	}
 	private getStorageValue(): T {

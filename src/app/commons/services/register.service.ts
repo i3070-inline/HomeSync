@@ -36,7 +36,7 @@ export class RegisterService {
 		return form;
 	}
 	public onSubmitRegForm(): void {
-		this.regForm().markAllAsTouched();
+		this.regForm().markAllAsDirty();
 		if (!this.regForm().valid) return;
 		this._beforeReg$.next();
 		this.onReg();
@@ -45,7 +45,6 @@ export class RegisterService {
 	public resetRegForm(): void {
 		this.regForm().reset();
 		this.regForm().markAsPristine();
-		this.regForm().markAsUntouched();
 	}
 	public setStateRegForm(disabled: boolean): void {
 		disabled ? this.regForm().disable() : this.regForm().enable();

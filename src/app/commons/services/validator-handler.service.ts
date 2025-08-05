@@ -16,7 +16,7 @@ export class ValidatorHandlerService {
 	//endregion
 	//region Methods
 	public getErrorMessage(control: AbstractControl): string {
-		if (!control.errors || !control.touched) return "";
+		if (!control.errors || !control.dirty) return "";
 		const errorKey = Object.keys(control.errors)[0];
 		const messageKey = this.errorMessages[errorKey] || "";
 		const params = control.errors[errorKey] || {};

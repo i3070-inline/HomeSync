@@ -21,7 +21,7 @@
 	&::-ms-reveal {
 		display: none;
 	}
-	:host.ng-invalid.ng-touched .input:not(.disabled) & {
+	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		outline: var(--error-color) 1px groove;
 	}
 }
@@ -89,7 +89,7 @@
 	top: 100%;
 	margin: 0.2rem;
 	opacity: 0;
-	:host.ng-invalid.ng-touched .input:not(.disabled) & {
+	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		opacity: 1;
 	}
 }

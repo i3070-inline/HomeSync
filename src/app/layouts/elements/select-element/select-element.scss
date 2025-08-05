@@ -6,7 +6,7 @@
 	grid-template-areas: "content clear icons";
 	grid-template-columns: 1fr auto auto;
 	padding: 0.7rem 1rem 0.7rem 0;
-	:host.ng-invalid.ng-touched &:not(:disabled) {
+	:host.ng-invalid.ng-dirty &:not(:disabled) {
 		outline: var(--error-color) 1px groove;
 	}
 }
@@ -105,7 +105,7 @@
 	position: absolute;
 	text-align: left;
 	top: 100%;
-	:host.ng-invalid.ng-touched .select-container:not(:disabled) & {
+	:host.ng-invalid.ng-dirty .select-container:not(:disabled) & {
 		opacity: 1;
 	}
 }
