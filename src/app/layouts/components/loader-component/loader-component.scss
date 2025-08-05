@@ -6,6 +6,7 @@
 	justify-content: center;
 	position: relative;
 	width: 12rem;
+	-webkit-backface-visibility: hidden;
 	@include blur-effect($border-radius: 50%, $shadow-type: var(--inset-active-shadow));
 }
 #h3 {
@@ -19,6 +20,9 @@
 	height: 10rem;
 	position: absolute;
 	width: 10rem;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	will-change: transform;
 }
 #ring:nth-child(1) {
 	animation: rotate1 2s linear infinite;
