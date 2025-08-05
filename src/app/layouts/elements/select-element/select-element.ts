@@ -64,7 +64,7 @@ export class SelectElement implements ControlValueAccessor {
 		this.selectedValue.set(null);
 	}
 	protected onSelectItem(item: ISelectItemModel, service: OverlayContainerService): void {
-		if (item === this.selectedValue()) {
+		if (item.value === this.selectedValue()?.value) {
 			return;
 		}
 		this.selectedValue.set(item);

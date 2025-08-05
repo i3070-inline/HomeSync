@@ -61,7 +61,7 @@
 				[width]="host.offsetWidth.toString()+'px'">
 			@for (item of itemSource(); track item.value) {
 				<div class="select-container__list-item"
-				     [class.selected]="item === selectedValue()"
+				     [class.selected]="item.value === selectedValue()?.value"
 				     (click)="onSelectItem(item,trigger.overlayContainerService);"
 				     (keydown.space)="onSelectItem(item,trigger.overlayContainerService)"
 				     (keydown.enter)="onSelectItem(item,trigger.overlayContainerService)"

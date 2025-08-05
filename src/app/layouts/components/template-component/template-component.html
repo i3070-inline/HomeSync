@@ -28,25 +28,25 @@
 						</div>
 						<div class="background__settings-tools">
 							@let width = "15rem";
-							<app-select-element [itemSource]="themeService.themes()"
-							                    [selectedValue]="themeService.selectedTheme()"
-							                    (selectedValueChange)="themeService.onSelectedThemeChange($event)"
+							<app-select-element [itemSource]="themeService.options()"
+							                    [selectedValue]="themeService.selectedOption()"
+							                    (selectedValueChange)="themeService.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:buildIconSvgPath('theme-icon'),
 							                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.THEME.ACTION' | translate}"
 							                    [width]="width">
 							</app-select-element>
-							<app-select-element [itemSource]="languageService.languages()"
-							                    [selectedValue]="languageService.selectedLanguage()"
-							                    (selectedValueChange)="languageService.OnSelectedLanguageChange($event)"
+							<app-select-element [itemSource]="languageService.options()"
+							                    [selectedValue]="languageService.selectedOption()"
+							                    (selectedValueChange)="languageService.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:buildIconSvgPath('language-icon'),
 							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
 							                    [width]="width">
 							</app-select-element>
-							<app-select-element [itemSource]="animationService.animations()"
-							                    [selectedValue]="animationService.selectedAnimation()"
-							                    (selectedValueChange)="animationService.onSelectedAnimationChange($event)"
+							<app-select-element [itemSource]="animationService.options()"
+							                    [selectedValue]="animationService.selectedOption()"
+							                    (selectedValueChange)="animationService.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:buildIconSvgPath('animation-icon'),
 							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.ANIMATION.ACTION' | translate}"

@@ -1,67 +1,45 @@
-import {inject, Injectable, signal} from "@angular/core";
-import {LocalStorageService} from "@services/local-storage.service";
+import {Injectable, Signal, signal} from "@angular/core";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
-import {TranslateService} from "@ngx-translate/core";
-import {PlatformService} from "@services/platform.service";
+import {SettingsHandlerBase} from "@services/base/settings-handler-base";
 
 type languageType = "ro" | "en" | "ru";
 
 @Injectable({
 	providedIn: "root"
 })
-export class LanguageHandlerService {
-	//region Members
-	private readonly localStorageService = inject(LocalStorageService);
-	private readonly translateService = inject(TranslateService);
-	private readonly platformService = inject(PlatformService);
-	private readonly localStorageKey = "lang";
-	public languages = signal<ISelectItemModel<languageType>[]>([
-		{
-			value: "en",
-			name: "SETTINGS.LANGUAGE.OPTIONS.ENGLISH",
-			iconPath: "assets/icons/language-en-icon.png"
-		},
-		{
-			value: "ro",
-			name: "SETTINGS.LANGUAGE.OPTIONS.ROMANIAN",
-			iconPath: "assets/icons/language-ro-icon.png"
-		},
-		{
-			value: "ru",
-			name: "SETTINGS.LANGUAGE.OPTIONS.RUSSIAN",
-			iconPath: "assets/icons/language-ru-icon.png"
-		}
-	]);
-	public selectedLanguage = signal<ISelectItemModel<languageType> | null>(null);
-	//endregion
-	//region Constructor
-	constructor() {
-		const storageLanguage = this.getStorageLanguage();
-		this.setStorageLanguage(storageLanguage);
-		this.setLanguage(storageLanguage);
-		this.selectedLanguage.set(this.languages().find(lang => lang.value === storageLanguage) || null);
+export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
+	//region Overrides
+	protected override get localStorageKey(): string {
+		return "lang";
 	}
-	//endregion
-	//region Methods
-	public OnSelectedLanguageChange(value: ISelectItemModel | null): void {
-		const language = value as ISelectItemModel<languageType>;
-		if (!language) return;
-		this.selectedLanguage.set(language);
-		this.setLanguage(language.value);
-		this.setStorageLanguage(language.value);
+	protected override get defaultValue(): languageType {
+		return "en";
 	}
-	private setLanguage(language: languageType): void {
-		this.translateService.setDefaultLang(language);
-		this.translateService.use(language);
+	public override get options(): Signal<ISelectItemModel<languageType>[]> {
+		return signal<ISelectItemModel<languageType>[]>([
+			{
+				value: "en",
+				name: "SETTINGS.LANGUAGE.OPTIONS.ENGLISH",
+				iconPath: "assets/icons/language-en-icon.png"
+			},
+			{
+				value: "ro",
+				name: "SETTINGS.LANGUAGE.OPTIONS.ROMANIAN",
+				iconPath: "assets/icons/language-ro-icon.png"
+			},
+			{
+				value: "ru",
+				name: "SETTINGS.LANGUAGE.OPTIONS.RUSSIAN",
+				iconPath: "assets/icons/language-ru-icon.png"
+			}
+		]);
+	}
+	protected override handlingChanges(value: languageType): void {
+		this.translateService.setDefaultLang(value);
+		this.translateService.use(value);
 		this.platformService.runOnBrowserPlatform(() => {
-			document.documentElement.setAttribute(this.localStorageKey, language);
+			document.documentElement.setAttribute(this.localStorageKey, value);
 		});
-	}
-	private getStorageLanguage(): languageType {
-		return this.localStorageService.getItem<languageType>(this.localStorageKey) || "en";
-	}
-	private setStorageLanguage(language: languageType): void {
-		this.localStorageService.setItem<languageType>(this.localStorageKey, language);
 	}
 	//endregion
 }
