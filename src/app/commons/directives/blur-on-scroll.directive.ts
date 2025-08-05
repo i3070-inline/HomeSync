@@ -12,7 +12,7 @@ export class BlurOnScrollDirective {
 	private readonly elementRef = inject(ElementRef<HTMLInputElement | HTMLTextAreaElement>);
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
-	public delayMs = input<number>(500);
+	public delayMs = input<number>(1000);
 	private scrollSub?: Subscription;
 	@HostListener("focus") onFocus(): void {
 		this.focusHandler();
