@@ -24,11 +24,12 @@
 	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		outline: var(--error-color) 1px groove;
 	}
-	&::-webkit-textfield-decoration-container {
+	&::-webkit-contacts-auto-fill-button {
+		visibility: hidden;
+		display: none !important;
 		pointer-events: none;
 		position: absolute;
 		right: 0;
-		visibility: hidden;
 	}
 }
 .input__field-eye-button {
