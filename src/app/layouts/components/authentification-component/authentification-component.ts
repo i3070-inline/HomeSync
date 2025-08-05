@@ -36,7 +36,7 @@ export class AuthentificationComponent {
 		const dialogRef = this.modalHandlerService.showModal(LoaderComponent);
 		await this.authentificationService.onAuth();
 		await this.router.navigate(["/main"]);
-		await new Promise(resolve => setTimeout(resolve, 59900));
+		await new Promise(resolve => setTimeout(resolve, 5900));
 		this.modalHandlerService.closeModal(dialogRef);
 		this.authentificationService.handlerAfterSuccessAuth();
 	}
