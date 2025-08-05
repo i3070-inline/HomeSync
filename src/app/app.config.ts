@@ -7,11 +7,11 @@ import {
 import {PreloadAllModules, provideRouter, withPreloading, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
-import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideTranslateService, TranslateLoader} from "@ngx-translate/core";
 import SwiperCore, {EffectCards} from "@swiper-base";
 import {HttpClient, provideHttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {
@@ -30,6 +30,6 @@ export const appConfig: ApplicationConfig = {
 			withPreloading(PreloadAllModules),
 			withViewTransitions()),
 		provideClientHydration(withEventReplay()),
-		provideAnimations()
+		provideAnimationsAsync()
 	]
 };

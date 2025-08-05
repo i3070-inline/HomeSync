@@ -2,9 +2,9 @@
 @use "placeholders" as *;
 .input {
 	display: grid;
-	position: relative;
-	@include blur-effect($is-using-box-shadow: false);
 	padding: 0;
+	@include blur-effect($is-using-box-shadow: false);
+	position: relative;
 	&.disabled {
 		@extend %disabled;
 	}
@@ -24,15 +24,21 @@
 	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		outline: var(--error-color) 1px groove;
 	}
+	&::-webkit-textfield-decoration-container {
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		visibility: hidden;
+	}
 }
 .input__field-eye-button {
 	@extend %neo-btn;
-	position: absolute;
 	align-self: center;
-	right: 0.7rem;
+	border-radius: 50%;
 	display: grid;
 	padding: 0;
-	border-radius: 50%;
+	position: absolute;
+	right: 0.7rem;
 }
 .input__field-eye-button-icon {
 	align-self: center;
@@ -57,10 +63,10 @@
 	.input__field:not(.empty) ~ & {
 		font-style: normal;
 		font-weight: 500;
-		transform: translateY(-120%);
-		top: 0;
 		left: 0;
 		opacity: 1;
+		top: 0;
+		transform: translateY(-120%);
 	}
 	.input__field:not(.empty):not(.showFloatedPlaceholder) ~ &,
 	.input__field.focused:not(.showFloatedPlaceholder) ~ & {
@@ -77,18 +83,18 @@
 .input__placeholder-text {
 	font-style: inherit;
 	font-weight: inherit;
-	white-space: nowrap;
-	overflow: hidden;
-	width: 100%;
 	margin-right: 0.7rem;
+	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
 }
 .input-error-text {
 	@extend %error-text;
-	position: absolute;
-	top: 100%;
 	margin: 0.2rem;
 	opacity: 0;
+	position: absolute;
+	top: 100%;
 	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		opacity: 1;
 	}
