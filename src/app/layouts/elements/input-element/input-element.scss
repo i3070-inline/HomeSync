@@ -27,9 +27,6 @@
 	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		outline: var(--error-color) 1px groove;
 	}
-	&::-webkit-textfield-decoration-container {
-		display: none;
-	}
 }
 .input__field-eye-button {
 	@extend %neo-btn;
