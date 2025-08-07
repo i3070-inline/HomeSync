@@ -39,14 +39,12 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		]);
 	}
 	protected override handlingChanges(value: themeType): void {
-		this.platformService.runOnBrowserPlatform(() => {
+		this.platformService.runOnBrowserPlatform(async () => {
 			const animationKey = "animation";
 			const before = document.documentElement.getAttribute(animationKey);
 			document.documentElement.setAttribute(animationKey, "none");
 			document.documentElement.setAttribute(this.localStorageKey, value);
-			setTimeout(() => {
-				document.documentElement.setAttribute(animationKey, before || "none");
-			}, 500);
+			document.documentElement.setAttribute(animationKey, before || "none");
 		});
 	}
 	//endregion

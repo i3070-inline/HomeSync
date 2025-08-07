@@ -95,7 +95,7 @@ export class LoginPage {
 	private readonly platformService = inject(PlatformService);
 	protected readonly mediaQueryService = inject(MediaQueryService);
 	protected currentPage = signal<pagesType>("login");
-	protected duration = signal<string>(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "1s");
+	protected duration = signal<string>(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "0s");
 	protected transitionShoot = signal<string>(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 	protected isSwitching = signal<boolean>(false);
 	protected circleDuration = computed<string>(() => {
