@@ -9,12 +9,13 @@
 	padding: 5rem 1rem;
 	pointer-events: none;
 	position: fixed;
-	z-index: 1000;
+	z-index: 1500;
 }
 .notyf__toast {
 	animation: scale-in var(--transition-duration) forwards;
 	display: block;
-	max-width: 35rem;
+	max-width: 20rem;
+	min-width: 10rem;
 	overflow: hidden;
 	pointer-events: auto;
 	position: relative;
@@ -33,12 +34,16 @@
 	margin-top: 1rem;
 }
 .notyf__wrapper {
+	--padding: 0.7rem;
 	display: grid;
 	grid-auto-flow: column;
-	grid-gap: var(--standart-padding);
-	padding: var(--standart-padding);
-	place-items: center;
+	grid-gap: var(--padding);
+	grid-template-columns: max-content 1fr max-content;
+	padding: var(--padding);
 	position: relative;
+}
+.notyf__dismiss {
+	display: grid;
 }
 .notyf__dismiss-btn {
 	aspect-ratio: 1/1;
@@ -62,8 +67,9 @@
 	width: 2rem;
 }
 .notyf__message {
+	align-self: center;
 	position: relative;
-	vertical-align: middle;
+	text-align: left;
 }
 .notyf__icon {
 	display: grid;

@@ -1,0 +1,30 @@
+<div class="forgot">
+	<header class="forgot__header">
+		<h3 class="forgot__title">Forgot Password</h3>
+		<button (click)="onClose()"
+		        class="forgot__close">
+			<svg class="forgot__icon">
+				<use [attr.href]="buildIconSvgPath('user-close-icon')"></use>
+			</svg>
+		</button>
+	</header>
+	@if (forgotService.accountForm(); as forgot) {
+		<form class="forgot__form"
+		      [formGroup]="forgot">
+			<app-input-element [inputType]="'text'"
+			                   [clearIconIsVisible]="true"
+			                   [formControlName]="'username'"
+			                   [inputErrorHint]="validatorService.getErrorMessage(forgot.controls.username)"
+			                   cdkFocusInitial
+			                   [placeholder]="{iconPath:buildIconSvgPath('user-icon'),
+		                       description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
+		                       action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
+			                   class="forgot__input"></app-input-element>
+			<button type="submit"
+			        [disabled]="forgot.disabled"
+			        (click)="onSubmitForgotForm()"
+			        class="forgot__submit">Submit
+			</button>
+		</form>
+	}
+</div>

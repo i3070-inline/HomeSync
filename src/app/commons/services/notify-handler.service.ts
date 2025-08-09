@@ -44,8 +44,7 @@ export class NotifyHandlerService {
 	});
 	//endregion
 	//region Methods
-	public showNotification(type: notifyType, message: string, opts?: Partial<{
-		timeout: number,
+	public showNotification(type: notifyType, message: string, timeout? : number, dismissible?:boolean, opts?: Partial<{
 		position: DeepPartial<INotyfPosition>,
 		dismissible: boolean
 	}>): NotyfNotification {
@@ -53,12 +52,12 @@ export class NotifyHandlerService {
 		const result = this.notify.open({
 			type: type,
 			message: message,
-			duration: opts?.timeout ?? 2000,
+			duration: timeout ?? 3000,
 			position: opts?.position ?? {
 				x: "right",
 				y: "bottom"
 			},
-			dismissible: opts?.dismissible ?? true
+			dismissible: dismissible ?? true
 		});
 		this.notifications.push(result);
 		return result;

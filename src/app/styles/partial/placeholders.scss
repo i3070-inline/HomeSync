@@ -31,6 +31,11 @@
 	position: relative;
 	width: 2.5rem;
 }
+%icon-medium-base {
+	@extend %icon-base;
+	height: 1.75rem;
+	width: 1.75rem;
+}
 %neo-btn {
 	cursor: pointer;
 	display: grid;

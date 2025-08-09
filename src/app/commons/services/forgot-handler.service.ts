@@ -1,0 +1,25 @@
+import {Injectable, signal, Signal} from "@angular/core";
+import {AccountBase} from "@services/base/account-base";
+import {IForgotPasswordInterface} from "@interfaces/forgot-password.interface";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ControlsOf} from "@constants/types";
+
+@Injectable({
+	providedIn: "root"
+})
+export class ForgotHandlerService extends AccountBase<IForgotPasswordInterface> {
+	//region Overrides
+	public override get name(): Signal<string> {
+		return signal("forgot");
+	}
+	public override accountForm = signal<FormGroup<ControlsOf<IForgotPasswordInterface>>>(
+		new FormGroup<ControlsOf<IForgotPasswordInterface>>({
+			username: new FormControl<string | null>(null, [Validators.required, Validators.email])
+		})
+	);
+	protected override async onParticularExecution(): Promise<boolean> {
+		await new Promise(resolve => setTimeout(resolve, 2000));
+		return true; // TODO: Implement actual authentication logic here
+	}
+	//endregion
+}

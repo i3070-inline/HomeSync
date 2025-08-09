@@ -1,0 +1,47 @@
+@use "placeholders" as *;
+@use "mixins" as *;
+.forgot {
+	display: grid;
+	grid-auto-flow: row;
+	grid-gap: calc(var(--standart-padding) * 2);
+	grid-template-areas: "header" "form";
+	grid-template-rows: max-content 1fr;
+	@include blur-effect();
+	position: relative;
+}
+.forgot__header {
+	align-items: center;
+	display: grid;
+	grid-area: header;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr max-content;
+	padding: var(--small-element-padding);
+}
+.forgot__title {
+	justify-self: left;
+}
+.forgot__close {
+	@extend %neo-btn;
+	padding: 0;
+}
+.forgot__icon {
+	@extend %icon-medium-base;
+}
+.forgot__form {
+	display: grid;
+	grid-area: form;
+	grid-auto-flow: row;
+	grid-gap: calc(var(--standart-padding) * 2);
+	grid-template-rows: max-content max-content;
+	min-width: 25rem;
+	padding: var(--standart-padding);
+}
+.forgot__input {
+	grid-row: 1/2;
+}
+.forgot__submit {
+	grid-row: 2/3;
+	min-width: 7rem;
+	@extend %neo-btn;
+	place-self: center;
+}

@@ -65,6 +65,18 @@
   "VALIDATORS": {
     "REQUIRED": "Acest câmp este obligatoriu",
     "MIN_LENGTH": "Cel puțin {{requiredLength}} caractere",
-    "PASSWORD_MISMATCH": "Nu se potrivește cu parola"
+    "PASSWORD_MISMATCH": "Nu se potrivește cu parola",
+    "INVALID_EMAIL": "Format email invalid"
+  },
+  "NOTIFICATIONS": {
+    "SIGN_IN": {
+      "START": "Autentificare în curs..."
+    },
+    "SIGN_UP": {
+      "START": "Creare cont în curs...",
+      "EMAIL_VERIFICATION": "Vă rugăm să confirmați înregistrarea prin linkul trimis pe email"
+    },
+    "SUCCESS": "Operațiunea a fost finalizată cu succes",
+    "FAILURE": "Operațiunea a eșuat"
   }
 }

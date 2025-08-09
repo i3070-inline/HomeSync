@@ -65,6 +65,18 @@
   "VALIDATORS": {
     "REQUIRED": "This field is required",
     "MIN_LENGTH": "At least {{requiredLength}} characters",
-    "PASSWORD_MISMATCH": "Mismatch with password"
+    "PASSWORD_MISMATCH": "Mismatch with password",
+    "INVALID_EMAIL": "Invalid email format"
+  },
+  "NOTIFICATIONS": {
+    "SIGN_IN": {
+      "START": "Logging in progress..."
+    },
+    "SIGN_UP": {
+      "START": "Create account in progress...",
+      "EMAIL_VERIFICATION" : "Please confirm your registration via the link sent to your email"
+    },
+    "SUCCESS": "Operation successfully completed",
+    "FAILURE": "Operation failed"
   }
 }

@@ -11,7 +11,8 @@ export class ValidatorHandlerService {
 	private errorMessages: Record<string, string> = {
 		required: "VALIDATORS.REQUIRED",
 		minlength: "VALIDATORS.MIN_LENGTH",
-		passwordMismatch: "VALIDATORS.PASSWORD_MISMATCH"
+		passwordMismatch: "VALIDATORS.PASSWORD_MISMATCH",
+		email: "VALIDATORS.INVALID_EMAIL",
 	};
 	//endregion
 	//region Methods

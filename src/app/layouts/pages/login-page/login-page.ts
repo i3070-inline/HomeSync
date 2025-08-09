@@ -22,7 +22,7 @@ import {
 	trigger
 } from "@angular/animations";
 import {AuthentificationService} from "@services/authentification.service";
-import {RegisterService} from "@services/register.service";
+import {RegistrationService} from "@services/registration.service";
 import {MediaQueryService} from "@services/media-query.service";
 import {getCssVariablesValue} from "@utils/dom-helper";
 import type {Swiper} from "swiper/types";
@@ -31,8 +31,7 @@ import {AnimationHandlerService} from "@services/animation-handler.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
 import {TranslatePipe} from "@ngx-translate/core";
-
-type pagesType = "login" | "register";
+import {AccountBase} from "@services/base/account-base";
 
 @Component({
 	selector: "app-login-page",
@@ -50,13 +49,12 @@ type pagesType = "login" | "register";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	animations: [
 		trigger("switchPageAnimation", [
-			state("login", style({transform: "translateX(0)"})),
-			state("register", style({transform: "translateX(-100%)"})),
-			transition("login <=> register", [
+			state("authentification", style({transform: "translateX(0)"})),
+			state("registration", style({transform: "translateX(-100%)"})),
+			transition("authentification <=> registration", [
 				group([
 					query("@circleLeftAnimation", animateChild(), {optional: true}),
 					query("@circleRightAnimation", animateChild(), {optional: true}),
-					query("@opacityTextAnimation", animateChild(), {optional: true}),
 					animate("{{duration}} {{transition}}")
 				])
 			], {
@@ -67,18 +65,18 @@ type pagesType = "login" | "register";
 			})
 		]),
 		trigger("circleLeftAnimation", [
-			state("login", style({left: "0%"})),
-			state("register", style({left: "100%"})),
-			transition("login <=> register", animate("{{duration}} {{transition}}"), {
+			state("authentification", style({left: "0%"})),
+			state("registration", style({left: "100%"})),
+			transition("authentification <=> registration", animate("{{duration}} {{transition}}"), {
 				params: {
 					duration: "0.5s",
 					transition: "ease-in-out"
 				}
 			})]),
 		trigger("circleRightAnimation", [
-			state("login", style({right: "0%"})),
-			state("register", style({right: "100%"})),
-			transition("login <=> register", animate("{{duration}} {{transition}}"), {
+			state("authentification", style({right: "0%"})),
+			state("registration", style({right: "100%"})),
+			transition("authentification <=> registration", animate("{{duration}} {{transition}}"), {
 				params: {
 					duration: "0.5s",
 					transition: "ease-in-out"
@@ -89,12 +87,12 @@ type pagesType = "login" | "register";
 export class LoginPage {
 	//region Members
 	private readonly destroyRef = inject(DestroyRef);
-	private readonly animationHandlerService = inject(AnimationHandlerService);
-	private readonly authService = inject(AuthentificationService);
-	private readonly regService = inject(RegisterService);
 	private readonly platformService = inject(PlatformService);
+	private readonly animationHandlerService = inject(AnimationHandlerService);
+	protected readonly regService = inject(RegistrationService);
 	protected readonly mediaQueryService = inject(MediaQueryService);
-	protected currentPage = signal<pagesType>("login");
+	protected readonly authService = inject(AuthentificationService);
+	protected currentForm = signal<AccountBase<any>>(this.authService);
 	protected duration = signal<string>(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "0s");
 	protected transitionShoot = signal<string>(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 	protected isSwitching = signal<boolean>(false);
@@ -127,42 +125,39 @@ export class LoginPage {
 	//endregion
 	//region Methods
 	protected onSwitchPage() {
-		this.currentPage.set(this.currentPage() === "login" ? "register" : "login");
 		this.isSwitching.set(true);
-	}
-	protected onAnimationStart(): void {
-		this.setFormsState(true);
+		switch (this.currentForm()) {
+			case this.authService:
+				this.setCurrentForm(this.regService);
+				break;
+			case this.regService:
+				this.setCurrentForm(this.authService);
+				break;
+			default:
+				this.isSwitching.set(false);
+				return;
+		}
 	}
 	protected onAnimationDone(event: AnimationEvent): void {
-		if (event.toState === "login") {
-			this.authService.setStateAuthForm(false);
-		}
-		else if (event.toState === "register") {
-			this.regService.setStateRegForm(false);
-		}
-		else if (event.toState === "void") {
-			this.setFormsState(false);
-		}
 		this.isSwitching.set(false);
-	}
-	private setFormsState(disable: boolean): void {
-		this.authService.setStateAuthForm(disable);
-		this.regService.setStateRegForm(disable);
 	}
 	protected onSwipeChanged(event: [swiper: Swiper]) {
 		const swiper = event[0];
-		if (swiper.realIndex === 0) {
-			this.currentPage.set("login");
-			this.authService.setStateAuthForm(false);
-			this.regService.setStateRegForm(true);
-		}
-		else if (swiper.realIndex === 1) {
-			this.currentPage.set("register");
-			this.regService.setStateRegForm(false);
-			this.authService.setStateAuthForm(true);
+		switch (swiper.realIndex) {
+			case 0:
+				this.currentForm.set(this.authService);
+				break;
+			case 1:
+				this.currentForm.set(this.regService);
+				break;
+			default:
+				return;
 		}
 	}
-	//endregion
-	//region Overrides
+	private setCurrentForm(form: AccountBase<any>) {
+		this.currentForm().setStateAccountForm(true);
+		this.currentForm.set(form);
+		this.currentForm().setStateAccountForm(false);
+	}
 	//endregion
 }

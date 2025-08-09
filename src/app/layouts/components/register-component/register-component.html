@@ -1,4 +1,4 @@
-@if (registerService.regForm(); as reg) {
+@if (registerService.accountForm(); as reg) {
 	<form [formGroup]="reg"
 	      class="form-register">
 		<h1 [class.disabled]="reg.disabled"
@@ -30,7 +30,7 @@
 		                   action: 'LOGIN_PAGE.CONFIRM_PASSWORD.ACTION' | translate}"
 		                   class="register-confirm-password">
 		</app-input-element>
-		<button (click)="registerService.onSubmitRegForm()"
+		<button (click)="onSubmitRegisterForm()"
 		        [disabled]="reg.disabled"
 		        class="register-button">{{"LOGIN_PAGE.SIGN_UP_FORM.ACTION" | translate}}
 		</button>

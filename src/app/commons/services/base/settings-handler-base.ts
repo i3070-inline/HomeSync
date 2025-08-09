@@ -4,7 +4,7 @@ import {PlatformService} from "@services/platform.service";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {TranslateService} from "@ngx-translate/core";
 
-export abstract class SettingsHandlerBase<T extends string> {
+export abstract class SettingsHandlerBase<T> {
 	//region Members
 	protected readonly localStorageService = inject(LocalStorageService);
 	protected readonly platformService = inject(PlatformService);

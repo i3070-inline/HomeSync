@@ -1,6 +1,5 @@
-import {AbstractControl} from "@angular/forms";
+import {IForgotPasswordInterface} from "@interfaces/forgot-password.interface";
 
-export interface ILoginModel {
-	username: AbstractControl<string | null>;
-	password: AbstractControl<string | null>;
+export interface ILoginModel extends IForgotPasswordInterface {
+	password: string | null;
 }

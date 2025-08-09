@@ -1,36 +1,31 @@
-import {inject, Injectable, signal} from "@angular/core";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Injectable, Signal, signal} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ILoginModel} from "@interfaces/login-model.interface";
+import {AccountBase} from "@services/base/account-base";
+import {ControlsOf} from "@constants/types";
 
 @Injectable({
 	providedIn: "root"
 })
-export class AuthentificationService {
-	//region Members
-	private readonly formBuilder = inject(FormBuilder);
-	public authForm = signal<FormGroup<ILoginModel>>(
-		this.formBuilder.group<ILoginModel>({
-			username: new FormControl<string | null>(null, [Validators.required]),
+export class AuthentificationService extends AccountBase<ILoginModel> {
+	//region Overrides
+	public override get name(): Signal<string> {
+		return signal("authentification");
+	}
+	public override accountForm = signal<FormGroup<ControlsOf<ILoginModel>>>(
+		new FormGroup<ControlsOf<ILoginModel>>({
+			username: new FormControl<string | null>(null, [Validators.required, Validators.email]),
 			password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 		})
 	);
-	//endregion
-	//region Methods
-	public isAuthFormValid(): boolean {
-		this.authForm().markAllAsDirty();
-		return this.authForm().valid;
+	protected override async onParticularExecution(): Promise<boolean> {
+		await new Promise(resolve => setTimeout(resolve, 2000));
+		return true; // TODO: Implement actual authentication logic here
 	}
-	public handlerAfterSuccessAuth(): void {
-		const password = this.authForm().controls.password;
+	public override resetAccountForm() {
+		const password = this.accountForm().controls.password;
 		password.reset();
 		password.markAsPristine();
-	}
-	public setStateAuthForm(disabled: boolean): void {
-		disabled ? this.authForm().disable() : this.authForm().enable();
-	}
-	public async onAuth(): Promise<void> {
-		await new Promise(resolve => setTimeout(resolve, 500));
-		// TODO: Implement authentication logic here
 	}
 	//endregion
 }
