@@ -37,8 +37,8 @@ export class ForgotComponent {
 		const awaitNotify = this.notifyHandlerService.showNotification("info", "NOTIFICATIONS.FORGOT.START", 0, false);
 		if (await this.forgotService.onGenericExecution()) {
 			this.notifyHandlerService.closeNotification(awaitNotify);
+			this.forgotService.resetAccountForm();
 			this.notifyHandlerService.showNotification("success", "NOTIFICATIONS.SUCCESS");
-			this.onClose();
 			return;
 		}
 		this.notifyHandlerService.showNotification("error", "NOTIFICATIONS.ERROR");
