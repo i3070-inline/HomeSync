@@ -1,3 +1,3 @@
 export interface IForgotPasswordInterface {
-	username: string | null;
+	email: string | null;
 }

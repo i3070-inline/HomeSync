@@ -48,10 +48,14 @@
       "DESCRIPTION": "Înregistrează-te dacă nu ai încă cont sau folosește butonul de mai jos pentru autentificare.",
       "ACTION": "Autentifică-te"
     },
+    "FORGOT_FORM": {
+      "TITLE": "Resetează parola",
+      "ACTION": "Resetează"
+    },
     "FORGOT_PASSWORD": "Ai uitat parola ?",
-    "USERNAME": {
-      "DESCRIPTION": "Nume utilizator",
-      "ACTION": "Introduceți numele de utilizator"
+    "EMAIL": {
+      "DESCRIPTION": "Adresă de email",
+      "ACTION": "Introduceți adresa de email"
     },
     "PASSWORD": {
       "DESCRIPTION": "Parolă",
@@ -75,6 +79,10 @@
     "SIGN_UP": {
       "START": "Creare cont în curs...",
       "EMAIL_VERIFICATION": "Vă rugăm să confirmați înregistrarea prin linkul trimis pe email"
+    },
+    "FORGOT": {
+      "START": "Resetare parolă în curs...",
+      "EMAIL_VERIFICATION": "Vă rugăm să verificați emailul pentru linkul de resetare"
     },
     "SUCCESS": "Operațiunea a fost finalizată cu succes",
     "FAILURE": "Operațiunea a eșuat"

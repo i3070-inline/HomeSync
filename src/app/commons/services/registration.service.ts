@@ -16,7 +16,7 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 	public override accountForm = signal(
 		(() => {
 			const form = new FormGroup<ControlsOf<IRegisterModel>>({
-				username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator]),
+				email: new FormControl<string | null>(null, [Validators.required, strictEmailValidator()]),
 				password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
 				confirmPassword: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 			});

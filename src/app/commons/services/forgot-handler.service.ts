@@ -15,7 +15,7 @@ export class ForgotHandlerService extends AccountBase<IForgotPasswordInterface> 
 	}
 	public override accountForm = signal<FormGroup<ControlsOf<IForgotPasswordInterface>>>(
 		new FormGroup<ControlsOf<IForgotPasswordInterface>>({
-			username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator])
+			email: new FormControl<string | null>(null, [Validators.required, strictEmailValidator()])
 		})
 	);
 	protected override async onParticularExecution(): Promise<boolean> {

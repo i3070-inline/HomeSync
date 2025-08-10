@@ -1,6 +1,6 @@
 <div class="forgot">
 	<header class="forgot__header">
-		<h3 class="forgot__title">Forgot Password</h3>
+		<h3 class="forgot__title">{{"LOGIN_PAGE.FORGOT_FORM.TITLE" | translate}}</h3>
 		<button (click)="onClose()"
 		        class="forgot__close">
 			<svg class="forgot__icon">
@@ -11,19 +11,20 @@
 	@if (forgotService.accountForm(); as forgot) {
 		<form class="forgot__form"
 		      [formGroup]="forgot">
-			<app-input-element [inputType]="'text'"
+			<app-input-element [inputType]="'email'"
 			                   [clearIconIsVisible]="true"
-			                   [formControlName]="'username'"
-			                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.username)"
+			                   [formControlName]="'email'"
+			                   [disabled]="forgot.disabled || forgotService.isExecuting()"
+			                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.email)"
 			                   cdkFocusInitial
-			                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
-		                       description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
-		                       action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
+			                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
+		                       description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | translate,
+		                       action: 'LOGIN_PAGE.EMAIL.ACTION' | translate}"
 			                   class="forgot__input"></app-input-element>
 			<button type="submit"
-			        [disabled]="forgot.disabled"
+			        [disabled]="forgot.disabled || forgotService.isExecuting()"
 			        (click)="onSubmitForgotForm()"
-			        class="forgot__submit">Submit
+			        class="forgot__submit">{{"LOGIN_PAGE.FORGOT_FORM.ACTION" | translate}}
 			</button>
 		</form>
 	}

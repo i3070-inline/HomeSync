@@ -4,28 +4,30 @@
 		<h1 [class.disabled]="auth.disabled"
 		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | translate}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
-		                   [formControlName]="'username'"
-		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.username)"
-		                   [inputType]="'text'"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
-		                   description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
-		                   action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
+		                   [formControlName]="'email'"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.email)"
+		                   [inputType]="'email'"
+		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
+		                   description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | translate,
+		                   action: 'LOGIN_PAGE.EMAIL.ACTION' | translate}"
 		                   class="login-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.password)"
 		                   [inputType]="'password'"
+		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
                            description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | translate,
                            action: 'LOGIN_PAGE.PASSWORD.ACTION' | translate}"
 		                   class="login-password">
 		</app-input-element>
-		<a [class.disabled]="auth.disabled"
+		<a [class.disabled]="auth.disabled || authentificationService.isExecuting()"
 		   (click)="onShowForgotForm()"
 		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
 		<button (click)="onSubmitAuthForm()"
-		        [disabled]="auth.disabled"
+		        [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button">
 			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | translate}}
 		</button>

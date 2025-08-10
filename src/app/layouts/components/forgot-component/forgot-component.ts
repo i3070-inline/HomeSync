@@ -29,14 +29,19 @@ export class ForgotComponent {
 	protected async onSubmitForgotForm(): Promise<void> {
 		if (!this.forgotService.isFormValid()) return;
 		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
-			"NOTIFICATIONS.FORGOT.START", 0, false);
+			this.uiService.translateHandler.instant("NOTIFICATIONS.FORGOT.START"), 0, false);
 		if (await this.forgotService.onGenericExecution()) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			this.forgotService.resetAccountForm();
-			this.uiService.notifyHandler.showNotification("success", "NOTIFICATIONS.SUCCESS");
+			this.uiService.notifyHandler.showNotification("success",
+				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));
+			this.uiService.notifyHandler.showNotification("info",
+				this.uiService.translateHandler.instant("NOTIFICATIONS.FORGOT.EMAIL_VERIFICATION"),
+				10000);
 			return;
 		}
-		this.uiService.notifyHandler.showNotification("error", "NOTIFICATIONS.ERROR");
+		this.uiService.notifyHandler.showNotification("error",
+			this.uiService.translateHandler.instant("NOTIFICATIONS.ERROR"));
 	}
 	protected onClose(): void {
 		this.forgotService.resetAccountForm();

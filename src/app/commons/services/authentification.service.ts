@@ -15,7 +15,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	}
 	public override accountForm = signal<FormGroup<ControlsOf<ILoginModel>>>(
 		new FormGroup<ControlsOf<ILoginModel>>({
-			username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator]),
+			email: new FormControl<string | null>(null, [Validators.required, strictEmailValidator()]),
 			password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 		})
 	);

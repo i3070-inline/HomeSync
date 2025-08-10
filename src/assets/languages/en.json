@@ -48,10 +48,14 @@
       "DESCRIPTION": "Register if you don't have an account yet or use the button below to log in.",
       "ACTION": "Log in"
     },
+    "FORGOT_FORM": {
+      "TITLE": "Reset password",
+      "ACTION": "Reset"
+    },
     "FORGOT_PASSWORD": "Forgot Password ?",
-    "USERNAME": {
-      "DESCRIPTION": "Username",
-      "ACTION": "Enter your username"
+    "EMAIL": {
+      "DESCRIPTION": "Email Address",
+      "ACTION": "Enter your email address"
     },
     "PASSWORD": {
       "DESCRIPTION": "Password",
@@ -75,6 +79,10 @@
     "SIGN_UP": {
       "START": "Create account in progress...",
       "EMAIL_VERIFICATION" : "Please confirm your registration via the link sent to your email"
+    },
+    "FORGOT": {
+      "START": "Password reset in progress...",
+      "EMAIL_VERIFICATION": "Please check your email for the reset link"
     },
     "SUCCESS": "Operation successfully completed",
     "FAILURE": "Operation failed"

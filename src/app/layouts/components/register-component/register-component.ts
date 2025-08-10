@@ -35,7 +35,7 @@ export class RegisterComponent {
 				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));
 			this.uiService.notifyHandler.showNotification("info",
 				this.uiService.translateHandler.instant("NOTIFICATIONS.SIGN_UP.EMAIL_VERIFICATION"),
-				1000);
+				10000);
 			return;
 		}
 		this.uiService.notifyHandler.showNotification("error",
