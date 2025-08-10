@@ -12,7 +12,6 @@ export class BlurOnScrollDirective {
 	private readonly elementRef = inject(ElementRef<HTMLInputElement | HTMLTextAreaElement>);
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
-	public delayMs = input<number>(1000);
 	public scrollThreshold = input<number>(15);
 	private scrollSub?: Subscription;
 	private lastScrollY = 0;
@@ -36,7 +35,7 @@ export class BlurOnScrollDirective {
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
 			this.cleanupScrollListener();
 			this.lastScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
-			timer(this.delayMs()).pipe(
+			timer(0).pipe(
 				takeUntilDestroyed(this.destroyRef)
 			).subscribe(() => {
 				this.scrollSub = fromEvent(window, "scroll").pipe(
