@@ -13,41 +13,44 @@ export class BlurOnScrollDirective {
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
 	public delayMs = input<number>(1000);
-	public scrollDebounce = input<number>(100);
+	public scrollThreshold = input<number>(15);
 	private scrollSub?: Subscription;
-	private isUserScroll = false;
+	private lastScrollY = 0;
 	@HostListener("focus") onFocus(): void {
 		this.focusHandler();
 	}
 	@HostListener("blur") onBlur(): void {
 		this.cleanupScrollListener();
 	}
-	@HostListener("touchstart") onTouchStart(): void {
-		this.isUserScroll = true;
-	}
 	//endregion
 	//region Methods
 	private cleanupScrollListener(): void {
-		if (!this.scrollSub) return;
-		this.scrollSub.unsubscribe();
-		this.scrollSub = undefined;
+		if (this.scrollSub) {
+			this.scrollSub.unsubscribe();
+			this.scrollSub = undefined;
+		}
 	}
 	private focusHandler(): void {
 		this.platformService.runOnBrowserPlatform(() => {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
 			this.cleanupScrollListener();
-			this.isUserScroll = false;
+			this.lastScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
 			timer(this.delayMs()).pipe(
 				takeUntilDestroyed(this.destroyRef)
 			).subscribe(() => {
 				this.scrollSub = fromEvent(window, "scroll").pipe(
-					debounceTime(this.scrollDebounce()),
-					filter(() => this.isUserScroll && document.activeElement === element),
+					debounceTime(100),
+					filter(() => {
+						if (this.platformService.runOnBrowserPlatform(() => document.activeElement) !== element) return false;
+						const currentScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
+						const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
+						this.lastScrollY = currentScrollY;
+						return scrollDifference > this.scrollThreshold();
+					}),
 					takeUntilDestroyed(this.destroyRef)
 				).subscribe(() => {
 					element.blur();
-					this.isUserScroll = false;
 				});
 			});
 		});
