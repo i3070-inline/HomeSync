@@ -4,7 +4,7 @@
 		<button (click)="onClose()"
 		        class="forgot__close">
 			<svg class="forgot__icon">
-				<use [attr.href]="buildIconSvgPath('user-close-icon')"></use>
+				<use [attr.href]="uiService.buildIconSvgPath('user-close-icon')"></use>
 			</svg>
 		</button>
 	</header>
@@ -14,9 +14,9 @@
 			<app-input-element [inputType]="'text'"
 			                   [clearIconIsVisible]="true"
 			                   [formControlName]="'username'"
-			                   [inputErrorHint]="validatorService.getErrorMessage(forgot.controls.username)"
+			                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.username)"
 			                   cdkFocusInitial
-			                   [placeholder]="{iconPath:buildIconSvgPath('user-icon'),
+			                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
 		                       description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
 		                       action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
 			                   class="forgot__input"></app-input-element>

@@ -1,6 +1,6 @@
 <app-template-component>
 	<div class="login-page">
-		@if (!mediaQueryService.isMob() && !mediaQueryService.isTel()) {
+		@if (!uiService.mediaQueryHandler.isMob() && !uiService.mediaQueryHandler.isTel()) {
 			<div class="login-form__container--desktop">
 				<app-authentification-component class="login"></app-authentification-component>
 				<app-register-component class="register"></app-register-component>
@@ -15,7 +15,7 @@
 					     class="form-cover__circle--top">
 					</div>
 					<div class="form-cover__container"
-							[class.isSwitching]="isSwitching()">
+					     [class.isSwitching]="isSwitching()">
 						<h1 class="form-cover__text">
 							{{
 								(currentForm().name() === 'registration' ? "LOGIN_PAGE.SIGN_UP_COVER.TITLE" :
@@ -25,7 +25,7 @@
 						<p
 								class="form-cover__text--info">
 							{{
-								(currentForm().name() === 'registration'  ? "LOGIN_PAGE.SIGN_UP_COVER.DESCRIPTION" :
+								(currentForm().name() === 'registration' ? "LOGIN_PAGE.SIGN_UP_COVER.DESCRIPTION" :
 										"LOGIN_PAGE.SIGN_IN_COVER.DESCRIPTION") | translate
 							}}
 						</p>
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		}
-		@if (mediaQueryService.isMob() || mediaQueryService.isTel()) {
+		@if (uiService.mediaQueryHandler.isMob() || uiService.mediaQueryHandler.isTel()) {
 			<swiper (slideChange)="onSwipeChanged($event)"
 			        [effect]="'cards'"
 			        [grabCursor]="true"

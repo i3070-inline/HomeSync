@@ -32,6 +32,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
 import {TranslatePipe} from "@ngx-translate/core";
 import {AccountBase} from "@services/base/account-base";
+import {UiFacadeService} from "@services/facade/ui-facade.service";
+import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 
 @Component({
 	selector: "app-login-page",
@@ -87,14 +89,13 @@ import {AccountBase} from "@services/base/account-base";
 export class LoginPage {
 	//region Members
 	private readonly destroyRef = inject(DestroyRef);
-	private readonly platformService = inject(PlatformService);
-	private readonly animationHandlerService = inject(AnimationHandlerService);
 	protected readonly regService = inject(RegistrationService);
-	protected readonly mediaQueryService = inject(MediaQueryService);
+	protected readonly uiService = inject(UiFacadeService);
+	protected readonly settingsService = inject(SettingsFacadeService);
 	protected readonly authService = inject(AuthentificationService);
 	protected currentForm = signal<AccountBase<any>>(this.authService);
-	protected duration = signal<string>(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "0s");
-	protected transitionShoot = signal<string>(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
+	protected duration = signal<string>(getCssVariablesValue(this.uiService.platformHandler, "medium-transition-duration") ?? "0s");
+	protected transitionShoot = signal<string>(getCssVariablesValue(this.uiService.platformHandler, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 	protected isSwitching = signal<boolean>(false);
 	protected circleDuration = computed<string>(() => {
 		const duration = parseFloat(this.duration());
@@ -102,21 +103,21 @@ export class LoginPage {
 	});
 	protected speedSwiper = signal<number | undefined>(
 		(() => {
-			const result = getCssVariablesValue(this.platformService, "transition-duration") || undefined;
+			const result = getCssVariablesValue(this.uiService.platformHandler, "transition-duration") || undefined;
 			return result ? parseFloat(result) * 1000 : undefined;
 		})()
 	);
 	//endregion
 	//region Constructor
 	constructor() {
-		this.animationHandlerService.animationChanged$.pipe(
+		this.settingsService.animationHandler.animationChanged$.pipe(
 			takeUntilDestroyed(this.destroyRef)
 		).subscribe(() => {
-			this.duration.set(getCssVariablesValue(this.platformService, "medium-transition-duration") ?? "0s");
-			this.transitionShoot.set(getCssVariablesValue(this.platformService, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
+			this.duration.set(getCssVariablesValue(this.uiService.platformHandler, "medium-transition-duration") ?? "0s");
+			this.transitionShoot.set(getCssVariablesValue(this.uiService.platformHandler, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 			this.speedSwiper.set(
 				(() => {
-					const result = getCssVariablesValue(this.platformService, "transition-duration") || undefined;
+					const result = getCssVariablesValue(this.uiService.platformHandler, "transition-duration") || undefined;
 					return result ? parseFloat(result) * 1000 : undefined;
 				})()
 			);

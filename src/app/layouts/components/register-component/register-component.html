@@ -5,27 +5,27 @@
 		    class="register-text">{{"LOGIN_PAGE.SIGN_UP_FORM.TITLE" | translate}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'username'"
-		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(reg.controls.username)"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.username)"
 		                   [inputType]="'text'"
-		                   [placeholder]="{iconPath:buildIconSvgPath('user-icon'),
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
 		                   description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
 		                   action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
 		                   class="register-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
-		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(reg.controls.password)"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.password)"
 		                   [inputType]="'password'"
-		                   [placeholder]="{iconPath:buildIconSvgPath('password-icon'),
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
 		                   description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | translate,
 		                   action: 'LOGIN_PAGE.PASSWORD.ACTION' | translate}"
 		                   class="register-password">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'confirmPassword'"
-		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(reg.controls.confirmPassword)"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.confirmPassword)"
 		                   [inputType]="'password'"
-		                   [placeholder]="{iconPath:buildIconSvgPath('password-icon'),
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
 		                   description:'LOGIN_PAGE.CONFIRM_PASSWORD.DESCRIPTION' | translate,
 		                   action: 'LOGIN_PAGE.CONFIRM_PASSWORD.ACTION' | translate}"
 		                   class="register-confirm-password">
@@ -37,7 +37,7 @@
 		<div [class.disabled]="reg.disabled"
 		     class="information-container">
 			<svg class="information-icon">
-				<use [attr.href]="buildIconSvgPath('info-circle-icon')"></use>
+				<use [attr.href]="uiService.buildIconSvgPath('info-circle-icon')"></use>
 			</svg>
 			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | translate}}</span>
 		</div>

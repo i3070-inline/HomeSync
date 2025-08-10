@@ -5,18 +5,18 @@
 		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | translate}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'username'"
-		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(auth.controls.username)"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.username)"
 		                   [inputType]="'text'"
-		                   [placeholder]="{iconPath:buildIconSvgPath('user-icon'),
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
 		                   description:'LOGIN_PAGE.USERNAME.DESCRIPTION' | translate,
 		                   action: 'LOGIN_PAGE.USERNAME.ACTION' | translate}"
 		                   class="login-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
-		                   [inputErrorHint]="validatorHandlerService.getErrorMessage(auth.controls.password)"
+		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.password)"
 		                   [inputType]="'password'"
-		                   [placeholder]="{iconPath:buildIconSvgPath('password-icon'),
+		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
                            description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | translate,
                            action: 'LOGIN_PAGE.PASSWORD.ACTION' | translate}"
 		                   class="login-password">
@@ -32,7 +32,7 @@
 		<div [class.disabled]="auth.disabled"
 		     class="information-container">
 			<svg class="information-icon">
-				<use [attr.href]="buildIconSvgPath('info-circle-icon')"></use>
+				<use [attr.href]="uiService.buildIconSvgPath('info-circle-icon')"></use>
 			</svg>
 			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | translate}}</span>
 		</div>

@@ -1,14 +1,11 @@
 import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from "@angular/core";
 import {InputElement} from "@elements/input-element/input-element";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TranslatePipe, TranslateService} from "@ngx-translate/core";
+import {TranslatePipe} from "@ngx-translate/core";
 import {Router} from "@angular/router";
 import {AuthentificationService} from "@services/authentification.service";
-import {ValidatorHandlerService} from "@services/validator-handler.service";
-import {buildIconSvgPath} from "@utils/path-icon-helper";
-import {NotifyHandlerService} from "@services/notify-handler.service";
-import {ModalHandlerService} from "@services/modal-handler.service";
 import {ForgotComponent} from "@components/forgot-component/forgot-component";
+import {UiFacadeService} from "@services/facade/ui-facade.service";
 
 @Component({
 	selector: "app-authentification-component",
@@ -24,29 +21,28 @@ import {ForgotComponent} from "@components/forgot-component/forgot-component";
 })
 export class AuthentificationComponent {
 	//region Members
-	private readonly router = inject(Router);
-	private readonly notifyHandlerService = inject(NotifyHandlerService);
-	private readonly modalService = inject(ModalHandlerService);
-	protected readonly buildIconSvgPath = buildIconSvgPath;
-	protected readonly validatorHandlerService = inject(ValidatorHandlerService);
+	protected readonly uiService = inject(UiFacadeService);
 	protected readonly authentificationService = inject(AuthentificationService);
-	protected readonly translateService = inject(TranslateService);
+	private readonly router = inject(Router);
 	//endregion
 	//region Methods
 	protected async onSubmitAuthForm(): Promise<void> {
 		if (!this.authentificationService.isFormValid()) return;
-		const awaitNotify = this.notifyHandlerService.showNotification("info", this.translateService.instant("NOTIFICATIONS.SIGN_IN.START"), 0, false);
+		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
+			this.uiService.translateHandler.instant("NOTIFICATIONS.SIGN_IN.START"), 0, false);
 		if (await this.authentificationService.onGenericExecution()) {
-			this.notifyHandlerService.closeNotification(awaitNotify);
+			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			await this.router.navigate(["/main"]);
 			this.authentificationService.resetAccountForm();
-			this.notifyHandlerService.showNotification("success", this.translateService.instant("NOTIFICATIONS.SUCCESS"));
+			this.uiService.notifyHandler.showNotification("success",
+				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));
 			return;
 		}
-		this.notifyHandlerService.showNotification("error", this.translateService.instant("NOTIFICATIONS.ERROR"));
+		this.uiService.notifyHandler.showNotification("error",
+			this.uiService.translateHandler.instant("NOTIFICATIONS.ERROR"));
 	}
 	public onShowForgotForm() {
-		this.modalService.showModal(ForgotComponent);
+		this.uiService.modalHandler.showModal(ForgotComponent);
 	}
 	//endregion
 }

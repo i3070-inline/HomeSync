@@ -2,7 +2,7 @@
 	<header [style.height.rem]="headerHeight()"
 	        class="background__header">
 		<button [routerLink]="'/main'"
-		        class="background__header-title">{{applicationDetails.name | titlecase}}
+		        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
 		</button>
 		<div class="background__header-content">
 			<ng-content select="[header-conten]"></ng-content>
@@ -11,7 +11,7 @@
 		        appOverlayDropdownClick
 		        class="background__settings-button">
 			<svg class="background__settings-icon">
-				<use [attr.href]="buildIconSvgPath('settings-icon')">
+				<use [attr.href]="uiService.buildIconSvgPath('settings-icon')">
 				</use>
 			</svg>
 			@if (trigger.overlayContainerService.isOpened()) {
@@ -28,26 +28,26 @@
 						</div>
 						<div class="background__settings-tools">
 							@let width = "15rem";
-							<app-select-element [itemSource]="themeService.options()"
-							                    [selectedValue]="themeService.selectedOption()"
-							                    (selectedValueChange)="themeService.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:buildIconSvgPath('theme-icon'),
+							<app-select-element [itemSource]="settingsService.themeHandler.options()"
+							                    [selectedValue]="settingsService.themeHandler.selectedOption()"
+							                    (selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
+							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('theme-icon'),
 							                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.THEME.ACTION' | translate}"
 							                    [width]="width">
 							</app-select-element>
-							<app-select-element [itemSource]="languageService.options()"
-							                    [selectedValue]="languageService.selectedOption()"
-							                    (selectedValueChange)="languageService.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:buildIconSvgPath('language-icon'),
+							<app-select-element [itemSource]="settingsService.languageHandler.options()"
+							                    [selectedValue]="settingsService.languageHandler.selectedOption()"
+							                    (selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
+							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('language-icon'),
 							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
 							                    [width]="width">
 							</app-select-element>
-							<app-select-element [itemSource]="animationService.options()"
-							                    [selectedValue]="animationService.selectedOption()"
-							                    (selectedValueChange)="animationService.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:buildIconSvgPath('animation-icon'),
+							<app-select-element [itemSource]="settingsService.animationHandler.options()"
+							                    [selectedValue]="settingsService.animationHandler.selectedOption()"
+							                    (selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
+							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('animation-icon'),
 							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | translate,
 							                    action: 'SETTINGS.ANIMATION.ACTION' | translate}"
 							                    [width]="width">
@@ -83,7 +83,7 @@
 	}
 	<footer [style.height.rem]="footerHeight()"
 	        class="background__footer">
-		<p class="background__footer-copyright"> Ⓒ {{applicationDetails.currentYear}} All Rights Reserved.</p>
+		<p class="background__footer-copyright"> Ⓒ {{settingsService.appDetails.currentYear}} All Rights Reserved.</p>
 		<div class="background__footer-media">
 			<a aria-label="GitHub"
 			   class="background__footer-link"
@@ -91,7 +91,7 @@
 			   rel="noopener noreferrer"
 			   target="_blank">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="buildIconSvgPath('github-icon')"
+					<use [attr.href]="uiService.buildIconSvgPath('github-icon')"
 					     class="github"></use>
 				</svg>
 			</a>
@@ -101,7 +101,7 @@
 			   rel="noopener noreferrer"
 			   target="_blank">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="buildIconSvgPath('linkedin-icon')"
+					<use [attr.href]="uiService.buildIconSvgPath('linkedin-icon')"
 					     class="linkedin"></use>
 				</svg>
 			</a>
@@ -112,7 +112,7 @@
 			   target="_blank"
 			   title="Send me an email">
 				<svg class="background__footer-link-icon">
-					<use [attr.href]="buildIconSvgPath('email-icon')"
+					<use [attr.href]="uiService.buildIconSvgPath('email-icon')"
 					     class="email"></use>
 				</svg>
 			</a>

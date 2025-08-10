@@ -9,18 +9,14 @@ import {
 	viewChild,
 	ViewEncapsulation
 } from "@angular/core";
-import {applicationDetails} from "@constants/constants";
-import {PlatformService} from "@services/platform.service";
 import {SelectElement} from "@elements/select-element/select-element";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
 import {RouterLink} from "@angular/router";
 import {TranslatePipe} from "@ngx-translate/core";
 import {TitleCasePipe} from "@angular/common";
-import {buildIconSvgPath} from "@utils/path-icon-helper";
-import {ThemeHandlerService} from "@services/theme-handler.service";
-import {AnimationHandlerService} from "@services/animation-handler.service";
-import {LanguageHandlerService} from "@services/language-handler.service";
+import {UiFacadeService} from "@services/facade/ui-facade.service";
+import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 
 @Component({
 	selector: "app-template-component",
@@ -40,12 +36,8 @@ import {LanguageHandlerService} from "@services/language-handler.service";
 })
 export class TemplateComponent implements AfterViewInit {
 	//region Members
-	protected readonly applicationDetails = applicationDetails;
-	protected readonly buildIconSvgPath = buildIconSvgPath;
-	protected platformService = inject(PlatformService);
-	protected themeService = inject(ThemeHandlerService);
-	protected animationService = inject(AnimationHandlerService);
-	protected languageService = inject(LanguageHandlerService);
+	protected readonly uiService = inject(UiFacadeService);
+	protected readonly settingsService = inject(SettingsFacadeService);
 	private scrollContainer = viewChild<ElementRef>("scrollContainer");
 	public headerHeight = input<number>(4.5);
 	public footerHeight = input<number>(4);
@@ -61,7 +53,7 @@ export class TemplateComponent implements AfterViewInit {
 	private scrollHandler() {
 		const scrollContainer = this.scrollContainer()?.nativeElement;
 		if (!scrollContainer) return;
-		const [scrollTop, scrollHeight, clientHeight] = this.platformService.runMultipleOnBrowserPlatform(
+		const [scrollTop, scrollHeight, clientHeight] = this.uiService.platformHandler.runMultipleOnBrowserPlatform(
 			() => scrollContainer.scrollTop,
 			() => scrollContainer.scrollHeight,
 			() => scrollContainer.clientHeight);
@@ -73,9 +65,9 @@ export class TemplateComponent implements AfterViewInit {
 	protected scroll(direction: "top" | "bottom") {
 		const scrollContainer = this.scrollContainer()?.nativeElement;
 		if (!scrollContainer) return;
-		const scrollHeight = this.platformService.runOnBrowserPlatform(
+		const scrollHeight = this.uiService.platformHandler.runOnBrowserPlatform(
 			() => scrollContainer.scrollHeight);
-		this.platformService.runOnBrowserPlatform(() => scrollContainer.scrollTo({
+		this.uiService.platformHandler.runOnBrowserPlatform(() => scrollContainer.scrollTo({
 			top: direction === "top" ? 0 : scrollHeight ?? 0,
 			behavior: "smooth"
 		}));
