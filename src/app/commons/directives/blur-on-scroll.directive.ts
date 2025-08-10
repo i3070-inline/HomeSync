@@ -34,25 +34,28 @@ export class BlurOnScrollDirective {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
 			this.cleanupScrollListener();
-			this.lastScrollY = window.scrollY;
-			this.scrollSub = fromEvent(window, "scroll").pipe(
-				debounceTime(100),
-				filter(() => {
-					if (document.activeElement !== element) return false;
-					const currentScrollY = window.scrollY;
-					const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
-					const direction = currentScrollY - this.lastScrollY;
-					this.lastScrollY = currentScrollY;
-					if (direction < 0 && scrollDifference < this.scrollThreshold() * 1.5) {
-						return false;
-					}
-					return scrollDifference > this.scrollThreshold();
-				}),
-				takeUntilDestroyed(this.destroyRef)
-			).subscribe(() => {
-				element.blur();
-			});
+			setTimeout(() => {
+				this.lastScrollY = window.scrollY;
+				this.scrollSub = fromEvent(window, "scroll").pipe(
+					debounceTime(100),
+					filter(() => {
+						if (document.activeElement !== element) return false;
+						const currentScrollY = window.scrollY;
+						const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
+						const direction = currentScrollY - this.lastScrollY;
+						this.lastScrollY = currentScrollY;
+						if (direction < 0 && scrollDifference < this.scrollThreshold() * 1.5) {
+							return false;
+						}
+						return scrollDifference > this.scrollThreshold();
+					}),
+					takeUntilDestroyed(this.destroyRef)
+				).subscribe(() => {
+					element.blur();
+				});
+			}, this.delayMs());
 		});
 	}
+	//endregion
 	//endregion
 }
