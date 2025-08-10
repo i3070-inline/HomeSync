@@ -16,6 +16,7 @@ export class BlurOnScrollDirective {
 	public scrollThreshold = input<number>(15);
 	private scrollSub?: Subscription;
 	private lastScrollY = 0;
+	private ignoreNextScrolls = false;
 	@HostListener("focus") onFocus(): void {
 		this.focusHandler();
 	}
@@ -36,9 +37,14 @@ export class BlurOnScrollDirective {
 			this.cleanupScrollListener();
 			setTimeout(() => {
 				this.lastScrollY = window.scrollY;
+				this.ignoreNextScrolls = true;
+				setTimeout(() => {
+					this.ignoreNextScrolls = false;
+				}, this.delayMs() / 2);
 				this.scrollSub = fromEvent(window, "scroll").pipe(
 					debounceTime(100),
 					filter(() => {
+						if (this.ignoreNextScrolls) return false;
 						if (document.activeElement !== element) return false;
 						const currentScrollY = window.scrollY;
 						const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
@@ -56,6 +62,5 @@ export class BlurOnScrollDirective {
 			}, this.delayMs());
 		});
 	}
-	//endregion
 	//endregion
 }
