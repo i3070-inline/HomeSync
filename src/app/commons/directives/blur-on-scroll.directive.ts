@@ -25,37 +25,33 @@ export class BlurOnScrollDirective {
 	//endregion
 	//region Methods
 	private cleanupScrollListener(): void {
-		if (this.scrollSub) {
-			this.scrollSub.unsubscribe();
-			this.scrollSub = undefined;
-		}
+		if (!this.scrollSub) return;
+		this.scrollSub.unsubscribe();
+		this.scrollSub = undefined;
 	}
 	private focusHandler(): void {
 		this.platformService.runOnBrowserPlatform(() => {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
 			this.cleanupScrollListener();
-			const initialDelay = 500;
-			setTimeout(() => {
-				this.lastScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
-				this.scrollSub = fromEvent(window, "scroll").pipe(
-					debounceTime(80),
-					filter(() => {
-						if (this.platformService.runOnBrowserPlatform(() => document.activeElement) !== element) return false;
-						const currentScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
-						const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
-						const direction = currentScrollY - this.lastScrollY;
-						this.lastScrollY = currentScrollY;
-						if (direction < 0 && scrollDifference < this.scrollThreshold() * 1.5) {
-							return false;
-						}
-						return scrollDifference > this.scrollThreshold();
-					}),
-					takeUntilDestroyed(this.destroyRef)
-				).subscribe(() => {
-					element.blur();
-				});
-			}, initialDelay);
+			this.lastScrollY = window.scrollY;
+			this.scrollSub = fromEvent(window, "scroll").pipe(
+				debounceTime(100),
+				filter(() => {
+					if (document.activeElement !== element) return false;
+					const currentScrollY = window.scrollY;
+					const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
+					const direction = currentScrollY - this.lastScrollY;
+					this.lastScrollY = currentScrollY;
+					if (direction < 0 && scrollDifference < this.scrollThreshold() * 1.5) {
+						return false;
+					}
+					return scrollDifference > this.scrollThreshold();
+				}),
+				takeUntilDestroyed(this.destroyRef)
+			).subscribe(() => {
+				element.blur();
+			});
 		});
 	}
 	//endregion
