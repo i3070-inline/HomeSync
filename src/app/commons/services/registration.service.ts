@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {IRegisterModel} from "@interfaces/register-model.interface";
 import {AccountBase} from "@services/base/account-base";
 import {ControlsOf} from "@constants/types";
-import {matchPasswordValidator} from "@validators/input.validators";
+import {matchPasswordValidator, strictEmailValidator} from "@validators/input.validators";
 
 @Injectable({
 	providedIn: "root"
@@ -16,7 +16,7 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 	public override accountForm = signal(
 		(() => {
 			const form = new FormGroup<ControlsOf<IRegisterModel>>({
-				username: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+				username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator]),
 				password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
 				confirmPassword: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 			});

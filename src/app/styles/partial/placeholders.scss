@@ -86,6 +86,7 @@
 	color: var(--info-color);
 	-webkit-tap-highlight-color: transparent;
 	text-decoration: none;
+	cursor: pointer;
 	@include transition-builder($transition-base, $transition-shadow);
 	&:hover {
 		text-shadow: var(--text-base-shadow);

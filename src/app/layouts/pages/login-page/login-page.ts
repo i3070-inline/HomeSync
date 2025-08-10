@@ -23,11 +23,8 @@ import {
 } from "@angular/animations";
 import {AuthentificationService} from "@services/authentification.service";
 import {RegistrationService} from "@services/registration.service";
-import {MediaQueryService} from "@services/media-query.service";
 import {getCssVariablesValue} from "@utils/dom-helper";
 import type {Swiper} from "swiper/types";
-import {PlatformService} from "@services/platform.service";
-import {AnimationHandlerService} from "@services/animation-handler.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
 import {TranslatePipe} from "@ngx-translate/core";
@@ -110,6 +107,7 @@ export class LoginPage {
 	//endregion
 	//region Constructor
 	constructor() {
+		this.regService.setStateAccountForm(true);
 		this.settingsService.animationHandler.animationChanged$.pipe(
 			takeUntilDestroyed(this.destroyRef)
 		).subscribe(() => {
@@ -146,10 +144,10 @@ export class LoginPage {
 		const swiper = event[0];
 		switch (swiper.realIndex) {
 			case 0:
-				this.currentForm.set(this.authService);
+				this.setCurrentForm(this.authService);
 				break;
 			case 1:
-				this.currentForm.set(this.regService);
+				this.setCurrentForm(this.regService);
 				break;
 			default:
 				return;

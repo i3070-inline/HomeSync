@@ -3,6 +3,7 @@ import {AccountBase} from "@services/base/account-base";
 import {IForgotPasswordInterface} from "@interfaces/forgot-password.interface";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ControlsOf} from "@constants/types";
+import {strictEmailValidator} from "@validators/input.validators";
 
 @Injectable({
 	providedIn: "root"
@@ -14,7 +15,7 @@ export class ForgotHandlerService extends AccountBase<IForgotPasswordInterface> 
 	}
 	public override accountForm = signal<FormGroup<ControlsOf<IForgotPasswordInterface>>>(
 		new FormGroup<ControlsOf<IForgotPasswordInterface>>({
-			username: new FormControl<string | null>(null, [Validators.required, Validators.email])
+			username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator])
 		})
 	);
 	protected override async onParticularExecution(): Promise<boolean> {

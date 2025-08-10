@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ILoginModel} from "@interfaces/login-model.interface";
 import {AccountBase} from "@services/base/account-base";
 import {ControlsOf} from "@constants/types";
+import {strictEmailValidator} from "@validators/input.validators";
 
 @Injectable({
 	providedIn: "root"
@@ -14,7 +15,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	}
 	public override accountForm = signal<FormGroup<ControlsOf<ILoginModel>>>(
 		new FormGroup<ControlsOf<ILoginModel>>({
-			username: new FormControl<string | null>(null, [Validators.required, Validators.email]),
+			username: new FormControl<string | null>(null, [Validators.required, strictEmailValidator]),
 			password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)])
 		})
 	);
