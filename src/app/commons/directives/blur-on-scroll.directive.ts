@@ -1,6 +1,6 @@
 import {DestroyRef, Directive, ElementRef, HostListener, inject, input} from "@angular/core";
 import {PlatformService} from "@services/platform.service";
-import {debounceTime, filter, fromEvent, Subscription, timer} from "rxjs";
+import {debounceTime, filter, fromEvent, Subscription} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Directive({
@@ -12,6 +12,7 @@ export class BlurOnScrollDirective {
 	private readonly elementRef = inject(ElementRef<HTMLInputElement | HTMLTextAreaElement>);
 	private readonly platformService = inject(PlatformService);
 	private readonly destroyRef = inject(DestroyRef);
+	public delayMs = input<number>(500);
 	public scrollThreshold = input<number>(15);
 	private scrollSub?: Subscription;
 	private lastScrollY = 0;
@@ -34,24 +35,27 @@ export class BlurOnScrollDirective {
 			const element = this.elementRef.nativeElement;
 			if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) return;
 			this.cleanupScrollListener();
-			this.lastScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
-			timer(0).pipe(
-				takeUntilDestroyed(this.destroyRef)
-			).subscribe(() => {
+			const initialDelay = 500;
+			setTimeout(() => {
+				this.lastScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
 				this.scrollSub = fromEvent(window, "scroll").pipe(
-					debounceTime(100),
+					debounceTime(80),
 					filter(() => {
 						if (this.platformService.runOnBrowserPlatform(() => document.activeElement) !== element) return false;
 						const currentScrollY = this.platformService.runOnBrowserPlatform(() => window.scrollY) || 0;
 						const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
+						const direction = currentScrollY - this.lastScrollY;
 						this.lastScrollY = currentScrollY;
+						if (direction < 0 && scrollDifference < this.scrollThreshold() * 1.5) {
+							return false;
+						}
 						return scrollDifference > this.scrollThreshold();
 					}),
 					takeUntilDestroyed(this.destroyRef)
 				).subscribe(() => {
 					element.blur();
 				});
-			});
+			}, initialDelay);
 		});
 	}
 	//endregion
