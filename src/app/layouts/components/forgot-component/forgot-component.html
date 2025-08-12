@@ -10,6 +10,7 @@
 	</header>
 	@if (forgotService.accountForm(); as forgot) {
 		<form class="forgot__form"
+		      (ngSubmit)="onSubmitForgotForm()"
 		      [formGroup]="forgot">
 			<app-input-element [inputType]="'email'"
 			                   [clearIconIsVisible]="true"
@@ -21,9 +22,7 @@
 		                       description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | translate,
 		                       action: 'LOGIN_PAGE.EMAIL.ACTION' | translate}"
 			                   class="forgot__input"></app-input-element>
-			<button type="submit"
-			        [disabled]="forgot.disabled || forgotService.isExecuting()"
-			        (click)="onSubmitForgotForm()"
+			<button [disabled]="forgot.disabled || forgotService.isExecuting()"
 			        class="forgot__submit">{{"LOGIN_PAGE.FORGOT_FORM.ACTION" | translate}}
 			</button>
 		</form>

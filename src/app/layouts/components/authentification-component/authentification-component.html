@@ -1,5 +1,6 @@
 @if (authentificationService.accountForm(); as auth) {
 	<form [formGroup]="auth"
+	      (ngSubmit)="onSubmitAuthForm()"
 	      class="form-login">
 		<h1 [class.disabled]="auth.disabled"
 		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | translate}}</h1>
@@ -26,8 +27,7 @@
 		<a [class.disabled]="auth.disabled || authentificationService.isExecuting()"
 		   (click)="onShowForgotForm()"
 		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
-		<button (click)="onSubmitAuthForm()"
-		        [disabled]="auth.disabled || authentificationService.isExecuting()"
+		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button">
 			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | translate}}
 		</button>

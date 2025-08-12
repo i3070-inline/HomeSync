@@ -38,8 +38,9 @@ export class RegisterComponent {
 				10000);
 			return;
 		}
+		this.uiService.notifyHandler.closeNotification(awaitNotify);
 		this.uiService.notifyHandler.showNotification("error",
-			this.uiService.translateHandler.instant("NOTIFICATIONS.ERROR"));
+			this.uiService.translateHandler.instant("NOTIFICATIONS.FAILURE"));
 	}
 	//endregion
 }

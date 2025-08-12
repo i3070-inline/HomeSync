@@ -17,6 +17,7 @@
 	       class="input__field">
 	@if (eyeIconIsVisible() && inputType() === "password" && !empty()) {
 		<button class="input__field-eye-button"
+		        type="button"
 		        (click)="onPasswordVisibility()">
 			<svg class="input__field-eye-button-icon">
 				<use [attr.href]="inputTypeSignal() === 'password' ? buildIconSvgPath('user-eye-icon') :
@@ -26,6 +27,7 @@
 	}
 	@if (clearIconIsVisible() && inputType() !== "password" && !empty()) {
 		<button class="input__field-eye-button"
+		        type="button"
 		        (click)="onClearValue();inputElement.focus()">
 			<svg class="input__field-eye-button-icon">
 				<use [attr.href]="buildIconSvgPath('user-clear-icon')"></use>

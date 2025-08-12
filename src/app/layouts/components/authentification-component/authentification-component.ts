@@ -38,8 +38,9 @@ export class AuthentificationComponent {
 				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));
 			return;
 		}
+		this.uiService.notifyHandler.closeNotification(awaitNotify);
 		this.uiService.notifyHandler.showNotification("error",
-			this.uiService.translateHandler.instant("NOTIFICATIONS.ERROR"));
+			this.uiService.translateHandler.instant("NOTIFICATIONS.FAILURE"));
 	}
 	public onShowForgotForm() {
 		this.uiService.modalHandler.showModal(ForgotComponent);
