@@ -10,7 +10,7 @@ export const routes: Routes = [
 		children: [
 			{
 				path: "",
-				redirectTo: "main",
+				redirectTo: "login",
 				pathMatch: "full"
 			},
 			{
@@ -20,7 +20,7 @@ export const routes: Routes = [
 
 			},
 			{
-				path: "main",
+				path: "main/:id",
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
 				canActivate: [authGuard]
 			}

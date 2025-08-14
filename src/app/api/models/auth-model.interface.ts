@@ -1,4 +1,4 @@
-export interface IAuthModelInterface {
+export interface IAuthModel {
 	username: string;
 	userId: string;
 	accessToken: string;

@@ -4,6 +4,8 @@ import {IRegisterModel} from "@interfaces/register-model.interface";
 import {AccountBase} from "@services/base/account-base";
 import {ControlsOf} from "@constants/types";
 import {matchPasswordValidator, strictEmailValidator} from "@validators/input.validators";
+import {restEndpoints} from "@rest/rest-endpoints";
+import {firstValueFrom} from "rxjs";
 
 @Injectable({
 	providedIn: "root"
@@ -26,9 +28,19 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 			return form;
 		})()
 	);
-	protected override async onParticularExecution(): Promise<boolean> {
-		await new Promise(resolve => setTimeout(resolve, 2000));
-		return true; // TODO: Implement actual authentication logic here
+	protected override async onParticularExecution(): Promise<{ successful: boolean; data?: unknown; }> {
+		try {
+			const user = {
+				"email": this.accountForm().value.email,
+				"username": this.accountForm().value.email,
+				"password": this.accountForm().value.password
+			};
+			await firstValueFrom(this.http.post<IRegisterModel>(restEndpoints.user.authentification, user));
+			return {successful: true};
+		}
+		catch (error) {
+			return {successful: false};
+		}
 	}
 	//endregion
 }

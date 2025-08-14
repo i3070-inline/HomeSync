@@ -1,12 +1,14 @@
-import {Signal, signal} from "@angular/core";
+import {inject, Signal, signal} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {ControlsOf} from "@constants/types";
+import {RestBaseService} from "@rest/rest-base.service";
 
 export abstract class AccountBase<T extends object> {
 	//region Members
-	public abstract get name() : Signal<string>;
+	public abstract get name(): Signal<string>;
 	public abstract accountForm: Signal<FormGroup<ControlsOf<T>>>;
 	public isExecuting = signal<boolean>(false);
+	protected readonly http = inject(RestBaseService);
 	//endregion
 	//region Methods
 	public isFormValid(): boolean {
@@ -19,12 +21,18 @@ export abstract class AccountBase<T extends object> {
 	public setStateAccountForm(disabled: boolean): void {
 		disabled ? this.accountForm().disable() : this.accountForm().enable();
 	}
-	public async onGenericExecution(): Promise<boolean> {
+	public async onGenericExecution(): Promise<{
+		successful: boolean;
+		data?: unknown;
+	}> {
 		this.isExecuting.set(true);
 		const result = await this.onParticularExecution();
 		this.isExecuting.set(false);
 		return result;
 	}
-	protected abstract onParticularExecution(): Promise<boolean>;
+	protected abstract onParticularExecution(): Promise<{
+		successful: boolean;
+		data?: unknown;
+	}>;
 	//endregion
 }
