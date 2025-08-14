@@ -1,6 +1,4 @@
-import {environment} from "@beforeApp/environments/enviroment.local";
-
-const API_BASE_URL = environment.apiUrl;
+const API_BASE_URL = "http://localhost:3001";
 export const restEndpoints = {
 	user: {
 		authentification: `${API_BASE_URL}/auth/login`,
