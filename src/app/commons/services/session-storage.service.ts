@@ -4,11 +4,10 @@ import {StorageHandlerBase} from "@services/base/storage-handler-base";
 @Injectable({
 	providedIn: "root"
 })
-export class LocalStorageService extends StorageHandlerBase {
+export class SessionStorageService extends StorageHandlerBase {
 	//region Override
 	protected override get storage(): Storage {
-		return localStorage;
+		return sessionStorage;
 	}
 	//endregion
-
 }

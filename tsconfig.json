@@ -31,11 +31,11 @@
       "@directives/*": [
         "app/commons/directives/*"
       ],
+      "@guards/*": [
+        "app/commons/guards/*"
+      ],
       "@utils/*": [
         "app/commons/utils/*"
-      ],
-      "@interceptors/*": [
-        "app/commons/interceptors/*"
       ],
       "@interfaces/*": [
         "app/commons/interfaces/*"
@@ -48,6 +48,15 @@
       ],
       "@pages/*": [
         "app/layouts/pages/*"
+      ],
+      "@interceptors/*": [
+        "app/api/interceptors/*"
+      ],
+      "@rest/*": [
+        "app/api/rest/*"
+      ],
+      "@models/*": [
+        "app/api/models/*"
       ],
       "@beforeApp/*": [
         "../*"

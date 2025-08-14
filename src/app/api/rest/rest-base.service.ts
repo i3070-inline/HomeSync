@@ -23,5 +23,4 @@ export class RestBaseService {
 		return this.http.delete<T>(url, options);
 	}
 	//endregion
-
 }
