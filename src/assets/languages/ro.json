@@ -69,7 +69,7 @@
   "NOT_FOUND_PAGE": {
     "TITLE": "Eroare",
     "DESCRIPTION": "Pagina pe care o cauți ar fi putut fi ștearsă, redenumită sau este temporar indisponibilă.",
-    "ACTION": "Înapoi la Acasă"
+    "ACTION": "Pagina principală"
   },
   "VALIDATORS": {
     "REQUIRED": "Acest câmp este obligatoriu",
