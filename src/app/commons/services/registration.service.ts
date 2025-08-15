@@ -28,14 +28,17 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 			return form;
 		})()
 	);
-	protected override async onParticularExecution(): Promise<{ successful: boolean; data?: unknown; }> {
+	protected override async onParticularExecution(): Promise<{
+		successful: boolean;
+		data?: Record<string, unknown>;
+	}> {
 		try {
 			const user = {
 				"email": this.accountForm().value.email,
 				"username": this.accountForm().value.email,
 				"password": this.accountForm().value.password
 			};
-			await firstValueFrom(this.http.post<IRegisterModel>(restEndpoints.user.authentification, user));
+			await firstValueFrom(this.http.post<{ message: string }>(restEndpoints.user.register, user));
 			return {successful: true};
 		}
 		catch (error) {

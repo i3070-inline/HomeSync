@@ -18,7 +18,10 @@ export class ForgotHandlerService extends AccountBase<IForgotPasswordInterface> 
 			email: new FormControl<string | null>(null, [Validators.required, strictEmailValidator()])
 		})
 	);
-	protected override async onParticularExecution(): Promise<{ successful: boolean; data?: unknown; }> {
+	protected override async onParticularExecution(): Promise<{
+		successful: boolean;
+		data?: Record<string, unknown>;
+	}> {
 		await new Promise(resolve => setTimeout(resolve, 2000));
 		return {successful: true}; // TODO: Implement actual authentication logic here
 	}

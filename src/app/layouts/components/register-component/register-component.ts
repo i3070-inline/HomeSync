@@ -28,7 +28,8 @@ export class RegisterComponent {
 		if (!this.registerService.isFormValid()) return;
 		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
 			this.uiService.translateHandler.instant("NOTIFICATIONS.SIGN_UP.START"), 0, false);
-		if (await this.registerService.onGenericExecution()) {
+		const result = await this.registerService.onGenericExecution();
+		if (result.successful) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			this.registerService.resetAccountForm();
 			this.uiService.notifyHandler.showNotification("success",

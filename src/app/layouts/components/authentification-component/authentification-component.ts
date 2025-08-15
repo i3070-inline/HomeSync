@@ -34,7 +34,7 @@ export class AuthentificationComponent {
 		const result = await this.authentificationService.onGenericExecution();
 		if (result.successful) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
-			await this.router.navigateByUrl(this.route.snapshot.queryParams["returnUrl"] || `/main/${result.data}`);
+			await this.router.navigateByUrl(this.route.snapshot.queryParams["returnUrl"] || `/main/me`);
 			this.authentificationService.resetAccountForm();
 			this.uiService.notifyHandler.showNotification("success",
 				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));

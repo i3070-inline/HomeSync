@@ -1,21 +1,23 @@
 import {
 	ApplicationConfig,
+	importProvidersFrom,
 	inject,
 	provideBrowserGlobalErrorListeners,
 	provideZonelessChangeDetection
 } from "@angular/core";
-import {PreloadAllModules, provideRouter, withPreloading, withViewTransitions} from "@angular/router";
+import {provideRouter, withRouterConfig, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideTranslateService, TranslateLoader} from "@ngx-translate/core";
 import SwiperCore, {EffectCards} from "@swiper-base";
-import {HttpClient, provideHttpClient, withInterceptors} from "@angular/common/http";
+import {HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {requestLoggingInterceptor} from "@interceptors/request-logging.interceptor";
 import {responseLoggingInterceptor} from "@interceptors/response-logging.intercepter";
-import {tokenHeaderInterceptor} from "@interceptors/token-header.interceptor";
 import {retryInterceptor} from "@interceptors/retry-request.interceptor";
+import {JwtModule} from "@auth0/angular-jwt";
+import {JWT_KEY} from "@services/jwt.service";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {
@@ -27,17 +29,29 @@ export const appConfig: ApplicationConfig = {
 				deps: [HttpClient]
 			}
 		}),
-		provideHttpClient(withInterceptors([
-			retryInterceptor,
-			requestLoggingInterceptor,
-			responseLoggingInterceptor,
-			tokenHeaderInterceptor
-		])),
+		importProvidersFrom(
+			JwtModule.forRoot({
+				config: {
+					tokenGetter: () => localStorage.getItem(JWT_KEY),
+					disallowedRoutes: ["/auth/login"]
+				}
+			})
+		),
+		provideHttpClient(
+			withInterceptorsFromDi(),
+			withInterceptors([
+				retryInterceptor,
+				requestLoggingInterceptor,
+				responseLoggingInterceptor
+			])),
 		provideBrowserGlobalErrorListeners(),
 		provideZonelessChangeDetection(),
 		provideRouter(routes,
-			withPreloading(PreloadAllModules),
-			withViewTransitions()),
+			withViewTransitions(),
+			withRouterConfig({
+				onSameUrlNavigation: "reload"
+			})
+		),
 		provideClientHydration(withEventReplay()),
 		provideAnimations()
 	]
