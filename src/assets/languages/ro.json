@@ -67,7 +67,7 @@
     }
   },
   "NOT_FOUND_PAGE": {
-    "TITLE": "Pagina nu a fost găsită",
+    "TITLE": "Eroare",
     "DESCRIPTION": "Pagina pe care o cauți ar fi putut fi ștearsă, redenumită sau este temporar indisponibilă.",
     "ACTION": "Înapoi la Acasă"
   },

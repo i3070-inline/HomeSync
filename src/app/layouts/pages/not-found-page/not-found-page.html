@@ -1,7 +1,8 @@
 <div class="not-found">
 	<h1 class="not-found__title">404</h1>
-	<h2 class="not-found__subtitle">{{"NOT_FOUND_PAGE.TITLE" | translate}}</h2>
+	<h2 class="not-found__subtitle">{{"NOT_FOUND_PAGE.TITLE" | translate | uppercase}}</h2>
 	<p class="not-found__description">{{"NOT_FOUND_PAGE.DESCRIPTION" | translate}}</p>
 	<button [routerLink]="'/'"
-	        class="not-found__link">{{"NOT_FOUND_PAGE.ACTION" | translate}}</button>
+	        class="not-found__link">{{"NOT_FOUND_PAGE.ACTION" | translate}}
+	</button>
 </div>
