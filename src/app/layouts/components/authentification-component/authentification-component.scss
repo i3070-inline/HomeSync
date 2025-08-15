@@ -35,9 +35,6 @@
 	margin: var(--margin-top-botton) 0.5rem;
 	text-wrap: nowrap;
 	@extend %hyperlink;
-	&.disabled {
-		@extend %disabled;
-	}
 }
 .login-button {
 	@extend %neo-btn;

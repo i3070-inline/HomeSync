@@ -66,6 +66,11 @@
       "ACTION": "Re-enter your password"
     }
   },
+  "NOT_FOUND_PAGE": {
+    "TITLE": "Page not found",
+    "DESCRIPTION": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
+    "ACTION": "Back to Home"
+  },
   "VALIDATORS": {
     "REQUIRED": "This field is required",
     "MIN_LENGTH": "At least {{requiredLength}} characters",

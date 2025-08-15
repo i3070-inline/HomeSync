@@ -33,16 +33,16 @@ export const appConfig: ApplicationConfig = {
 			JwtModule.forRoot({
 				config: {
 					tokenGetter: () => localStorage.getItem(JWT_KEY),
-					disallowedRoutes: ["/auth/login"]
+					disallowedRoutes: ["/auth/login", "/auth/confirm-email"]
 				}
 			})
 		),
 		provideHttpClient(
 			withInterceptorsFromDi(),
 			withInterceptors([
-				retryInterceptor,
 				requestLoggingInterceptor,
-				responseLoggingInterceptor
+				responseLoggingInterceptor,
+				retryInterceptor
 			])),
 		provideBrowserGlobalErrorListeners(),
 		provideZonelessChangeDetection(),

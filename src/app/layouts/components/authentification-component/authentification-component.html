@@ -26,6 +26,9 @@
 		</app-input-element>
 		<a [class.disabled]="auth.disabled || authentificationService.isExecuting()"
 		   (click)="onShowForgotForm()"
+		   (keydown.enter)="onShowForgotForm()"
+		   (keydown.space)="onShowForgotForm()"
+		   tabindex="0"
 		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
 		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button">

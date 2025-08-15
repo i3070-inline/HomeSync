@@ -31,7 +31,7 @@ $theme-vars: (
 @mixin apply-theme($theme, $percentage) {
 	@include generate-vars(get($theme-vars, $theme));
 	@include generate-colors-theme($theme-map: $theme-colors, $percentage: $percentage);
-	@include generate-text-shadow($top-shadow: var(--background-color), $bottom-shadow: var(--text-main-color));
+	@include generate-text-shadow($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 	@include generate-shadows($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 }
 :root {

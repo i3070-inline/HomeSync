@@ -1,6 +1,7 @@
 import {Component, inject} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
-import {RouterLoggerService} from "@services/router-logger.service";
+import {LanguageHandlerService} from "@services/language-handler.service";
+import {AnimationHandlerService} from "@services/animation-handler.service";
 
 @Component({
 	selector: "app-root",
@@ -10,5 +11,6 @@ import {RouterLoggerService} from "@services/router-logger.service";
 	styleUrl: "./app.scss"
 })
 export class App {
-	//private logger = inject(RouterLoggerService);
+	private languageHandler = inject(LanguageHandlerService);
+	private animationHandler = inject(AnimationHandlerService)
 }

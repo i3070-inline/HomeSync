@@ -76,8 +76,8 @@ $transition-position: (
 	}
 }
 @mixin generate-text-shadow($top-shadow, $bottom-shadow) {
-	--text-base-shadow: -0.03rem -0.03rem 0.03rem #{$top-shadow},
-	0.03rem 0.03rem 0.03rem #{$bottom-shadow};
+	--text-base-shadow: -0.3rem -0.3rem 0.6rem #{$top-shadow},
+	0.3rem 0.3rem 0.6rem #{$bottom-shadow};
 }
 @mixin generate-vars($theme) {
 	@each $key, $value in $theme {

@@ -24,6 +24,15 @@ export const routes: Routes = [
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
 				canActivate: [authGuard],
 				runGuardsAndResolvers: "always"
+			},
+			{
+				path: "email-confirmation",
+				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage),
+				canActivate: [loginGuard]
+			},
+			{
+				path: "**",
+				loadComponent: () => import("@pages/not-found-page/not-found-page").then(value => value.NotFoundPage)
 			}
 		]
 	}
