@@ -1,6 +1,6 @@
 import {Routes} from "@angular/router";
 import {App} from "./app";
-import {loginGuard} from "@guards/login.guard";
+import {guestGuard} from "@guards/guest.guard";
 import {authGuard} from "@guards/auth.guard";
 import {LoginPage} from "@pages/login-page/login-page";
 
@@ -17,7 +17,7 @@ export const routes: Routes = [
 			{
 				path: "login",
 				component: LoginPage,
-				canActivate: [loginGuard]
+				canActivate: [guestGuard]
 			},
 			{
 				path: "main/me",
@@ -26,9 +26,8 @@ export const routes: Routes = [
 				runGuardsAndResolvers: "always"
 			},
 			{
-				path: "email-confirmation",
+				path: "email-confirm",
 				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage),
-				canActivate: [loginGuard]
 			},
 			{
 				path: "**",

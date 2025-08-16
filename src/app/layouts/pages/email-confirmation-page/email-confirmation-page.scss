@@ -1,0 +1,21 @@
+@use "mixins" as *;
+.email-confirm {
+	display: grid;
+	padding: 3rem;
+	background: rebeccapurple;
+	place-items: center;
+}
+.email-confirm__container {
+	display: grid;
+	min-width: max-content;
+	width: 60%;
+	max-width: 80dvw;
+	height: 200px;
+	position: relative;
+	@include blur-effect();
+}
+@include respond-to-multiple("tel", "mob") {
+	.email-confirm {
+		padding: 10px;
+	}
+}

@@ -9,7 +9,7 @@
 	background-size: cover;
 	height: 100dvh;
 	position: relative;
-	width: 100dvw;
+	width: 100%;
 }
 .background__header {
 	@include blur-effect($border-radius: 0 0 var(--border-radius) var(--border-radius), $shadow-type: var(--base-hover-shadow));

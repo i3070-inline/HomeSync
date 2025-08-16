@@ -2,11 +2,17 @@
 @use "placeholders" as *;
 .not-found {
 	display: grid;
-	grid-gap: var(--standart-padding);
 	height: 100dvh;
-	place-content: center;
+	overflow: auto;
+	padding: 3rem;
 	place-items: center;
-	width: 100dvw;
+	width: 100%;
+}
+.not-found__container {
+	display: grid;
+	grid-gap: var(--standart-padding);
+	place-items: center;
+	place-self: center;
 }
 .not-found__title {
 	color: var(--background-color);
@@ -25,8 +31,17 @@
 	word-wrap: break-word;
 }
 .not-found__link {
+	margin-bottom: var(--standart-padding);
 	margin-top: var(--standart-padding);
 	min-width: 10rem;
 	text-align: center;
 	@extend %neo-btn;
+}
+@include respond-to-multiple("tel", "mob") {
+	.not-found {
+		padding: 10px;
+	}
+	.not-found__title{
+		font-size: 12rem;
+	}
 }

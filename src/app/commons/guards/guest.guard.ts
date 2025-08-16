@@ -2,7 +2,7 @@ import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
 import {JwtService} from "@services/jwt.service";
 
-export const loginGuard: CanActivateFn = (route, state) => {
+export const guestGuard: CanActivateFn = (route, state) => {
 	const router = inject(Router);
 	const jwt = inject(JwtService);
 	if (jwt.isTokenExpired()) return true;
