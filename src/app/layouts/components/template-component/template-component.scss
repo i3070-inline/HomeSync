@@ -7,9 +7,9 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 100vh;
+	height: 100dvh;
 	position: relative;
-	width: 100%;
+	width: 100dvw;
 }
 .background__header {
 	@include blur-effect($border-radius: 0 0 var(--border-radius) var(--border-radius), $shadow-type: var(--base-hover-shadow));

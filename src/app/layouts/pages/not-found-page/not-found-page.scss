@@ -3,10 +3,10 @@
 .not-found {
 	display: grid;
 	grid-gap: var(--standart-padding);
-	height: 100vh;
+	height: 100dvh;
 	place-content: center;
 	place-items: center;
-	width: 100%;
+	width: 100dvw;
 }
 .not-found__title {
 	color: var(--background-color);
