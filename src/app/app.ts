@@ -13,6 +13,5 @@ import {ThemeHandlerService} from "@services/theme-handler.service";
 })
 export class App {
 	private languageHandler = inject(LanguageHandlerService);
-	private themeHandler = inject(ThemeHandlerService);
 	private animationHandler = inject(AnimationHandlerService)
 }
