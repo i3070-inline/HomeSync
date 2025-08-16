@@ -42,9 +42,9 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		this.platformService.runOnBrowserPlatform(async () => {
 			const animationKey = "animation";
 			const before = document.documentElement.getAttribute(animationKey);
-			document.documentElement.setAttribute(animationKey, "none");
+			document.documentElement.setAttribute(animationKey, "reduce");
 			document.documentElement.setAttribute(this.localStorageKey, value);
-			document.documentElement.setAttribute(animationKey, before || "none");
+			document.documentElement.setAttribute(animationKey, before || "reduce");
 		});
 	}
 	//endregion
