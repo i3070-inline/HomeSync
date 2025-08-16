@@ -41,8 +41,7 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		]);
 	}
 	protected override handlingChanges(value: themeType): void {
-		if (!this.isInitDone) return;
-		this.platformService.runOnBrowserPlatform(() => {
+		this.platformService.runOnBrowserPlatform(async () => {
 			const animationKey = "animation";
 			const before = document.documentElement.getAttribute(animationKey);
 			document.documentElement.setAttribute(animationKey, "none");
