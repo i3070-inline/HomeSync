@@ -1,6 +1,5 @@
 (function () {
 	const key = "theme";
-	document.documentElement.setAttribute("animation","reduce");
 	const theme = JSON.parse(localStorage.getItem(key))
 	if (!theme) {
 		const defaultTheme = "system";
