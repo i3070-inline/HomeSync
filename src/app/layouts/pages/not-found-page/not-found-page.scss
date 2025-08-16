@@ -4,29 +4,22 @@
 	display: grid;
 	grid-gap: var(--standart-padding);
 	height: 100vh;
-	justify-items: center;
-	max-width: 80vw;
-	margin: 0 auto;
 	place-content: center;
-	place-self: center;
+	place-items: center;
+	width: 100%;
 }
 .not-found__title {
 	color: var(--background-color);
-	display: inline-grid;
 	font-size: 15rem;
 	line-height: 0.9;
 	padding: 0;
-	place-self: center;
+	text-align: center;
 	text-shadow: var(--text-base-shadow);
 	user-select: none;
-}
-.not-found__subtitle {
-	place-self: center;
 }
 .not-found__description {
 	max-width: 45ch;
 	overflow-wrap: break-word;
-	place-self: center;
 	text-align: center;
 	white-space: normal;
 	word-wrap: break-word;
@@ -34,7 +27,6 @@
 .not-found__link {
 	margin-top: var(--standart-padding);
 	min-width: 10rem;
-	place-self: center;
 	text-align: center;
 	@extend %neo-btn;
 }
