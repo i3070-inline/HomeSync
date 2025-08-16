@@ -2,14 +2,14 @@
 @use "mixins" as *;
 .forgot {
 	display: grid;
-	grid-auto-flow: row;
-	max-width: 60dvw;
-	overflow: hidden;
 	gap: calc(var(--standart-padding) * 2);
+	grid-auto-flow: row;
 	grid-template-areas: "header" "form";
 	grid-template-rows: max-content 1fr;
-	@include blur-effect();
+	overflow: hidden;
 	position: relative;
+	@include blur-effect();
+	width: clamp(20rem, 25rem, 80dvw);
 }
 .forgot__header {
 	align-items: center;
@@ -35,7 +35,6 @@
 	grid-auto-flow: row;
 	grid-gap: calc(var(--standart-padding) * 2);
 	grid-template-rows: max-content max-content;
-	min-width: 25rem;
 	padding: var(--standart-padding);
 }
 .forgot__input {
