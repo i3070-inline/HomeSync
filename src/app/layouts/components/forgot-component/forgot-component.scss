@@ -4,6 +4,7 @@
 	display: grid;
 	grid-auto-flow: row;
 	max-width: 80vw;
+	overflow: hidden;
 	gap: calc(var(--standart-padding) * 2);
 	grid-template-areas: "header" "form";
 	grid-template-rows: max-content 1fr;
