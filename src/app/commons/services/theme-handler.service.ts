@@ -44,7 +44,6 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 			const before = document.documentElement.getAttribute(animationKey);
 			document.documentElement.setAttribute(animationKey, "reduce");
 			document.documentElement.setAttribute(this.localStorageKey, value);
-			await new Promise(resolve => setTimeout(resolve, 500));
 			document.documentElement.setAttribute(animationKey, before || "reduce");
 		});
 	}
