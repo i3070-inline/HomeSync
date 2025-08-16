@@ -30,6 +30,7 @@
 	</div>
 	@if (clearIconIsVisible() && !empty()) {
 		<button (click)="onClearClick($event)"
+		        [disabled]="disabled()"
 		        class="select-container__clear-button">
 			<svg class="select-container__clear-button-icon">
 				<use [attr.href]="buildIconSvgPath('user-clear-icon')"></use>

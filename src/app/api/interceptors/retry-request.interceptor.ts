@@ -12,8 +12,7 @@ export const retryInterceptor: HttpInterceptorFn = (req, next) => {
 					url: req.url
 				});
 				return timer(0);
-			},
-			resetOnSuccess : true
+			}
 		})
 	);
 };
