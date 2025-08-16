@@ -12,11 +12,13 @@ export abstract class SettingsHandlerBase<T> {
 	protected abstract get localStorageKey(): string;
 	protected abstract get defaultValue(): T;
 	public abstract get options(): Signal<ISelectItemModel<T>[]>;
+	protected readonly isInitDone: boolean = false;
 	public selectedOption = signal<ISelectItemModel<T> | null>(null);
 	//endregion
 	//region Constructor
 	protected constructor() {
 		this.init();
+		this.isInitDone = true;
 	}
 	//endregion
 	//region Methods

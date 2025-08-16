@@ -11,7 +11,6 @@ type themeType = "light" | "dark" | system;
 })
 export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 	//region Members
-	private isOnInitilization: boolean = true;
 	//endregion
 	//region Overrides
 	protected override get localStorageKey(): string {
@@ -42,17 +41,14 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		]);
 	}
 	protected override handlingChanges(value: themeType): void {
-		if (!this.isOnInitilization) {
-			this.platformService.runOnBrowserPlatform(async () => {
-				const animationKey = "animation";
-				const before = document.documentElement.getAttribute(animationKey);
-				document.documentElement.setAttribute(animationKey, "none");
-				document.documentElement.setAttribute(this.localStorageKey, value);
-				document.documentElement.setAttribute(animationKey, before || "none");
-			});
-			return;
-		}
-		this.isOnInitilization = false;
+		if (!this.isInitDone) return;
+		this.platformService.runOnBrowserPlatform(() => {
+			const animationKey = "animation";
+			const before = document.documentElement.getAttribute(animationKey);
+			document.documentElement.setAttribute(animationKey, "none");
+			document.documentElement.setAttribute(this.localStorageKey, value);
+			document.documentElement.setAttribute(animationKey, before || "none");
+		});
 	}
 	//endregion
 }
