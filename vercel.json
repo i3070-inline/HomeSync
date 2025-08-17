@@ -3,7 +3,7 @@
   "buildCommand": "ng build",
   "outputDirectory": "dist/HomeSync/browser",
   "functions": {
-    "dist/HomeSync/server/server.mjs": {
+    "api/render.js": {
       "runtime": "nodejs18.x"
     }
   },
