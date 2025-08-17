@@ -6,24 +6,12 @@ import {
 } from "@angular/ssr/node";
 import express from "express";
 import {join} from "node:path";
+import cookieParser from "cookie-parser";
 
 const browserDistFolder = join(import.meta.dirname, "../browser");
 const app = express();
 const angularApp = new AngularNodeAppEngine();
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-/**
- * Serve static files from /browser
- */
+app.use(cookieParser());
 app.use(
 	express.static(browserDistFolder, {
 		maxAge: "1y",
@@ -38,13 +26,27 @@ app.use((req, res, next) => {
 	angularApp
 		.handle(req, {
 			providers: [
-				{provide: 'REQUEST', useValue: req},
-				{provide: 'RESPONSE', useValue: res}
+				{provide: "REQUEST", useValue: req},
+				{provide: "RESPONSE", useValue: res}
 			]
 		})
-		.then((response) =>
-			response ? writeResponseToNodeResponse(response, res) : next()
-		)
+		.then(async (response) => {
+			if (response) {
+				const theme = req.cookies["theme"] || "system";
+				const html = await response.text();
+				const modifiedHtml = html
+					.replace(/<html([^>]*)>/i, `<html$1 theme="${theme}">`);
+				const modifiedResponse = new Response(modifiedHtml, {
+					status: response.status,
+					statusText: response.statusText,
+					headers: response.headers
+				});
+				await writeResponseToNodeResponse(modifiedResponse, res);
+			}
+			else {
+				next();
+			}
+		})
 		.catch(next);
 });
 /**

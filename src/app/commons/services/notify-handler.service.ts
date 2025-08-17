@@ -1,6 +1,7 @@
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {DeepPartial, INotyfPosition, Notyf} from "notyf";
 import {NotyfNotification} from "notyf/notyf.models";
+import {PlatformService} from "@services/platform.service";
 
 type notifyType = "success" | "error" | "info" | "warning";
 
@@ -10,41 +11,50 @@ type notifyType = "success" | "error" | "info" | "warning";
 export class NotifyHandlerService {
 	//region Members
 	private notifications: NotyfNotification[] = [];
-	private readonly notify = new Notyf({
-		types: [
-			{
-				type: "success",
-				icon: {
-					className: "notyf__icon--success",
-					tagName: "span"
-				}
-			},
-			{
-				type: "error",
-				icon: {
-					className: "notyf__icon--error",
-					tagName: "span"
-				}
-			},
-			{
-				type: "info",
-				icon: {
-					className: "notyf__icon--info",
-					tagName: "span"
-				}
-			},
-			{
-				type: "warning",
-				icon: {
-					className: "notyf__icon--warning",
-					tagName: "span"
-				}
-			}
-		]
-	});
+	private notify!: Notyf;
+	private platform = inject(PlatformService);
 	//endregion
+	//region Constructor
+	constructor() {
+		this.platform.runOnBrowserPlatform(() => {
+			this.notify = new Notyf({
+				types: [
+					{
+						type: "success",
+						icon: {
+							className: "notyf__icon--success",
+							tagName: "span"
+						}
+					},
+					{
+						type: "error",
+						icon: {
+							className: "notyf__icon--error",
+							tagName: "span"
+						}
+					},
+					{
+						type: "info",
+						icon: {
+							className: "notyf__icon--info",
+							tagName: "span"
+						}
+					},
+					{
+						type: "warning",
+						icon: {
+							className: "notyf__icon--warning",
+							tagName: "span"
+						}
+					}
+				]
+			});
+		});
+	}
+	//endregion
+	//region Overrides
 	//region Methods
-	public showNotification(type: notifyType, message: string, timeout? : number, dismissible?:boolean, opts?: Partial<{
+	public showNotification(type: notifyType, message: string, timeout?: number, dismissible?: boolean, opts?: Partial<{
 		position: DeepPartial<INotyfPosition>,
 		dismissible: boolean
 	}>): NotyfNotification {

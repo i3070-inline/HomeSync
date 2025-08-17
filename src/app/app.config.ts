@@ -18,6 +18,7 @@ import {responseLoggingInterceptor} from "@interceptors/response-logging.interce
 import {retryInterceptor} from "@interceptors/retry-request.interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
 import {JWT_KEY} from "@services/jwt.service";
+import {PlatformService} from "@services/platform.service";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {
@@ -27,12 +28,16 @@ export const appConfig: ApplicationConfig = {
 				provide: TranslateLoader,
 				useFactory: () => new TranslateHttpLoader(inject(HttpClient), "assets/languages/", ".json"),
 				deps: [HttpClient]
-			}
+			},
+
 		}),
 		importProvidersFrom(
 			JwtModule.forRoot({
 				config: {
-					tokenGetter: () => localStorage.getItem(JWT_KEY),
+					tokenGetter: () => {
+						const platform = inject(PlatformService);
+						return platform.runOnBrowserPlatform(() => localStorage.getItem(JWT_KEY)) || null;
+					},
 					disallowedRoutes: ["/auth/login", "/auth/confirm-email"]
 				}
 			})
@@ -53,6 +58,6 @@ export const appConfig: ApplicationConfig = {
 			})
 		),
 		provideClientHydration(withEventReplay()),
-		provideAnimations()
+		provideAnimations(),
 	]
 };

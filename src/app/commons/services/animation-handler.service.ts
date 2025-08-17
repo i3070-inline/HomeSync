@@ -1,11 +1,9 @@
 import {Injectable, Signal, signal} from "@angular/core";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
-import {system} from "@constants/types";
+import {animationType} from "@constants/types";
 import {SettingsHandlerBase} from "@services/base/settings-handler-base";
 import {Observable, Subject} from "rxjs";
-
-type animationType = "active" | "reduce" | system;
 
 @Injectable({
 	providedIn: "root"
@@ -16,11 +14,11 @@ export class AnimationHandlerService extends SettingsHandlerBase<animationType> 
 	public animationChanged$: Observable<animationType> = this.animationChangedSubject.asObservable();
 	//endregion
 	//region Overrides
-	protected override get localStorageKey(): string {
-		return "animation";
+	protected override get cookiesKey(): string {
+		return this.cookiesSettings.animationKey;
 	}
-	protected override get defaultValue(): animationType {
-		return "system";
+	protected override get cookiesValue(): animationType {
+		return this.cookiesSettings.animCookiesValue();
 	}
 	public override get options(): Signal<ISelectItemModel<animationType>[]> {
 		return signal<ISelectItemModel<animationType>[]>([
@@ -45,7 +43,7 @@ export class AnimationHandlerService extends SettingsHandlerBase<animationType> 
 	}
 	protected override handlingChanges(value: animationType): void {
 		this.platformService.runOnBrowserPlatform(() => {
-			document.documentElement.setAttribute(this.localStorageKey, value);
+			document.documentElement.setAttribute(this.cookiesKey, value);
 		});
 	}
 	public override onSelectedOptionChange(value: ISelectItemModel | null): void {

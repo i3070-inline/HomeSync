@@ -35,9 +35,8 @@ export class ForgotComponent {
 			this.forgotService.resetAccountForm();
 			this.uiService.notifyHandler.showNotification("success",
 				this.uiService.translateHandler.instant("NOTIFICATIONS.SUCCESS"));
-			this.uiService.notifyHandler.showNotification("info",
-				this.uiService.translateHandler.instant("NOTIFICATIONS.FORGOT.EMAIL_VERIFICATION"),
-				10000);
+			this.uiService.notifyHandler.showNotification("info", "{{\"LOGIN_PAGE.SIGN_UP_FORM.ACTION\" | translate}}",
+				100000);
 			return;
 		}
 		this.uiService.notifyHandler.closeNotification(awaitNotify);

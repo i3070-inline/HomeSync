@@ -1,8 +1,10 @@
 @use "mixins" as *;
 .email-confirm {
 	display: grid;
+	width: 100%;
+	height: 100dvh;
+	overflow: auto;
 	padding: 3rem;
-	background: rebeccapurple;
 	place-items: center;
 }
 .email-confirm__container {

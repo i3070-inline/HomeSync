@@ -1,23 +1,19 @@
 import {Injectable, Signal, signal} from "@angular/core";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
-import {system} from "@constants/types";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
 import {SettingsHandlerBase} from "@services/base/settings-handler-base";
-
-type themeType = "light" | "dark" | system;
+import {themeType} from "@constants/types";
 
 @Injectable({
 	providedIn: "root"
 })
 export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
-	//region Members
-	//endregion
 	//region Overrides
-	protected override get localStorageKey(): string {
-		return "theme";
+	protected override get cookiesKey(): string {
+		return this.cookiesSettings.themeKey;
 	}
-	protected override get defaultValue(): themeType {
-		return "system";
+	protected override get cookiesValue(): themeType {
+		return this.cookiesSettings.themCookiesValue();
 	}
 	public override get options(): Signal<ISelectItemModel<themeType>[]> {
 		return signal<ISelectItemModel<themeType>[]>([
@@ -41,11 +37,11 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		]);
 	}
 	protected override handlingChanges(value: themeType): void {
-		this.platformService.runOnBrowserPlatform(async () => {
+		this.platformService.runOnBrowserPlatform(() => {
 			const animationKey = "animation";
 			const before = document.documentElement.getAttribute(animationKey);
 			document.documentElement.setAttribute(animationKey, "none");
-			document.documentElement.setAttribute(this.localStorageKey, value);
+			document.documentElement.setAttribute(this.cookiesKey, value);
 			document.documentElement.setAttribute(animationKey, before || "none");
 		});
 	}

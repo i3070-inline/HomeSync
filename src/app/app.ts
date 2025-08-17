@@ -1,8 +1,7 @@
 import {Component} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
-import {ThemeHandlerService} from "@services/theme-handler.service";
-import {AnimationHandlerService} from "@services/animation-handler.service";
-import {LanguageHandlerService} from "@services/language-handler.service";
+import {CookiesSettingsService} from "@services/cookies-settings.service";
+import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 
 @Component({
 	selector: "app-root",
@@ -13,10 +12,7 @@ import {LanguageHandlerService} from "@services/language-handler.service";
 })
 export class App {
 	constructor(
-		private languageHandler: LanguageHandlerService,
-		private animationHandler: AnimationHandlerService,
-		private themeHandler: ThemeHandlerService)
-	{
-		console.log("App initialized");
+		public settings: CookiesSettingsService,
+		public facade: SettingsFacadeService) {
 	}
 }

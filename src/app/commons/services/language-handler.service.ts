@@ -1,19 +1,18 @@
 import {Injectable, Signal, signal} from "@angular/core";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {SettingsHandlerBase} from "@services/base/settings-handler-base";
-
-type languageType = "ro" | "en" | "ru";
+import {languageType} from "@constants/types";
 
 @Injectable({
 	providedIn: "root"
 })
 export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 	//region Overrides
-	protected override get localStorageKey(): string {
-		return "lang";
+	protected override get cookiesKey(): string {
+		return this.cookiesSettings.langKey;
 	}
-	protected override get defaultValue(): languageType {
-		return "en";
+	protected override get cookiesValue(): languageType {
+		return this.cookiesSettings.langCookiesValue();
 	}
 	public override get options(): Signal<ISelectItemModel<languageType>[]> {
 		return signal<ISelectItemModel<languageType>[]>([
@@ -38,7 +37,7 @@ export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 		this.translateService.setDefaultLang(value);
 		this.translateService.use(value);
 		this.platformService.runOnBrowserPlatform(() => {
-			document.documentElement.setAttribute(this.localStorageKey, value);
+			document.documentElement.setAttribute(this.cookiesKey, value);
 		});
 	}
 	//endregion

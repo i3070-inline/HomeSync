@@ -9,8 +9,8 @@ import {applicationDetails} from "@constants/constants";
 })
 export class SettingsFacadeService {
 	//region Services
-	public readonly animationHandler = inject(AnimationHandlerService);
 	public readonly languageHandler = inject(LanguageHandlerService);
+	public readonly animationHandler = inject(AnimationHandlerService);
 	public readonly themeHandler = inject(ThemeHandlerService);
 	//endregion
 	//Members
