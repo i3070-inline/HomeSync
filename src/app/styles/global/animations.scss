@@ -21,7 +21,7 @@ $transition-modes: (
 @mixin apply-motion-mode($mode) {
 	@include generate-vars(get($transition-modes, $mode));
 }
-:root {
+html {
 	&[animation="active"] {
 		@include apply-motion-mode(active);
 	}

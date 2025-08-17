@@ -34,7 +34,7 @@ $theme-vars: (
 	@include generate-text-shadow($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 	@include generate-shadows($top-shadow: var(--top-color-shadow), $bottom-shadow: var(--bottom-color-shadow));
 }
-:root {
+html {
 	&[theme="dark"] {
 		@include apply-theme(dark, 5%);
 	}
