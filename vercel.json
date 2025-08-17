@@ -1,5 +1,18 @@
 {
   "framework": "angular",
+  "buildCommand": "ng build",
+  "outputDirectory": "dist/HomeSync/browser",
+  "functions": {
+    "dist/HomeSync/server/server.mjs": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/render"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/icons/(.*)",
