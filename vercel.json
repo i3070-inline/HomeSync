@@ -2,10 +2,15 @@
   "framework": "angular",
   "buildCommand": "ng build",
   "outputDirectory": "dist/HomeSync/browser",
-  "rewrites": [
+  "functions": {
+    "dist/HomeSync/server/server.mjs": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/api/render"
+      "src": "/(.*)",
+      "dest": "/dist/HomeSync/server/server.mjs"
     }
   ]
 }
