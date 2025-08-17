@@ -1,14 +1,8 @@
 {
-  "buildCommand": "npm run ssr:HomeSync",
   "framework": "angular",
-  "functions": {
-    "dist/HomeSync/server/server.mjs": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "headers": [
     {
-      "source": "/assets/images/(.*)",
+      "source": "/assets/icons/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
