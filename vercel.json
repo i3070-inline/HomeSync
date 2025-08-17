@@ -1,8 +1,20 @@
 {
-  "rewrites": [
+  "buildCommand": "npm run ssr:HomeSync",
+  "framework": "angular",
+  "functions": {
+    "dist/HomeSync/server/server.mjs": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "headers": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/assets/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
