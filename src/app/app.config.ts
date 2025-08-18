@@ -34,7 +34,7 @@ export const appConfig: ApplicationConfig = {
 			{
 				loader: {
 					provide: TranslateLoader,
-					useFactory: () => new TranslateHttpLoader(inject(HttpClient), "assets/languages/", ".json"),
+					useFactory: () => new TranslateHttpLoader(inject(HttpClient), "/assets/languages/", ".json"),
 					deps: [HttpClient]
 				}
 			}),
