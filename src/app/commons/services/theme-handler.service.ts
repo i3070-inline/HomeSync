@@ -10,10 +10,10 @@ import {themeType} from "@constants/types";
 export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 	//region Overrides
 	protected override get cookiesKey(): string {
-		return this.cookiesSettings.themeKey;
+		return "theme";
 	}
-	protected override get cookiesValue(): themeType {
-		return this.cookiesSettings.themCookiesValue();
+	protected override get defaultValue(): themeType {
+		return "system";
 	}
 	public override get options(): Signal<ISelectItemModel<themeType>[]> {
 		return signal<ISelectItemModel<themeType>[]>([

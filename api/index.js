@@ -1,3 +1,3 @@
-const server = require('../dist/HomeSync/server/main.server.mjs');
+const server = require('../dist/HomeSync/server/server.mjs');
 
 module.exports = server.app();

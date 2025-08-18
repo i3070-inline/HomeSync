@@ -43,8 +43,8 @@ export class TemplateComponent implements AfterViewInit {
 	public footerHeight = input<number>(4);
 	public isUsingScrollToTop = input<boolean>(true);
 	public isUsingScrollToBottom = input<boolean>(false);
-	public showTopScroll = signal<boolean>(true);
-	public showBottomScroll = signal<boolean>(true);
+	public showTopScroll = signal<boolean>(false);
+	public showBottomScroll = signal<boolean>(false);
 	//endregion
 	//region Methods
 	public onScroll() {

@@ -22,13 +22,13 @@ $transition-modes: (
 	@include generate-vars(get($transition-modes, $mode));
 }
 html {
-	&[animation="active"] {
+	&[anim="active"] {
 		@include apply-motion-mode(active);
 	}
-	&[animation="reduce"] {
+	&[anim="reduce"] {
 		@include apply-motion-mode(reduce);
 	}
-	&[animation="system"] {
+	&[anim="system"] {
 		@media (prefers-reduced-motion: no-preference) {
 			@include apply-motion-mode(active);
 		}

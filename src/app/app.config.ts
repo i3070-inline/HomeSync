@@ -2,10 +2,11 @@ import {
 	ApplicationConfig,
 	importProvidersFrom,
 	inject,
+	provideAppInitializer,
 	provideBrowserGlobalErrorListeners,
 	provideZonelessChangeDetection
 } from "@angular/core";
-import {provideRouter, withRouterConfig, withViewTransitions} from "@angular/router";
+import {PreloadAllModules, provideRouter, withPreloading, withRouterConfig, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
 import {provideAnimations} from "@angular/platform-browser/animations";
@@ -19,18 +20,24 @@ import {retryInterceptor} from "@interceptors/retry-request.interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
 import {JWT_KEY} from "@services/jwt.service";
 import {PlatformService} from "@services/platform.service";
+import {ThemeHandlerService} from "@services/theme-handler.service";
+import {AnimationHandlerService} from "@services/animation-handler.service";
+import {LanguageHandlerService} from "@services/language-handler.service";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {
 	providers: [
-		provideTranslateService({
-			loader: {
-				provide: TranslateLoader,
-				useFactory: () => new TranslateHttpLoader(inject(HttpClient), "assets/languages/", ".json"),
-				deps: [HttpClient]
-			},
-
-		}),
+		provideAppInitializer(() => inject(ThemeHandlerService).init()),
+		provideAppInitializer(() => inject(AnimationHandlerService).init()),
+		provideAppInitializer(() => inject(LanguageHandlerService).init()),
+		provideTranslateService(
+			{
+				loader: {
+					provide: TranslateLoader,
+					useFactory: () => new TranslateHttpLoader(inject(HttpClient), "assets/languages/", ".json"),
+					deps: [HttpClient]
+				}
+			}),
 		importProvidersFrom(
 			JwtModule.forRoot({
 				config: {
@@ -54,10 +61,11 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes,
 			withViewTransitions(),
 			withRouterConfig({
-				onSameUrlNavigation: "reload"
-			})
+				onSameUrlNavigation: "reload",
+			}),
+			withPreloading(PreloadAllModules)
 		),
 		provideClientHydration(withEventReplay()),
-		provideAnimations(),
+		provideAnimations()
 	]
 };

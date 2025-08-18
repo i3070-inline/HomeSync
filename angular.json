@@ -57,12 +57,12 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/styles/global/colors.scss",
+              "src/app/styles/global/fonts.scss",
               "src/app/styles/global/general.scss",
               "src/app/styles/global/key-frames.scss",
               "src/app/styles/global/variables.scss",
-              "src/app/styles/global/fonts.scss",
               "src/app/styles/global/animations.scss",
-              "src/app/styles/global/colors.scss",
               "src/app/styles/global/notify.scss",
               "@angular/cdk/overlay-prebuilt.css",
               "node_modules/swiper/swiper-bundle.min.css",

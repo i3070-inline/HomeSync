@@ -9,10 +9,10 @@ import {languageType} from "@constants/types";
 export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 	//region Overrides
 	protected override get cookiesKey(): string {
-		return this.cookiesSettings.langKey;
+		return "lang";
 	}
-	protected override get cookiesValue(): languageType {
-		return this.cookiesSettings.langCookiesValue();
+	protected override get defaultValue(): languageType {
+		return "en";
 	}
 	public override get options(): Signal<ISelectItemModel<languageType>[]> {
 		return signal<ISelectItemModel<languageType>[]>([
@@ -32,6 +32,12 @@ export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 				iconPath: "assets/icons/language-ru-icon.png"
 			}
 		]);
+	}
+	public override async init(): Promise<void> {
+		await super.init();
+		const cookiesValue = this.selectedOption()?.value as languageType;
+		this.translateService.setDefaultLang(cookiesValue);
+		this.translateService.use(cookiesValue);
 	}
 	protected override handlingChanges(value: languageType): void {
 		this.translateService.setDefaultLang(value);

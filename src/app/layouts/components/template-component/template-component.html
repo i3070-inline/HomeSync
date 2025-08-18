@@ -58,7 +58,7 @@
 			}
 		</button>
 	</header>
-	@if (isUsingScrollToBottom() && showTopScroll()) {
+	@if (showTopScroll()) {
 		<button (click)="scroll('bottom')"
 		        class="background__scroll-button--top"
 		        [style.--header-height.rem]="headerHeight()">
@@ -74,7 +74,7 @@
 			<ng-content></ng-content>
 		</section>
 	</main>
-	@if (isUsingScrollToTop() && showBottomScroll()) {
+	@if (showBottomScroll()) {
 		<button (click)="scroll('top')"
 		        class="background__scroll-button--bottom"
 		        [style.--footer-height.rem]="footerHeight()">

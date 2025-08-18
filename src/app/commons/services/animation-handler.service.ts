@@ -15,10 +15,10 @@ export class AnimationHandlerService extends SettingsHandlerBase<animationType> 
 	//endregion
 	//region Overrides
 	protected override get cookiesKey(): string {
-		return this.cookiesSettings.animationKey;
+		return "anim";
 	}
-	protected override get cookiesValue(): animationType {
-		return this.cookiesSettings.animCookiesValue();
+	protected override get defaultValue(): animationType {
+		return "system";
 	}
 	public override get options(): Signal<ISelectItemModel<animationType>[]> {
 		return signal<ISelectItemModel<animationType>[]>([
