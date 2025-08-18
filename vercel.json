@@ -1,16 +1,13 @@
 {
   "version": 2,
   "public": true,
-  "name": "HomeSync",
+  "name": "angular-ssr-startup",
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api"
-    }
+    { "source": "/(.*)", "destination": "/api" }
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/YHomeSync/**"
+      "includeFiles": "dist/HomeSync/browser/**"
     }
   }
 }
