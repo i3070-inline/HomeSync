@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
 	providers: [
 		provideAppInitializer(() => inject(ThemeHandlerService).init()),
 		provideAppInitializer(() => inject(AnimationHandlerService).init()),
-		provideAppInitializer(() => inject(LanguageHandlerService).init()),
+		// provideAppInitializer(() => inject(LanguageHandlerService).init()),
 		provideTranslateService(
 			{
 				loader: {
