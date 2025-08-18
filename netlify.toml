@@ -1,15 +1,6 @@
 [build]
-  command = "npm build"
+  command = "npm run build"
   publish = "dist/HomeSync/browser"
 
 [build.environment]
   NODE_VERSION = "20"
-
-[functions]
-  directory = "api"
-  included_files = ["dist/**", "node_modules/**"]
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/index"
-  status = 200
