@@ -63,7 +63,6 @@ export const appConfig: ApplicationConfig = {
 			withRouterConfig({
 				onSameUrlNavigation: "reload",
 			}),
-			withPreloading(PreloadAllModules)
 		),
 		provideClientHydration(withEventReplay()),
 		provideAnimations()
