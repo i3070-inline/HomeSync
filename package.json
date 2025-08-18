@@ -12,6 +12,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "ssr:HomeSync": "npm run dist:clean && ng build && node dist/HomeSync/server/server.mjs",
+    "vercel-build": "ng build && node dist/HomeSync/server/server.mjs",
     "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder"
   },
   "prettier": {

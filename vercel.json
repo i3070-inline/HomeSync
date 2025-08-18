@@ -1,16 +1,16 @@
 {
-  "framework": "angular",
-  "buildCommand": "ng build",
-  "outputDirectory": "dist/HomeSync/browser",
-  "functions": {
-    "dist/HomeSync/server/server.mjs": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "routes": [
+  "version": 2,
+  "public": true,
+  "name": "HomeSync",
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/dist/HomeSync/server/server.mjs"
+      "source": "/(.*)",
+      "destination": "/api"
     }
-  ]
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/YHomeSync/**"
+    }
+  }
 }
