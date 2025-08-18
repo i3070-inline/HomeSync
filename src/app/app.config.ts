@@ -2,18 +2,17 @@ import {
 	ApplicationConfig,
 	importProvidersFrom,
 	inject,
+	isDevMode,
 	provideAppInitializer,
 	provideBrowserGlobalErrorListeners,
 	provideZonelessChangeDetection
 } from "@angular/core";
-import {PreloadAllModules, provideRouter, withPreloading, withRouterConfig, withViewTransitions} from "@angular/router";
+import {provideRouter, withRouterConfig, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
 import {provideAnimations} from "@angular/platform-browser/animations";
-import {provideTranslateService, TranslateLoader} from "@ngx-translate/core";
 import SwiperCore, {EffectCards} from "@swiper-base";
-import {HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi} from "@angular/common/http";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {provideHttpClient, withInterceptors, withInterceptorsFromDi} from "@angular/common/http";
 import {requestLoggingInterceptor} from "@interceptors/request-logging.interceptor";
 import {responseLoggingInterceptor} from "@interceptors/response-logging.intercepter";
 import {retryInterceptor} from "@interceptors/retry-request.interceptor";
@@ -22,6 +21,8 @@ import {JWT_KEY} from "@services/jwt.service";
 import {PlatformService} from "@services/platform.service";
 import {ThemeHandlerService} from "@services/theme-handler.service";
 import {AnimationHandlerService} from "@services/animation-handler.service";
+import {provideTransloco} from "@ngneat/transloco";
+import {TranslocoHttpLoader} from "@services/transloco-loader.service";
 import {LanguageHandlerService} from "@services/language-handler.service";
 
 SwiperCore.use([EffectCards]);
@@ -29,15 +30,17 @@ export const appConfig: ApplicationConfig = {
 	providers: [
 		provideAppInitializer(() => inject(ThemeHandlerService).init()),
 		provideAppInitializer(() => inject(AnimationHandlerService).init()),
-		// provideAppInitializer(() => inject(LanguageHandlerService).init()),
-		provideTranslateService(
-			{
-				loader: {
-					provide: TranslateLoader,
-					useFactory: () => new TranslateHttpLoader(inject(HttpClient), "/assets/languages/", ".json"),
-					deps: [HttpClient]
-				}
-			}),
+		provideAppInitializer(() => inject(LanguageHandlerService).init()),
+		provideTransloco({
+			config: {
+				availableLangs: ["en", "ro", "ru"],
+				fallbackLang: "en",
+				prodMode: !isDevMode(),
+				reRenderOnLangChange: true,
+				failedRetries: 2
+			},
+			loader: TranslocoHttpLoader
+		}),
 		importProvidersFrom(
 			JwtModule.forRoot({
 				config: {
@@ -61,8 +64,8 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes,
 			withViewTransitions(),
 			withRouterConfig({
-				onSameUrlNavigation: "reload",
-			}),
+				onSameUrlNavigation: "reload"
+			})
 		),
 		provideClientHydration(withEventReplay()),
 		provideAnimations()

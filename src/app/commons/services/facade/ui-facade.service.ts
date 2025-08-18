@@ -4,8 +4,8 @@ import {PlatformService} from "@services/platform.service";
 import {NotifyHandlerService} from "@services/notify-handler.service";
 import {ModalHandlerService} from "@services/modal-handler.service";
 import {MediaQueryService} from "@services/media-query.service";
-import {TranslateService} from "@ngx-translate/core";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
+import {TranslocoService} from "@ngneat/transloco";
 
 @Injectable({
 	providedIn: "root"
@@ -17,7 +17,7 @@ export class UiFacadeService {
 	public readonly notifyHandler = inject(NotifyHandlerService);
 	public readonly modalHandler = inject(ModalHandlerService);
 	public readonly mediaQueryHandler = inject(MediaQueryService);
-	public readonly translateHandler = inject(TranslateService);
+	public readonly translateHandler = inject(TranslocoService);
 	//endregion
 	//region Methods
 	public readonly buildIconSvgPath = buildIconSvgPath;

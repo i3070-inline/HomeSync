@@ -3,15 +3,15 @@
 	      (ngSubmit)="onSubmitAuthForm()"
 	      class="form-login">
 		<h1 [class.disabled]="auth.disabled"
-		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | translate}}</h1>
+		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | transloco}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.email)"
 		                   [inputType]="'email'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
-		                   description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | translate,
-		                   action: 'LOGIN_PAGE.EMAIL.ACTION' | translate}"
+		                   description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | transloco,
+		                   action: 'LOGIN_PAGE.EMAIL.ACTION' | transloco}"
 		                   class="login-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
@@ -20,8 +20,8 @@
 		                   [inputType]="'password'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
-                           description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | translate,
-                           action: 'LOGIN_PAGE.PASSWORD.ACTION' | translate}"
+                           description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | transloco,
+                           action: 'LOGIN_PAGE.PASSWORD.ACTION' | transloco}"
 		                   class="login-password">
 		</app-input-element>
 		<a [class.disabled]="auth.disabled || authentificationService.isExecuting()"
@@ -29,17 +29,17 @@
 		   (keydown.enter)="onShowForgotForm()"
 		   (keydown.space)="onShowForgotForm()"
 		   tabindex="0"
-		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | translate}}</a>
+		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | transloco}}</a>
 		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button">
-			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | translate}}
+			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | transloco}}
 		</button>
 		<div [class.disabled]="auth.disabled"
 		     class="information-container">
 			<svg class="information-icon">
 				<use [attr.href]="uiService.buildIconSvgPath('info-circle-icon')"></use>
 			</svg>
-			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | translate}}</span>
+			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | transloco}}</span>
 		</div>
 	</form>
 }

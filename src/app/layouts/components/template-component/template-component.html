@@ -32,24 +32,24 @@
 							                    [selectedValue]="settingsService.themeHandler.selectedOption()"
 							                    (selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('theme-icon'),
-							                    description:'SETTINGS.THEME.DESCRIPTION' | translate,
-							                    action: 'SETTINGS.THEME.ACTION' | translate}"
+							                    description:'SETTINGS.THEME.DESCRIPTION' | transloco,
+							                    action: 'SETTINGS.THEME.ACTION' | transloco}"
 							                    [width]="width">
 							</app-select-element>
 							<app-select-element [itemSource]="settingsService.languageHandler.options()"
 							                    [selectedValue]="settingsService.languageHandler.selectedOption()"
 							                    (selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('language-icon'),
-							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | translate,
-							                    action: 'SETTINGS.LANGUAGE.ACTION' | translate}"
+							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | transloco,
+							                    action: 'SETTINGS.LANGUAGE.ACTION' | transloco}"
 							                    [width]="width">
 							</app-select-element>
 							<app-select-element [itemSource]="settingsService.animationHandler.options()"
 							                    [selectedValue]="settingsService.animationHandler.selectedOption()"
 							                    (selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
 							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('animation-icon'),
-							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | translate,
-							                    action: 'SETTINGS.ANIMATION.ACTION' | translate}"
+							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | transloco,
+							                    action: 'SETTINGS.ANIMATION.ACTION' | transloco}"
 							                    [width]="width">
 							</app-select-element>
 						</div>

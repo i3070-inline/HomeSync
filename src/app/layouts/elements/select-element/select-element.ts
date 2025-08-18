@@ -16,7 +16,7 @@ import {AccessibilityDirective} from "@directives/accessibility.directive";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
-import {TranslatePipe} from "@ngx-translate/core";
+import {TranslocoPipe} from "@ngneat/transloco";
 
 @Component({
 	selector: "app-select-element",
@@ -25,7 +25,7 @@ import {TranslatePipe} from "@ngx-translate/core";
 		OverlayDropdownClickDirective,
 		AccessibilityDirective,
 		OverlayContainerElement,
-		TranslatePipe
+		TranslocoPipe
 	],
 	templateUrl: "./select-element.html",
 	styleUrl: "./select-element.scss",

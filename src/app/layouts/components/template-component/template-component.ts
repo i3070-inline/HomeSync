@@ -13,10 +13,10 @@ import {SelectElement} from "@elements/select-element/select-element";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
 import {RouterLink} from "@angular/router";
-import {TranslatePipe} from "@ngx-translate/core";
 import {TitleCasePipe} from "@angular/common";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
+import {TranslocoPipe} from "@ngneat/transloco";
 
 @Component({
 	selector: "app-template-component",
@@ -26,8 +26,8 @@ import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 		OverlayContainerElement,
 		OverlayDropdownClickDirective,
 		RouterLink,
-		TranslatePipe,
-		TitleCasePipe
+		TitleCasePipe,
+		TranslocoPipe
 	],
 	templateUrl: "./template-component.html",
 	styleUrl: "./template-component.scss",

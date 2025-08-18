@@ -27,10 +27,10 @@ import {getCssVariablesValue} from "@utils/dom-helper";
 import type {Swiper} from "swiper/types";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
-import {TranslatePipe} from "@ngx-translate/core";
 import {AccountBase} from "@services/base/account-base";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
+import {TranslocoPipe} from "@ngneat/transloco";
 
 @Component({
 	selector: "app-login-page",
@@ -40,7 +40,7 @@ import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 		AuthentificationComponent,
 		RegisterComponent,
 		SwiperModule,
-		TranslatePipe
+		TranslocoPipe
 	],
 	templateUrl: "./login-page.html",
 	styleUrl: "./login-page.scss",

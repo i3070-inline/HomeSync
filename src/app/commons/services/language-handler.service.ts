@@ -37,11 +37,11 @@ export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 		await super.init();
 		const cookiesValue = this.selectedOption()?.value as languageType;
 		this.translateService.setDefaultLang(cookiesValue);
-		this.translateService.use(cookiesValue);
+		this.translateService.setActiveLang(cookiesValue);
 	}
 	protected override handlingChanges(value: languageType): void {
 		this.translateService.setDefaultLang(value);
-		this.translateService.use(value);
+		this.translateService.setActiveLang(value);
 		this.platformService.runOnBrowserPlatform(() => {
 			document.documentElement.setAttribute(this.cookiesKey, value);
 		});
