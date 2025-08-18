@@ -2,12 +2,5 @@
   "version": 2,
   "public": true,
   "name": "Home-Sync",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api" }
-  ],
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/HomeSync/**"
-    }
-  }
+  "buildCommand": "npm run build"
 }
