@@ -6,7 +6,7 @@ import {StorageFacadeService} from "@services/facade/storage-facade.service";
 
 export abstract class SettingsHandlerBase<T> {
 	//region Members
-	protected readonly req = inject(REQUEST);
+	// protected readonly req = inject(REQUEST);
 	protected readonly transferState = inject(TransferState);
 	protected readonly platformService = inject(PlatformService);
 	protected readonly translateService = inject(TranslateService);
@@ -22,15 +22,18 @@ export abstract class SettingsHandlerBase<T> {
 	//region Constructor
 	//region Methods
 	public async init(): Promise<void> {
-		let value: T;
-		if (this.platformService.isServer()) {
-			const cookieValue = this.getCookieValue(this.cookiesKey);
-			value = (cookieValue as T) || this.defaultValue;
-			this.transferState.set(this.valueState, value);
-		}
-		else {
-			value = this.transferState.get(this.valueState, this.defaultValue);
-		}
+		// if (this.platformService.isServer()) {
+		// 	const cookieValue = this.getCookieValue(this.cookiesKey);
+		// 	value = (cookieValue as T) || this.defaultValue;
+		// 	this.transferState.set(this.valueState, value);
+		// }
+		// else {
+		// 	value = this.transferState.get(this.valueState, this.defaultValue);
+		// 	if(value === this.defaultValue) {
+		// 		value = this.storageFacade.cookiesStorage.getItem<T>(this.cookiesKey) || this.defaultValue;
+		// 	}
+		// }
+		const value = this.storageFacade.cookiesStorage.getItem<T>(this.cookiesKey) || this.defaultValue
 		this.selectedOption.set(this.options().find(option => option.value === value) || null);
 	}
 	private setStorageValue(value: T): void {
@@ -43,18 +46,18 @@ export abstract class SettingsHandlerBase<T> {
 		this.selectedOption.set(option);
 		this.handlingChanges(option.value);
 	}
-	private getCookieValue(key: string): string | null {
-		const cookieHeader = this.req?.headers.get("cookie");
-		if (!cookieHeader || !key) return null;
-		const cookies = cookieHeader
-			.split(";")
-			.map(cookie => cookie.trim().split("="))
-			.reduce((acc, [cookieKey, cookieValue]) => {
-				acc[cookieKey] = cookieValue;
-				return acc;
-			}, {} as Record<string, string>);
-		return cookies[key] || null;
-	}
+	// private getCookieValue(key: string): string | null {
+	// 	const cookieHeader = this.req?.headers.get("cookie");
+	// 	if (!cookieHeader || !key) return null;
+	// 	const cookies = cookieHeader
+	// 		.split(";")
+	// 		.map(cookie => cookie.trim().split("="))
+	// 		.reduce((acc, [cookieKey, cookieValue]) => {
+	// 			acc[cookieKey] = cookieValue;
+	// 			return acc;
+	// 		}, {} as Record<string, string>);
+	// 	return cookies[key] || null;
+	// }
 	protected abstract handlingChanges(value: T): void;
 	//endregion
 }

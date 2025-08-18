@@ -1,5 +1,5 @@
 [build]
-  command = "npm run final:ssr"
+  command = "npm build"
   publish = "dist/HomeSync/browser"
 
 [build.environment]
