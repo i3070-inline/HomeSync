@@ -1,6 +1,7 @@
 {
   "name": "home-sync",
   "version": "0.0.0",
+  "type": "module",
   "main": "electron.js",
   "displayName": "Home Sync",
   "scripts": {
