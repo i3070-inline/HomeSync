@@ -2,6 +2,8 @@
 	<header [style.height.rem]="headerHeight()"
 	        class="background__header">
 		<button [routerLink]="'/main/me'"
+		        type="button"
+		        aria-label="Home"
 		        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
 		</button>
 		<div class="background__header-content">
@@ -9,6 +11,8 @@
 		</div>
 		<button #trigger="appOverlayDropdownClickExport"
 		        appOverlayDropdownClick
+		        type="button"
+		        aria-label="Settings"
 		        class="background__settings-button">
 			<svg class="background__settings-icon">
 				<use [attr.href]="uiService.buildIconSvgPath('settings-icon')">

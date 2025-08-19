@@ -24,12 +24,12 @@
                            action: 'LOGIN_PAGE.PASSWORD.ACTION' | transloco}"
 		                   class="login-password">
 		</app-input-element>
-		<a [class.disabled]="auth.disabled || authentificationService.isExecuting()"
-		   (click)="onShowForgotForm()"
-		   (keydown.enter)="onShowForgotForm()"
-		   (keydown.space)="onShowForgotForm()"
-		   tabindex="0"
-		   class="login-hyperlink">{{"LOGIN_PAGE.FORGOT_PASSWORD" | transloco}}</a>
+		<button [class.disabled]="auth.disabled || authentificationService.isExecuting()"
+		        (click)="onShowForgotForm()"
+		        type="button"
+		        tabindex="0"
+		        class="forgot-button">{{"LOGIN_PAGE.FORGOT_PASSWORD" | transloco}}
+		</button>
 		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button">
 			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | transloco}}

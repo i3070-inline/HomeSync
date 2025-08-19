@@ -53,6 +53,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "sourceMap": true,
             "assets": [
               "src/assets"
             ],
@@ -77,7 +78,10 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "namedChunks": true,
+            "extractLicenses": false,
+            "outputHashing": "all"
           },
           "configurations": {
             "production": {
@@ -107,6 +111,14 @@
                   "inlineCritical": true
                 },
                 "fonts": true
+              },
+              "aot": true,
+              "extractLicenses": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": true,
+                "vendor": true,
+                "hidden": false
               }
             },
             "development": {

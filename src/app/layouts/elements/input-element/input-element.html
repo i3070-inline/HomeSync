@@ -3,6 +3,7 @@
 	<input #inputElement
 	       appBlurOnScrollDirective
 	       (blur)="onBlur()"
+	       aria-label="input"
 	       (focus)="onFocus()"
 	       (ngModelChange)="onValueChange($event)"
 	       [autocomplete]="autocomplete()"

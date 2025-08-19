@@ -12,7 +12,6 @@
 	}
 	@include transition-builder($transition-base);
 }
-html,
 body {
 	background: var(--background-color);
 	color: var(--text-main-color);

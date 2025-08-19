@@ -150,19 +150,19 @@ $transition-position: (
 }
 @mixin responsiveFont($defaultFont : 1rem) {
 	@include respond-to("tel") {
-		font-size: $defaultFont - 0.18rem;
+		font-size: $defaultFont - 0.25rem;
 	}
 	@include respond-to("mob") {
-		font-size: $defaultFont - 0.15rem;
+		font-size: $defaultFont - 0.20rem;
 	}
 	@include respond-to("tab") {
-		font-size: $defaultFont - 0.12rem;
+		font-size: $defaultFont - 0.15rem;
 	}
 	@include respond-to("lap") {
-		font-size: $defaultFont - 0.09rem;
+		font-size: $defaultFont - 0.10rem;
 	}
 	@include respond-to("desk") {
-		font-size: $defaultFont - 0.06rem;
+		font-size: $defaultFont - 0.05rem;
 	}
 	@include respond-to("exDesk") {
 		font-size: $defaultFont;

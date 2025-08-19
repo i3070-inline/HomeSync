@@ -1,6 +1,8 @@
 <button #host
         #trigger="appOverlayDropdownClickExport"
         (blur)="onTouched()"
+        type="button"
+        aria-label="Select"
         [class.empty]="empty()"
         [class.focused]="!trigger.overlayContainerService.isClosing()"
         [class.showFloatedPlaceholder]="showFloatedPlaceholder()"

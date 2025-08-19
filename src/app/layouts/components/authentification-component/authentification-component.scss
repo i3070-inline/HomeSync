@@ -29,12 +29,15 @@
 	grid-row: 3/4;
 	margin: var(--margin-top-botton) 0;
 }
-.login-hyperlink {
+.forgot-button {
 	width: max-content;
 	grid-row: 4/5;
+	font-size: 1rem;
+	padding: 0;
 	margin: var(--margin-top-botton) 0.5rem;
 	text-wrap: nowrap;
 	@extend %hyperlink;
+	border: none;
 }
 .login-button {
 	@extend %neo-btn;
@@ -69,7 +72,7 @@
 	.login-text {
 		font-size: 1.5rem;
 	}
-	.login-hyperlink {
+	.forgot-button {
 		margin: var(--margin-top-botton) auto;
 	}
 	.information-container {
@@ -77,7 +80,7 @@
 	}
 }
 @include respond-to-multiple("tab") {
-	.login-hyperlink{
+	.forgot-button{
 		margin: var(--margin-top-botton) auto;
 	}
 	.login-text{

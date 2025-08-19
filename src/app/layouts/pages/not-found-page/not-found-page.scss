@@ -15,13 +15,14 @@
 	place-self: center;
 }
 .not-found__title {
-	color: var(--background-color);
+	color: var(--text-main-color);
 	font-size: 15rem;
 	line-height: 0.9;
 	padding: 0;
 	text-align: center;
 	text-shadow: var(--text-base-shadow);
 	user-select: none;
+
 }
 .not-found__description {
 	max-width: 45ch;
@@ -41,7 +42,10 @@
 	.not-found {
 		padding: 10px;
 	}
+	.not-found__description {
+		max-width: 35ch;
+	}
 	.not-found__title{
-		font-size: 12rem;
+		font-size: 8rem;
 	}
 }
