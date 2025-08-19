@@ -2,7 +2,7 @@
   "version": 2,
   "public": true,
   "name": "HomeSync",
-  "devCommand": "node dist/HomeSync/server/main.js",
+  "devCommand": "node dist/HomeSync/server/server.mjs",
   "rewrites": [
     {
       "source": "/(.*)",
