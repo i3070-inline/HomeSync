@@ -1,6 +1,8 @@
+# netlify.toml
 [build]
-  command = "npm run build:ssr && npm run prerender"
+  command = "npm run build:ssr"
   publish = "dist/HomeSync/browser"
+  functions = "dist/HomeSync/server"
 
 [[redirects]]
   from = "/*"
