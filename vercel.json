@@ -2,6 +2,7 @@
   "version": 2,
   "public": true,
   "name": "HomeSync",
+  "devCommand": "node dist/HomeSync/server/main.js",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -10,7 +11,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/HomeSync/**"
+      "includeFiles": "dist/HomeSync/browser/**"
     }
   }
 }
