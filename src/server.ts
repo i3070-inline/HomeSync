@@ -123,15 +123,15 @@ app.use((req, res, next) => {
 });
 //endregion
 //region Server Startup
-// if (isMainModule(import.meta.url)) {
-// 	const port = process.env["PORT"] || 4000;
-// 	app.listen(port, (error?: Error) => {
-// 		if (error) {
-// 			throw error;
-// 		}
-// 		console.log(`Node Express server listening on http://localhost:${port}`);
-// 	});
-// }
+if (isMainModule(import.meta.url) && !process.env["VERCEL"]) {
+	const port = process.env["PORT"] || 4000;
+	app.listen(port, (error?: Error) => {
+		if (error) {
+			throw error;
+		}
+		console.log(`Node Express server listening on http://localhost:${port}`);
+	});
+}
 //endregion
 //region Export
 /**
