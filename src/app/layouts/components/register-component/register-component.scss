@@ -63,6 +63,10 @@
 	overflow-wrap: break-word;
 }
 @include respond-to-multiple("tel", "mob") {
+	.form-register{
+		padding: calc(var(--standart-padding) * 1.5);
+		--margin-top-botton: calc(var(--standart-padding) * 1.2);
+	}
 	.register-text {
 		font-size: 1.5rem;
 	}

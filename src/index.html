@@ -4,15 +4,21 @@
 	<meta charset="utf-8">
 	<title>Home Sync</title>
 	<base href="/">
-	<meta content="width=device-width, initial-scale=1, viewport-fit=cover"
+	<meta content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1.0"
 	      name="viewport">
 	<meta content="Home Sync is a smart home application that lets you control and monitor your devices efficiently, making your home safer and more connected."
 	      name="description">
 	<link href="assets/icons/icon.png"
 	      rel="icon"
 	      type="image/x-icon">
-	<link rel="preload" href="assets/preloads/colors-preload.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<noscript><link rel="stylesheet" href="assets/preloads/colors-preload.css"></noscript>
+	<link as="style"
+	      href="assets/preloads/colors-preload.css"
+	      onload="this.onload=null;this.rel='stylesheet'"
+	      rel="preload">
+	<noscript>
+		<link href="assets/preloads/colors-preload.css"
+		      rel="stylesheet">
+	</noscript>
 </head>
 <body>
 <app-root></app-root>
