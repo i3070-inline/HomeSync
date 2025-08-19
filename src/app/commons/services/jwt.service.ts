@@ -21,7 +21,9 @@ export class JwtService {
 	//region Methods
 	private getToken(): string | null {
 		if (this.transferState.hasKey(this.jwtTokenKey)) {
-			return this.transferState.get<string | null>(this.jwtTokenKey, null);
+			const answer = this.transferState.get<string | null>(this.jwtTokenKey, null);
+			this.storage.cookiesStorage.setItem(JWT_KEY, answer);
+			return answer;
 		}
 		let token: string | null;
 		if (this.platform.isServer() && this.req) {
@@ -41,7 +43,7 @@ export class JwtService {
 	}
 	public removeToken(): void {
 		this.storage.cookiesStorage.removeItem(JWT_KEY);
-		this.transferState.set(this.jwtTokenKey, null);
+		this.transferState.remove(this.jwtTokenKey);
 	}
 	private getTokenPayload(): any {
 		const token = this.getToken();

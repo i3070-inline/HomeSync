@@ -1,4 +1,5 @@
-<div class="not-found">
+<app-template-component [footerHeight]="0"
+                        [headerHeight]="0">
 	<div class="not-found__container">
 		<h1 class="not-found__title">404</h1>
 		<h2 class="not-found__subtitle">{{"NOT_FOUND_PAGE.TITLE" | transloco | uppercase}}</h2>
@@ -7,4 +8,4 @@
 		        class="not-found__link">{{"NOT_FOUND_PAGE.ACTION" | transloco}}
 		</button>
 	</div>
-</div>
+</app-template-component>

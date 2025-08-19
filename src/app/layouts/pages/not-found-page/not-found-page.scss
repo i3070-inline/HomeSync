@@ -1,13 +1,5 @@
 @use "mixins" as *;
 @use "placeholders" as *;
-.not-found {
-	display: grid;
-	height: 100dvh;
-	overflow: auto;
-	padding: 3rem;
-	place-items: center;
-	width: 100%;
-}
 .not-found__container {
 	display: grid;
 	grid-gap: var(--standart-padding);
@@ -22,7 +14,6 @@
 	text-align: center;
 	text-shadow: var(--text-base-shadow);
 	user-select: none;
-
 }
 .not-found__description {
 	max-width: 45ch;
@@ -45,7 +36,7 @@
 	.not-found__description {
 		max-width: 35ch;
 	}
-	.not-found__title{
+	.not-found__title {
 		font-size: 8rem;
 	}
 }

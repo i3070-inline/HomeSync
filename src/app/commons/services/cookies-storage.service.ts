@@ -42,9 +42,16 @@ export class CookiesStorageService {
 			return undefined;
 		}
 	}
-	public removeItem(key: string): void | boolean {
+	public removeItem(key: string, options?: {
+		path?: string;
+		domain?: string;
+	}): void | boolean {
 		try {
-			this.cookiesService.delete(key);
+			this.cookiesService.delete(
+				key,
+				options?.path ?? "/",
+				options?.domain ?? ""
+			);
 			return true;
 		}
 		catch (e) {

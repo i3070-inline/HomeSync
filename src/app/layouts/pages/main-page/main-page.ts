@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from "@angular/core";
 import {TemplateComponent} from "@components/template-component/template-component";
 import {RouterLink} from "@angular/router";
+import {JwtService} from "@services/jwt.service";
 
 @Component({
 	selector: "app-main-page",
@@ -12,4 +13,8 @@ import {RouterLink} from "@angular/router";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPage {
+	private jwt = inject(JwtService);
+	public deleteToken() {
+		this.jwt.removeToken();
+	}
 }
