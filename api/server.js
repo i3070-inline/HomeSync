@@ -1,4 +1,4 @@
-module.exports = async (req, res) => {
+export default async (req, res) => {
 	try {
 		console.log('Путь импорта: ../dist/HomeSync/server/server.mjs');
 		const serverModule = await import('../dist/HomeSync/server/server.mjs');
