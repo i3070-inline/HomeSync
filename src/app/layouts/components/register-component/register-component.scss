@@ -65,7 +65,7 @@
 @include respond-to-multiple("tel", "mob") {
 	.form-register{
 		padding: calc(var(--standart-padding) * 1.5);
-		--margin-top-botton: calc(var(--standart-padding) * 1.2);
+		--margin-top-botton: calc(var(--standart-padding) * 1.4);
 	}
 	.register-text {
 		font-size: 1.5rem;
