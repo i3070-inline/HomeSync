@@ -4,15 +4,14 @@
   "main": "electron.js",
   "displayName": "Home Sync",
   "scripts": {
+    "ng": "ng",
     "dist:clean": "rimraf dist",
     "inst:clean": "rimraf inst",
-    "ng": "ng",
-    "build": "ng build --base-href ./",
-    "start": "ng serve --no-hmr",
-    "watch": "ng build --watch --configuration development",
-    "build:ssr": "ng build && node build-server.js",
-    "final:ssr": "npm run dist:clean && ng build && node dist/HomeSync/server/server.mjs",
-    "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder"
+    "build": "npm run dist:clean && ng build",
+    "start:csr": "ng serve --no-hmr",
+    "final:ssr": "npm run dist:clean && npm run ng build && node dist/HomeSync/server/server.mjs",
+    "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder",
+    "vercel-build": "npm run final:ssr"
   },
   "prettier": {
     "overrides": [
