@@ -10,7 +10,7 @@
     "build": "npm run dist:clean && ng build",
     "start:csr": "ng serve --no-hmr",
     "final:ssr": "npm run dist:clean && npm run ng build && node dist/HomeSync/server/server.mjs",
-    "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder",
+    "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder"
   },
   "prettier": {
     "overrides": [
