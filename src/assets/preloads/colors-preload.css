@@ -1,0 +1,18 @@
+html[theme="dark"] {
+	background-color: #33303A;
+	color: #FFFFFF;
+}
+html[theme="light"] {
+	background-color: #BDBDBD;
+	color: #000000CC;
+}
+html[theme="system"] {
+	@media (prefers-color-scheme: light) {
+		background-color: #BDBDBD;
+		color: #000000CC;
+	}
+	@media (prefers-color-scheme: dark) {
+		background-color: #33303A;
+		color: #FFFFFF;
+	}
+}

@@ -3,6 +3,7 @@ import {Translation, TranslocoLoader} from "@ngneat/transloco";
 import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {PlatformService} from "@services/platform.service";
+import {getCookieValueFromRequest} from "@utils/cookies-helper";
 
 @Injectable({
 	providedIn: "root"
@@ -15,27 +16,18 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 	private readonly req = inject(REQUEST, {optional: true}) as Request | null;
 	//endregion
 	//#region Methods
-	private getLanguageFromCookies(): string | null {
-		if (!this.req) return null;
-		const cookieHeader = this.req.headers.get("cookie") || "";
-		const cookies = Object.fromEntries(
-			cookieHeader
-				.split(";")
-				.map(c => c.trim().split("="))
-				.map(([k, v]) => [k, decodeURIComponent(v)])
-		);
-		return cookies["lang"] || null;
-	}
-	public async getTranslation(lang: string) {
+	public async getTranslation(lang: string): Promise<Translation> {
 		let language = lang;
 		if (this.platform.isServer() && this.req) {
-			language = this.getLanguageFromCookies() || lang;
+			language = getCookieValueFromRequest(this.req, "lang") || lang;
 		}
 		const key: StateKey<Translation> = makeStateKey<Translation>("transloco-" + language);
 		if (this.transferState.hasKey(key)) {
 			return this.transferState.get<Translation>(key, {});
 		}
-		const translation = await firstValueFrom(this.http.get<Translation>(`/assets/languages/${language}.json`));
+		const translation = await firstValueFrom(
+			this.http.get<Translation>(`/assets/languages/${language}.json`)
+		);
 		if (this.platform.isServer()) {
 			this.transferState.set(key, translation);
 		}

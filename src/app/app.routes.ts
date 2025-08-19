@@ -27,7 +27,7 @@ export const routes: Routes = [
 			},
 			{
 				path: "email-confirm",
-				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage),
+				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage)
 			},
 			{
 				path: "**",

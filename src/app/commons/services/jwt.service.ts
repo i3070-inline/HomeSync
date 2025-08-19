@@ -1,6 +1,8 @@
-import {inject, Injectable} from "@angular/core";
+import {inject, Injectable, makeStateKey, REQUEST, StateKey, TransferState} from "@angular/core";
 import {StorageFacadeService} from "@services/facade/storage-facade.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {PlatformService} from "@services/platform.service";
+import {getCookieValueFromRequest} from "@utils/cookies-helper";
 
 export const JWT_KEY = "jwt";
 
@@ -11,10 +13,35 @@ export class JwtService {
 	//region Members
 	private readonly storage = inject(StorageFacadeService);
 	private readonly jwtHelper = inject(JwtHelperService);
+	private readonly transferState = inject(TransferState);
+	private readonly platform = inject(PlatformService);
+	private readonly jwtTokenKey: StateKey<string | null> = makeStateKey<string | null>("jwt-token");
+	private readonly req = inject(REQUEST, {optional: true}) as Request | null;
 	//endregion
 	//region Methods
-	private getToken(): string | undefined {
-		return this.storage.localStorage.getItem(JWT_KEY);
+	private getToken(): string | null {
+		if (this.transferState.hasKey(this.jwtTokenKey)) {
+			return this.transferState.get<string | null>(this.jwtTokenKey, null);
+		}
+		let token: string | null;
+		if (this.platform.isServer() && this.req) {
+			token = getCookieValueFromRequest(this.req, JWT_KEY);
+			if (token) {
+				this.transferState.set(this.jwtTokenKey, token);
+			}
+		}
+		else {
+			token = this.storage.cookiesStorage.getItem(JWT_KEY) || null;
+		}
+		return token;
+	}
+	public setToken(token: string): void {
+		this.storage.cookiesStorage.setItem(JWT_KEY, token);
+		this.transferState.set(this.jwtTokenKey, token);
+	}
+	public removeToken(): void {
+		this.storage.cookiesStorage.removeItem(JWT_KEY);
+		this.transferState.set(this.jwtTokenKey, null);
 	}
 	private getTokenPayload(): any {
 		const token = this.getToken();
@@ -23,12 +50,6 @@ export class JwtService {
 	public isTokenExpired(): boolean {
 		const token = this.getToken();
 		return token ? this.jwtHelper.isTokenExpired(token) : true;
-	}
-	public setToken(token: string): void {
-		this.storage.localStorage.setItem(JWT_KEY, token);
-	}
-	public removeToken(): void {
-		this.storage.localStorage.removeItem(JWT_KEY);
 	}
 	public getUserId(): string | null {
 		const payload = this.getTokenPayload();
