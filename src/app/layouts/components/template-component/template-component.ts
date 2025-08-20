@@ -27,7 +27,7 @@ import {TranslocoPipe} from "@ngneat/transloco";
 		OverlayDropdownClickDirective,
 		RouterLink,
 		TitleCasePipe,
-		TranslocoPipe
+		TranslocoPipe,
 	],
 	templateUrl: "./template-component.html",
 	styleUrl: "./template-component.scss",

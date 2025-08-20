@@ -1,0 +1,8 @@
+<div class="load-placeholder">
+	<div class="load-placeholder__container">
+		<svg class="load-placeholder__icon">
+			<use [attr.href]="uiService.buildIconSvgPath('load-icon')"></use>
+		</svg>
+	</div>
+	<span class="load-placeholder__text">{{settingsService.appDetails.name | titlecase}}</span>
+</div>

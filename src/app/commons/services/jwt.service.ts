@@ -45,24 +45,28 @@ export class JwtService {
 		this.storage.cookiesStorage.removeItem(JWT_KEY);
 		this.transferState.remove(this.jwtTokenKey);
 	}
-	private getTokenPayload(): any {
-		const token = this.getToken();
-		return token ? this.jwtHelper.decodeToken(token) : null;
+	private getTokenPayload(token: string | null = null): any {
+		const actualToken = token ?? this.getToken();
+		return actualToken ? this.jwtHelper.decodeToken(actualToken) : null;
 	}
-	public isTokenExpired(): boolean {
-		const token = this.getToken();
-		return token ? this.jwtHelper.isTokenExpired(token) : true;
+	public isTokenExpired(token: string | null = null): boolean {
+		return this.jwtHelper.isTokenExpired(token ?? this.getToken());
 	}
-	public getUserId(): string | null {
-		const payload = this.getTokenPayload();
-		return payload?.sub || payload?.userId || null;
+	public getUserId(token: string | null = null): string | null {
+		const payload = this.getTokenPayload(token);
+		return payload?.sub || null;
 	}
-	public getUserRoles(): string[] {
-		const payload = this.getTokenPayload();
+	public getUserRoles(token: string | null = null): string[] {
+		const payload = this.getTokenPayload(token);
 		return payload?.role || [];
 	}
-	public isAuthenticated(): boolean {
-		return !this.isTokenExpired();
+	public getUserNme(token: string | null = null): string | null {
+		const payload = this.getTokenPayload(token);
+		return payload?.username || null;
+	}
+	public getEmail(token: string | null = null): string | null {
+		const payload = this.getTokenPayload(token);
+		return payload?.email || null;
 	}
 	//endregion
 }

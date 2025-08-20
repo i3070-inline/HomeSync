@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+@defer (on viewport) {
+	<router-outlet></router-outlet>
+} @placeholder (minimum 1000ms) {
+	<app-load-placeholder-component></app-load-placeholder-component>
+}

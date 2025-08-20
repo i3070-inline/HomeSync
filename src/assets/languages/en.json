@@ -71,6 +71,18 @@
     "DESCRIPTION": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
     "ACTION": "Home page"
   },
+  "EMAIL_CONFIRMATION_PAGE": {
+    "TITLE": "Email verification",
+    "DESCRIPTION": {
+      "SUCCESS": "{{email}} has been successfully verified. Use the button below or wait for redirection.",
+      "FAILURE": "{{email}} verification has failed. Please use the button below to try again."
+    },
+    "ACTION": {
+      "SUCCESS": "Login",
+      "FAILURE": "Try again"
+    },
+    "TIMER": "Automatic redirection in {{time}} seconds"
+  },
   "VALIDATORS": {
     "REQUIRED": "This field is required",
     "MIN_LENGTH": "At least {{requiredLength}} characters",
@@ -83,7 +95,7 @@
     },
     "SIGN_UP": {
       "START": "Create account in progress...",
-      "EMAIL_VERIFICATION" : "Please confirm your registration via the link sent to your email"
+      "EMAIL_VERIFICATION": "Please confirm your registration via the link sent to your email"
     },
     "FORGOT": {
       "START": "Password reset in progress...",

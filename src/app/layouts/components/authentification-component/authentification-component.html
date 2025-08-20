@@ -1,6 +1,5 @@
 @if (authentificationService.accountForm(); as auth) {
 	<form [formGroup]="auth"
-	      (ngSubmit)="onSubmitAuthForm()"
 	      class="form-login">
 		<h1 [class.disabled]="auth.disabled"
 		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | transloco}}</h1>
@@ -31,7 +30,9 @@
 		        class="forgot-button">{{"LOGIN_PAGE.FORGOT_PASSWORD" | transloco}}
 		</button>
 		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
-		        class="login-button">
+		        class="login-button"
+		        type="button"
+		        (click)="onSubmitAuthForm()">
 			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | transloco}}
 		</button>
 		<div [class.disabled]="auth.disabled"

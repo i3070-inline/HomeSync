@@ -1,9 +1,41 @@
-<div class="email-confirm">
-	<div class="email-confirm__container">
-	</div>
-</div>
-
-
+@if (!isRequesting()) {
+	<app-template-component [footerHeight]="0"
+	                        [headerHeight]="0">
+		<div class="email-confirm__container">
+			<h1 class="email-confirm__title">Email Verification</h1>
+			@let isConf = isEmailConfirmed();
+			<svg [style.color]="isConf ? 'var(--success-color)' : 'var(--error-color)'"
+			     class="email-confirm__icon">
+				<use [attr.href]="uiService.buildIconSvgPath(
+					isConf? 'check-circle-icon' : 'error-circle-icon')"></use>
+			</svg>
+			<p class="email-confirm__description"
+			   *transloco="let t">
+				{{
+					isConf ? t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.SUCCESS', {email: emailConfirmed()}) :
+							t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.FAILURE', {email: emailConfirmed()})
+				}}
+			</p>
+			<button (click)="isConf ? onLoginPage() : onReloadPage()"
+			        class="email-confirm__link"
+			        *transloco="let t">
+				{{
+					isConf ? t('EMAIL_CONFIRMATION_PAGE.ACTION.SUCCESS') :
+							t('EMAIL_CONFIRMATION_PAGE.ACTION.FAILURE')
+				}}
+			</button>
+			@if (seconds() && seconds()! > 0) {
+				<span class="email-confirm__timer"
+				      *transloco="let t">
+					{{
+						t('EMAIL_CONFIRMATION_PAGE.TIMER', {time: seconds()})
+					}}</span>
+			}
+		</div>
+	</app-template-component>
+} @else {
+	<app-load-placeholder-component></app-load-placeholder-component>
+}
 
 
 

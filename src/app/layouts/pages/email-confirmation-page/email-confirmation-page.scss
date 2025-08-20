@@ -1,23 +1,48 @@
 @use "mixins" as *;
-.email-confirm {
-	display: grid;
-	width: 100%;
-	height: 100dvh;
-	overflow: auto;
-	padding: 3rem;
-	place-items: center;
-}
+@use "placeholders" as *;
 .email-confirm__container {
 	display: grid;
-	min-width: max-content;
-	width: 60%;
-	max-width: 80dvw;
-	height: 200px;
-	position: relative;
-	@include blur-effect();
+	gap: calc(var(--standart-padding) * 2);
+	place-items: center;
+	place-self: center;
+}
+.email-confirm__title {
+	color: var(--text-main-color);
+	font-size: 2rem;
+	line-height: 0.9;
+	margin: 0;
+	text-align: center;
+	width: 100%;
+}
+.email-confirm__link {
+	min-width: 10rem;
+	text-align: center;
+	@extend %neo-btn;
+}
+.email-confirm__icon {
+	@extend %icon-base;
+	margin: var(--standart-padding) auto;
+	scale: 2;
+}
+.email-confirm__description {
+	max-width: 40ch;
+	overflow-wrap: break-word;
+	text-align: center;
+	white-space: normal;
+	word-wrap: break-word;
+}
+.email-confirm__timer {
+	font-size: 0.8rem;
+	font-weight: 400;
+	overflow-wrap: break-word;
+	white-space: normal;
+	word-break: break-word;
 }
 @include respond-to-multiple("tel", "mob") {
-	.email-confirm {
+	.email-confirm__container {
 		padding: 10px;
+	}
+	.email-confirm__description {
+		max-width: 30ch;
 	}
 }

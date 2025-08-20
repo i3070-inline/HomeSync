@@ -1,67 +1,69 @@
 <section class="background">
-	<header [style.height.rem]="headerHeight()"
-	        class="background__header">
-		<button [routerLink]="'/main/me'"
-		        type="button"
-		        aria-label="Home"
-		        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
-		</button>
-		<div class="background__header-content">
-			<ng-content select="[header-conten]"></ng-content>
-		</div>
-		<button #trigger="appOverlayDropdownClickExport"
-		        appOverlayDropdownClick
-		        type="button"
-		        aria-label="Settings"
-		        class="background__settings-button">
-			<svg class="background__settings-icon">
-				<use [attr.href]="uiService.buildIconSvgPath('settings-icon')">
-				</use>
-			</svg>
-			@if (trigger.overlayContainerService.isOpened()) {
-				<app-overlay-container-element [hasContainerBackground]="false"
-				                               [backDropClasses]="['overlay-backdrop']"
-				                               [positions]="[{ originX: 'end',
+	@if (headerHeight() !== 0) {
+		<header [style.height.rem]="headerHeight()"
+		        class="background__header">
+			<button [routerLink]="'/main/me'"
+			        type="button"
+			        aria-label="Home"
+			        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
+			</button>
+			<div class="background__header-content">
+				<ng-content select="[header-conten]"></ng-content>
+			</div>
+			<button #trigger="appOverlayDropdownClickExport"
+			        appOverlayDropdownClick
+			        type="button"
+			        aria-label="Settings"
+			        class="background__settings-button">
+				<svg class="background__settings-icon">
+					<use [attr.href]="uiService.buildIconSvgPath('settings-icon')">
+					</use>
+				</svg>
+				@if (trigger.overlayContainerService.isOpened()) {
+					<app-overlay-container-element [hasContainerBackground]="false"
+					                               [backDropClasses]="['overlay-backdrop']"
+					                               [positions]="[{ originX: 'end',
 				                               originY: 'bottom',
 				                               overlayX: 'end',
 				                               overlayY: 'top',
 				                               offsetY: 5}]">
-					<div class="background__settings">
-						<div class="background__settings-content">
-							<ng-content select="[settings-container]"></ng-content>
-						</div>
-						<div class="background__settings-tools">
-							@let width = "15rem";
-							<app-select-element [itemSource]="settingsService.themeHandler.options()"
-							                    [selectedValue]="settingsService.themeHandler.selectedOption()"
-							                    (selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('theme-icon'),
+						<div class="background__settings">
+							<div class="background__settings-content">
+								<ng-content select="[settings-container]"></ng-content>
+							</div>
+							<div class="background__settings-tools">
+								@let width = "15rem";
+								<app-select-element [itemSource]="settingsService.themeHandler.options()"
+								                    [selectedValue]="settingsService.themeHandler.selectedOption()"
+								                    (selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
+								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('theme-icon'),
 							                    description:'SETTINGS.THEME.DESCRIPTION' | transloco,
 							                    action: 'SETTINGS.THEME.ACTION' | transloco}"
-							                    [width]="width">
-							</app-select-element>
-							<app-select-element [itemSource]="settingsService.languageHandler.options()"
-							                    [selectedValue]="settingsService.languageHandler.selectedOption()"
-							                    (selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('language-icon'),
+								                    [width]="width">
+								</app-select-element>
+								<app-select-element [itemSource]="settingsService.languageHandler.options()"
+								                    [selectedValue]="settingsService.languageHandler.selectedOption()"
+								                    (selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
+								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('language-icon'),
 							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | transloco,
 							                    action: 'SETTINGS.LANGUAGE.ACTION' | transloco}"
-							                    [width]="width">
-							</app-select-element>
-							<app-select-element [itemSource]="settingsService.animationHandler.options()"
-							                    [selectedValue]="settingsService.animationHandler.selectedOption()"
-							                    (selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
-							                    [placeholder]="{iconPath:uiService.buildIconSvgPath('animation-icon'),
+								                    [width]="width">
+								</app-select-element>
+								<app-select-element [itemSource]="settingsService.animationHandler.options()"
+								                    [selectedValue]="settingsService.animationHandler.selectedOption()"
+								                    (selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
+								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('animation-icon'),
 							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | transloco,
 							                    action: 'SETTINGS.ANIMATION.ACTION' | transloco}"
-							                    [width]="width">
-							</app-select-element>
+								                    [width]="width">
+								</app-select-element>
+							</div>
 						</div>
-					</div>
-				</app-overlay-container-element>
-			}
-		</button>
-	</header>
+					</app-overlay-container-element>
+				}
+			</button>
+		</header>
+	}
 	@if (showTopScroll()) {
 		<button (click)="scroll('bottom')"
 		        class="background__scroll-button--top"
@@ -85,41 +87,45 @@
 			<span>➤</span>
 		</button>
 	}
-	<footer [style.height.rem]="footerHeight()"
-	        class="background__footer">
-		<p class="background__footer-copyright"> Ⓒ {{settingsService.appDetails.currentYear}} All Rights Reserved.</p>
-		<div class="background__footer-media">
-			<a aria-label="GitHub"
-			   class="background__footer-link"
-			   href="https://github.com/i3070-inline"
-			   rel="noopener noreferrer"
-			   target="_blank">
-				<svg class="background__footer-link-icon">
-					<use [attr.href]="uiService.buildIconSvgPath('github-icon')"
-					     class="github"></use>
-				</svg>
-			</a>
-			<a aria-label="LinkedIn"
-			   class="background__footer-link"
-			   href="https://www.linkedin.com/in/alexandru-musteață-8b4659157"
-			   rel="noopener noreferrer"
-			   target="_blank">
-				<svg class="background__footer-link-icon">
-					<use [attr.href]="uiService.buildIconSvgPath('linkedin-icon')"
-					     class="linkedin"></use>
-				</svg>
-			</a>
-			<a aria-label="Email"
-			   class="background__footer-link"
-			   href="mailto:alex.msst@gmail.com"
-			   rel="noopener noreferrer"
-			   target="_blank"
-			   title="Send me an email">
-				<svg class="background__footer-link-icon">
-					<use [attr.href]="uiService.buildIconSvgPath('email-icon')"
-					     class="email"></use>
-				</svg>
-			</a>
-		</div>
-	</footer>
+	@if (footerHeight() !== 0) {
+		<footer [style.height.rem]="footerHeight()"
+		        class="background__footer">
+			<p class="background__footer-copyright"> Ⓒ {{settingsService.appDetails.currentYear}} All Rights
+			                                         Reserved.</p>
+			<div class="background__footer-media">
+				<a aria-label="GitHub"
+				   class="background__footer-link"
+				   href="https://github.com/i3070-inline"
+				   rel="noopener noreferrer"
+				   target="_blank">
+					<svg class="background__footer-link-icon">
+						<use [attr.href]="uiService.buildIconSvgPath('github-icon')"
+						     class="github"></use>
+					</svg>
+				</a>
+				<a aria-label="LinkedIn"
+				   class="background__footer-link"
+				   href="https://www.linkedin.com/in/alexandru-musteață-8b4659157"
+				   rel="noopener noreferrer"
+				   target="_blank">
+					<svg class="background__footer-link-icon">
+						<use [attr.href]="uiService.buildIconSvgPath('linkedin-icon')"
+						     class="linkedin"></use>
+					</svg>
+				</a>
+				<a aria-label="Email"
+				   class="background__footer-link"
+				   href="mailto:alex.msst@gmail.com"
+				   rel="noopener noreferrer"
+				   target="_blank"
+				   title="Send me an email">
+					<svg class="background__footer-link-icon">
+						<use [attr.href]="uiService.buildIconSvgPath('email-icon')"
+						     class="email"></use>
+					</svg>
+				</a>
+			</div>
+		</footer>
+	}
 </section>
+

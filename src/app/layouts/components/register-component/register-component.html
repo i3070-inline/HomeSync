@@ -1,6 +1,5 @@
 @if (registerService.accountForm(); as reg) {
 	<form [formGroup]="reg"
-	      (ngSubmit)="onSubmitRegisterForm()"
 	      class="form-register">
 		<h1 [class.disabled]="reg.disabled"
 		    class="register-text">{{"LOGIN_PAGE.SIGN_UP_FORM.TITLE" | transloco}}</h1>
@@ -35,6 +34,8 @@
 		                   class="register-confirm-password">
 		</app-input-element>
 		<button [disabled]="reg.disabled || registerService.isExecuting()"
+		        (click)="onSubmitRegisterForm()"
+		        type="button"
 				class="register-button">{{"LOGIN_PAGE.SIGN_UP_FORM.ACTION" | transloco}}
 		</button>
 		<div [class.disabled]="reg.disabled"

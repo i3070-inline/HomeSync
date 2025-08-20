@@ -30,8 +30,12 @@ export const routes: Routes = [
 				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage)
 			},
 			{
-				path: "**",
+				path: "not-found",
 				loadComponent: () => import("@pages/not-found-page/not-found-page").then(value => value.NotFoundPage)
+			},
+			{
+				path: "**",
+				redirectTo: "not-found"
 			}
 		]
 	}

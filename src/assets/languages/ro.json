@@ -71,6 +71,18 @@
     "DESCRIPTION": "Pagina pe care o cauți ar fi putut fi ștearsă, redenumită sau este temporar indisponibilă.",
     "ACTION": "Pagina principală"
   },
+  "EMAIL_CONFIRMATION_PAGE": {
+    "TITLE": "Verificarea email-ului",
+    "DESCRIPTION": {
+      "SUCCESS": "{{email}} a fost verificat cu succes. Folosiți butonul de mai jos sau așteptați redirecționarea.",
+      "FAILURE": "{{email}} nu a putut fi verificat. Vă rugăm să folosiți butonul de mai jos pentru a încerca din nou."
+    },
+    "ACTION": {
+      "SUCCESS": "Autentificare",
+      "FAILURE": "Reîncearcă"
+    },
+    "TIMER": "Redirecționare automată în {{time}} secunde"
+  },
   "VALIDATORS": {
     "REQUIRED": "Acest câmp este obligatoriu",
     "MIN_LENGTH": "Cel puțin {{requiredLength}} caractere",

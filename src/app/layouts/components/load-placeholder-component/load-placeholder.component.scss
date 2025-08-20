@@ -1,0 +1,30 @@
+.load-placeholder {
+	background: transparent;
+	display: grid;
+	height: 100dvh;
+	overflow: auto;
+	position: relative;
+	user-select: none;
+	width: 100%;
+}
+.load-placeholder__container {
+	left: 50%;
+	place-items: center;
+	place-self: center;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%)
+}
+.load-placeholder__icon{
+	aspect-ratio: 1 / 1;
+	width: clamp(10rem, 10dvw, 20rem);
+	filter: drop-shadow(0.2rem 0.2rem 0.2rem var(--bottom-color-shadow));
+}
+.load-placeholder__text {
+	font-family: "Artistic", "Manrope", serif;
+	font-size: 3rem;
+	font-style: normal;
+	font-weight: 1000;
+	margin-bottom: var(--standart-padding);
+	place-self: end center;
+}
