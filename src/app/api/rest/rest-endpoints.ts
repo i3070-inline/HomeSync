@@ -4,5 +4,6 @@ export const restEndpoints = {
 		authentification: `${API_BASE_URL}/auth/login`,
 		register: `${API_BASE_URL}/auth/register`,
 		emailConfirmation: `${API_BASE_URL}/auth/confirm-email?token=`,
+		refreshToken: `${API_BASE_URL}/auth/refresh`,
 	}
 } as const;

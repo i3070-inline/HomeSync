@@ -28,12 +28,14 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 		try {
 			const response = await firstValueFrom(
 				this.http.post<{ accessToken: string }>(restEndpoints.user.authentification, this.accountForm().value));
-			this.jwtService.setToken(response.accessToken);
-			if (!this.jwtService.isTokenExpired()) {
-				return {successful: true, data: {userId: this.jwtService.getUserId()}};
+			if (!this.jwtService.isTokenExpired(response.accessToken)) {
+				await firstValueFrom(this.http.post<{ accessToken: string }>(restEndpoints.user.refreshToken));
+				this.jwtService.setToken(response.accessToken);
+				return {successful: true};
 			}
 		}
 		catch (error) {
+			console.error("Authentication failed:", error);
 			return {successful: false};
 		}
 		return {successful: false};

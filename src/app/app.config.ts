@@ -17,8 +17,7 @@ import {requestLoggingInterceptor} from "@interceptors/request-logging.intercept
 import {responseLoggingInterceptor} from "@interceptors/response-logging.intercepter";
 import {retryInterceptor} from "@interceptors/retry-request.interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
-import {JWT_KEY} from "@services/jwt.service";
-import {PlatformService} from "@services/platform.service";
+import {JwtService} from "@services/jwt.service";
 import {ThemeHandlerService} from "@services/theme-handler.service";
 import {AnimationHandlerService} from "@services/animation-handler.service";
 import {provideTransloco} from "@ngneat/transloco";
@@ -44,10 +43,8 @@ export const appConfig: ApplicationConfig = {
 		importProvidersFrom(
 			JwtModule.forRoot({
 				config: {
-					tokenGetter: () => {
-						const platform = inject(PlatformService);
-						return platform.runOnBrowserPlatform(() => localStorage.getItem(JWT_KEY)) || null;
-					},
+					tokenGetter: () => inject(JwtService).getToken(),
+					allowedDomains: [/.*/],
 					disallowedRoutes: ["/auth/login", "/auth/confirm-email"]
 				}
 			})

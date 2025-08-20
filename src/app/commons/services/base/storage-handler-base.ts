@@ -14,34 +14,30 @@ export abstract class StorageHandlerBase {
 			try {
 				return JSON.parse(item) as T;
 			}
-			catch (e) {
-				console.error(`Failed to parse JSON from "${this.storage.constructor.name}"  with key "${key}":`, e);
+			catch (error) {
+				console.error(`Failed to parse JSON from "${this.storage.constructor.name}"  with key "${key}":`, error);
 				return undefined;
 			}
 		});
 	}
-	public setItem<T>(key: string, value: T): void | boolean {
-		this.platform.runOnBrowserPlatform((): boolean | void => {
+	public setItem<T>(key: string, value: T): void {
+		this.platform.runOnBrowserPlatform((): void => {
 			try {
 				this.storage.setItem(key, JSON.stringify(value));
 			}
-			catch (e) {
-				console.error(`Failed to set item in "${this.storage.constructor.name}" with key "${key}":`, e);
-				return false;
+			catch (error) {
+				console.error(`Failed to set item in "${this.storage.constructor.name}" with key "${key}":`, error);
 			}
-			return true;
 		});
 	}
-	public removeItem(key: string): void | boolean {
+	public removeItem(key: string): void {
 		return this.platform.runOnBrowserPlatform(() => {
 			try {
 				this.storage.removeItem(key);
 			}
-			catch (e) {
-				console.error(`Failed to remove item from "${this.storage.constructor.name}" with key "${key}":`, e);
-				return false;
+			catch (error) {
+				console.error(`Failed to remove item from "${this.storage.constructor.name}" with key "${key}":`, error);
 			}
-			return true;
 		});
 	}
 	//

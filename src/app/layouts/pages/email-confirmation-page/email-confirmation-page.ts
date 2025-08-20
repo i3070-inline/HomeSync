@@ -31,12 +31,17 @@ export class EmailConfirmationPage implements OnInit {
 	protected readonly uiService = inject(UiFacadeService);
 	protected isEmailConfirmed = signal<boolean>(false);
 	protected emailConfirmed = signal<string>("");
-	protected seconds = signal<number | null>(1);
+	protected seconds = signal<number | null>(0);
 	protected isRequesting = signal<boolean>(false);
 	//endregion
 	//region Methods
-	private isValidEmailConfirmationToken(token: string | null): boolean {
-		return token !== null && !this.jwt.isTokenExpired(token) && !this.jwt.getEmail(token) !== null;
+	private isValidEmailConfirmationToken(token: string | null): { isValid: boolean; email: string } {
+		const payload = token !== null && !this.jwt.isTokenExpired(token)
+			? this.jwt.getTokenPayload(token)
+			: null;
+		const email = payload?.email ?? "";
+		const isValid = !!email;
+		return {isValid, email};
 	}
 	protected async onReloadPage(): Promise<void> {
 		await this.router.navigate([this.router.url]);
@@ -48,14 +53,14 @@ export class EmailConfirmationPage implements OnInit {
 	//region Overrides
 	async ngOnInit(): Promise<void> {
 		const token = this.route.snapshot.queryParamMap.get("token");
-		console.log(token);
-		if (!this.isValidEmailConfirmationToken(token)) {
+		const {isValid, email} = this.isValidEmailConfirmationToken(token);
+		if (!isValid) {
 			await this.router.navigate(["not-found"]);
 			return;
 		}
 		try {
 			this.isRequesting.set(true);
-			this.emailConfirmed.set(this.jwt.getEmail(token)!);
+			this.emailConfirmed.set(email);
 			await firstValueFrom(this.http.get<string>(`${restEndpoints.user.emailConfirmation}${token}`));
 			this.isEmailConfirmed.set(true);
 			this.isRequesting.set(false);

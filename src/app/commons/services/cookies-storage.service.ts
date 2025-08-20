@@ -16,7 +16,7 @@ export class CookiesStorageService {
 		secure?: boolean;
 		sameSite?: "Lax" | "Strict" | "None";
 		partitioned?: boolean;
-	}): void | boolean {
+	}): void {
 		try {
 			this.cookiesService.set(key, String(value),
 				options?.expires ?? 7,
@@ -25,11 +25,10 @@ export class CookiesStorageService {
 				options?.secure ?? false,
 				options?.sameSite ?? "Lax",
 				options?.partitioned ?? false);
-			return true;
 		}
-		catch (e) {
-			console.error(`Failed to set cookie with key "${key}":`, e);
-			return false;
+		catch (error) {
+			console.error(`Failed to set cookie with key "${key}":`, error);
+			throw error;
 		}
 	}
 	public getItem<T>(key: string): T | undefined {
@@ -37,36 +36,34 @@ export class CookiesStorageService {
 			const value = this.cookiesService.get(key);
 			return value as T ?? undefined;
 		}
-		catch (e) {
-			console.error(`Failed to get cookie with key "${key}":`, e);
-			return undefined;
+		catch (error) {
+			console.error(`Failed to get cookie with key "${key}":`, error);
+			throw error;
 		}
 	}
 	public removeItem(key: string, options?: {
 		path?: string;
 		domain?: string;
-	}): void | boolean {
+	}): void {
 		try {
 			this.cookiesService.delete(
 				key,
 				options?.path ?? "/",
 				options?.domain ?? ""
 			);
-			return true;
 		}
-		catch (e) {
-			console.error(`Failed to remove cookie with key "${key}":`, e);
-			return false;
+		catch (error) {
+			console.error(`Failed to remove cookie with key "${key}":`, error);
+			throw error;
 		}
 	}
-	public removeAll(): void | boolean {
+	public removeAll(): void {
 		try {
 			this.cookiesService.deleteAll();
-			return true;
 		}
-		catch (e) {
-			console.error("Failed to remove all cookies:", e);
-			return false;
+		catch (error) {
+			console.error("Failed to remove all cookies:", error);
+			throw error;
 		}
 	}
 	//endregion

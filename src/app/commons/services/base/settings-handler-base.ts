@@ -14,7 +14,6 @@ export abstract class SettingsHandlerBase<T> {
 	public abstract get options(): Signal<ISelectItemModel<T>[]>;
 	public selectedOption = signal<ISelectItemModel<T> | null>(null);
 	//endregion
-	//region Constructor
 	//region Methods
 	public async init(): Promise<void> {
 		const value = this.storageFacade.cookiesStorage.getItem<T>(this.cookiesKey) || this.defaultValue;

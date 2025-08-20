@@ -11,6 +11,6 @@ export function getCookieValueFromRequest(req: Request | null, cookieKey: string
 		return cookies[cookieKey] || null;
 	} catch (error) {
 		console.error("Error parsing cookies:", error);
-		return null;
+		throw error;
 	}
 }
