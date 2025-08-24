@@ -150,16 +150,16 @@ $transition-position: (
 }
 @mixin responsiveFont() {
 	@include respond-to("tel") {
-		font-size: 0.875rem; // 14px
+		font-size: 0.8125rem; // 13px
 	}
 	@include respond-to("mob") {
-		font-size: 0.875rem; // 14px
+		font-size: 0.84375rem; // 13.5px
 	}
 	@include respond-to("tab") {
 		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("lap") {
-		font-size: 0.875rem; // 14px
+		font-size: 0.90625rem; // 14.5px
 	}
 	@include respond-to("desk") {
 		font-size: 0.9375rem; // 15px
