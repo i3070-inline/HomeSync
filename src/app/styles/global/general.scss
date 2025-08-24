@@ -12,7 +12,7 @@
 	}
 	@include transition-builder($transition-base);
 }
-html{
+:root{
 	@include responsiveFont();
 }
 body {

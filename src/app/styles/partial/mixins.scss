@@ -150,22 +150,22 @@ $transition-position: (
 }
 @mixin responsiveFont() {
 	@include respond-to("tel") {
-		font-size: 0.75rem; // 12px
-	}
-	@include respond-to("mob") {
-		font-size: 0.78125rem; // 12.5px
-	}
-	@include respond-to("tab") {
 		font-size: 0.8125rem; // 13px
 	}
-	@include respond-to("lap") {
-		font-size: 0.84375rem; // 13.5px
+	@include respond-to("mob") {
+		font-size: 0.8125rem; // 13px
 	}
-	@include respond-to("desk") {
+	@include respond-to("tab") {
 		font-size: 0.875rem; // 14px
 	}
+	@include respond-to("lap") {
+		font-size: 0.9375rem; // 15px
+	}
+	@include respond-to("desk") {
+		font-size: 0.9375rem; // 15px
+	}
 	@include respond-to("exDesk") {
-		font-size: 0.90625rem; // 14.5px
+		font-size: 1rem; // 16px
 	}
 }
 @mixin blur-effect($border-radius: var(--border-radius), $blur-pixels:  10px , $is-using-box-shadow: true , $shadow-type: var(--base-shadow) , $z-index : -1) {

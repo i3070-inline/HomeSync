@@ -96,8 +96,3 @@
 		opacity: 1;
 	}
 }
-@include respond-to-multiple("tel","mob","tab"){
-	.input__field{
-		font-size: 1rem;
-	}
-}

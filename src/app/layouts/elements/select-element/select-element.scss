@@ -135,11 +135,3 @@
 	@extend %small-icon-dimensions;
 	transform: translateY(-50%);
 }
-@include respond-to-multiple("tel","mob","tab"){
-	.select-container{
-		font-size: 1rem;
-	}
-	.select-container__list-item{
-		font-size: 1rem;
-	}
-}
