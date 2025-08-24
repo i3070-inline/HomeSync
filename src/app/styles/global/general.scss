@@ -12,6 +12,9 @@
 	}
 	@include transition-builder($transition-base);
 }
+html{
+	@include responsiveFont();
+}
 body {
 	background: var(--background-color);
 	color: var(--text-main-color);
@@ -20,7 +23,6 @@ body {
 	font-weight: 500;
 	overflow: hidden;
 	overscroll-behavior: none;
-	@include responsiveFont();
 }
 .overlay-backdrop {
 	& + .cdk-overlay-connected-position-bounding-box, & + .cdk-global-overlay-wrapper {
