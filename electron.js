@@ -11,7 +11,7 @@ async function createWindow() {
 			nodeIntegration: true,
 		},
 	});
-	await mainWindow.loadURL('https://home-sync-xi.vercel.app');
+	await mainWindow.loadURL('https://homesync-9jub.onrender.com');
 	//await mainWindow.loadFile(path.join(__dirname, 'dist', 'smart-house-application', 'browser',
 	// 'index.html'));//browser
 	mainWindow.on('closed', () => {

@@ -11,6 +11,7 @@
 }
 .input__field {
 	@extend %neo-input;
+	font-size: 1rem;
 	&.password {
 		letter-spacing: 0.1rem;
 		padding: 0.7rem 2.2rem 0.7rem 1rem;

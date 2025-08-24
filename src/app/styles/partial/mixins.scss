@@ -148,24 +148,24 @@ $transition-position: (
 		}
 	}
 }
-@mixin responsiveFont($defaultFont : 1rem) {
+@mixin responsiveFont() {
 	@include respond-to("tel") {
-		font-size: $defaultFont - 0.25rem;
+		font-size: 0.75rem; // 12px
 	}
 	@include respond-to("mob") {
-		font-size: $defaultFont - 0.20rem;
+		font-size: 0.78125rem; // 12.5px
 	}
 	@include respond-to("tab") {
-		font-size: $defaultFont - 0.15rem;
+		font-size: 0.8125rem; // 13px
 	}
 	@include respond-to("lap") {
-		font-size: $defaultFont - 0.10rem;
+		font-size: 0.84375rem; // 13.5px
 	}
 	@include respond-to("desk") {
-		font-size: $defaultFont - 0.05rem;
+		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("exDesk") {
-		font-size: $defaultFont;
+		font-size: 0.90625rem; // 14.5px
 	}
 }
 @mixin blur-effect($border-radius: var(--border-radius), $blur-pixels:  10px , $is-using-box-shadow: true , $shadow-type: var(--base-shadow) , $z-index : -1) {
