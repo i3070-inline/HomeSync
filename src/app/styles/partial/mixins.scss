@@ -123,9 +123,9 @@ $transition-position: (
 @mixin respond-to($breakpoint) {
 	$media-query: null;
 	@if $breakpoint == "exDesk" {
-		$media-query: "(min-width: 1501px)";
+		$media-query: "(min-width: 2001px)";
 	} @else if $breakpoint == "desk" {
-		$media-query: "(min-width: 1200px) and (max-width: 1500px)";
+		$media-query: "(min-width: 1200px) and (max-width: 2000px)";
 	} @else if $breakpoint == "lap" {
 		$media-query: "(min-width: 992px) and (max-width: 1199px)";
 	} @else if $breakpoint == "tab" {
@@ -150,16 +150,16 @@ $transition-position: (
 }
 @mixin responsiveFont() {
 	@include respond-to("tel") {
-		font-size: 0.8125rem; // 13px
+		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("mob") {
-		font-size: 0.8125rem; // 13px
+		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("tab") {
 		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("lap") {
-		font-size: 0.9375rem; // 15px
+		font-size: 0.875rem; // 14px
 	}
 	@include respond-to("desk") {
 		font-size: 0.9375rem; // 15px
