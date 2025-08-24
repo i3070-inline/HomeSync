@@ -2,7 +2,6 @@
 @use "mixins" as *;
 .select-container {
 	@extend %neo-btn;
-	font-size: 1rem;
 	display: grid;
 	grid-template-areas: "content clear icons";
 	grid-template-columns: 1fr auto auto;
@@ -135,4 +134,12 @@
 	top: 50%;
 	@extend %small-icon-dimensions;
 	transform: translateY(-50%);
+}
+@include respond-to-multiple("tel","mob","tab"){
+	.select-container{
+		font-size: 1rem;
+	}
+	.select-container__list-item{
+		font-size: 1rem;
+	}
 }

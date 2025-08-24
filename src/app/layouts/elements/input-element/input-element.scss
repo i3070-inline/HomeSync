@@ -11,7 +11,6 @@
 }
 .input__field {
 	@extend %neo-input;
-	font-size: 1rem;
 	&.password {
 		letter-spacing: 0.1rem;
 		padding: 0.7rem 2.2rem 0.7rem 1rem;
@@ -95,5 +94,10 @@
 	top: 100%;
 	:host.ng-invalid.ng-dirty .input:not(.disabled) & {
 		opacity: 1;
+	}
+}
+@include respond-to-multiple("tel","mob","tab"){
+	.input__field{
+		font-size: 1rem;
 	}
 }
