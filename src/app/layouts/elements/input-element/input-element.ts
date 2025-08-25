@@ -21,8 +21,7 @@ type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 	selector: "app-input-element",
 	standalone: true,
 	imports: [
-		FormsModule,
-		BlurOnScrollDirective
+		FormsModule
 	],
 	templateUrl: "./input-element.html",
 	styleUrl: "./input-element.scss",

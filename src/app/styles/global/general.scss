@@ -21,8 +21,6 @@ body {
 	font-family: Manrope, serif;
 	font-style: normal;
 	font-weight: 500;
-	overflow: hidden;
-	overscroll-behavior: none;
 }
 .overlay-backdrop {
 	& + .cdk-overlay-connected-position-bounding-box, & + .cdk-global-overlay-wrapper {

@@ -22,7 +22,7 @@ export const routes: Routes = [
 			{
 				path: "main/me",
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
-				canActivate: [authGuard],
+
 				runGuardsAndResolvers: "always"
 			},
 			{
