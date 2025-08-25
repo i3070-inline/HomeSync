@@ -57,6 +57,14 @@ app.get("/sitemap.xml", (req, res) => {
 </urlset>`);
 });
 //endregion
+//region Resolution Manager
+function isForcedDesktop(req: express.Request) {
+	const secMobile = req.headers["sec-ch-ua-mobile"]; // ?1 = mobil, ?0 = desktop
+	const ua = req.headers["user-agent"] || "";
+	const looksLikeMobile = /iPhone|Android|iPad|iPod/i.test(ua);
+	return looksLikeMobile && secMobile === "?0";
+}
+//endregion
 //region Cookie Management
 function getConfigFromCookies(req: express.Request, res: express.Response): {
 	language: string;
@@ -89,6 +97,7 @@ app.use((req, res, next) => {
 		return next();
 	}
 	const {language, theme, animation} = getConfigFromCookies(req, res);
+	const forcedDesktop = isForcedDesktop(req);
 	angularApp
 		.handle(req, {
 			providers: [
@@ -107,7 +116,12 @@ app.use((req, res, next) => {
 					.replace(
 						/<head>/i,
 						"<head>\n<meta name=\"google\" content=\"notranslate\">"
-					);
+							.replace(
+								/<head>/i,
+								forcedDesktop
+									? "<head>\n<meta name=\"viewport\" content=\"width=1500, initial-scale=1\">"
+									: "<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1.0\">"
+							));
 				const modifiedResponse = new Response(modifiedHtml, {
 					status: response.status,
 					statusText: response.statusText,
