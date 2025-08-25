@@ -59,10 +59,10 @@ app.get("/sitemap.xml", (req, res) => {
 //endregion
 //region Resolution Manager
 function isForcedDesktop(req: express.Request) {
-	const secMobile = req.headers["sec-ch-ua-mobile"]; // ?1 = mobil, ?0 = desktop
+	const secMobile = req.headers["sec-ch-ua-mobile"];
 	const ua = req.headers["user-agent"] || "";
-	const looksLikeMobile = /iPhone|Android|iPad|iPod/i.test(ua);
-	return looksLikeMobile && secMobile === "?0";
+	const isMobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+	return secMobile === "?0" && isMobileUA;
 }
 //endregion
 //region Cookie Management
