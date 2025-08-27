@@ -90,8 +90,8 @@
 	@if (footerHeight() !== 0) {
 		<footer [style.height.rem]="footerHeight()"
 		        class="background__footer">
-			<p class="background__footer-copyright"> Ⓒ {{settingsService.appDetails.currentYear}} All Rights
-			                                         Reserved.</p>
+			<p class="background__footer-copyright">Ⓒ {{settingsService.appDetails.currentYear}}&nbsp;{{
+					"SETTINGS.COPYRIGHT" | transloco }}.</p>
 			<div class="background__footer-media">
 				<a aria-label="GitHub"
 				   class="background__footer-link"

@@ -12,8 +12,8 @@
 			<p class="email-confirm__description"
 			   *transloco="let t">
 				{{
-					isConf ? t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.SUCCESS', {email: emailConfirmed()}) :
-							t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.FAILURE', {email: emailConfirmed()})
+					isConf ? t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.SUCCESS') :
+							t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.FAILURE')
 				}}
 			</p>
 			<button (click)="isConf ? onLoginPage() : onReloadPage()"

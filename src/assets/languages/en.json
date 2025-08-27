@@ -26,7 +26,8 @@
         "REDUCE": "Reduce Mode",
         "SYSTEM": "System Mode"
       }
-    }
+    },
+    "COPYRIGHT" : "All rights reserved"
   },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Swipe to change between forms",
@@ -74,8 +75,8 @@
   "EMAIL_CONFIRMATION_PAGE": {
     "TITLE": "Email verification",
     "DESCRIPTION": {
-      "SUCCESS": "{{email}} has been successfully verified. Use the button below or wait for redirection.",
-      "FAILURE": "{{email}} verification has failed. Please use the button below to try again."
+      "SUCCESS": "The confirmation was successful. You can use the button below or wait for the redirection.",
+      "FAILURE": "The confirmation could not be completed. Please use the button below to try again."
     },
     "ACTION": {
       "SUCCESS": "Login",

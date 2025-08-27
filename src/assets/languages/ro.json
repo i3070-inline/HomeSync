@@ -26,7 +26,8 @@
         "REDUCE": "Mod redus",
         "SYSTEM": "Mod sistem"
       }
-    }
+    },
+    "COPYRIGHT": "Toate drepturile rezervate"
   },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Glisează pentru a schimba formularele",
@@ -74,8 +75,8 @@
   "EMAIL_CONFIRMATION_PAGE": {
     "TITLE": "Verificarea email-ului",
     "DESCRIPTION": {
-      "SUCCESS": "{{email}} a fost verificat cu succes. Folosiți butonul de mai jos sau așteptați redirecționarea.",
-      "FAILURE": "{{email}} nu a putut fi verificat. Vă rugăm să folosiți butonul de mai jos pentru a încerca din nou."
+      "SUCCESS": "Confirmarea a fost realizată cu succes. Puteți folosi butonul de mai jos sau așteptați redirecționarea.",
+      "FAILURE": "Confirmarea nu a putut fi realizată. Vă rugăm să folosiți butonul de mai jos pentru a încerca din nou."
     },
     "ACTION": {
       "SUCCESS": "Autentificare",

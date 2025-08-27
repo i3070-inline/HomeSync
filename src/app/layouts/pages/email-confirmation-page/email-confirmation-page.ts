@@ -3,7 +3,6 @@ import {TemplateComponent} from "@components/template-component/template-compone
 import {TranslocoDirective} from "@ngneat/transloco";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
-import {JwtService} from "@services/jwt.service";
 import {RestBaseService} from "@rest/rest-base.service";
 import {firstValueFrom, timer} from "rxjs";
 import {restEndpoints} from "@rest/rest-endpoints";
@@ -24,47 +23,29 @@ import {LoadPlaceholderComponent} from "@components/load-placeholder-component/l
 })
 export class EmailConfirmationPage implements OnInit {
 	//region Members
-	private readonly jwt = inject(JwtService);
 	private readonly http = inject(RestBaseService);
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
 	protected readonly uiService = inject(UiFacadeService);
 	protected isEmailConfirmed = signal<boolean>(false);
-	protected emailConfirmed = signal<string>("");
 	protected seconds = signal<number | null>(0);
 	protected isRequesting = signal<boolean>(false);
 	//endregion
 	//region Methods
-	private isValidEmailConfirmationToken(token: string | null): { isValid: boolean; email: string } {
-		const payload = token !== null && !this.jwt.isTokenExpired(token)
-			? this.jwt.getTokenPayload(token)
-			: null;
-		const email = payload?.email ?? "";
-		const isValid = !!email;
-		return {isValid, email};
-	}
 	protected async onReloadPage(): Promise<void> {
-		await this.router.navigate([this.router.url]);
+		await this.onConfirmEmail();
 	}
 	protected async onLoginPage(): Promise<void> {
 		await this.router.navigate(["/login"]);
 	}
-	//endregion
-	//region Overrides
-	async ngOnInit(): Promise<void> {
-		const token = this.route.snapshot.queryParamMap.get("token");
-		const {isValid, email} = this.isValidEmailConfirmationToken(token);
-		if (!isValid) {
-			await this.router.navigate(["not-found"]);
-			return;
-		}
+	private async onConfirmEmail(): Promise<void> {
 		try {
+			const token = this.route.snapshot.queryParamMap.get("token");
 			this.isRequesting.set(true);
-			this.emailConfirmed.set(email);
-			await firstValueFrom(this.http.get<string>(`${restEndpoints.user.emailConfirmation}${token}`));
+			await firstValueFrom(this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`));
 			this.isEmailConfirmed.set(true);
 			this.isRequesting.set(false);
-			for (let i = 10; i > 0; i--) {
+			for (let i = 5; i > 0; i--) {
 				this.seconds.set(i);
 				await firstValueFrom(timer(1000));
 			}
@@ -78,6 +59,11 @@ export class EmailConfirmationPage implements OnInit {
 		finally {
 			this.isRequesting.set(false);
 		}
+	}
+	//endregion
+	//region Overrides
+	async ngOnInit(): Promise<void> {
+		await this.onConfirmEmail();
 	}
 	//endregion
 }

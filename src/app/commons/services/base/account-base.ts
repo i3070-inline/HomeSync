@@ -1,12 +1,12 @@
 import {inject, Signal, signal} from "@angular/core";
 import {FormGroup} from "@angular/forms";
-import {ControlsOf} from "@constants/types";
+import {controlsOf} from "@constants/types";
 import {RestBaseService} from "@rest/rest-base.service";
 
 export abstract class AccountBase<T extends object> {
 	//region Members
 	public abstract get name(): Signal<string>;
-	public abstract accountForm: Signal<FormGroup<ControlsOf<T>>>;
+	public abstract accountForm: Signal<FormGroup<controlsOf<T>>>;
 	public isExecuting = signal<boolean>(false);
 	protected readonly http = inject(RestBaseService);
 	//endregion

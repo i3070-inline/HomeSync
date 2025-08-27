@@ -22,20 +22,16 @@ export const routes: Routes = [
 			{
 				path: "main/me",
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
-
-				runGuardsAndResolvers: "always"
+				canActivate: [authGuard],
+				runGuardsAndResolvers: "always",
 			},
 			{
-				path: "email-confirm",
+				path: "email-confirmation",
 				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage)
 			},
 			{
 				path: "not-found",
 				loadComponent: () => import("@pages/not-found-page/not-found-page").then(value => value.NotFoundPage)
-			},
-			{
-				path: "**",
-				redirectTo: "not-found"
 			}
 		]
 	}

@@ -53,7 +53,7 @@
         "app/layouts/pages/*"
       ],
       "@interceptors/*": [
-        "app/api/interceptors/*"
+        "app/commons/interceptors/*"
       ],
       "@rest/*": [
         "app/api/rest/*"
