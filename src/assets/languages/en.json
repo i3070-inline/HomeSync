@@ -67,9 +67,50 @@
       "ACTION": "Re-enter your password"
     }
   },
-  "NOT_FOUND_PAGE": {
+  "ERROR_PAGE": {
     "TITLE": "Error",
-    "DESCRIPTION": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
+    "CODES": {
+      "400": {
+        "TITLE": "Bad Request",
+        "DESCRIPTION": "The server could not understand the request due to invalid syntax."
+      },
+      "403": {
+        "TITLE": "Forbidden",
+        "DESCRIPTION": "You do not have permission to access this resource."
+      },
+      "404": {
+        "TITLE": "Not Found",
+        "DESCRIPTION": "The page you are looking for might have been removed had its name changed or is temporarily unavailable."
+      },
+      "405": {
+        "TITLE": "Method Not Allowed",
+        "DESCRIPTION": "The request method is not supported for the requested resource."
+      },
+      "406": {
+        "TITLE": "Not Acceptable",
+        "DESCRIPTION": "The requested resource is capable of generating only content not acceptable according to the Accept headers sent in the request."
+      },
+      "422": {
+        "TITLE": "Unprocessable Entity",
+        "DESCRIPTION": "The request was well-formed but was unable to be followed due to semantic errors."
+      },
+      "500": {
+        "TITLE": "Internal Server Error",
+        "DESCRIPTION": "The server encountered an unexpected condition."
+      },
+      "502": {
+        "TITLE": "Bad Gateway",
+        "DESCRIPTION": "The server received an invalid response from the upstream server."
+      },
+      "503": {
+        "TITLE": "Service Unavailable",
+        "DESCRIPTION": "The server is not ready to handle the request."
+      },
+      "504": {
+        "TITLE": "Gateway Timeout",
+        "DESCRIPTION": "The server did not receive a timely response from the upstream server."
+      }
+    },
     "ACTION": "Home page"
   },
   "EMAIL_CONFIRMATION_PAGE": {

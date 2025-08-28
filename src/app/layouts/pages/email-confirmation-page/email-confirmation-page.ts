@@ -7,6 +7,7 @@ import {RestBaseService} from "@rest/rest-base.service";
 import {firstValueFrom, timer} from "rxjs";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {LoadPlaceholderComponent} from "@components/load-placeholder-component/load-placeholder.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
 	selector: "app-email-confirmation-page",
@@ -42,6 +43,7 @@ export class EmailConfirmationPage implements OnInit {
 		try {
 			const token = this.route.snapshot.queryParamMap.get("token");
 			this.isRequesting.set(true);
+			await firstValueFrom(timer(0, 1000));
 			await firstValueFrom(this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`));
 			this.isEmailConfirmed.set(true);
 			this.isRequesting.set(false);
@@ -53,6 +55,10 @@ export class EmailConfirmationPage implements OnInit {
 			await this.onLoginPage();
 		}
 		catch (e) {
+			if (e instanceof HttpErrorResponse && e.status === 401) {
+				await this.router.navigate(["/error"]);
+				return;
+			}
 			console.error(e);
 			this.isEmailConfirmed.set(false);
 		}

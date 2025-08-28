@@ -67,9 +67,50 @@
       "ACTION": "Reintroduceți parola"
     }
   },
-  "NOT_FOUND_PAGE": {
+  "ERROR_PAGE": {
     "TITLE": "Eroare",
-    "DESCRIPTION": "Pagina pe care o cauți ar fi putut fi ștearsă, redenumită sau este temporar indisponibilă.",
+    "CODES": {
+      "400": {
+        "TITLE": "Cerere invalidă",
+        "DESCRIPTION": "Serverul nu a putut înțelege cererea din cauza unei sintaxe invalide."
+      },
+      "403": {
+        "TITLE": "Interzis",
+        "DESCRIPTION": "Nu aveți permisiunea de a accesa această resursă."
+      },
+      "404": {
+        "TITLE": "Nu a fost găsit",
+        "DESCRIPTION": "Pagina pe care o căutați poate fi eliminată, redenumită sau indisponibilă temporar."
+      },
+      "405": {
+        "TITLE": "Metodă nepermisă",
+        "DESCRIPTION": "Metoda cererii nu este suportată pentru resursa solicitată."
+      },
+      "406": {
+        "TITLE": "Neacceptabil",
+        "DESCRIPTION": "Resursa solicitată poate genera doar conținut neacceptabil conform antetelor Accept trimise în cerere."
+      },
+      "422": {
+        "TITLE": "Entitate imposibil de procesat",
+        "DESCRIPTION": "Cererea a fost corectă, dar nu a putut fi urmată din cauza unor erori semantice."
+      },
+      "500": {
+        "TITLE": "Eroare internă a serverului",
+        "DESCRIPTION": "Serverul a întâmpinat o condiție neașteptată."
+      },
+      "502": {
+        "TITLE": "Gateway greșit",
+        "DESCRIPTION": "Serverul a primit un răspuns invalid de la serverul upstream."
+      },
+      "503": {
+        "TITLE": "Serviciu indisponibil",
+        "DESCRIPTION": "Serverul nu este pregătit să proceseze cererea."
+      },
+      "504": {
+        "TITLE": "Timeout gateway",
+        "DESCRIPTION": "Serverul nu a primit un răspuns la timp de la serverul upstream."
+      }
+    },
     "ACTION": "Pagina principală"
   },
   "EMAIL_CONFIRMATION_PAGE": {
