@@ -1,10 +1,10 @@
 import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
-import {JwtService} from "@services/jwt.service";
+import {AuthentificationService} from "@services/authentification.service";
 
 export const authGuard: CanActivateFn = (route, state) => {
 	const router = inject(Router);
-	if (!inject(JwtService).isTokenExpired()) return true;
+	if (inject(AuthentificationService).isAuthenticated()) return true;
 	return router.createUrlTree(
 		["/login"],
 		{queryParams: {returnUrl: state.url}}

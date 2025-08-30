@@ -36,7 +36,6 @@
     "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.0",
-    "@auth0/angular-jwt": "^5.2.0",
     "@ngneat/transloco": "^6.0.4",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",

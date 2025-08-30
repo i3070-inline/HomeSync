@@ -4,9 +4,10 @@ import {TranslocoDirective} from "@ngneat/transloco";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {RestBaseService} from "@rest/rest-base.service";
-import {firstValueFrom, timer} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {LoadPlaceholderComponent} from "@components/load-placeholder-component/load-placeholder.component";
+import {sleep} from "@utils/sleep-helper";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -43,13 +44,13 @@ export class EmailConfirmationPage implements OnInit {
 		try {
 			const token = this.route.snapshot.queryParamMap.get("token");
 			this.isRequesting.set(true);
-			await firstValueFrom(timer(0, 1000));
+			await sleep(1000);
 			await firstValueFrom(this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`));
 			this.isEmailConfirmed.set(true);
 			this.isRequesting.set(false);
 			for (let i = 5; i > 0; i--) {
 				this.seconds.set(i);
-				await firstValueFrom(timer(1000));
+				await sleep(1000);
 			}
 			this.seconds.set(null);
 			await this.onLoginPage();

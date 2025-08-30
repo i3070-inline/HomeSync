@@ -6,6 +6,8 @@ import {controlsOf} from "@constants/types";
 import {matchPasswordValidator, strictEmailValidator} from "@validators/input.validators";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {firstValueFrom} from "rxjs";
+import {HttpContext} from "@angular/common/http";
+import {BYPASS_REFRESH_INTERCEPTOR} from "@interceptors/auth-refresh.interceptor";
 
 @Injectable({
 	providedIn: "root"
@@ -38,7 +40,9 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 				"username": this.accountForm().value.email,
 				"password": this.accountForm().value.password
 			};
-			await firstValueFrom(this.http.post<{ message: string }>(restEndpoints.user.register, user));
+			await firstValueFrom(this.http.post<{
+				message: string
+			}>(restEndpoints.user.register, user, {context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}));
 			return {successful: true};
 		}
 		catch (error) {

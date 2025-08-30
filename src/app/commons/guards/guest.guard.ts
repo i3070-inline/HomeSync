@@ -1,10 +1,11 @@
 import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
-import {JwtService} from "@services/jwt.service";
+import {AuthentificationService} from "@services/authentification.service";
 
 export const guestGuard: CanActivateFn = (route, state) => {
 	const router = inject(Router);
-	if (inject(JwtService).isTokenExpired()) return true;
-	const redirectUrl = route.queryParamMap.get("redirectUrl") || "/main/me";
-	return router.parseUrl(redirectUrl);
+	if (inject(AuthentificationService).isAuthenticated()) {
+		return router.createUrlTree([route.queryParamMap.get("redirectUrl") || "/main/me"]);
+	}
+	return true;
 };
