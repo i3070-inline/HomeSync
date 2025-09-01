@@ -1,0 +1,75 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.user-button {
+	@extend %neo-btn;
+	align-self: center;
+	height: 2.5rem;
+	justify-self: center;
+	margin-right: var(--standart-padding);
+	padding: 0.25rem;
+	place-items: center;
+	pointer-events: auto;
+	width: 2.5rem;
+}
+.user-small-icon {
+	border-radius: 50%;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+.user-container {
+	align-items: center;
+	display: grid;
+	gap: calc(var(--standart-padding) * 2);
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: repeat(3, 1fr);
+	padding-top: var(--standart-padding);
+}
+.user-big-icon {
+	border-radius: 50%;
+	filter: drop-shadow(0.2rem 0.2rem 0.2rem var(--bottom-color-shadow));
+	grid-column: 1;
+	grid-row: 1/4;
+	height: 10rem;
+	object-fit: cover;
+	place-self: center;
+	width: 10rem;
+}
+.user-information__id {
+	grid-column: 2;
+	grid-row: 1;
+}
+.user-information__username {
+	grid-column: 2;
+	grid-row: 2;
+}
+.user-information__role {
+	grid-column: 2;
+	grid-row: 3;
+}
+.main-container {
+	display: grid;
+	grid-template-areas: "nav main aside";
+	grid-template-columns: auto 1fr auto;
+}
+.main-navigation {
+	background: red;
+	grid-area: nav;
+	position: sticky;
+	top: 0;
+	width: 10rem;
+}
+.main-content {
+	display: grid;
+	grid-area: main;
+	place-items: center right;
+}
+.main-sidebar {
+	@include blur-effect();
+	grid-area: aside;
+	height: max-content;
+	min-height: 5rem;
+	position: sticky;
+	top: 0;
+	width: 20rem;
+}

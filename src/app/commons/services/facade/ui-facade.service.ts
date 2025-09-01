@@ -4,8 +4,9 @@ import {PlatformService} from "@services/platform.service";
 import {NotifyHandlerService} from "@services/notify-handler.service";
 import {ModalHandlerService} from "@services/modal-handler.service";
 import {MediaQueryService} from "@services/media-query.service";
-import {buildIconSvgPath} from "@utils/path-icon-helper";
+import {buildImagePath, buildIconSvgPath} from "@utils/path-icon-helper";
 import {TranslocoService} from "@ngneat/transloco";
+import {getCssVariablesValue} from "@utils/dom-helper";
 
 @Injectable({
 	providedIn: "root"
@@ -21,5 +22,7 @@ export class UiFacadeService {
 	//endregion
 	//region Methods
 	public readonly buildIconSvgPath = buildIconSvgPath;
+	public readonly buildImagePath = buildImagePath;
+	public readonly getCssVariablesValue = getCssVariablesValue;
 	//endregion
 }

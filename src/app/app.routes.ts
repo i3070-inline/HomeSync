@@ -2,7 +2,6 @@ import {Routes} from "@angular/router";
 import {App} from "./app";
 import {guestGuard} from "@guards/guest.guard";
 import {authGuard} from "@guards/auth.guard";
-import {LoginPage} from "@pages/login-page/login-page";
 
 export const routes: Routes = [
 	{
@@ -11,12 +10,12 @@ export const routes: Routes = [
 		children: [
 			{
 				path: "",
-				redirectTo: "login",
+				redirectTo: "main/me",
 				pathMatch: "full"
 			},
 			{
 				path: "login",
-				component: LoginPage,
+				loadComponent: () => import("@pages/login-page/login-page").then(value => value.LoginPage),
 				canActivate: [guestGuard]
 			},
 			{

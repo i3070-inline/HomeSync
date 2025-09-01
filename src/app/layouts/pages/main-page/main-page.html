@@ -1,74 +1,157 @@
-<app-template-component>
-	<button [routerLink]="['/login']"
-	        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">login
+<app-template-component #template>
+	<button #trigger="appOverlayDropdownClickExport"
+	        appOverlayDropdownClick
+	        aria-label="Settings"
+	        class="user-button"
+	        header-content
+	        type="button">
+		@if (authService.currentUser()?.imageUrl; as imageUrl) {
+			<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
+			     priority="true"
+			     width="10"
+			     height="10"
+			     class="user-small-icon"
+			     alt="User image">
+		} @else {
+			<svg class="user-small-icon">
+				<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+				</use>
+			</svg>
+		}
+		@if (trigger.overlayContainerService.isOpened()) {
+			<app-overlay-container-element [hasContainerBackground]="false"
+			                               [minWidth]="'25rem'"
+			                               [minHeight]="'15rem'"
+			                               [maxWidth]="'min(35rem, 80dvw)'"
+			                               [maxHeight]="'min(25rem, 80dvh)'"
+			                               [positions]="[{ originX: 'end',
+				                               originY: 'bottom',
+				                               overlayX: 'end',
+				                               overlayY: 'top',
+				                               offsetY: 5}]">
+				<div class="user-container">
+					@if (authService.currentUser()?.imageUrl; as imageUrl) {
+						<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
+						     priority="true"
+						     width="10"
+						     height="10"
+						     class="user-big-icon"
+						     alt="User image">
+					} @else {
+						<svg class="user-big-icon">
+							<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+							</use>
+						</svg>
+					}
+					<app-input-element [isReadOnly]="true"
+					                   [inputType]="'text'"
+					                   [ngModel]="authService.currentUser()?.id"
+					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('badge-icon'),
+		                   description:'USER_MENU.ID.DESCRIPTION' | transloco,
+		                   action: 'USER_MENU.ID.ACTION' | transloco}"
+					                   class="user-information__id">
+					</app-input-element>
+					<app-input-element [isReadOnly]="true"
+					                   [inputType]="'text'"
+					                   [ngModel]="authService.currentUser()?.username"
+					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
+		                   description:'USER_MENU.USERNAME.DESCRIPTION' | transloco,
+		                   action: 'USER_MENU.USERNAME.ACTION' | transloco}"
+					                   class="user-information__username">
+					</app-input-element>
+					<app-input-element [isReadOnly]="true"
+					                   [inputType]="'text'"
+					                   [ngModel]="authService.currentUser()?.role"
+					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-shield-icon'),
+		                   description:'USER_MENU.ROLE.DESCRIPTION' | transloco,
+		                   action: 'USER_MENU.ROLE.ACTION' | transloco}"
+					                   class="user-information__role">
+					</app-input-element>
+				</div>
+			</app-overlay-container-element>
+		}
 	</button>
-	<button (click)="deleteToken()"
-	        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">Delete Token
-	</button>
-	<button (click)="getdata()"
-	        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">get data
-	</button>
-	<div style="display:grid;justify-content:center;width: 100%; height: 100%;">
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
-		<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-		<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-		<div style="background: tomato;width: 50px; height: 100px;"></div>
+	<div class="main-container">
+		<nav [style.height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' + template.footerHeight() + 'rem - (var(--standart-padding) * 2))'"
+		     class="main-navigation">
+			<span>1</span>
+		</nav>
+		<main class="main-content">
+			<button [routerLink]="['/login']"
+			        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">login
+			</button>
+			<button (click)="deleteToken()"
+			        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">Delete
+			                                                                                                     Token
+			</button>
+			<button (click)="getdata()"
+			        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">get
+			                                                                                                     data
+			</button>
+			<div style="display:grid;justify-content:center;width: 100%; height: 100%;">
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
+				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
+				<div style="background: tomato;width: 50px; height: 100px;"></div>
+			</div>
+		</main>
+		<aside class="main-sidebar"></aside>
 	</div>
 </app-template-component>
 

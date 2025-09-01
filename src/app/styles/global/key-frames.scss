@@ -25,3 +25,8 @@
 		transform: scale(0);
 	}
 }
+@keyframes detect-scroll {
+	from, to {
+		--can-scroll: 1 ;
+	}
+}

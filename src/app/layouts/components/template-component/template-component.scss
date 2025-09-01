@@ -45,7 +45,7 @@
 }
 .background__header-content {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row-reverse;
 	grid-area: content;
 	position: relative;
 }
@@ -103,7 +103,6 @@
 }
 .background__scroll-button--bottom {
 	@extend %scroll-button;
-	bottom: calc(var(--footer-height) + var(--standart-padding));
 	right: var(--standart-padding);
 	span {
 		rotate: -90deg;
@@ -119,10 +118,14 @@
 }
 .background__content-wrapper {
 	@extend %scrollbars;
+	animation: detect-scroll linear;
+	animation-timeline: scroll(self);
 	display: grid;
 	overflow: auto;
 	-webkit-overflow-scrolling: auto;
 	overscroll-behavior: none;
+	padding: var(--standart-padding);
+	padding-right: calc(var(--standart-padding) * (1 - 0.5 * var(--can-scroll)));
 	pointer-events: auto;
 	position: relative;
 }
@@ -142,10 +145,10 @@
 }
 .background__footer-copyright {
 	align-self: center;
-	user-select: none;
 	font-weight: 400;
 	grid-area: copyright;
 	rotate: -180deg;
+	user-select: none;
 }
 .background__footer-media {
 	align-content: center;

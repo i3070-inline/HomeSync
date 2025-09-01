@@ -8,7 +8,7 @@
 			        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
 			</button>
 			<div class="background__header-content">
-				<ng-content select="[header-conten]"></ng-content>
+				<ng-content select="[header-content]"></ng-content>
 			</div>
 			<button #trigger="appOverlayDropdownClickExport"
 			        appOverlayDropdownClick
@@ -21,7 +21,6 @@
 				</svg>
 				@if (trigger.overlayContainerService.isOpened()) {
 					<app-overlay-container-element [hasContainerBackground]="false"
-					                               [backDropClasses]="['overlay-backdrop']"
 					                               [positions]="[{ originX: 'end',
 				                               originY: 'bottom',
 				                               overlayX: 'end',
@@ -64,13 +63,6 @@
 			</button>
 		</header>
 	}
-	@if (showTopScroll()) {
-		<button (click)="scroll('bottom')"
-		        class="background__scroll-button--top"
-		        [style.--header-height.rem]="headerHeight()">
-			<span>➤</span>
-		</button>
-	}
 	<main [style.padding-bottom.rem]="footerHeight()"
 	      [style.padding-top.rem]="headerHeight()"
 	      class="background__content">
@@ -83,7 +75,7 @@
 	@if (showBottomScroll()) {
 		<button (click)="scroll('top')"
 		        class="background__scroll-button--bottom"
-		        [style.--footer-height.rem]="footerHeight()">
+		        [style.bottom]="'calc(' + footerHeight() + 'rem + var(--standart-padding))'">
 			<span>➤</span>
 		</button>
 	}
@@ -91,7 +83,8 @@
 		<footer [style.height.rem]="footerHeight()"
 		        class="background__footer">
 			<p class="background__footer-copyright">Ⓒ {{settingsService.appDetails.currentYear}}&nbsp;{{
-					"SETTINGS.COPYRIGHT" | transloco }}.</p>
+					"SETTINGS.COPYRIGHT" | transloco
+				}}.</p>
 			<div class="background__footer-media">
 				<a aria-label="GitHub"
 				   class="background__footer-link"

@@ -29,6 +29,20 @@
     },
     "COPYRIGHT": "Toate drepturile rezervate"
   },
+  "USER_MENU": {
+    "ID": {
+      "DESCRIPTION": "Număr de identificare",
+      "ACTION": "Introduceți numărul de identificare"
+    },
+    "USERNAME": {
+      "DESCRIPTION": "Nume utilizator",
+      "ACTION": "Introduceți numele de utilizator"
+    },
+    "ROLE": {
+      "DESCRIPTION": "Rol",
+      "ACTION": "Introduceți rolul"
+    }
+  },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Glisează pentru a schimba formularele",
     "SIGN_UP_FORM": {

@@ -29,6 +29,20 @@
     },
     "COPYRIGHT" : "All rights reserved"
   },
+  "USER_MENU": {
+    "ID": {
+      "DESCRIPTION": "Identification number",
+      "ACTION": "Enter your identification number"
+    },
+    "USERNAME": {
+      "DESCRIPTION": "User name",
+      "ACTION": "Enter your user name"
+    },
+    "ROLE": {
+      "DESCRIPTION": "Role",
+      "ACTION": "Enter your role"
+    }
+  },
   "LOGIN_PAGE": {
     "SIGN_INFO": "Swipe to change between forms",
     "SIGN_UP_FORM": {

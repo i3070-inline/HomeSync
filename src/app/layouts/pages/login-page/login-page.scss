@@ -2,7 +2,6 @@
 @use "placeholders" as *;
 .login-page {
 	display: grid;
-	padding: 3rem;
 	place-items: center;
 	position: relative;
 }
@@ -120,7 +119,6 @@
 }
 @include respond-to-multiple("tel", "mob") {
 	.login-page {
-		padding: 10px;
 		overflow-x: hidden;
 	}
 	.login-form__container--desktop {

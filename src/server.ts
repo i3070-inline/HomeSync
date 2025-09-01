@@ -119,8 +119,8 @@ app.use((req, res, next) => {
 });
 //endregion
 //region Server Startup
-if (isMainModule(import.meta.url) && !process.env["VERCEL"]) {
-	const port = process.env["PORT"] || 4000;
+if (isMainModule(import.meta.url)) {
+	const port = process.env["PORT"] || 4200;
 	app.listen(port, (error?: Error) => {
 		if (error) {
 			throw error;

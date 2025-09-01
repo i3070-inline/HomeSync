@@ -42,8 +42,6 @@ export class TemplateComponent implements AfterViewInit {
 	public headerHeight = input<number>(4.5);
 	public footerHeight = input<number>(4);
 	public isUsingScrollToTop = input<boolean>(true);
-	public isUsingScrollToBottom = input<boolean>(false);
-	public showTopScroll = signal<boolean>(false);
 	public showBottomScroll = signal<boolean>(false);
 	//endregion
 	//region Methods
@@ -59,7 +57,6 @@ export class TemplateComponent implements AfterViewInit {
 			() => scrollContainer.clientHeight);
 		if (scrollTop === undefined || scrollHeight === undefined || clientHeight === undefined) return;
 		const isScrollable = scrollHeight > clientHeight;
-		this.showTopScroll.set(scrollTop <= this.headerHeight() && isScrollable && this.isUsingScrollToBottom());
 		this.showBottomScroll.set((scrollTop + clientHeight >= scrollHeight - this.footerHeight()) && isScrollable && this.isUsingScrollToTop());
 	}
 	protected scroll(direction: "top" | "bottom") {

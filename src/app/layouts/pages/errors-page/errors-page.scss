@@ -30,9 +30,6 @@
 	@extend %neo-btn;
 }
 @include respond-to-multiple("tel", "mob") {
-	.not-found {
-		padding: 10px;
-	}
 	.not-found__description {
 		max-width: 35ch;
 	}

@@ -1,4 +1,4 @@
-import {computed, Injectable, OnInit, Signal, signal} from "@angular/core";
+import {computed, Injectable, Signal, signal} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ILoginModel} from "@interfaces/login-model.interface";
 import {AccountBase} from "@services/base/account-base";
@@ -33,7 +33,10 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	public async loadCurrentUser(): Promise<void> {
 		try {
 			const user = await firstValueFrom(this.http.get<IUserModel>(restEndpoints.user.me));
-			this._currentUser.set(user);
+			this._currentUser.set({
+				...user,
+				imageUrl : user.imageUrl ?? "alex"
+			});
 		}
 		catch {
 			this._currentUser.set(null);
@@ -72,7 +75,6 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 					context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)
 				}));
 			this.setToken(loginResult.accessToken);
-			await this.loadCurrentUser();
 		}
 		catch (error) {
 			console.error("Authentication failed:", error);

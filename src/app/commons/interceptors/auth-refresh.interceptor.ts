@@ -11,13 +11,14 @@ export const authRefreshInterceptor: HttpInterceptorFn = (req, next) => {
 	if (req.context.get(BYPASS_REFRESH_INTERCEPTOR)) {
 		return next(req);
 	}
-	const http = inject(RestBaseService);
 	const router = inject(Router);
+	const http = inject(RestBaseService);
 	const auth = inject(AuthentificationService);
 	const redirectToLogin = () => from(
 		router.navigate(["/login"], {
 			queryParams: {
-				returnUrl: router.url && router.url !== "/" ? router.url : "/main/me"
+				returnUrl: router.url && !router.url.startsWith("/login") ? router.url : "/main/me",
+				fi: true
 			}
 		})
 	).pipe(switchMap(() => EMPTY));
@@ -34,7 +35,8 @@ export const authRefreshInterceptor: HttpInterceptorFn = (req, next) => {
 						if (result?.accessToken) {
 							auth.setToken(result.accessToken);
 							const newReq = req.clone({
-								setHeaders: {Authorization: `Bearer ${result.accessToken}`}
+								setHeaders: {Authorization: `Bearer ${result.accessToken}`},
+								context: req.context.set(BYPASS_REFRESH_INTERCEPTOR, true)
 							});
 							return next(newReq);
 						}

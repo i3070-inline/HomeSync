@@ -2,9 +2,15 @@ import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
 import {AuthentificationService} from "@services/authentification.service";
 
-export const guestGuard: CanActivateFn = (route, state) => {
+export const guestGuard: CanActivateFn = async (route, state) => {
 	const router = inject(Router);
-	if (inject(AuthentificationService).isAuthenticated()) {
+	const auth = inject(AuthentificationService);
+	const fromInterceptor = route.queryParamMap.get("fi") === "true";
+	if (fromInterceptor) {
+		return true;
+	}
+	await auth.loadCurrentUser();
+	if (auth.isAuthenticated()) {
 		return router.createUrlTree([route.queryParamMap.get("redirectUrl") || "/main/me"]);
 	}
 	return true;

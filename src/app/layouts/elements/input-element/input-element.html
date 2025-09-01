@@ -2,7 +2,6 @@
      class="input">
 	<input #inputElement
 	       (blur)="onBlur()"
-	       aria-label="input"
 	       (focus)="onFocus()"
 	       (ngModelChange)="onValueChange($event)"
 	       [autocomplete]="autocomplete()"
@@ -13,7 +12,9 @@
 	       [class.showFloatedPlaceholder]="showFloatedPlaceholder()"
 	       [disabled]="disabled()"
 	       [ngModel]="value()"
+	       [readOnly]="isReadOnly()"
 	       [type]="inputTypeSignal()"
+	       aria-label="input"
 	       class="input__field">
 	@if (eyeIconIsVisible() && inputType() === "password" && !empty()) {
 		<button class="input__field-eye-button"
@@ -43,10 +44,10 @@
 		</svg>
 		<span class="input__placeholder-text">
 			@let showDesc = (!empty() || focused()) && showFloatedPlaceholder();
-			{{ showDesc ? placeholder()?.description : placeholder()?.action }}
+			{{showDesc ? placeholder()?.description : placeholder()?.action}}
 		</span>
 	</div>
 	<span class="input-error-text">
-		{{ inputErrorHint() }}
+		{{inputErrorHint()}}
 	</span>
 </div>
