@@ -9,11 +9,12 @@ import {NgOptimizedImage} from "@angular/common";
 import {InputElement} from "@elements/input-element/input-element";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {FormsModule} from "@angular/forms";
+import {DrawerElement} from "@elements/drawer-element/drawer-element";
 
 @Component({
 	selector: "app-main-page",
 	standalone: true,
-	imports: [TemplateComponent, RouterLink, OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, InputElement, TranslocoPipe, FormsModule],
+	imports: [TemplateComponent, RouterLink, OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, InputElement, TranslocoPipe, FormsModule, DrawerElement],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,

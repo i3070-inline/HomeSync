@@ -125,7 +125,7 @@
 	-webkit-overflow-scrolling: auto;
 	overscroll-behavior: none;
 	padding: var(--standart-padding);
-	padding-right: calc(var(--standart-padding) * (1 - 0.5 * var(--can-scroll)));
+	padding-right: var(--is-scroll-padding, var(--standart-padding));
 	pointer-events: auto;
 	position: relative;
 }

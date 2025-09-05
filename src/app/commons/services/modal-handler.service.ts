@@ -13,18 +13,23 @@ export class ModalHandlerService {
 	private readonly platformService = inject(PlatformService);
 	//endregion
 	//region Methods
-	public showModal(component: ComponentType<unknown> | TemplateRef<unknown>, isUsingHandlerClose: boolean = false): DialogRef {
-		const ref = this.dialog.open(component, {
+	public showModal<TData, TResult = unknown>(
+		component: ComponentType<unknown> | TemplateRef<unknown>,
+		data?: TData,
+		isUsingHandlerClose: boolean = false
+	): DialogRef<TResult> {
+		const ref = this.dialog.open<TResult>(component, {
 			panelClass: "modal-animate-in",
 			disableClose: true,
 			hasBackdrop: true,
 			backdropClass: "overlay-backdrop",
-			disableAnimations: true
+			disableAnimations: true,
+			data: data
 		});
 		isUsingHandlerClose && this.attachCloseListeners(ref);
 		return ref;
 	}
-	public closeModal(ref: DialogRef): void {
+	public closeModal<TResult = unknown>(ref: DialogRef<TResult>): void {
 		const value = getCssVariablesValue(this.platformService, "transition-duration");
 		const duration = value ? parseFloat(value) * 1000 : 0;
 		ref.addPanelClass("modal-animate-out");
@@ -32,7 +37,7 @@ export class ModalHandlerService {
 			ref.close();
 		}, duration);
 	}
-	private attachCloseListeners(ref: DialogRef): void {
+	private attachCloseListeners<TResult = unknown>(ref: DialogRef<TResult>): void {
 		ref.backdropClick.subscribe(() => {
 			this.closeModal(ref);
 		});

@@ -43,30 +43,32 @@
 							</use>
 						</svg>
 					}
-					<app-input-element [isReadOnly]="true"
-					                   [inputType]="'text'"
-					                   [ngModel]="authService.currentUser()?.id"
-					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('badge-icon'),
-		                   description:'USER_MENU.ID.DESCRIPTION' | transloco,
-		                   action: 'USER_MENU.ID.ACTION' | transloco}"
-					                   class="user-information__id">
-					</app-input-element>
-					<app-input-element [isReadOnly]="true"
-					                   [inputType]="'text'"
-					                   [ngModel]="authService.currentUser()?.username"
-					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-icon'),
-		                   description:'USER_MENU.USERNAME.DESCRIPTION' | transloco,
-		                   action: 'USER_MENU.USERNAME.ACTION' | transloco}"
-					                   class="user-information__username">
-					</app-input-element>
-					<app-input-element [isReadOnly]="true"
-					                   [inputType]="'text'"
-					                   [ngModel]="authService.currentUser()?.role"
-					                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-shield-icon'),
-		                   description:'USER_MENU.ROLE.DESCRIPTION' | transloco,
-		                   action: 'USER_MENU.ROLE.ACTION' | transloco}"
-					                   class="user-information__role">
-					</app-input-element>
+					<div class="user-container__id">
+						<svg class="user-container-icon">
+							<use [attr.href]="uiService.buildIconSvgPath('badge-icon')">
+							</use>
+						</svg>
+						<span class="user-container-text">{{"USER_INFO.ID" | transloco}}</span>
+						<span class="user-container-value">{{authService.currentUser()?.id}}</span>
+					</div>
+					<div class="user-container__username">
+						<svg class="user-container-icon">
+							<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+							</use>
+						</svg>
+						<span
+								class="user-container-text">{{"USER_INFO.USERNAME" | transloco}}</span>
+						<span class="user-container-value">{{authService.currentUser()?.username}}</span>
+					</div>
+					<div class="user-container__role">
+						<svg class="user-container-icon">
+							<use [attr.href]="uiService.buildIconSvgPath('user-shield-icon')">
+							</use>
+						</svg>
+						<span
+								class="user-container-text">{{"USER_INFO.ROLE" | transloco}}</span>
+						<span class="user-container-value">{{authService.currentUser()?.role}}</span>
+					</div>
 				</div>
 			</app-overlay-container-element>
 		}
@@ -106,52 +108,11 @@
 				<div style="background: tomato;width: 50px; height: 100px;"></div>
 				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
 				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
-				<div style="background: rebeccapurple;width: 50px; height: 100px;"></div>
-				<div style="background: cadetblue;width: 50px; height: 100px;"></div>
-				<div style="background: tomato;width: 50px; height: 100px;"></div>
 			</div>
 		</main>
-		<aside class="main-sidebar"></aside>
+		<app-drawer-element [style.max-height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' + template.footerHeight() +
+		'rem - (var(--standart-padding) * 5))'"
+		       class="main-sidebar"></app-drawer-element>
 	</div>
 </app-template-component>
 
