@@ -1,27 +1,25 @@
-import {inject, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {AbstractControl} from "@angular/forms";
-import {TranslocoService} from "@ngneat/transloco";
+import {LangHelper} from "@utils/lang-helper";
 
 @Injectable({
 	providedIn: "root"
 })
 export class ValidatorHandlerService {
 	//region Members
-	private translate = inject(TranslocoService);
+	protected readonly langHelper = LangHelper;
 	private errorMessages: Record<string, string> = {
-		required: "VALIDATORS.REQUIRED",
-		minlength: "VALIDATORS.MIN_LENGTH",
-		passwordMismatch: "VALIDATORS.PASSWORD_MISMATCH",
-		email: "VALIDATORS.INVALID_EMAIL"
+		required: LangHelper.validator("REQUIRED"),
+		minlength: LangHelper.validator("MIN_LENGTH"),
+		passwordMismatch: LangHelper.validator("PASSWORD_MISMATCH"),
+		email: LangHelper.validator("INVALID_EMAIL")
 	};
 	//endregion
 	//region Methods
 	public getErrorMessage(control: AbstractControl): string {
 		if (!control.errors || !control.dirty) return "";
 		const errorKey = Object.keys(control.errors)[0];
-		const messageKey = this.errorMessages[errorKey] || "";
-		const params = control.errors[errorKey] || {};
-		return this.translate.translate(messageKey, params);
+		return this.errorMessages[errorKey] || "";
 	}
 	//endregion
 }

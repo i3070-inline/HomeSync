@@ -6,15 +6,18 @@ import {OverlayContainerElement} from "@elements/overlay-container-element/overl
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {NgOptimizedImage} from "@angular/common";
-import {InputElement} from "@elements/input-element/input-element";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {FormsModule} from "@angular/forms";
 import {DrawerElement} from "@elements/drawer-element/drawer-element";
+import {NavigationComponent} from "@components/navigation-component/navigation-component";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-main-page",
 	standalone: true,
-	imports: [TemplateComponent, RouterLink, OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, InputElement, TranslocoPipe, FormsModule, DrawerElement],
+	imports: [TemplateComponent,
+		RouterLink,
+		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, DrawerElement, NavigationComponent],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,
@@ -22,6 +25,7 @@ import {DrawerElement} from "@elements/drawer-element/drawer-element";
 })
 export class MainPage {
 	//region Members
+	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly authService = inject(AuthentificationService);
 	//endregion
@@ -31,4 +35,5 @@ export class MainPage {
 	public async getdata() {
 		await this.authService.loadCurrentUser();
 	}
+
 }

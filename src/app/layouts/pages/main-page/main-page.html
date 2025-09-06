@@ -48,7 +48,8 @@
 							<use [attr.href]="uiService.buildIconSvgPath('badge-icon')">
 							</use>
 						</svg>
-						<span class="user-container-text">{{"USER_INFO.ID" | transloco}}</span>
+						<span
+								class="user-container-text">{{langHelper.userInfo("ID") | transloco}}</span>
 						<span class="user-container-value">{{authService.currentUser()?.id}}</span>
 					</div>
 					<div class="user-container__username">
@@ -57,7 +58,7 @@
 							</use>
 						</svg>
 						<span
-								class="user-container-text">{{"USER_INFO.USERNAME" | transloco}}</span>
+								class="user-container-text">{{langHelper.userInfo("USERNAME") | transloco}}</span>
 						<span class="user-container-value">{{authService.currentUser()?.username}}</span>
 					</div>
 					<div class="user-container__role">
@@ -66,7 +67,7 @@
 							</use>
 						</svg>
 						<span
-								class="user-container-text">{{"USER_INFO.ROLE" | transloco}}</span>
+								class="user-container-text">{{langHelper.userInfo("ROLE") | transloco}}</span>
 						<span class="user-container-value">{{authService.currentUser()?.role}}</span>
 					</div>
 				</div>
@@ -74,10 +75,11 @@
 		}
 	</button>
 	<div class="main-container">
-		<nav [style.height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' + template.footerHeight() + 'rem - (var(--standart-padding) * 2))'"
-		     class="main-navigation">
-			<span>1</span>
-		</nav>
+		<app-navigation-component [style.height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' +
+		template.footerHeight() +
+		'rem - (var(--standart-padding) * 2))'"
+		                          class="main-navigation">
+		</app-navigation-component>
 		<main class="main-content">
 			<button [routerLink]="['/login']"
 			        style="width: 10rem ; height: 5rem;background: red;align-self: center; justify-self: center">login
@@ -112,7 +114,9 @@
 		</main>
 		<app-drawer-element [style.max-height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' + template.footerHeight() +
 		'rem - (var(--standart-padding) * 5))'"
-		       class="main-sidebar"></app-drawer-element>
+		                    class="main-sidebar">
+			<span>1</span>
+		</app-drawer-element>
 	</div>
 </app-template-component>
 

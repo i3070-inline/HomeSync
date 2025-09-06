@@ -6,6 +6,7 @@ import {AuthentificationService} from "@services/authentification.service";
 import {ForgotComponent} from "@components/forgot-component/forgot-component";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-authentification-component",
@@ -21,6 +22,7 @@ import {TranslocoPipe} from "@ngneat/transloco";
 })
 export class AuthentificationComponent {
 	//region Members
+	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly authentificationService = inject(AuthentificationService);
 	private readonly router = inject(Router);

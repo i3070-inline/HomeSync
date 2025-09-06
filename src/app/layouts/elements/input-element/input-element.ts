@@ -14,6 +14,7 @@ import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/for
 import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
 import {BlurOnScrollDirective} from "@directives/blur-on-scroll.directive";
+import {TranslocoPipe} from "@ngneat/transloco";
 
 type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 
@@ -21,7 +22,8 @@ type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
 	selector: "app-input-element",
 	standalone: true,
 	imports: [
-		FormsModule
+		FormsModule,
+		TranslocoPipe
 	],
 	templateUrl: "./input-element.html",
 	styleUrl: "./input-element.scss",

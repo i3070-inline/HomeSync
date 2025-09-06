@@ -3,10 +3,12 @@ import {PlatformService} from "@services/platform.service";
 import {ISelectItemModel} from "@interfaces/select-item-model.interface";
 import {StorageFacadeService} from "@services/facade/storage-facade.service";
 import {TranslocoService} from "@ngneat/transloco";
+import {LangHelper} from "@utils/lang-helper";
 
 export abstract class SettingsHandlerBase<T> {
 	//region Members
 	protected readonly platformService = inject(PlatformService);
+	protected readonly langHelper = LangHelper;
 	protected readonly translateService = inject(TranslocoService);
 	private readonly storageFacade = inject(StorageFacadeService);
 	protected abstract get cookiesKey(): string;

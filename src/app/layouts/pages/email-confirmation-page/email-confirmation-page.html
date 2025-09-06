@@ -2,7 +2,7 @@
 	<app-template-component [footerHeight]="0"
 	                        [headerHeight]="0">
 		<div class="email-confirm__container">
-			<h1 class="email-confirm__title">Email Verification</h1>
+			<h1 class="email-confirm__title">{{langHelper.emailConfirmationPage("TITLE")}}</h1>
 			@let isConf = isEmailConfirmed();
 			<svg [style.color]="isConf ? 'var(--success-color)' : 'var(--error-color)'"
 			     class="email-confirm__icon">
@@ -12,23 +12,23 @@
 			<p class="email-confirm__description"
 			   *transloco="let t">
 				{{
-					isConf ? t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.SUCCESS') :
-							t('EMAIL_CONFIRMATION_PAGE.DESCRIPTION.FAILURE')
+					isConf ? t(langHelper.emailConfirmationDescription("SUCCESS")) :
+							t(langHelper.emailConfirmationDescription("FAILURE"))
 				}}
 			</p>
 			<button (click)="isConf ? onLoginPage() : onReloadPage()"
 			        class="email-confirm__link"
 			        *transloco="let t">
 				{{
-					isConf ? t('EMAIL_CONFIRMATION_PAGE.ACTION.SUCCESS') :
-							t('EMAIL_CONFIRMATION_PAGE.ACTION.FAILURE')
+					isConf ? t(langHelper.emailConfirmationAction("SUCCESS")) :
+							t(langHelper.emailConfirmationAction("FAILURE"))
 				}}
 			</button>
 			@if (seconds() && seconds()! > 0) {
 				<span class="email-confirm__timer"
 				      *transloco="let t">
 					{{
-						t('EMAIL_CONFIRMATION_PAGE.TIMER', {time: seconds()})
+						t(langHelper.emailConfirmationPage("TIMER"), {time: seconds()})
 					}}</span>
 			}
 		</div>

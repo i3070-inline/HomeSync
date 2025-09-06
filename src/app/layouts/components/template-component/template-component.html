@@ -32,29 +32,35 @@
 							</div>
 							<div class="background__settings-tools">
 								@let width = "15rem";
-								<app-select-element [itemSource]="settingsService.themeHandler.options()"
-								                    [selectedValue]="settingsService.themeHandler.selectedOption()"
-								                    (selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
-								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('theme-icon'),
-							                    description:'SETTINGS.THEME.DESCRIPTION' | transloco,
-							                    action: 'SETTINGS.THEME.ACTION' | transloco}"
-								                    [width]="width">
+								<app-select-element
+										[itemSource]="settingsService.themeHandler.options()"
+										[selectedValue]="settingsService.themeHandler.selectedOption()"
+										(selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
+										[placeholder]="{
+                                                        iconPath: uiService.buildIconSvgPath('theme-icon'),
+                                                        description: langHelper.settings('THEME', 'DESCRIPTION') | transloco,
+                                                        action: langHelper.settings('THEME', 'ACTION') | transloco}"
+										[width]="width">
 								</app-select-element>
-								<app-select-element [itemSource]="settingsService.languageHandler.options()"
-								                    [selectedValue]="settingsService.languageHandler.selectedOption()"
-								                    (selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
-								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('language-icon'),
-							                    description:'SETTINGS.LANGUAGE.DESCRIPTION' | transloco,
-							                    action: 'SETTINGS.LANGUAGE.ACTION' | transloco}"
-								                    [width]="width">
+								<app-select-element
+										[itemSource]="settingsService.languageHandler.options()"
+										[selectedValue]="settingsService.languageHandler.selectedOption()"
+										(selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
+										[placeholder]="{
+                                                        iconPath: uiService.buildIconSvgPath('language-icon'),
+                                                        description: langHelper.settings('LANGUAGE', 'DESCRIPTION') | transloco,
+                                                        action: langHelper.settings('LANGUAGE', 'ACTION') | transloco}"
+										[width]="width">
 								</app-select-element>
-								<app-select-element [itemSource]="settingsService.animationHandler.options()"
-								                    [selectedValue]="settingsService.animationHandler.selectedOption()"
-								                    (selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
-								                    [placeholder]="{iconPath:uiService.buildIconSvgPath('animation-icon'),
-							                    description:'SETTINGS.ANIMATION.DESCRIPTION' | transloco,
-							                    action: 'SETTINGS.ANIMATION.ACTION' | transloco}"
-								                    [width]="width">
+								<app-select-element
+										[itemSource]="settingsService.animationHandler.options()"
+										[selectedValue]="settingsService.animationHandler.selectedOption()"
+										(selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
+										[placeholder]="{
+                                                        iconPath: uiService.buildIconSvgPath('animation-icon'),
+                                                        description: langHelper.settings('ANIMATION', 'DESCRIPTION') | transloco,
+                                                        action: langHelper.settings('ANIMATION', 'ACTION') | transloco}"
+										[width]="width">
 								</app-select-element>
 							</div>
 						</div>
@@ -83,7 +89,7 @@
 		<footer [style.height.rem]="footerHeight()"
 		        class="background__footer">
 			<p class="background__footer-copyright">Ⓒ {{settingsService.appDetails.currentYear}}&nbsp;{{
-					"SETTINGS.COPYRIGHT" | transloco
+					langHelper.settingsCopyright() | transloco
 				}}.</p>
 			<div class="background__footer-media">
 				<a aria-label="GitHub"

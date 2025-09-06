@@ -19,19 +19,19 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 		return signal<ISelectItemModel<themeType>[]>([
 			{
 				value: "light",
-				name: "SETTINGS.THEME.OPTIONS.LIGHT",
+				name: this.langHelper.settingsOption("THEME", "LIGHT"),
 				iconPath: buildIconSvgPath("light-icon"),
 				iconColor: "var(--warning-color)"
 			},
 			{
 				value: "dark",
-				name: "SETTINGS.THEME.OPTIONS.DARK",
+				name: this.langHelper.settingsOption("THEME", "DARK"),
 				iconPath: buildIconSvgPath("dark-icon"),
 				iconColor: "var(--info-color)"
 			},
 			{
 				value: "system",
-				name: "SETTINGS.THEME.OPTIONS.SYSTEM",
+				name: this.langHelper.settingsOption("THEME", "SYSTEM"),
 				iconPath: buildIconSvgPath("default-icon")
 			}
 		]);

@@ -35,22 +35,22 @@
 					     [class.isSwitching]="isSwitching()">
 						<h1 class="form-cover__text">
 							{{
-								(currentForm().name() === 'registration' ? "LOGIN_PAGE.SIGN_UP_COVER.TITLE" :
-										"LOGIN_PAGE.SIGN_IN_COVER.TITLE") | transloco
+								(currentForm().name() === 'registration' ? langHelper.loginCover("SIGN_UP", "TITLE") :
+										langHelper.loginCover("SIGN_IN", "TITLE")) | transloco
 							}}
 						</h1>
 						<p
 								class="form-cover__text--info">
 							{{
-								(currentForm().name() === 'registration' ? "LOGIN_PAGE.SIGN_UP_COVER.DESCRIPTION" :
-										"LOGIN_PAGE.SIGN_IN_COVER.DESCRIPTION") | transloco
+								(currentForm().name() === 'registration' ? langHelper.loginCover("SIGN_UP", "DESCRIPTION") :
+										langHelper.loginCover("SIGN_IN", "DESCRIPTION")) | transloco
 							}}
 						</p>
 						<button class="form-cover__button"
 						        [disabled]="currentForm().isExecuting()"
 						        (click)="onSwitchPage()">{{
-								(currentForm().name() === 'registration' ? "LOGIN_PAGE.SIGN_UP_COVER.ACTION" :
-										"LOGIN_PAGE.SIGN_IN_COVER.ACTION") | transloco
+								(currentForm().name() === 'registration' ? langHelper.loginCover("SIGN_UP", "ACTION") :
+										langHelper.loginCover("SIGN_IN", "ACTION")) | transloco
 							}}
 						</button>
 					</div>

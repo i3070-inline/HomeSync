@@ -2,15 +2,16 @@
 	<form [formGroup]="reg"
 	      class="form-register">
 		<h1 [class.disabled]="reg.disabled"
-		    class="register-text">{{"LOGIN_PAGE.SIGN_UP_FORM.TITLE" | transloco}}</h1>
+		    class="register-text">{{langHelper.loginForm('SIGN_UP', 'TITLE') | transloco}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.email)"
 		                   [inputType]="'email'"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
-		                   description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | transloco,
-		                   action: 'LOGIN_PAGE.EMAIL.ACTION' | transloco}"
+		                   [placeholder]="{
+                                            iconPath: uiService.buildIconSvgPath('user-email-icon'),
+                                            description: langHelper.emailField('DESCRIPTION') | transloco,
+                                            action: langHelper.emailField('ACTION') | transloco}"
 		                   class="register-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
@@ -18,9 +19,10 @@
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.password)"
 		                   [inputType]="'password'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
-		                   description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | transloco,
-		                   action: 'LOGIN_PAGE.PASSWORD.ACTION' | transloco}"
+		                   [placeholder]="{
+                                            iconPath: uiService.buildIconSvgPath('password-icon'),
+                                            description: langHelper.passwordField('DESCRIPTION') | transloco,
+                                            action: langHelper.passwordField('ACTION') | transloco}"
 		                   class="register-password">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
@@ -28,22 +30,23 @@
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.confirmPassword)"
 		                   [inputType]="'password'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
-		                   description:'LOGIN_PAGE.CONFIRM_PASSWORD.DESCRIPTION' | transloco,
-		                   action: 'LOGIN_PAGE.CONFIRM_PASSWORD.ACTION' | transloco}"
+		                   [placeholder]="{
+                                            iconPath: uiService.buildIconSvgPath('password-icon'),
+                                            description: langHelper.confirmPasswordField('DESCRIPTION') | transloco,
+                                            action: langHelper.confirmPasswordField('ACTION') | transloco}"
 		                   class="register-confirm-password">
 		</app-input-element>
 		<button [disabled]="reg.disabled || registerService.isExecuting()"
 		        (click)="onSubmitRegisterForm()"
 		        type="button"
-				class="register-button">{{"LOGIN_PAGE.SIGN_UP_FORM.ACTION" | transloco}}
+		        class="register-button">{{langHelper.loginForm('SIGN_UP', 'ACTION') | transloco}}
 		</button>
 		<div [class.disabled]="reg.disabled"
 		     class="information-container">
 			<svg class="information-icon">
 				<use [attr.href]="uiService.buildIconSvgPath('info-circle-icon')"></use>
 			</svg>
-			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | transloco}}</span>
+			<span class="information-text">{{langHelper.loginInfo() | transloco}}</span>
 		</div>
 	</form>
 }

@@ -84,11 +84,9 @@
 	grid-template-columns: auto 1fr auto;
 }
 .main-navigation {
-	background: red;
 	grid-area: nav;
 	position: sticky;
 	top: 0;
-	width: 10rem;
 }
 .main-content {
 	display: grid;

@@ -1,6 +1,6 @@
 <div class="forgot">
 	<header class="forgot__header">
-		<h3 class="forgot__title">{{"LOGIN_PAGE.FORGOT_FORM.TITLE" | transloco}}</h3>
+		<h3 class="forgot__title">{{langHelper.loginForm('FORGOT', 'TITLE') | transloco}}</h3>
 		<button (click)="onClose()"
 		        class="forgot__close">
 			<svg class="forgot__icon">
@@ -17,14 +17,15 @@
 			                   [disabled]="forgot.disabled || forgotService.isExecuting()"
 			                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.email)"
 			                   cdkFocusInitial
-			                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
-		                       description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | transloco,
-		                       action: 'LOGIN_PAGE.EMAIL.ACTION' | transloco}"
+			                   [placeholder]="{
+			                                    iconPath: uiService.buildIconSvgPath('user-email-icon'),
+			                                    description: langHelper.emailField('DESCRIPTION') | transloco,
+			                                    action: langHelper.emailField('ACTION') | transloco}"
 			                   class="forgot__input"></app-input-element>
 			<button [disabled]="forgot.disabled || forgotService.isExecuting()"
 			        (click)="onSubmitForgotForm()"
 			        type="button"
-			        class="forgot__submit">{{"LOGIN_PAGE.FORGOT_FORM.ACTION" | transloco}}
+			        class="forgot__submit">{{langHelper.loginForm('FORGOT', 'ACTION') | transloco}}
 			</button>
 		</form>
 	}

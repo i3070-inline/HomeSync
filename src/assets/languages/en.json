@@ -73,7 +73,6 @@
     }
   },
   "ERROR_PAGE": {
-    "TITLE": "Error",
     "CODES": {
       "400": {
         "TITLE": "Bad Request",

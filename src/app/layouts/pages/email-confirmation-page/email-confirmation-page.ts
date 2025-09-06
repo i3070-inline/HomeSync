@@ -9,6 +9,7 @@ import {restEndpoints} from "@rest/rest-endpoints";
 import {LoadPlaceholderComponent} from "@components/load-placeholder-component/load-placeholder.component";
 import {sleep} from "@utils/sleep-helper";
 import {HttpErrorResponse} from "@angular/common/http";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-email-confirmation-page",
@@ -25,6 +26,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class EmailConfirmationPage implements OnInit {
 	//region Members
+	protected readonly langHelper = LangHelper;
 	private readonly http = inject(RestBaseService);
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);

@@ -73,7 +73,6 @@
     }
   },
   "ERROR_PAGE": {
-    "TITLE": "Eroare",
     "CODES": {
       "400": {
         "TITLE": "Cerere invalidă",

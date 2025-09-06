@@ -18,17 +18,17 @@ export class LanguageHandlerService extends SettingsHandlerBase<languageType> {
 		return signal<ISelectItemModel<languageType>[]>([
 			{
 				value: "en",
-				name: "SETTINGS.LANGUAGE.OPTIONS.ENGLISH",
+				name: this.langHelper.settingsOption("LANGUAGE", "ENGLISH"),
 				iconPath: "assets/icons/language-en-icon.png"
 			},
 			{
 				value: "ro",
-				name: "SETTINGS.LANGUAGE.OPTIONS.ROMANIAN",
+				name: this.langHelper.settingsOption("LANGUAGE", "ROMANIAN"),
 				iconPath: "assets/icons/language-ro-icon.png"
 			},
 			{
 				value: "ru",
-				name: "SETTINGS.LANGUAGE.OPTIONS.RUSSIAN",
+				name: this.langHelper.settingsOption("LANGUAGE", "RUSSIAN"),
 				iconPath: "assets/icons/language-ru-icon.png"
 			}
 		]);

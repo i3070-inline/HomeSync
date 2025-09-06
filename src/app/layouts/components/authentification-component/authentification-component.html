@@ -2,15 +2,16 @@
 	<form [formGroup]="auth"
 	      class="form-login">
 		<h1 [class.disabled]="auth.disabled"
-		    class="login-text">{{"LOGIN_PAGE.SIGN_IN_FORM.TITLE" | transloco}}</h1>
+		    class="login-text">{{langHelper.loginForm('SIGN_IN', 'TITLE') | transloco}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.email)"
 		                   [inputType]="'email'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('user-email-icon'),
-		                   description:'LOGIN_PAGE.EMAIL.DESCRIPTION' | transloco,
-		                   action: 'LOGIN_PAGE.EMAIL.ACTION' | transloco}"
+		                   [placeholder]="{
+		                                    iconPath: uiService.buildIconSvgPath('user-email-icon'),
+		                                    description: langHelper.emailField('DESCRIPTION') | transloco,
+		                                    action: langHelper.emailField('ACTION') | transloco}"
 		                   class="login-username">
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
@@ -18,30 +19,30 @@
 		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.password)"
 		                   [inputType]="'password'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
-		                   [placeholder]="{iconPath:uiService.buildIconSvgPath('password-icon'),
-                           description:'LOGIN_PAGE.PASSWORD.DESCRIPTION' | transloco,
-                           action: 'LOGIN_PAGE.PASSWORD.ACTION' | transloco}"
+		                   [placeholder]="{
+		                                    iconPath: uiService.buildIconSvgPath('password-icon'),
+		                                    description: langHelper.passwordField('DESCRIPTION') | transloco,
+		                                    action: langHelper.passwordField('ACTION') | transloco}"
 		                   class="login-password">
 		</app-input-element>
 		<button [class.disabled]="auth.disabled || authentificationService.isExecuting()"
 		        (click)="onShowForgotForm()"
 		        type="button"
 		        tabindex="0"
-		        class="forgot-button">{{"LOGIN_PAGE.FORGOT_PASSWORD" | transloco}}
+		        class="forgot-button">{{langHelper.forgotPassword() | transloco}}
 		</button>
 		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
 		        class="login-button"
 		        type="button"
 		        (click)="onSubmitAuthForm()">
-			{{"LOGIN_PAGE.SIGN_IN_FORM.ACTION" | transloco}}
+			{{langHelper.loginForm('SIGN_IN', 'ACTION') | transloco}}
 		</button>
 		<div [class.disabled]="auth.disabled"
 		     class="information-container">
 			<svg class="information-icon">
 				<use [attr.href]="uiService.buildIconSvgPath('info-circle-icon')"></use>
 			</svg>
-			<span class="information-text">{{"LOGIN_PAGE.SIGN_INFO" | transloco}}</span>
+			<span class="information-text">{{langHelper.loginInfo() | transloco}}</span>
 		</div>
 	</form>
 }
-

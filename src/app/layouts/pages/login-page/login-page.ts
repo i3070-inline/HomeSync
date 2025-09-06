@@ -31,6 +31,7 @@ import {AccountBase} from "@services/base/account-base";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-login-page",
@@ -86,6 +87,7 @@ import {TranslocoPipe} from "@ngneat/transloco";
 export class LoginPage {
 	//region Members
 	private readonly destroyRef = inject(DestroyRef);
+	protected readonly langHelper = LangHelper;
 	protected readonly regService = inject(RegistrationService);
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly settingsService = inject(SettingsFacadeService);

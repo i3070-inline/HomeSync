@@ -6,9 +6,10 @@ $transition-base: (
 		background,
 		color,
 		opacity,
-		//text-decoration,
-		//font-size,
-		//font-weight,
+		border,
+	//text-decoration,
+	//font-size,
+	//font-weight,
 );
 $transition-shadow: (
 		text-shadow,
@@ -31,6 +32,14 @@ $transition-position: (
 		left,
 		right,
 		inset,
+);
+$transition-size: (
+		width,
+		height,
+		max-width,
+		max-height,
+		min-width,
+		min-height,
 );
 @mixin generate-shadows($top-shadow, $bottom-shadow) {
 	--base-shadow: -0.1rem -0.1rem 0.35rem #{$top-shadow},

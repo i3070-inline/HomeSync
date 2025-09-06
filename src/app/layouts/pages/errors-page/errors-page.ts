@@ -3,6 +3,7 @@ import {TemplateComponent} from "@components/template-component/template-compone
 import {TranslocoPipe} from "@ngneat/transloco";
 import {UpperCasePipe} from "@angular/common";
 import {ActivatedRoute, RouterLink} from "@angular/router";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-errors-page",
@@ -20,6 +21,7 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 })
 export class ErrorsPage implements OnInit {
 	//region Members
+	protected readonly langHelper = LangHelper;
 	protected errorCode = signal<number>(404);
 	protected errorCodes = signal<number[]>([400, 403, 404, 405, 406, 422, 500, 502, 503, 504]);
 	protected route = inject(ActivatedRoute);

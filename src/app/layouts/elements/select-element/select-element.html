@@ -54,7 +54,7 @@
 		</span>
 	</div>
 	<span class="select-container__error-text">
-		{{errorHint()}}
+		{{errorHint() | transloco}}
 	</span>
 	@if (trigger.overlayContainerService.isOpened()) {
 		<app-overlay-container-element

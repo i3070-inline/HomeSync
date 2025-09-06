@@ -2,10 +2,10 @@
                         [headerHeight]="0">
 	<div class="not-found__container">
 		<h1 class="not-found__title">{{errorCode()}}</h1>
-		<h2 class="not-found__subtitle">{{"ERROR_PAGE.CODES." + errorCode() + ".TITLE" | transloco | uppercase}}</h2>
-		<p class="not-found__description"> {{"ERROR_PAGE.CODES." + errorCode() + ".DESCRIPTION" | transloco}}</p>
+		<h2 class="not-found__subtitle">{{langHelper.errorCode(errorCode(),"TITLE") |transloco |uppercase}}</h2>
+		<p class="not-found__description"> {{langHelper.errorCode(errorCode(),"DESCRIPTION") | transloco}}</p>
 		<button [routerLink]="'/'"
-		        class="not-found__link">{{"ERROR_PAGE.ACTION" | transloco}}
+		        class="not-found__link">{{langHelper.errorAction() | transloco}}
 		</button>
 	</div>
 </app-template-component>

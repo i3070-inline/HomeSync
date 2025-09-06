@@ -17,6 +17,7 @@ import {TitleCasePipe} from "@angular/common";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
+import {LangHelper} from "@utils/lang-helper";
 
 @Component({
 	selector: "app-template-component",
@@ -36,6 +37,7 @@ import {TranslocoPipe} from "@ngneat/transloco";
 })
 export class TemplateComponent implements AfterViewInit {
 	//region Members
+	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly settingsService = inject(SettingsFacadeService);
 	private scrollContainer = viewChild<ElementRef>("scrollContainer");
