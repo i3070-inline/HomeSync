@@ -28,22 +28,28 @@ export class RegisterComponent {
 	//region Methods
 	protected async onSubmitRegisterForm(): Promise<void> {
 		if (!this.registerService.isFormValid()) return;
-		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.SIGN_UP.START"), 0, false);
+		const awaitNotify = this.uiService.notifyHandler.showNotification(
+			"info",
+			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("SIGN_UP", "START")),
+			0,
+			false);
 		const result = await this.registerService.onGenericExecution();
 		if (result.successful) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			this.registerService.resetAccountForm();
-			this.uiService.notifyHandler.showNotification("success",
-				this.uiService.translateHandler.translate("NOTIFICATIONS.SUCCESS"));
-			this.uiService.notifyHandler.showNotification("info",
-				this.uiService.translateHandler.translate("NOTIFICATIONS.SIGN_UP.EMAIL_VERIFICATION"),
+			this.uiService.notifyHandler.showNotification(
+				"success",
+				this.uiService.translateHandler.translate(this.langHelper.notification("SUCCESS")));
+			this.uiService.notifyHandler.showNotification(
+				"info",
+				this.uiService.translateHandler.translate(this.langHelper.notificationAccount("SIGN_UP", "EMAIL_VERIFICATION")),
 				10000);
 			return;
 		}
 		this.uiService.notifyHandler.closeNotification(awaitNotify);
-		this.uiService.notifyHandler.showNotification("error",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.FAILURE"));
+		this.uiService.notifyHandler.showNotification(
+			"error",
+			this.uiService.translateHandler.translate(this.langHelper.notification("FAILURE")));
 	}
 	//endregion
 }

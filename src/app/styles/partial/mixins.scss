@@ -17,7 +17,7 @@ $transition-shadow: (
 );
 $transition-transform: (
 		transform,
-		scalse,
+		scale,
 		rotate,
 		skew,
 		perspective,
@@ -40,6 +40,10 @@ $transition-size: (
 		max-height,
 		min-width,
 		min-height,
+);
+$transition-spacing: (
+		margin,
+		padding
 );
 @mixin generate-shadows($top-shadow, $bottom-shadow) {
 	--base-shadow: -0.1rem -0.1rem 0.35rem #{$top-shadow},
@@ -125,6 +129,9 @@ $transition-size: (
 	}
 	@if $isUsingActive {
 		&:active {
+			box-shadow: var(--#{$shadow-type}-active-shadow);
+		}
+		&.active {
 			box-shadow: var(--#{$shadow-type}-active-shadow);
 		}
 	}

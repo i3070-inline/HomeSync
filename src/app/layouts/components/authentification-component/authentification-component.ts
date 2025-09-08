@@ -31,20 +31,25 @@ export class AuthentificationComponent {
 	//region Methods
 	protected async onSubmitAuthForm(): Promise<void> {
 		if (!this.authentificationService.isFormValid()) return;
-		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.SIGN_IN.START"), 0, false);
+		const awaitNotify = this.uiService.notifyHandler.showNotification(
+			"info",
+			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("SIGN_IN", "START")),
+			0,
+			false);
 		const result = await this.authentificationService.onGenericExecution();
 		if (result.successful) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			await this.router.navigate([this.route.snapshot.queryParams["returnUrl"] || "/main/me"]);
 			this.authentificationService.resetAccountForm();
-			this.uiService.notifyHandler.showNotification("success",
-				this.uiService.translateHandler.translate("NOTIFICATIONS.SUCCESS"));
+			this.uiService.notifyHandler.showNotification(
+				"success",
+				this.uiService.translateHandler.translate(this.langHelper.notification("SUCCESS")));
 			return;
 		}
 		this.uiService.notifyHandler.closeNotification(awaitNotify);
-		this.uiService.notifyHandler.showNotification("error",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.FAILURE"));
+		this.uiService.notifyHandler.showNotification(
+			"error",
+			this.uiService.translateHandler.translate(this.langHelper.notification("FAILURE")));
 	}
 	public onShowForgotForm() {
 		this.uiService.modalHandler.showModal(ForgotComponent);

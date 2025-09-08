@@ -82,6 +82,12 @@
 	height: 1.2rem;
 	width: 1.2rem;
 }
+%navigation-link{
+	@extend %element-base;
+	@include apply-shadow-on-action();
+	padding: 0.25rem;
+	text-decoration: none;
+}
 %hyperlink {
 	color: var(--info-color);
 	cursor: pointer;

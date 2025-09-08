@@ -50,6 +50,11 @@ export class LangHelper {
 		return `LOGIN_PAGE.CONFIRM_PASSWORD.${part}`;
 	}
 	//endregion
+	//region MAIN_PAGE
+	static mainPageNavigation(part: "TITLE" | "HOME" | "LOGOUT"): string {
+		return `MAIN_PAGE.NAVIGATION.${part}`;
+	}
+	//endregion
 	//region ERROR_PAGE
 	static errorCode(
 		code: number,
@@ -81,7 +86,7 @@ export class LangHelper {
 	static notification(type: "SUCCESS" | "FAILURE"): string {
 		return `NOTIFICATIONS.${type}`;
 	}
-	static notificationSign(
+	static notificationAccount(
 		section: "SIGN_IN" | "SIGN_UP" | "FORGOT",
 		field: "START" | "EMAIL_VERIFICATION"
 	): string {

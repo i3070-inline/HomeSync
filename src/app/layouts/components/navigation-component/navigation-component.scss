@@ -1,0 +1,60 @@
+@use "placeholders" as *;
+@use "mixins" as *;
+.navigation-container {
+	height: 100%;
+}
+.navigation-content {
+	display: grid;
+	grid-template-rows: 1fr max-content;
+	overflow: hidden;
+}
+%content {
+	display: grid;
+	gap: 0.5rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.top-content {
+	@extend %scrollbars;
+	@extend %content;
+	animation: detect-navigation-scroll linear;
+	animation-timeline: scroll(self);
+	place-content: start stretch;
+	overflow-x: hidden;
+	overflow-y: auto;
+	grid-row: 1/2;
+}
+.content-item {
+	@extend %navigation-link;
+	display: grid;
+	align-items: center;
+	margin-left: var(--standart-padding);
+	margin-right: var(--is-scroll-margin-right-navigation-comp, var(--standart-padding));
+	grid-template-columns: max-content max-content;
+}
+.content-item__icon {
+	grid-column: 1/2;
+	aspect-ratio: 1/1;
+	width: 2rem;
+	justify-self: center;
+}
+.content-item__text {
+	@include transition-builder($transition-base, $transition-size, $transition-spacing);
+	display: grid;
+	font-size: 1.1rem;
+	font-weight: 600;
+	position: relative;
+	overflow: hidden;
+	min-width: 7rem;
+	margin: 0 0.5rem 0 0.5rem;
+	text-align: start;
+	.navigation-content:not(.isOpen) & {
+		width: 0;
+		margin: 0;
+		min-width: 0;
+	}
+}
+.bottom-content {
+	@extend %content;
+	grid-row: 2/3;
+}

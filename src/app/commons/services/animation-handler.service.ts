@@ -24,19 +24,19 @@ export class AnimationHandlerService extends SettingsHandlerBase<animationType> 
 		return signal<ISelectItemModel<animationType>[]>([
 			{
 				value: "active",
-				name: "SETTINGS.ANIMATION.OPTIONS.ACTIVE",
+				name: this.langHelper.settingsOption("ANIMATION", "ACTIVE"),
 				iconPath: buildIconSvgPath("animation-active-icon"),
 				iconColor: "var(--success-color)"
 			},
 			{
 				value: "reduce",
-				name: "SETTINGS.ANIMATION.OPTIONS.REDUCE",
+				name: this.langHelper.settingsOption("ANIMATION", "REDUCE"),
 				iconPath: buildIconSvgPath("animation-reduce-icon"),
 				iconColor: "var(--error-color)"
 			},
 			{
 				value: "system",
-				name: "SETTINGS.ANIMATION.OPTIONS.SYSTEM",
+				name: this.langHelper.settingsOption("ANIMATION", "SYSTEM"),
 				iconPath: buildIconSvgPath("default-icon")
 			}
 		]);

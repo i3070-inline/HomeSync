@@ -30,11 +30,17 @@
 		opacity: 1;
 	}
 }
-@keyframes detect-scroll {
+@keyframes detect-main-scroll {
 	from, to {
-		--is-scroll-padding: 0.4rem;
-		--is-scroll-position: sticky;
-		--is-scroll-transformY: translateY(-50%);
-		--is-scroll-top: 50%;
+		--is-scroll-padding-template-comp: 0.4rem;
+		--is-scroll-position-main-page: sticky;
+		--is-scroll-transformY-main-page: translateY(-50%);
+		--is-scroll-top-main-page: 50%;
 	}
 }
+@keyframes detect-navigation-scroll {
+	from, to {
+		--is-scroll-margin-right-navigation-comp: 0.5rem;
+	}
+}
+

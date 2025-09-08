@@ -8,7 +8,6 @@ import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {NgOptimizedImage} from "@angular/common";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {FormsModule} from "@angular/forms";
-import {DrawerElement} from "@elements/drawer-element/drawer-element";
 import {NavigationComponent} from "@components/navigation-component/navigation-component";
 import {LangHelper} from "@utils/lang-helper";
 
@@ -17,7 +16,7 @@ import {LangHelper} from "@utils/lang-helper";
 	standalone: true,
 	imports: [TemplateComponent,
 		RouterLink,
-		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, DrawerElement, NavigationComponent],
+		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, NavigationComponent],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,
@@ -35,5 +34,4 @@ export class MainPage {
 	public async getdata() {
 		await this.authService.loadCurrentUser();
 	}
-
 }

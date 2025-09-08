@@ -1,0 +1,122 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.drawer-container {
+	align-items: start;
+	display: grid;
+	grid-template-rows: max-content 1fr;
+	height: inherit;
+	interpolate-size: allow-keywords;
+	min-height: 3.5rem;
+	overflow: hidden;
+	position: relative;
+	row-gap: var(--standart-padding);
+	width: 4.5rem;
+	@include blur-effect();
+	@include transition-builder($transition-base, $transition-shadow, $transition-size);
+	transition-duration: var(--transition-duration);
+	&.isOpen {
+		width: max-content;
+	}
+}
+.header-wrapper {
+	display: grid;
+	position: relative;
+}
+.drawer-title {
+	position: absolute;
+	top: 50%;
+	width: 70%;
+	transform: translateY(-50%);
+	font-size: 1.2rem;
+	font-weight: 600;
+	opacity: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	.drawer-container.isOpen & {
+		animation: opacity-with-delay 0s forwards;
+		animation-delay: calc(var(--transition-duration) - 0.1s);
+	}
+	&.start {
+		transform-origin: right;
+		right: 0;
+	}
+	&.end {
+		transform-origin: left;
+		left: 0;
+	}
+}
+.hamburg-button {
+	place-self: start;
+	display: grid;
+	height: 2.5rem;
+	width: 2.5rem;
+	@extend %neo-btn;
+	padding: 0.25rem;
+}
+.toggle {
+	@include transition-builder($transition-base, $transition-transform);
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2em;
+	height: 100%;
+	justify-content: center;
+	position: relative;
+	transition-duration: var(--transition);
+	transition-timing-function: ease;
+	width: 100%;
+	.drawer-container.isOpen & {
+		transform: rotate(180deg);
+	}
+}
+%bars {
+	@include transition-builder($transition-base, $transition-transform);
+	background-color: var(--text-main-color);
+	border-radius: var(--border-radius);
+	height: 0.2rem;
+	transform-origin: center;
+	transition-timing-function: ease;
+	width: 70%;
+	.drawer-container.isOpen & {
+		position: absolute;
+		transition-duration: var(--transition-duration);
+	}
+}
+.bar1 {
+	@extend %bars;
+	.drawer-container.isOpen & {
+		transform: rotate(45deg);
+	}
+}
+.bar2 {
+	@extend %bars;
+	width: 90%;
+	.drawer-container.isOpen & {
+		transform: scaleX(0);
+	}
+}
+.bar3 {
+	@extend %bars;
+	.drawer-container.isOpen & {
+		transform: rotate(-45deg);
+	}
+}
+.drawer-content {
+	@extend %scrollbars;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-auto-flow: row;
+	overflow-x: hidden;
+	text-wrap: nowrap;
+	.drawer-container.isOpen & {
+		animation: enable-overflow-with-delay 0s forwards;
+		animation-delay: calc(var(--transition-duration) + 0.1s);
+	}
+}
+@keyframes enable-overflow-with-delay {
+	to {
+		overflow-x: auto;
+	}
+}

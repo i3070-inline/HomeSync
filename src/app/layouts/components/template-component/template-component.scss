@@ -118,14 +118,14 @@
 }
 .background__content-wrapper {
 	@extend %scrollbars;
-	animation: detect-scroll linear;
+	animation: detect-main-scroll linear;
 	animation-timeline: scroll(self);
 	display: grid;
 	overflow: auto;
 	-webkit-overflow-scrolling: auto;
 	overscroll-behavior: none;
 	padding: var(--standart-padding);
-	padding-right: var(--is-scroll-padding, var(--standart-padding));
+	padding-right: var(--is-scroll-padding-template-comp, var(--standart-padding));
 	pointer-events: auto;
 	position: relative;
 }

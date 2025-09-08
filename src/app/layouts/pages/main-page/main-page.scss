@@ -33,9 +33,9 @@
 	height: 10rem;
 	object-fit: cover;
 	place-self: center;
-	position: var(--is-scroll-position, relative);
-	top: var(--is-scroll-top, 0);
-	transform: var(--is-scroll-transformY, translateY(0));
+	position: var(--is-scroll-position-main-page, relative);
+	top: var(--is-scroll-top-main-page, 0);
+	transform: var(--is-scroll-transformY-main-page, translateY(0));
 	width: 10rem;
 }
 %user-container-base {

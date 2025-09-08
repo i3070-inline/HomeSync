@@ -1,0 +1,25 @@
+<app-drawer-element [isOpen]="isOpen()"
+                    (isOpenChange)="isOpen.set($event)"
+                    [overflowY]="'hidden'"
+                    [paddingContainer]="'1rem 0 1rem 0'"
+                    [paddingHeader]="'0 1rem 0 1rem'"
+                    [title]="langHelper.mainPageNavigation('TITLE')"
+                    buttonAlign="end"
+                    class="navigation-container">
+	<div class="navigation-content"
+	     [class.isOpen]="isOpen()">
+		<div class="top-content">
+			<a class="content-item"
+			   [routerLink]="['/main/me']"
+			   [routerLinkActive]="['active']">
+				<svg class="content-item__icon">
+					<use [attr.href]="uiService.buildIconSvgPath('home-icon')"></use>
+				</svg>
+				<span class="content-item__text">{{langHelper.mainPageNavigation("HOME") | transloco}}</span>
+			</a>
+
+		</div>
+		<div class="bottom-content">
+		</div>
+	</div>
+</app-drawer-element>

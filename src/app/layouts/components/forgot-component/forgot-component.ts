@@ -30,20 +30,27 @@ export class ForgotComponent {
 	//region Methods
 	protected async onSubmitForgotForm(): Promise<void> {
 		if (!this.forgotService.isFormValid()) return;
-		const awaitNotify = this.uiService.notifyHandler.showNotification("info",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.FORGOT.START"), 0, false);
+		const awaitNotify = this.uiService.notifyHandler.showNotification(
+			"info",
+			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("FORGOT", "START")),
+			0,
+			false);
 		if (await this.forgotService.onGenericExecution()) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			this.forgotService.resetAccountForm();
-			this.uiService.notifyHandler.showNotification("success",
-				this.uiService.translateHandler.translate("NOTIFICATIONS.SUCCESS"));
-			this.uiService.notifyHandler.showNotification("info", "LOGIN_PAGE.SIGN_UP_FORM.ACTION",
-				100000);
+			this.uiService.notifyHandler.showNotification(
+				"success",
+				this.uiService.translateHandler.translate(this.langHelper.notification("SUCCESS")));
+			this.uiService.notifyHandler.showNotification(
+				"info",
+				this.uiService.translateHandler.translate(this.langHelper.notificationAccount("FORGOT", "EMAIL_VERIFICATION")),
+				10000);
 			return;
 		}
 		this.uiService.notifyHandler.closeNotification(awaitNotify);
-		this.uiService.notifyHandler.showNotification("error",
-			this.uiService.translateHandler.translate("NOTIFICATIONS.FAILURE"));
+		this.uiService.notifyHandler.showNotification(
+			"error",
+			this.uiService.translateHandler.translate(this.langHelper.notification("FAILURE")));
 	}
 	protected onClose(): void {
 		this.forgotService.resetAccountForm();

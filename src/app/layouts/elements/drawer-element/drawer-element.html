@@ -1,0 +1,28 @@
+<div [class.isOpen]="isOpen()"
+     class="drawer-container"
+     [style.padding]="paddingContainer()">
+	<div class="header-wrapper"
+	     [style.padding]="paddingHeader()">
+		@if (title()) {
+			<span class="drawer-title"
+			      [style.padding]="paddingHeader()"
+			      [ngClass]="buttonAlign()">{{title() | transloco}}</span>
+		}
+		<button (click)="isOpen.set(!isOpen())"
+		        [style.place-self]="buttonAlign()"
+		        class="hamburg-button"
+		        type="button">
+			<div class="toggle">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+			</div>
+		</button>
+	</div>
+	<div [style.max-height]="maxHeight()"
+	     [style.max-width]="maxWidth()"
+	     [style.overflow-y]="overflowY()"
+	     class="drawer-content">
+		<ng-content></ng-content>
+	</div>
+</div>

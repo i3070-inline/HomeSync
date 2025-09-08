@@ -129,6 +129,13 @@
     },
     "TIMER": "Redirecționare automată în {{time}} secunde"
   },
+  "MAIN_PAGE": {
+    "NAVIGATION": {
+      "TITLE": "Secțiuni",
+      "HOME": "Acasă",
+      "LOGOUT": "Delogare"
+    }
+  },
   "VALIDATORS": {
     "REQUIRED": "Acest câmp este obligatoriu",
     "MIN_LENGTH": "Cel puțin {{requiredLength}} caractere",

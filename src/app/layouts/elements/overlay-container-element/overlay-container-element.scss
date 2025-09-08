@@ -8,9 +8,6 @@
 	}
 }
 .overlay__content {
-	animation: detect-scroll linear;
-	-webkit-animation-timeline: scroll(self);
-	animation-timeline: scroll(self);
 	display: grid;
 	grid-auto-flow: row;
 	overflow: auto;
