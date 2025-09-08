@@ -131,9 +131,6 @@ $transition-spacing: (
 		&:active {
 			box-shadow: var(--#{$shadow-type}-active-shadow);
 		}
-		&.active {
-			box-shadow: var(--#{$shadow-type}-active-shadow);
-		}
 	}
 }
 @mixin respond-to($breakpoint) {

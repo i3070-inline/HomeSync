@@ -66,6 +66,17 @@ export class LangHelper {
 		return "ERROR_PAGE.ACTION";
 	}
 	//endregion
+	//region QUESTION_COMPONENT
+	static questionComponent(
+		type: "LOGOUT",
+		part: "TITLE" | "QUESTION"
+	): string {
+		return `QUESTION_COMPONENT.${type}.${part}`;
+	}
+	static questionAction(part: "ACTION_YES" | "ACTION_NO"): string {
+		return `QUESTION_COMPONENT.${part}`;
+	}
+//endregion
 	//region EMAIL_CONFIRMATION_PAGE
 	static emailConfirmationPage(part: "TITLE" | "TIMER"): string {
 		return `EMAIL_CONFIRMATION_PAGE.${part}`;
@@ -87,7 +98,7 @@ export class LangHelper {
 		return `NOTIFICATIONS.${type}`;
 	}
 	static notificationAccount(
-		section: "SIGN_IN" | "SIGN_UP" | "FORGOT",
+		section: "SIGN_IN" | "SIGN_UP" | "FORGOT" | "LOGOUT",
 		field: "START" | "EMAIL_VERIFICATION"
 	): string {
 		return `NOTIFICATIONS.${section}.${field}`;

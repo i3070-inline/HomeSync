@@ -6,7 +6,7 @@ export const guestGuard: CanActivateFn = async (route, state) => {
 	const router = inject(Router);
 	const auth = inject(AuthentificationService);
 	const fromInterceptor = route.queryParamMap.get("fi") === "true";
-	if (fromInterceptor) {
+	if (fromInterceptor || auth.isRequestedLogout()) {
 		return true;
 	}
 	await auth.loadCurrentUser();

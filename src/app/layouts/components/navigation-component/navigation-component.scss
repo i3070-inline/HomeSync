@@ -30,7 +30,7 @@
 	align-items: center;
 	margin-left: var(--standart-padding);
 	margin-right: var(--is-scroll-margin-right-navigation-comp, var(--standart-padding));
-	grid-template-columns: max-content max-content;
+	grid-template-columns: max-content 1fr;
 }
 .content-item__icon {
 	grid-column: 1/2;
@@ -57,4 +57,13 @@
 .bottom-content {
 	@extend %content;
 	grid-row: 2/3;
+}
+.button-logout {
+	@extend %neo-btn;
+	padding: 0.25rem;
+	display: grid;
+	margin-left: var(--standart-padding);
+	margin-right: var(--standart-padding);
+	align-items: center;
+	grid-template-columns: max-content 1fr;
 }

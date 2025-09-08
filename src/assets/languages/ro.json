@@ -131,10 +131,18 @@
   },
   "MAIN_PAGE": {
     "NAVIGATION": {
-      "TITLE": "Secțiuni",
+      "TITLE": "Meniu",
       "HOME": "Acasă",
-      "LOGOUT": "Delogare"
+      "LOGOUT": "Ieșire"
     }
+  },
+  "QUESTION_COMPONENT": {
+    "LOGOUT": {
+      "TITLE": "Ieșire",
+      "QUESTION": "Sigur doriți să ieșiți din cont ?"
+    },
+    "ACTION_YES": "Da",
+    "ACTION_NO": "Nu"
   },
   "VALIDATORS": {
     "REQUIRED": "Acest câmp este obligatoriu",
@@ -153,6 +161,9 @@
     "FORGOT": {
       "START": "Resetare parolă în curs...",
       "EMAIL_VERIFICATION": "Vă rugăm să verificați emailul pentru linkul de resetare"
+    },
+    "LOGOUT": {
+      "START": "Ieșire în curs..."
     },
     "SUCCESS": "Operațiunea a fost finalizată cu succes",
     "FAILURE": "Operațiunea a eșuat"

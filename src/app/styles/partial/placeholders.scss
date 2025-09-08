@@ -82,11 +82,15 @@
 	height: 1.2rem;
 	width: 1.2rem;
 }
-%navigation-link{
+%navigation-link {
 	@extend %element-base;
+	@include blur-effect();
 	@include apply-shadow-on-action();
 	padding: 0.25rem;
 	text-decoration: none;
+	&.active {
+		color: var(--primary-color);
+	}
 }
 %hyperlink {
 	color: var(--info-color);

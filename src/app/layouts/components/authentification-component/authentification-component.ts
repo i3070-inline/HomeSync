@@ -36,8 +36,7 @@ export class AuthentificationComponent {
 			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("SIGN_IN", "START")),
 			0,
 			false);
-		const result = await this.authentificationService.onGenericExecution();
-		if (result.successful) {
+		if (await this.authentificationService.onGenericExecution()) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			await this.router.navigate([this.route.snapshot.queryParams["returnUrl"] || "/main/me"]);
 			this.authentificationService.resetAccountForm();

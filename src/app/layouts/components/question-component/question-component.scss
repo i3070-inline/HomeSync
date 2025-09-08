@@ -1,0 +1,51 @@
+@use "mixins" as *;
+@use "placeholders" as *;
+.question {
+	display: grid;
+	gap: var(--standart-padding);
+	grid-auto-flow: row;
+	grid-template-areas: "header" "question" "footer";
+	grid-template-rows: max-content 1fr max-content;
+	overflow: hidden;
+	position: relative;
+	@include blur-effect();
+	width: clamp(15rem, 20rem, 80dvw);
+}
+.question__header {
+	align-items: center;
+	display: grid;
+	grid-area: header;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr max-content;
+	padding: var(--small-element-padding);
+}
+.question__title {
+	justify-self: left;
+}
+.question__close {
+	@extend %neo-btn;
+	padding: 0;
+}
+.question__icon {
+	@extend %icon-medium-base;
+}
+.question__content {
+	@extend %scrollbars;
+	text-wrap: wrap;
+	max-height: 20rem;
+	white-space: normal;
+	padding: var(--standart-padding);
+	overflow: auto;
+	grid-area: question;
+	place-self: center;
+}
+.question__footer {
+	grid-area: footer;
+	padding: var(--standart-padding);
+	display: flex;
+	justify-content: space-evenly;
+}
+.question__button {
+	@extend %neo-btn;
+	min-width: 4rem;
+}

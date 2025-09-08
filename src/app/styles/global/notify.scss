@@ -51,6 +51,7 @@
 	place-self: center;
 	position: relative;
 	@extend %neo-btn;
+	width: 2.5rem;
 }
 .notyf__dismiss-btn::after {
 	aspect-ratio: 1/1;

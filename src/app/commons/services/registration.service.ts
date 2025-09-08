@@ -30,23 +30,18 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 			return form;
 		})()
 	);
-	protected override async onParticularExecution(): Promise<{
-		successful: boolean;
-		data?: Record<string, unknown>;
-	}> {
+	protected override async onParticularExecution(): Promise<boolean> {
 		try {
 			const user = {
 				"email": this.accountForm().value.email,
 				"username": this.accountForm().value.email,
 				"password": this.accountForm().value.password
 			};
-			await firstValueFrom(this.http.post<{
-				message: string
-			}>(restEndpoints.user.register, user, {context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}));
-			return {successful: true};
+			await firstValueFrom(this.http.post(restEndpoints.user.register, user, {context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}));
+			return true;
 		}
 		catch (error) {
-			return {successful: false};
+			return false;
 		}
 	}
 	//endregion

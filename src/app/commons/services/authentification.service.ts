@@ -19,6 +19,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	private _accessToken = signal<string | null>(null);
 	public currentUser = computed(() => this._currentUser());
 	public accessToken = computed(() => this._accessToken());
+	public isRequestedLogout = signal(false);
 	//endregion
 	//region Methods
 	public setToken(token: string): void {
@@ -35,14 +36,14 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 			const user = await firstValueFrom(this.http.get<IUserModel>(restEndpoints.user.me));
 			this._currentUser.set({
 				...user,
-				imageUrl : user.imageUrl ?? "alex"
+				imageUrl: user.imageUrl ?? "alex"
 			});
 		}
 		catch {
 			this._currentUser.set(null);
 		}
 	}
-	public async logout(): Promise<{ successful: boolean }> {
+	public async logout(): Promise<boolean> {
 		try {
 			await firstValueFrom(this.http.post(restEndpoints.user.logout, {}, {
 				withCredentials: true,
@@ -53,19 +54,16 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 		}
 		catch (error) {
 			console.error("Logout failed:", error);
-			return {successful: false};
+			return false;
 		}
-		return {successful: true};
+		return true;
 	}
 	//endregion
 	//region Overrides
 	public override get name(): Signal<string> {
 		return signal("authentification");
 	}
-	protected override async onParticularExecution(): Promise<{
-		successful: boolean;
-		data?: Record<string, unknown>;
-	}> {
+	protected override async onParticularExecution(): Promise<boolean> {
 		try {
 			const loginResult = await firstValueFrom(
 				this.http.post<{
@@ -78,9 +76,9 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 		}
 		catch (error) {
 			console.error("Authentication failed:", error);
-			return {successful: false};
+			return false;
 		}
-		return {successful: true};
+		return true;
 	}
 	public override accountForm = signal<FormGroup<controlsOf<ILoginModel>>>(
 		new FormGroup<controlsOf<ILoginModel>>({

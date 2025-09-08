@@ -27,7 +27,7 @@
         "SYSTEM": "System Mode"
       }
     },
-    "COPYRIGHT" : "All rights reserved"
+    "COPYRIGHT": "All rights reserved"
   },
   "USER_INFO": {
     "ID": "Identification number",
@@ -129,6 +129,21 @@
     },
     "TIMER": "Automatic redirection in {{time}} seconds"
   },
+  "MAIN_PAGE": {
+    "NAVIGATION": {
+      "TITLE": "Menu",
+      "HOME": "Home",
+      "LOGOUT": "Logout"
+    }
+  },
+  "QUESTION_COMPONENT": {
+    "LOGOUT": {
+      "TITLE": "Logout",
+      "QUESTION": "Are you sure you want to log out ?"
+    },
+    "ACTION_YES": "Yes",
+    "ACTION_NO": "No"
+  },
   "VALIDATORS": {
     "REQUIRED": "This field is required",
     "MIN_LENGTH": "At least {{requiredLength}} characters",
@@ -146,6 +161,9 @@
     "FORGOT": {
       "START": "Password reset in progress...",
       "EMAIL_VERIFICATION": "Please check your email for the reset link"
+    },
+    "LOGOUT": {
+      "START": "Logging out..."
     },
     "SUCCESS": "Operation successfully completed",
     "FAILURE": "Operation failed"

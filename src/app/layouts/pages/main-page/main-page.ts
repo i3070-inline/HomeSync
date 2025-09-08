@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from "@angular/core";
 import {TemplateComponent} from "@components/template-component/template-component";
-import {RouterLink} from "@angular/router";
+import {RouterOutlet} from "@angular/router";
 import {AuthentificationService} from "@services/authentification.service";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
@@ -15,8 +15,7 @@ import {LangHelper} from "@utils/lang-helper";
 	selector: "app-main-page",
 	standalone: true,
 	imports: [TemplateComponent,
-		RouterLink,
-		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, NavigationComponent],
+		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, NavigationComponent, RouterOutlet],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,
@@ -28,10 +27,4 @@ export class MainPage {
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly authService = inject(AuthentificationService);
 	//endregion
-	public async deleteToken() {
-		await this.authService.logout();
-	}
-	public async getdata() {
-		await this.authService.loadCurrentUser();
-	}
 }

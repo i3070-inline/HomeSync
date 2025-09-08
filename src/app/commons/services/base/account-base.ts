@@ -21,18 +21,12 @@ export abstract class AccountBase<T extends object> {
 	public setStateAccountForm(disabled: boolean): void {
 		disabled ? this.accountForm().disable() : this.accountForm().enable();
 	}
-	public async onGenericExecution<T extends Record<string, unknown>>(): Promise<{
-		successful: boolean;
-		data?: T;
-	}> {
+	public async onGenericExecution<T extends Record<string, unknown>>(): Promise<boolean> {
 		this.isExecuting.set(true);
 		const result = await this.onParticularExecution();
 		this.isExecuting.set(false);
-		return result as { successful: boolean; data?: T };
+		return result;
 	}
-	protected abstract onParticularExecution(): Promise<{
-		successful: boolean;
-		data?: Record<string, unknown>;
-	}>;
+	protected abstract onParticularExecution(): Promise<boolean>;
 	//endregion
 }

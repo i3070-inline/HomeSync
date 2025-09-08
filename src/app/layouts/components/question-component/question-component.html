@@ -1,0 +1,24 @@
+<div class="question">
+	<header class="question__header">
+		<h3 class="question__title">{{data()?.title | transloco}}</h3>
+		<button (click)="onClose()"
+		        class="question__close">
+			<svg class="question__icon">
+				<use [attr.href]="uiService.buildIconSvgPath('user-close-icon')"></use>
+			</svg>
+		</button>
+	</header>
+	<span class="question__content">
+		{{data()?.question| transloco}}
+	</span>
+	<div class="question__footer">
+		<button (click)="onClose(true)"
+		        class="question__button">
+			{{langHelper.questionAction("ACTION_YES") | transloco}}
+		</button>
+		<button (click)="onClose()"
+		        class="question__button">
+			{{langHelper.questionAction("ACTION_NO") | transloco}}
+		</button>
+	</div>
+</div>

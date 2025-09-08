@@ -33,8 +33,7 @@ export class RegisterComponent {
 			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("SIGN_UP", "START")),
 			0,
 			false);
-		const result = await this.registerService.onGenericExecution();
-		if (result.successful) {
+		if (await this.registerService.onGenericExecution()) {
 			this.uiService.notifyHandler.closeNotification(awaitNotify);
 			this.registerService.resetAccountForm();
 			this.uiService.notifyHandler.showNotification(
