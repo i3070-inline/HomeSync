@@ -52,6 +52,9 @@
       "@pages/*": [
         "app/layouts/pages/*"
       ],
+      "@main-sub-pages/*": [
+        "app/layouts/pages/main-page/sub-pages/*"
+      ],
       "@interceptors/*": [
         "app/commons/interceptors/*"
       ],
@@ -64,8 +67,12 @@
       "@beforeApp/*": [
         "../*"
       ],
-      "@swiper-angular": ["../node_modules/swiper/angular"],
-      "@swiper-base" : ["../node_modules/swiper"]
+      "@swiper-angular": [
+        "../node_modules/swiper/angular"
+      ],
+      "@swiper-base": [
+        "../node_modules/swiper"
+      ]
     }
   },
   "angularCompilerOptions": {

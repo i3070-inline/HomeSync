@@ -1,5 +1,7 @@
 <div [class.isOpen]="isOpen()"
      class="drawer-container"
+     [style.max-height]="maxHeight()"
+     [style.max-width]="maxWidth()"
      [style.padding]="paddingContainer()">
 	<div class="header-wrapper"
 	     [style.padding]="paddingHeader()">
@@ -19,9 +21,7 @@
 			</div>
 		</button>
 	</div>
-	<div [style.max-height]="maxHeight()"
-	     [style.max-width]="maxWidth()"
-	     [style.overflow-y]="overflowY()"
+	<div [style.overflow-y]="overflowY()"
 	     class="drawer-content">
 		<ng-content></ng-content>
 	</div>

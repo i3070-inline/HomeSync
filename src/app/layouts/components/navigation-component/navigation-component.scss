@@ -10,7 +10,7 @@
 }
 %content {
 	display: grid;
-	gap: 0.5rem;
+	gap: var(--standart-padding);
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
@@ -21,11 +21,13 @@
 	animation-timeline: scroll(self);
 	place-content: start stretch;
 	overflow-x: hidden;
+	scroll-snap-type: y mandatory;
 	overflow-y: auto;
 	grid-row: 1/2;
 }
 .content-item {
 	@extend %navigation-link;
+	scroll-snap-align: start;
 	display: grid;
 	align-items: center;
 	margin-left: var(--standart-padding);

@@ -22,7 +22,13 @@ export const routes: Routes = [
 				path: "main/me",
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
 				canActivate: [authGuard],
-				runGuardsAndResolvers: "always"
+				runGuardsAndResolvers: "always",
+				children: [
+					{
+						path: "settings",
+						loadComponent: () => import("@main-sub-pages/settings-page/settings-page").then(value => value.SettingsPage)
+					}
+				]
 			},
 			{
 				path: "email-confirmation",

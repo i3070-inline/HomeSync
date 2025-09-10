@@ -9,16 +9,36 @@
 	<div class="navigation-content"
 	     [class.isOpen]="isOpen()">
 		<div class="top-content">
-			<a class="content-item"
-			   [routerLink]="['/main/me']"
-			   [routerLinkActive]="['active']">
-				<svg class="content-item__icon">
-					<use [attr.href]="uiService.buildIconSvgPath('home-icon')"></use>
-				</svg>
-				<span class="content-item__text">{{langHelper.mainPageNavigation("HOME") | transloco}}</span>
-			</a>
+			@for (item of navigationTopItems(); track item.link) {
+				@if (!item.isHidden) {
+					<a class="content-item"
+					   [class.disabled]="item.isDisabled"
+					   [routerLink]="item.link"
+					   [routerLinkActiveOptions]="{ exact: true }"
+					   [routerLinkActive]="['active']">
+						<svg class="content-item__icon">
+							<use [attr.href]="item.iconPath"></use>
+						</svg>
+						<span class="content-item__text">{{item.text | transloco}}</span>
+					</a>
+				}
+			}
 		</div>
 		<div class="bottom-content">
+			@for (item of otherBottomItems(); track item.link) {
+				@if (!item.isHidden) {
+					<a class="content-item"
+					   [class.disabled]="item.isDisabled"
+					   [routerLink]="item.link"
+					   [routerLinkActiveOptions]="{ exact: true }"
+					   [routerLinkActive]="['active']">
+						<svg class="content-item__icon">
+							<use [attr.href]="item.iconPath"></use>
+						</svg>
+						<span class="content-item__text">{{item.text | transloco}}</span>
+					</a>
+				}
+			}
 			<button type="button"
 			        (click)="onLogout()"
 			        class="button-logout">

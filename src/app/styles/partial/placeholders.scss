@@ -23,6 +23,7 @@
 %scrollbars {
 	scrollbar-color: var(--text-muted-color) transparent;
 	scrollbar-width: thin;
+	scroll-behavior: smooth
 }
 %icon-base {
 	height: 2.5rem;
@@ -88,8 +89,11 @@
 	@include apply-shadow-on-action();
 	padding: 0.25rem;
 	text-decoration: none;
-	&.active {
+	&:not(.disabled).active {
 		color: var(--primary-color);
+	}
+	&.disabled {
+		@extend %disabled;
 	}
 }
 %hyperlink {

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, model, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, inject, model, signal, ViewEncapsulation} from "@angular/core";
 import {DrawerElement} from "@elements/drawer-element/drawer-element";
 import {LangHelper} from "@utils/lang-helper";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
@@ -8,6 +8,7 @@ import {AuthentificationService} from "@services/authentification.service";
 import {QuestionComponent} from "@components/question-component/question-component";
 import {IQuestionModel} from "@interfaces/question-model.interface";
 import {firstValueFrom} from "rxjs";
+import {INavigationModel} from "@interfaces/navigation-model.interface";
 
 @Component({
 	selector: "app-navigation-component",
@@ -29,6 +30,18 @@ export class NavigationComponent {
 	protected readonly router = inject(Router);
 	protected readonly authService = inject(AuthentificationService);
 	protected readonly uiService = inject(UiFacadeService);
+	protected readonly navigationTopItems = signal<INavigationModel[]>([
+		{
+			link: "/main/me",
+			text: this.langHelper.mainPageNavigation("HOME"),
+			iconPath: this.uiService.buildIconSvgPath("home-icon")
+		}]);
+	protected readonly otherBottomItems = signal<INavigationModel[]>([
+		{
+			link: "settings",
+			text: this.langHelper.mainPageNavigation("HOME"),
+			iconPath: this.uiService.buildIconSvgPath("user-settings-icon")
+		}]);
 	public isOpen = model<boolean>(false);
 	//endregion
 	//region Methods
