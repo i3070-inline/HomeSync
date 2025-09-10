@@ -134,6 +134,10 @@
       "TITLE": "Меню",
       "HOME": "Главная",
       "LOGOUT": "Выйти"
+    },
+    "UTILITIES": {
+      "TITLE": "Утилиты",
+      "NOTIFICATIONS": "Уведомления"
     }
   },
   "QUESTION_COMPONENT": {

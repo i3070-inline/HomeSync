@@ -82,18 +82,10 @@
 		<main class="main-content">
 			<router-outlet></router-outlet>
 		</main>
-		<app-drawer-element [maxHeight]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' +
-		template.footerHeight() + 'rem - (var(--standart-padding) * 5))'"
-		                    class="main-sidebar"
-		                    [buttonAlign]="'start'">
-			<button type="button"
-			        class="button-logout">
-				<svg class="content-item__icon">
-					<use [attr.href]="uiService.buildIconSvgPath('logout-icon')"></use>
-				</svg>
-				<span class="content-item__text">{{langHelper.mainPageNavigation("LOGOUT") | transloco}}</span>
-			</button>
-		</app-drawer-element>
+		<app-utility-component [style.max-height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' +
+		template.footerHeight() + 'rem - (var(--standart-padding) * 5))'">
+			class="main-sidebar">
+		</app-utility-component>
 	</div>
 </app-template-component>
 

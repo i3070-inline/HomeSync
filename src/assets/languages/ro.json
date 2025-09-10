@@ -134,6 +134,10 @@
       "TITLE": "Meniu",
       "HOME": "Acasă",
       "LOGOUT": "Ieșire"
+    },
+    "UTILITIES": {
+      "TITLE": "Utilități",
+      "NOTIFICATIONS": "Notificări"
     }
   },
   "QUESTION_COMPONENT": {

@@ -1,0 +1,4 @@
+@if (count(); as count) {
+	<p class="count-element"
+	   [ngClass]="position()">{{count > maxDisplayCount() ? `${maxDisplayCount()}+` : count}}</p>
+}

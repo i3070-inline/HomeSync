@@ -54,6 +54,9 @@ export class LangHelper {
 	static mainPageNavigation(part: "TITLE" | "HOME" | "LOGOUT"): string {
 		return `MAIN_PAGE.NAVIGATION.${part}`;
 	}
+	static mainPageUtilities(part: "TITLE" | "NOTIFICATIONS"): string {
+		return `MAIN_PAGE.UTILITIES.${part}`;
+	}
 	//endregion
 	//region ERROR_PAGE
 	static errorCode(

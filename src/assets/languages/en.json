@@ -134,6 +134,10 @@
       "TITLE": "Menu",
       "HOME": "Home",
       "LOGOUT": "Logout"
+    },
+    "UTILITIES": {
+      "TITLE": "Utilities",
+      "NOTIFICATIONS" : "Notifications"
     }
   },
   "QUESTION_COMPONENT": {
