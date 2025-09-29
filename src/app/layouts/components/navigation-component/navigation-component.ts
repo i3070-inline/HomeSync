@@ -36,7 +36,7 @@ export class NavigationComponent {
 		{
 			link: "/main/me",
 			text: this.langHelper.mainPageNavigation("HOME"),
-			iconPath: this.uiService.buildIconSvgPath("home-icon")
+			iconPath: this.uiService.buildIconSvgPath("home-icon"),
 		}]);
 	protected readonly otherBottomItems = signal<INavigationModel[]>([
 		{

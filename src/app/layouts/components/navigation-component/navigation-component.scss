@@ -11,12 +11,13 @@
 %content {
 	display: grid;
 	gap: var(--standart-padding);
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
 }
 .top-content {
 	@extend %scrollbars;
 	@extend %content;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	scroll-padding-top: 0.25rem;
 	animation: detect-navigation-scroll linear;
 	animation-timeline: scroll(self);
 	place-content: start stretch;
@@ -59,6 +60,8 @@
 .bottom-content {
 	@extend %content;
 	grid-row: 2/3;
+	padding-bottom: 0.25rem;
+	padding-top: 0.5rem;
 }
 .button-logout {
 	@extend %neo-btn;
