@@ -1,13 +1,10 @@
 <div [class.isOpen]="isOpen()"
      class="drawer-container"
      [style.max-height]="maxHeight()"
-     [style.max-width]="maxWidth()"
-     [style.padding]="paddingContainer()">
-	<div class="header-wrapper"
-	     [style.padding]="paddingHeader()">
+     [style.max-width]="maxWidth()">
+	<div class="header-wrapper">
 		@if (title()) {
 			<span class="drawer-title"
-			      [style.padding]="paddingHeader()"
 			      [ngClass]="buttonAlign()">{{title() | transloco}}</span>
 		}
 		<button (click)="isOpen.set(!isOpen())"

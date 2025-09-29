@@ -13,6 +13,7 @@
 	</span>
 	<div class="question__footer">
 		<button (click)="onClose(true)"
+		        cdkFocusInitial
 		        class="question__button">
 			{{langHelper.questionAction("ACTION_YES") | transloco}}
 		</button>

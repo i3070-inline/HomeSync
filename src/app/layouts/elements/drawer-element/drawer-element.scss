@@ -11,6 +11,7 @@
 	position: relative;
 	row-gap: var(--standart-padding);
 	width: 4.5rem;
+	padding: 1rem 0 1rem 0;
 	@include blur-effect();
 	@include transition-builder($transition-base, $transition-shadow, $transition-size);
 	transition-duration: var(--transition-duration);
@@ -20,30 +21,31 @@
 }
 .header-wrapper {
 	display: grid;
+	padding: 0 1rem 0 1rem;
 	position: relative;
 }
 .drawer-title {
 	position: absolute;
 	top: 50%;
-	width: 70%;
-	transform: translateY(-50%);
+	transform: translateY(-50%) scaleX(1);
 	font-size: 1.2rem;
 	font-weight: 600;
-	opacity: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	.drawer-container.isOpen & {
-		animation: opacity-with-delay 0s forwards;
-		animation-delay: calc(var(--transition-duration) - 0.1s);
+	width: calc(100% - 5rem);
+	.drawer-container:not(.isOpen) & {
+		transform: translateY(-50%) scaleX(0);
 	}
 	&.start {
 		transform-origin: right;
-		right: 0;
+		right: 1rem;
+		text-align: end;
 	}
 	&.end {
 		transform-origin: left;
-		left: 0;
+		left: 1rem;
+		text-align: start;
 	}
 }
 .hamburg-button {
@@ -55,7 +57,6 @@
 	padding: 0.25rem;
 }
 .toggle {
-	@include transition-builder($transition-base, $transition-transform);
 	align-items: center;
 	display: flex;
 	flex-direction: column;
@@ -71,7 +72,6 @@
 	}
 }
 %bars {
-	@include transition-builder($transition-base, $transition-transform);
 	background-color: var(--text-main-color);
 	border-radius: var(--border-radius);
 	height: 0.2rem;

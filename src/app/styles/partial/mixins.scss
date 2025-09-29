@@ -7,24 +7,13 @@ $transition-base: (
 		color,
 		opacity,
 		border,
-	//text-decoration,
+		transform //text-decoration,
 	//font-size,
 	//font-weight,
 );
 $transition-shadow: (
 		text-shadow,
 		box-shadow,
-);
-$transition-transform: (
-		transform,
-		scale,
-		rotate,
-		skew,
-		perspective,
-		translate,
-		translateX,
-		translateY,
-		translateZ,
 );
 $transition-position: (
 		top,
@@ -125,6 +114,9 @@ $transition-spacing: (
 	@if $isUsingFocusVisibleAnimation {
 		&:focus-visible {
 			animation: shake var(--medium-transition-duration) var(--transition-shake-style) both infinite;
+			::ng-deep html[anim="reduce"] & {
+				outline: 1px solid var(--primary-color);
+			}
 		}
 	}
 	@if $isUsingActive {

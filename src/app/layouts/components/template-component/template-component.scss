@@ -45,7 +45,8 @@
 }
 .background__header-content {
 	display: flex;
-	flex-direction: row-reverse;
+	justify-content: flex-end;
+	flex-direction: row;
 	grid-area: content;
 	position: relative;
 }
@@ -98,14 +99,14 @@
 	right: var(--standart-padding);
 	top: calc(var(--header-height) + var(--standart-padding));
 	span {
-		rotate: 90deg;
+		transform: rotate(90deg);
 	}
 }
 .background__scroll-button--bottom {
 	@extend %scroll-button;
 	right: var(--standart-padding);
 	span {
-		rotate: -90deg;
+		transform: rotate(-90deg);
 	}
 }
 .background__content {
@@ -139,15 +140,15 @@
 	padding: 0 var(--standart-padding);
 	pointer-events: none;
 	position: absolute;
-	rotate: 180deg;
+	transform: rotate(180deg);
 	width: 100%;
 	z-index: 2;
 }
 .background__footer-copyright {
 	align-self: center;
 	font-weight: 400;
+	transform: rotate(-180deg);
 	grid-area: copyright;
-	rotate: -180deg;
 	user-select: none;
 }
 .background__footer-media {
@@ -157,7 +158,7 @@
 	grid-auto-flow: column;
 	grid-column-gap: 1rem;
 	justify-content: end;
-	rotate: -180deg;
+	transform: rotate(-180deg);
 }
 .background__footer-link-icon {
 	@extend %icon-base;

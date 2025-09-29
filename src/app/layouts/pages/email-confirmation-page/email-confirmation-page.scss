@@ -22,7 +22,7 @@
 .email-confirm__icon {
 	@extend %icon-base;
 	margin: var(--standart-padding) auto;
-	scale: 2;
+	transform: scale(2);
 }
 .email-confirm__description {
 	max-width: 40ch;

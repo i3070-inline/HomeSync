@@ -25,7 +25,5 @@ export class DrawerElement {
 	public isOpen = model<boolean>(false);
 	public overflowY = input<"auto" | "hidden" | "scroll" | "visible">("auto");
 	public title = input<string>("");
-	public paddingContainer = input<string>("1rem 1rem 1rem 1rem ");
-	public paddingHeader = input<string>("0 0 0 0");
 	//endregion
 }

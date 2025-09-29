@@ -42,18 +42,18 @@
 }
 .content-item__text {
 	@include transition-builder($transition-base, $transition-size, $transition-spacing);
-	display: grid;
+	display: block;
 	font-size: 1.1rem;
 	font-weight: 600;
-	position: relative;
 	overflow: hidden;
-	min-width: 7rem;
-	margin: 0 0.5rem 0 0.5rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	transform-origin: left;
+	padding: 0 0.5rem 0 0.5rem;
 	text-align: start;
 	.navigation-content:not(.isOpen) & {
-		width: 0;
-		margin: 0;
-		min-width: 0;
+		transform: scaleX(0);
+		padding: 0;
 	}
 }
 .bottom-content {

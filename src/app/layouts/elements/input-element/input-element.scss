@@ -43,7 +43,7 @@
 	@extend %small-icon-dimensions;
 }
 .input__placeholder {
-	@include transition-builder($transition-base, $transition-position, $transition-transform);
+	@include transition-builder($transition-base, $transition-position);
 	align-items: center;
 	display: grid;
 	font-style: italic;

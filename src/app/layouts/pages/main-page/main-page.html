@@ -1,79 +1,88 @@
 <app-template-component #template>
-	<button #trigger="appOverlayDropdownClickExport"
-	        appOverlayDropdownClick
-	        aria-label="Settings"
-	        class="user-button"
-	        header-content
-	        type="button">
-		@if (authService.currentUser()?.imageUrl; as imageUrl) {
-			<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
-			     priority="true"
-			     width="10"
-			     height="10"
-			     class="user-small-icon"
-			     alt="User image">
-		} @else {
-			<svg class="user-small-icon">
-				<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
-				</use>
-			</svg>
-		}
-		@if (trigger.overlayContainerService.isOpened()) {
-			<app-overlay-container-element [hasContainerBackground]="false"
-			                               [minWidth]="'25rem'"
-			                               [minHeight]="'15rem'"
-			                               [maxWidth]="'min(35rem, 80dvw)'"
-			                               [maxHeight]="'min(25rem, 80dvh)'"
-			                               [positions]="[{ originX: 'end',
+	<div class="header-buttons-container"
+	     header-content>
+		<button #trigger="appOverlayDropdownClickExport"
+		        appOverlayDropdownClick
+		        class="header-buttons"
+		        type="button">
+			@if (authService.currentUser()?.imageUrl; as imageUrl) {
+				<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
+				     priority="true"
+				     width="10"
+				     height="10"
+				     class="header-small-icon"
+				     alt="User image">
+			} @else {
+				<svg class="header-small-icon">
+					<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+					</use>
+				</svg>
+			}
+			@if (trigger.overlayContainerService.isOpened()) {
+				<app-overlay-container-element [hasContainerBackground]="false"
+				                               [minWidth]="'25rem'"
+				                               [minHeight]="'15rem'"
+				                               [maxWidth]="'min(35rem, 80dvw)'"
+				                               [maxHeight]="'min(25rem, 80dvh)'"
+				                               [positions]="[{ originX: 'end',
 				                               originY: 'bottom',
 				                               overlayX: 'end',
 				                               overlayY: 'top',
 				                               offsetY: 5}]">
-				<div class="user-container">
-					@if (authService.currentUser()?.imageUrl; as imageUrl) {
-						<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
-						     priority="true"
-						     width="10"
-						     height="10"
-						     class="user-big-icon"
-						     alt="User image">
-					} @else {
-						<svg class="user-big-icon">
-							<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
-							</use>
-						</svg>
-					}
-					<div class="user-container__id">
-						<svg class="user-container-icon">
-							<use [attr.href]="uiService.buildIconSvgPath('badge-icon')">
-							</use>
-						</svg>
-						<span
-								class="user-container-text">{{langHelper.userInfo("ID") | transloco}}</span>
-						<span class="user-container-value">{{authService.currentUser()?.id}}</span>
+					<div class="user-container">
+						@if (authService.currentUser()?.imageUrl; as imageUrl) {
+							<img [ngSrc]="uiService.buildImagePath(imageUrl , 'jpg')"
+							     priority="true"
+							     width="10"
+							     height="10"
+							     class="user-big-icon"
+							     alt="User image">
+						} @else {
+							<svg class="user-big-icon">
+								<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+								</use>
+							</svg>
+						}
+						<div class="user-container__id">
+							<svg class="user-container-icon">
+								<use [attr.href]="uiService.buildIconSvgPath('badge-icon')">
+								</use>
+							</svg>
+							<span
+									class="user-container-text">{{langHelper.userInfo("ID") | transloco}}</span>
+							<span class="user-container-value">{{authService.currentUser()?.id}}</span>
+						</div>
+						<div class="user-container__username">
+							<svg class="user-container-icon">
+								<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
+								</use>
+							</svg>
+							<span
+									class="user-container-text">{{langHelper.userInfo("USERNAME") | transloco}}</span>
+							<span class="user-container-value">{{authService.currentUser()?.username}}</span>
+						</div>
+						<div class="user-container__role">
+							<svg class="user-container-icon">
+								<use [attr.href]="uiService.buildIconSvgPath('user-shield-icon')">
+								</use>
+							</svg>
+							<span
+									class="user-container-text">{{langHelper.userInfo("ROLE") | transloco}}</span>
+							<span class="user-container-value">{{authService.currentUser()?.role}}</span>
+						</div>
 					</div>
-					<div class="user-container__username">
-						<svg class="user-container-icon">
-							<use [attr.href]="uiService.buildIconSvgPath('user-icon')">
-							</use>
-						</svg>
-						<span
-								class="user-container-text">{{langHelper.userInfo("USERNAME") | transloco}}</span>
-						<span class="user-container-value">{{authService.currentUser()?.username}}</span>
-					</div>
-					<div class="user-container__role">
-						<svg class="user-container-icon">
-							<use [attr.href]="uiService.buildIconSvgPath('user-shield-icon')">
-							</use>
-						</svg>
-						<span
-								class="user-container-text">{{langHelper.userInfo("ROLE") | transloco}}</span>
-						<span class="user-container-value">{{authService.currentUser()?.role}}</span>
-					</div>
-				</div>
-			</app-overlay-container-element>
-		}
-	</button>
+				</app-overlay-container-element>
+			}
+		</button>
+		<button type="button"
+		        class="header-buttons">
+			<app-notification-element [count]="82"
+			                          [position]="'top-right'"></app-notification-element>
+			<svg class="header-small-icon">
+				<use [attr.href]="uiService.buildIconSvgPath('notification-icon')"></use>
+			</svg>
+		</button>
+	</div>
 	<div class="main-container">
 		<app-navigation-component [style.height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' +
 		template.footerHeight() +'rem - (var(--standart-padding) * 2))'"
@@ -82,10 +91,6 @@
 		<main class="main-content">
 			<router-outlet></router-outlet>
 		</main>
-		<app-utility-component [style.max-height]="'calc(100dvh - ' + template.headerHeight() + 'rem - ' +
-		template.footerHeight() + 'rem - (var(--standart-padding) * 5))'">
-			class="main-sidebar">
-		</app-utility-component>
 	</div>
 </app-template-component>
 

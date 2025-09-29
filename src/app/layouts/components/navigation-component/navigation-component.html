@@ -1,8 +1,6 @@
 <app-drawer-element [isOpen]="isOpen()"
                     (isOpenChange)="isOpen.set($event)"
                     [overflowY]="'hidden'"
-                    [paddingContainer]="'1rem 0 1rem 0'"
-                    [paddingHeader]="'0 1rem 0 1rem'"
                     [title]="langHelper.mainPageNavigation('TITLE')"
                     buttonAlign="end"
                     class="navigation-container">
@@ -19,7 +17,11 @@
 						<svg class="content-item__icon">
 							<use [attr.href]="item.iconPath"></use>
 						</svg>
-						<span class="content-item__text">{{item.text | transloco}}</span>
+						<span class="content-item__text"
+						      [style.min-width]=" isOpen() ? minWidthOpenMenu() : 0"
+						      [style.max-width]="maxWidthOpenMenu()">{{
+								item.text |transloco
+							}}</span>
 					</a>
 				}
 			}
@@ -35,7 +37,9 @@
 						<svg class="content-item__icon">
 							<use [attr.href]="item.iconPath"></use>
 						</svg>
-						<span class="content-item__text">{{item.text | transloco}}</span>
+						<span class="content-item__text"
+						      [style.min-width]=" isOpen() ? minWidthOpenMenu() : 0"
+						      [style.max-width]="maxWidthOpenMenu()">{{item.text | transloco}}</span>
 					</a>
 				}
 			}
@@ -45,7 +49,9 @@
 				<svg class="content-item__icon">
 					<use [attr.href]="uiService.buildIconSvgPath('logout-icon')"></use>
 				</svg>
-				<span class="content-item__text">{{langHelper.mainPageNavigation("LOGOUT") | transloco}}</span>
+				<span class="content-item__text"
+				      [style.min-width]=" isOpen() ? minWidthOpenMenu() : 0"
+				      [style.max-width]="maxWidthOpenMenu()">{{langHelper.mainPageNavigation("LOGOUT") | transloco}}</span>
 			</button>
 		</div>
 	</div>

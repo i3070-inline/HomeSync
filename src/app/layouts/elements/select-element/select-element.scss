@@ -48,7 +48,6 @@
 	@extend %small-icon-dimensions;
 }
 .select-container__item-arrow {
-	@include transition-builder($transition-base, $transition-transform);
 	align-self: center;
 	transform: rotate(270deg);
 	transform-origin: center center;
@@ -57,7 +56,7 @@
 	}
 }
 .select-container__placeholder {
-	@include transition-builder($transition-base, $transition-position, $transition-transform);
+	@include transition-builder($transition-base, $transition-position);
 	align-items: center;
 	display: grid;
 	font-style: italic;

@@ -10,14 +10,13 @@ import {TranslocoPipe} from "@ngneat/transloco";
 import {FormsModule} from "@angular/forms";
 import {NavigationComponent} from "@components/navigation-component/navigation-component";
 import {LangHelper} from "@utils/lang-helper";
-import {DrawerElement} from "@elements/drawer-element/drawer-element";
-import {UtilityComponent} from "@components/utility-component/utility-component";
+import {NotificationElement} from "@elements/notification-element/notification-element";
 
 @Component({
 	selector: "app-main-page",
 	standalone: true,
 	imports: [TemplateComponent,
-		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, NavigationComponent, RouterOutlet, DrawerElement, UtilityComponent],
+		OverlayContainerElement, OverlayDropdownClickDirective, NgOptimizedImage, TranslocoPipe, FormsModule, NavigationComponent, RouterOutlet, NotificationElement],
 	templateUrl: "./main-page.html",
 	styleUrl: "./main-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,

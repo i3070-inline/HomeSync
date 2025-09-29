@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, model, signal, ViewEncapsulation} from "@angular/core";
+import {ChangeDetectionStrategy, Component, inject, input, model, signal, ViewEncapsulation} from "@angular/core";
 import {DrawerElement} from "@elements/drawer-element/drawer-element";
 import {LangHelper} from "@utils/lang-helper";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
@@ -7,7 +7,7 @@ import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthentificationService} from "@services/authentification.service";
 import {QuestionComponent} from "@components/question-component/question-component";
 import {IQuestionModel} from "@interfaces/question-model.interface";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, min} from "rxjs";
 import {INavigationModel} from "@interfaces/navigation-model.interface";
 
 @Component({
@@ -30,6 +30,8 @@ export class NavigationComponent {
 	protected readonly router = inject(Router);
 	protected readonly authService = inject(AuthentificationService);
 	protected readonly uiService = inject(UiFacadeService);
+	public minWidthOpenMenu = input<string>("7rem");
+	public maxWidthOpenMenu = input<string>("max-content");
 	protected readonly navigationTopItems = signal<INavigationModel[]>([
 		{
 			link: "/main/me",
