@@ -13,7 +13,6 @@ import {
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {IPlaceholderModel} from "@interfaces/placeholder-model.interface";
 import {buildIconSvgPath} from "@utils/path-icon-helper";
-import {BlurOnScrollDirective} from "@directives/blur-on-scroll.directive";
 import {TranslocoPipe} from "@ngneat/transloco";
 
 type typeInput = "text" | "password" | "email" | "search" | "tel" | "url"
@@ -47,7 +46,7 @@ export class InputElement implements ControlValueAccessor, OnInit {
 	public showFloatedPlaceholder = input<boolean>(true);
 	public isReadOnly = input<boolean>(false);
 	public autocomplete = input<"on" | "off">("off");
-	public inputErrorHint = input<string | null>(null);
+	public inputErrorHint = input<{ key: string; params?: Record<string, unknown> } | null>(null);
 	public focused = signal<boolean>(false);
 	public value = signal<string | null>(null);
 	public valueChange = output<string | null>();

@@ -16,10 +16,13 @@ export class ValidatorHandlerService {
 	};
 	//endregion
 	//region Methods
-	public getErrorMessage(control: AbstractControl): string {
-		if (!control.errors || !control.dirty) return "";
+	public getErrorMessage(control: AbstractControl): { key: string; params?: Record<string, unknown> } | null {
+		if (!control.errors || !control.dirty) return null;
 		const errorKey = Object.keys(control.errors)[0];
-		return this.errorMessages[errorKey] || "";
+		const params = control.errors[errorKey] || {};
+		const key = this.errorMessages[errorKey];
+		if (!key) return null;
+		return {key, params};
 	}
 	//endregion
 }

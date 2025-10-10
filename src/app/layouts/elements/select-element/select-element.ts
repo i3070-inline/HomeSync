@@ -48,7 +48,7 @@ export class SelectElement implements ControlValueAccessor {
 	public minHeight = input<string>("2.67rem");
 	public maxHeight = input<string>("none");
 	public width = input<string>("100%");
-	public errorHint = input<string | null>(null);
+	public errorHint = input<{ key: string; params?: Record<string, unknown> } | null>(null);
 	public height = input<string>("max-content");
 	public clearIconIsVisible = input<boolean>(false);
 	public selectedValue = model<ISelectItemModel | null>(null);
