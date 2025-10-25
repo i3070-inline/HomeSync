@@ -2,7 +2,7 @@
 @use "placeholders" as *;
 .email-confirm__container {
 	display: grid;
-	gap: calc(var(--standart-padding) * 2);
+	gap: calc(var(--standard-padding) * 2);
 	place-items: center;
 	place-self: center;
 }
@@ -21,7 +21,7 @@
 }
 .email-confirm__icon {
 	@extend %icon-base;
-	margin: var(--standart-padding) auto;
+	margin: var(--standard-padding) auto;
 	transform: scale(2);
 }
 .email-confirm__description {

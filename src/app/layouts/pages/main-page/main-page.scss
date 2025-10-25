@@ -12,7 +12,7 @@
 	align-self: center;
 	height: 2.5rem;
 	justify-self: center;
-	margin-right: var(--standart-padding);
+	margin-right: var(--standard-padding);
 	padding: 0.25rem;
 	place-items: center;
 	pointer-events: auto;
@@ -26,10 +26,10 @@
 }
 .user-container {
 	display: grid;
-	gap: calc(var(--standart-padding) * 2);
+	gap: calc(var(--standard-padding) * 2);
 	grid-template-columns: 1fr 2fr;
 	grid-template-rows: repeat(3, max-content);
-	padding-top: var(--standart-padding);
+	padding-top: var(--standard-padding);
 	position: relative;
 }
 .user-big-icon {
@@ -89,7 +89,7 @@
 	display: grid;
 	grid-template-areas: "nav main";
 	grid-template-columns: auto 1fr;
-	gap: var(--standart-padding);
+	gap: var(--standard-padding);
 }
 .main-navigation {
 	grid-area: nav;

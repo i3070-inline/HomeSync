@@ -17,7 +17,7 @@
 	grid-template-areas: "title content settings";
 	grid-template-columns: max-content 1fr max-content;
 	overflow: hidden;
-	padding: 0 var(--standart-padding);
+	padding: 0 var(--standard-padding);
 	pointer-events: none;
 	position: absolute;
 	top: 0;
@@ -76,10 +76,10 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	gap: calc(var(--standart-padding) * 2.5);
+	gap: calc(var(--standard-padding) * 2.5);
 	grid-area: tools;
 	justify-content: center;
-	padding-top: calc(var(--standart-padding) * 1.5);
+	padding-top: calc(var(--standard-padding) * 1.5);
 }
 %scroll-button {
 	@extend %neo-btn;
@@ -96,15 +96,15 @@
 }
 .background__scroll-button--top {
 	@extend %scroll-button;
-	right: var(--standart-padding);
-	top: calc(var(--header-height) + var(--standart-padding));
+	right: var(--standard-padding);
+	top: calc(var(--header-height) + var(--standard-padding));
 	span {
 		transform: rotate(90deg);
 	}
 }
 .background__scroll-button--bottom {
 	@extend %scroll-button;
-	right: var(--standart-padding);
+	right: var(--standard-padding);
 	span {
 		transform: rotate(-90deg);
 	}
@@ -125,8 +125,8 @@
 	overflow: auto;
 	-webkit-overflow-scrolling: auto;
 	overscroll-behavior: none;
-	padding: var(--standart-padding);
-	padding-right: var(--is-scroll-padding-template-comp, var(--standart-padding));
+	padding: var(--standard-padding);
+	padding-right: var(--is-scroll-padding-template-comp, var(--standard-padding));
 	pointer-events: auto;
 	position: relative;
 }
@@ -137,7 +137,7 @@
 	grid-template-areas: "links copyright";
 	grid-template-columns: 1fr max-content;
 	overflow: hidden;
-	padding: 0 var(--standart-padding);
+	padding: 0 var(--standard-padding);
 	pointer-events: none;
 	position: absolute;
 	transform: rotate(180deg);

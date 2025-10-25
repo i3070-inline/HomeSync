@@ -2,7 +2,7 @@
 @use "placeholders" as *;
 .not-found__container {
 	display: grid;
-	grid-gap: var(--standart-padding);
+	grid-gap: var(--standard-padding);
 	place-items: center;
 	place-self: center;
 }
@@ -23,8 +23,8 @@
 	word-wrap: break-word;
 }
 .not-found__link {
-	margin-bottom: var(--standart-padding);
-	margin-top: var(--standart-padding);
+	margin-bottom: var(--standard-padding);
+	margin-top: var(--standard-padding);
 	min-width: 10rem;
 	text-align: center;
 	@extend %neo-btn;

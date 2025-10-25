@@ -10,7 +10,7 @@
 }
 %content {
 	display: grid;
-	gap: var(--standart-padding);
+	gap: var(--standard-padding);
 }
 .top-content {
 	@extend %scrollbars;
@@ -31,8 +31,8 @@
 	scroll-snap-align: start;
 	display: grid;
 	align-items: center;
-	margin-left: var(--standart-padding);
-	margin-right: var(--is-scroll-margin-right-navigation-comp, var(--standart-padding));
+	margin-left: var(--standard-padding);
+	margin-right: var(--is-scroll-margin-right-navigation-comp, var(--standard-padding));
 	grid-template-columns: max-content 1fr;
 }
 .content-item__icon {
@@ -67,8 +67,8 @@
 	@extend %neo-btn;
 	padding: 0.25rem;
 	display: grid;
-	margin-left: var(--standart-padding);
-	margin-right: var(--standart-padding);
+	margin-left: var(--standard-padding);
+	margin-right: var(--standard-padding);
 	align-items: center;
 	grid-template-columns: max-content 1fr;
 }

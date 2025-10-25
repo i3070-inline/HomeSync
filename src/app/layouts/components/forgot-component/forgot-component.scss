@@ -2,7 +2,7 @@
 @use "mixins" as *;
 .forgot {
 	display: grid;
-	gap: calc(var(--standart-padding) * 2);
+	gap: calc(var(--standard-padding) * 2);
 	grid-auto-flow: row;
 	grid-template-areas: "header" "form";
 	grid-template-rows: max-content 1fr;
@@ -33,9 +33,9 @@
 	display: grid;
 	grid-area: form;
 	grid-auto-flow: row;
-	grid-gap: calc(var(--standart-padding) * 2);
+	grid-gap: calc(var(--standard-padding) * 2);
 	grid-template-rows: max-content max-content;
-	padding: var(--standart-padding);
+	padding: var(--standard-padding);
 }
 .forgot__input {
 	grid-row: 1/2;

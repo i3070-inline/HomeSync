@@ -57,7 +57,7 @@ export class OverlayContainerElement {
 	public hasContainerBlur = input<boolean>(true);
 	public hasBackDrop = input<boolean>(true);
 	public hasContainerBackground = input<boolean>(false);
-	public padding = input<string>((getCssVariablesValue(this.platformService, "standart-padding") ?? "0"));
+	public padding = input<string>((getCssVariablesValue(this.platformService, "standard-padding") ?? "0"));
 	public scrollStrategies = input<ScrollStrategy>(this.scrollStrategyOptions.close());
 	public positions = input<ConnectedPosition[]>([{
 		originX: "center",

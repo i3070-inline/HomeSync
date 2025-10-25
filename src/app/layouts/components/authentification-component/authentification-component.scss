@@ -4,8 +4,8 @@
 	align-items: center;
 	display: grid;
 	grid-template-rows: 1fr max-content max-content max-content 1fr max-content;
-	padding: calc(var(--standart-padding) * 2);
-	--margin-top-botton: calc(var(--standart-padding) * 1.7);
+	padding: calc(var(--standard-padding) * 2);
+	--margin-top-botton: calc(var(--standard-padding) * 1.7);
 }
 .login-text {
 	font-size: 2rem;
@@ -63,15 +63,15 @@
 .information-text {
 	font-size: 0.8rem;
 	font-weight: 400;
-	margin-left: calc(var(--standart-padding) / 2);
+	margin-left: calc(var(--standard-padding) / 2);
 	overflow-wrap: break-word;
 	white-space: normal;
 	word-break: break-word;
 }
 @include respond-to-multiple("tel", "mob") {
 	.form-login{
-		padding: calc(var(--standart-padding) * 1.5);
-		--margin-top-botton: calc(var(--standart-padding) * 1.4);
+		padding: calc(var(--standard-padding) * 1.5);
+		--margin-top-botton: calc(var(--standard-padding) * 1.4);
 	}
 	.login-text {
 		font-size: 1.5rem;

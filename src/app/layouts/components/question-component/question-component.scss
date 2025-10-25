@@ -2,7 +2,7 @@
 @use "placeholders" as *;
 .question {
 	display: grid;
-	gap: var(--standart-padding);
+	gap: var(--standard-padding);
 	grid-auto-flow: row;
 	grid-template-areas: "header" "question" "footer";
 	grid-template-rows: max-content 1fr max-content;
@@ -34,14 +34,14 @@
 	text-wrap: wrap;
 	max-height: 20rem;
 	white-space: normal;
-	padding: var(--standart-padding);
+	padding: var(--standard-padding);
 	overflow: auto;
 	grid-area: question;
 	place-self: center;
 }
 .question__footer {
 	grid-area: footer;
-	padding: var(--standart-padding);
+	padding: var(--standard-padding);
 	display: flex;
 	justify-content: space-evenly;
 }

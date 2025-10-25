@@ -7,7 +7,7 @@
 }
 .login-form__container--desktop {
 	display: grid;
-	grid-column-gap: calc(var(--standart-padding) / 2);
+	grid-column-gap: calc(var(--standard-padding) / 2);
 	grid-template-areas:"login-form register-form";
 	grid-template-columns: repeat(2, 1fr);
 	height: 60%;
@@ -84,10 +84,10 @@
 }
 .form-cover__container {
 	display: grid;
-	grid-row-gap: var(--standart-padding);
+	grid-row-gap: var(--standard-padding);
 	height: 50%;
 	left: 50%;
-	padding: var(--standart-padding);
+	padding: var(--standard-padding);
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -101,7 +101,7 @@
 	align-self: center;
 	border-radius: 25%;
 	cursor: text;
-	padding: var(--standart-padding) 0;
+	padding: var(--standard-padding) 0;
 	text-align: center;
 }
 .form-cover__text {

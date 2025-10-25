@@ -3,8 +3,8 @@
 .form-register {
 	display: grid;
 	align-items: center;
-	--margin-top-botton: calc(var(--standart-padding) * 1.7);
-	padding: calc(var(--standart-padding) * 2);
+	--margin-top-botton: calc(var(--standard-padding) * 1.7);
+	padding: calc(var(--standard-padding) * 2);
 	grid-template-rows: 1fr max-content max-content max-content 1fr max-content;
 }
 .register-text {
@@ -55,7 +55,7 @@
 	width: 1.2rem;
 }
 .information-text {
-	margin-left: calc(var(--standart-padding) / 2);
+	margin-left: calc(var(--standard-padding) / 2);
 	font-weight: 400;
 	font-size: 0.8rem;
 	white-space: normal;
@@ -64,8 +64,8 @@
 }
 @include respond-to-multiple("tel", "mob") {
 	.form-register{
-		padding: calc(var(--standart-padding) * 1.5);
-		--margin-top-botton: calc(var(--standart-padding) * 1.4);
+		padding: calc(var(--standard-padding) * 1.5);
+		--margin-top-botton: calc(var(--standard-padding) * 1.4);
 	}
 	.register-text {
 		font-size: 1.5rem;
