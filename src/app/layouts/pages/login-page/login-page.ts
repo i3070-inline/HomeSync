@@ -1,35 +1,14 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	computed,
-	DestroyRef,
-	inject,
-	signal,
-	ViewEncapsulation
-} from "@angular/core";
+import {ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation} from "@angular/core";
 import {TemplateComponent} from "@components/template-component/template-component";
 import {AuthentificationComponent} from "@components/authentification-component/authentification-component";
 import {RegisterComponent} from "@components/register-component/register-component";
-import {
-	animate,
-	animateChild,
-	AnimationEvent,
-	group,
-	query,
-	state,
-	style,
-	transition,
-	trigger
-} from "@angular/animations";
 import {AuthentificationService} from "@services/authentification.service";
 import {RegistrationService} from "@services/registration.service";
 import {getCssVariablesValue} from "@utils/dom-helper";
 import type {Swiper} from "swiper/types";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {SwiperModule} from "@swiper-angular";
 import {AccountBase} from "@services/base/account-base";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
-import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {LangHelper} from "@utils/lang-helper";
 
@@ -46,60 +25,16 @@ import {LangHelper} from "@utils/lang-helper";
 	templateUrl: "./login-page.html",
 	styleUrl: "./login-page.scss",
 	encapsulation: ViewEncapsulation.Emulated,
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	animations: [
-		trigger("switchPageAnimation", [
-			state("authentification", style({transform: "translateX(0)"})),
-			state("registration", style({transform: "translateX(-100%)"})),
-			transition("authentification <=> registration", [
-				group([
-					query("@circleLeftAnimation", animateChild(), {optional: true}),
-					query("@circleRightAnimation", animateChild(), {optional: true}),
-					animate("{{duration}} {{transition}}")
-				])
-			], {
-				params: {
-					duration: "1s",
-					transition: "ease-in-out"
-				}
-			})
-		]),
-		trigger("circleLeftAnimation", [
-			state("authentification", style({left: "0%"})),
-			state("registration", style({left: "100%"})),
-			transition("authentification <=> registration", animate("{{duration}} {{transition}}"), {
-				params: {
-					duration: "0.5s",
-					transition: "ease-in-out"
-				}
-			})]),
-		trigger("circleRightAnimation", [
-			state("authentification", style({right: "0%"})),
-			state("registration", style({right: "100%"})),
-			transition("authentification <=> registration", animate("{{duration}} {{transition}}"), {
-				params: {
-					duration: "0.5s",
-					transition: "ease-in-out"
-				}
-			})])
-	]
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginPage {
 	//region Members
-	private readonly destroyRef = inject(DestroyRef);
 	protected readonly langHelper = LangHelper;
 	protected readonly regService = inject(RegistrationService);
 	protected readonly uiService = inject(UiFacadeService);
-	protected readonly settingsService = inject(SettingsFacadeService);
 	protected readonly authService = inject(AuthentificationService);
 	protected currentForm = signal<AccountBase<any>>(this.authService);
-	protected duration = signal<string>(getCssVariablesValue(this.uiService.platformHandler, "medium-transition-duration") ?? "0s");
-	protected transitionShoot = signal<string>(getCssVariablesValue(this.uiService.platformHandler, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
 	protected isSwitching = signal<boolean>(false);
-	protected circleDuration = computed<string>(() => {
-		const duration = parseFloat(this.duration());
-		return duration ? `${duration / 1.1}s` : "0s";
-	});
 	protected speedSwiper = signal<number | undefined>(
 		(() => {
 			const result = getCssVariablesValue(this.uiService.platformHandler, "transition-duration") || undefined;
@@ -110,18 +45,6 @@ export class LoginPage {
 	//region Constructor
 	constructor() {
 		this.regService.setStateAccountForm(true);
-		this.settingsService.animationHandler.animationChanged$.pipe(
-			takeUntilDestroyed(this.destroyRef)
-		).subscribe(() => {
-			this.duration.set(getCssVariablesValue(this.uiService.platformHandler, "medium-transition-duration") ?? "0s");
-			this.transitionShoot.set(getCssVariablesValue(this.uiService.platformHandler, "transition-shoot-style") ?? "cubic-bezier(0.8, -0.25, 0.2, 1.25)");
-			this.speedSwiper.set(
-				(() => {
-					const result = getCssVariablesValue(this.uiService.platformHandler, "transition-duration") || undefined;
-					return result ? parseFloat(result) * 1000 : undefined;
-				})()
-			);
-		});
 	}
 	//endregion
 	//region Methods
@@ -138,9 +61,6 @@ export class LoginPage {
 				this.isSwitching.set(false);
 				return;
 		}
-	}
-	protected onAnimationDone(event: AnimationEvent): void {
-		this.isSwitching.set(false);
 	}
 	protected onSwipeChanged(event: [swiper: Swiper]) {
 		const swiper = event[0];
@@ -159,6 +79,10 @@ export class LoginPage {
 		this.currentForm().setStateAccountForm(true);
 		this.currentForm.set(form);
 		this.currentForm().setStateAccountForm(false);
+	}
+	public onTransitionEnd(event: TransitionEvent) {
+		if (event.propertyName !== "transform" || event.target !== event.currentTarget) return;
+		this.isSwitching.set(false);
 	}
 	//endregion
 }

@@ -38,11 +38,13 @@ export class ThemeHandlerService extends SettingsHandlerBase<themeType> {
 	}
 	protected override handlingChanges(value: themeType): void {
 		this.platformService.runOnBrowserPlatform(() => {
-			const animationKey = "animation";
+			const animationKey = "anim";
 			const before = document.documentElement.getAttribute(animationKey);
-			document.documentElement.setAttribute(animationKey, "none");
+			document.documentElement.setAttribute(animationKey, "reduce");
 			document.documentElement.setAttribute(this.cookiesKey, value);
-			document.documentElement.setAttribute(animationKey, before || "none");
+			setTimeout(() => {
+				document.documentElement.setAttribute(animationKey, before || "reduce");
+			}, 200);
 		});
 	}
 	//endregion

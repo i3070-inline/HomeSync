@@ -51,7 +51,7 @@ export class LangHelper {
 	}
 	//endregion
 	//region MAIN_PAGE
-	static mainPageNavigation(part: "TITLE" | "HOME" | "LOGOUT"): string {
+	static mainPageNavigation(part: "TITLE" | "HOME" | "SETTINGS" | "LOGOUT"): string {
 		return `MAIN_PAGE.NAVIGATION.${part}`;
 	}
 	static mainPageUtilities(part: "TITLE" | "NOTIFICATIONS"): string {

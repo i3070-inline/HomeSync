@@ -21,16 +21,11 @@
 			<div class="login-form__container--desktop">
 				<app-authentification-component class="login"></app-authentification-component>
 				<app-register-component class="register"></app-register-component>
-				<div (@switchPageAnimation.done)="onAnimationDone($event)"
-				     [@switchPageAnimation]="{value: currentForm().name() , params:{
-			     duration : duration(), transition : transitionShoot()
-			     }}"
-				     class="form-cover">
-					<div [@circleRightAnimation]="{value: currentForm().name() , params:{
-			     duration : circleDuration(), transition : transitionShoot()
-			     }}"
-					     class="form-cover__circle--top">
-					</div>
+				<div class="form-cover"
+				     [attr.about]="currentForm().name()"
+				     (transitionend)="onTransitionEnd($event)">
+					<div class="form-cover__circle--top"
+					     [attr.about]="currentForm().name()"></div>
 					<div class="form-cover__container"
 					     [class.isSwitching]="isSwitching()">
 						<h1 class="form-cover__text">
@@ -54,10 +49,8 @@
 							}}
 						</button>
 					</div>
-					<div [@circleLeftAnimation]="{value: currentForm().name() , params:{
-			     duration : circleDuration(), transition : transitionShoot()
-			     }}"
-					     class="form-cover__circle--bottom"></div>
+					<div class="form-cover__circle--bottom"
+					     [attr.about]="currentForm().name()"></div>
 				</div>
 			</div>
 		}

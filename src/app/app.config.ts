@@ -9,7 +9,6 @@ import {
 import {provideRouter, withRouterConfig, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
-import {provideAnimations} from "@angular/platform-browser/animations";
 import SwiperCore, {EffectCards} from "@swiper-base";
 import {provideHttpClient, withInterceptors, withInterceptorsFromDi} from "@angular/common/http";
 import {requestLoggingInterceptor} from "@interceptors/request-logging.interceptor";
@@ -59,6 +58,5 @@ export const appConfig: ApplicationConfig = {
 			})
 		),
 		provideClientHydration(withEventReplay()),
-		provideAnimations()
 	]
 };

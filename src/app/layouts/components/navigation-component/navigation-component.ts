@@ -7,7 +7,7 @@ import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthentificationService} from "@services/authentification.service";
 import {QuestionComponent} from "@components/question-component/question-component";
 import {IQuestionModel} from "@interfaces/question-model.interface";
-import {firstValueFrom, min} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {INavigationModel} from "@interfaces/navigation-model.interface";
 
 @Component({
@@ -41,7 +41,7 @@ export class NavigationComponent {
 	protected readonly otherBottomItems = signal<INavigationModel[]>([
 		{
 			link: "settings",
-			text: this.langHelper.mainPageNavigation("HOME"),
+			text: this.langHelper.mainPageNavigation("SETTINGS"),
 			iconPath: this.uiService.buildIconSvgPath("user-settings-icon")
 		}]);
 	public isOpen = model<boolean>(false);

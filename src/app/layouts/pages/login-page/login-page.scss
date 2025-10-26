@@ -58,29 +58,44 @@
 	transform-origin: center;
 	width: 50%;
 	@include blur-effect($blur-pixels: 30px);
+	transition-duration: var(--medium-transition-duration);
+	transition-timing-function: cubic-bezier(0.8, -0.25, 0.2, 1.25);
+	z-index: 1;
+	&[about="registration"] {
+		transform: translateX(-100%);
+	}
+	&[about="authentification"] {
+		transform: translateX(0);
+	}
 }
 %box-base {
 	box-shadow: var(--inset-active-shadow);
 	position: absolute;
+	aspect-ratio: 1/1;
 	@include transition-builder($transition-shadow, $transition-position);
+	transition-duration: calc(var(--medium-transition-duration) / 1.05);
 }
 .form-cover__circle--top {
 	border-radius: 50%;
 	@extend %box-base;
-	height: 22rem;
 	right: 0;
 	top: 0;
 	transform: translate(50%, -50%);
 	width: 22rem;
+	&[about="registration"] {
+		right: 100%;
+	}
 }
 .form-cover__circle--bottom {
 	border-radius: 50%;
 	@extend %box-base;
 	bottom: 0;
-	height: 17rem;
 	left: 0;
 	transform: translate(-50%, 50%);
 	width: 17rem;
+	&[about="registration"] {
+		left: 100%;
+	}
 }
 .form-cover__container {
 	display: grid;

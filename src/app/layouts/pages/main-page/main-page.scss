@@ -27,7 +27,7 @@
 .user-container {
 	display: grid;
 	gap: calc(var(--standard-padding) * 2);
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: max-content 1fr;
 	grid-template-rows: repeat(3, max-content);
 	padding-top: var(--standard-padding);
 	position: relative;

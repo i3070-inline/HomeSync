@@ -133,6 +133,7 @@
     "NAVIGATION": {
       "TITLE": "Меню",
       "HOME": "Главная",
+      "SETTINGS": "Настройки",
       "LOGOUT": "Выйти"
     },
     "UTILITIES": {

@@ -25,11 +25,6 @@
 		transform: scale(0);
 	}
 }
-@keyframes opacity-with-delay {
-	to {
-		opacity: 1;
-	}
-}
 @keyframes detect-main-scroll {
 	from, to {
 		--is-scroll-padding-template-comp: 0.4rem;

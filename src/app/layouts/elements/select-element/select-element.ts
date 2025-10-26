@@ -63,14 +63,14 @@ export class SelectElement implements ControlValueAccessor {
 		event.stopPropagation();
 		this.selectedValue.set(null);
 	}
-	protected onSelectItem(item: ISelectItemModel, service: OverlayContainerService): void {
+	protected onSelectItem(item: ISelectItemModel, service: OverlayContainerService | undefined): void {
 		if (item.value === this.selectedValue()?.value) {
 			return;
 		}
 		this.selectedValue.set(item);
 		this.selectedValueChange.emit(item);
 		this.onChange(item);
-		service.hide();
+		service?.hide();
 	}
 	protected onTouched: () => void = () => {
 	};

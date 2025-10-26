@@ -10,12 +10,12 @@ $transition-modes: (
 				medium-transition-duration: 1s
 		),
 		reduce: (
-				transition-duration: 0s,
+				transition-duration: 0.0001s,
 				transition-shake-style: linear,
 				transition-shoot-style: linear,
 				transition-style: linear,
-				long-transition-duration: 0s,
-				medium-transition-duration: 0s
+				long-transition-duration: 0.0001s,
+				medium-transition-duration: 0.0001s
 		)
 );
 @mixin apply-motion-mode($mode) {

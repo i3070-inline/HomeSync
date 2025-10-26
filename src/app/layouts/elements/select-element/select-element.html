@@ -4,7 +4,7 @@
         type="button"
         aria-label="Select"
         [class.empty]="empty()"
-        [class.focused]="!trigger.overlayContainerService.isClosing()"
+        [class.focused]="!trigger.overlayChild()?.overlayContainerService?.isClosing()"
         [class.showFloatedPlaceholder]="showFloatedPlaceholder()"
         [disabled]="disabled()"
         [style.height]="height()"
@@ -15,6 +15,7 @@
         [style.width]="width()"
         appOverlayDropdownClick
         class="select-container">
+	@let service = trigger.overlayChild()?.overlayContainerService;
 	<div class="select-container__item">
 		@if (selectedValue()?.iconPath; as iconPath) {
 			<svg [style.color]="selectedValue()?.iconColor || 'inherit'"
@@ -39,7 +40,7 @@
 			</svg>
 		</button>
 	}
-	<span [class.closing]="trigger.overlayContainerService.isClosing()"
+	<span [class.closing]="service?.isClosing()"
 	      class="select-container__item-arrow">➤</span>
 	<div class="select-container__placeholder">
 		@if (placeholder()?.iconPath; as placeholderIconPath) {
@@ -49,42 +50,40 @@
 			</svg>
 		}
 		<span class="select-container__placeholder-text">
-			@let showDescription = !empty() || !trigger.overlayContainerService.isClosing();
+			@let showDescription = !empty() || !service?.isClosing();
 			{{showDescription ? placeholder()?.description : placeholder()?.action}}
 		</span>
 	</div>
 	<span class="select-container__error-text">
 		{{errorHint()?.key | transloco : errorHint()?.params}}
 	</span>
-	@if (trigger.overlayContainerService.isOpened()) {
-		<app-overlay-container-element
-				[hasBackDrop]="true"
-				[hasContainerBackground]="false"
-				[padding]="'0.2rem'"
-				[width]="host.offsetWidth.toString()+'px'">
-			@for (item of itemSource(); track item.value) {
-				<div class="select-container__list-item"
-				     [class.selected]="item.value === selectedValue()?.value"
-				     (click)="onSelectItem(item,trigger.overlayContainerService);"
-				     (keydown.space)="onSelectItem(item,trigger.overlayContainerService)"
-				     (keydown.enter)="onSelectItem(item,trigger.overlayContainerService)"
-				     [role]="'option'"
-				     appAccessibility>
-					@if (item.iconPath) {
-						<svg class="select-container__list-item-icon"
-						     [style.color]="item.iconColor || 'inherit'">
-							@if (item.iconPath.includes(".svg")) {
-								<use [attr.href]="item.iconPath"></use>
-							} @else {
-								<image width="100%"
-								       height="100%"
-								       [attr.href]="item.iconPath"></image>
-							}
-						</svg>
-					}
-					<span class="select-container__list-item-text">{{item.name | transloco}}</span>
-				</div>
-			}
-		</app-overlay-container-element>
-	}
+	<app-overlay-container-element
+			[hasBackDrop]="true"
+			[hasContainerBackground]="false"
+			[padding]="'0.2rem'"
+			[width]="host.offsetWidth.toString()+'px'">
+		@for (item of itemSource(); track item.value) {
+			<div class="select-container__list-item"
+			     [class.selected]="item.value === selectedValue()?.value"
+			     (click)="onSelectItem(item,service);"
+			     (keydown.space)="onSelectItem(item,service)"
+			     (keydown.enter)="onSelectItem(item,service)"
+			     [role]="'option'"
+			     appAccessibility>
+				@if (item.iconPath) {
+					<svg class="select-container__list-item-icon"
+					     [style.color]="item.iconColor || 'inherit'">
+						@if (item.iconPath.includes(".svg")) {
+							<use [attr.href]="item.iconPath"></use>
+						} @else {
+							<image width="100%"
+							       height="100%"
+							       [attr.href]="item.iconPath"></image>
+						}
+					</svg>
+				}
+				<span class="select-container__list-item-text">{{item.name | transloco}}</span>
+			</div>
+		}
+	</app-overlay-container-element>
 </button>

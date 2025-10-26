@@ -27,3 +27,9 @@ body {
 		@include blur-effect($blur-pixels: 5px);
 	}
 }
+.slide-in-scale{
+	animation: scale-in var(--transition-duration) var(--transition-style) forwards;
+}
+.slide-out-scale{
+	animation: scale-out var(--transition-duration) var(--transition-style) forwards;
+}

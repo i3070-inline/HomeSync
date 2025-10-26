@@ -1,8 +1,8 @@
-import {AfterViewInit, DestroyRef, Directive, inject, input} from "@angular/core";
+import {AfterViewInit, contentChild, DestroyRef, Directive, inject, input} from "@angular/core";
 import {CdkOverlayOrigin} from "@angular/cdk/overlay";
-import {OverlayContainerService} from "@services/overlay-container.service";
 import {Subject, switchMap, take, takeUntil, timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 
 @Directive({
 	standalone: true,
@@ -11,7 +11,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 export class OverlayBaseDirective implements AfterViewInit {
 	//region Members
 	protected readonly destroyRef = inject(DestroyRef);
-	public readonly overlayContainerService = inject(OverlayContainerService);
+	public overlayChild = contentChild<OverlayContainerElement>(OverlayContainerElement);
 	public openDelayMs = input<number>(0);
 	private showSubject = new Subject<void>();
 	private hideSubject = new Subject<void>();
@@ -26,6 +26,11 @@ export class OverlayBaseDirective implements AfterViewInit {
 	//endregion
 	//region Overrides
 	ngAfterViewInit(): void {
+		const overlay = this.overlayChild();
+		if (!overlay) {
+			throw new Error("OverlayContainerElement not found in host component content.");
+		}
+		const overlayService = overlay.overlayContainerService;
 		this.showSubject.pipe(
 			takeUntilDestroyed(this.destroyRef),
 			switchMap(() => {
@@ -36,16 +41,16 @@ export class OverlayBaseDirective implements AfterViewInit {
 				);
 			})
 		).subscribe(() => {
-			if (!this.overlayContainerService.isOpened()) {
-				this.overlayContainerService.show();
+			if (!overlayService.isOpened()) {
+				overlayService.show();
 				return;
 			}
-			this.overlayContainerService.hide();
+			overlayService.hide();
 		});
 		this.hideSubject.pipe(
 			takeUntilDestroyed(this.destroyRef)
 		).subscribe(() => {
-			this.overlayContainerService.hide();
+			overlayService.hide();
 		});
 	}
 	//endregion
