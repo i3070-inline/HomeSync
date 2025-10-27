@@ -5,7 +5,7 @@
 		    class="login-text">{{langHelper.loginForm('SIGN_IN', 'TITLE') | transloco}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
-		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.email)"
+		                   [errorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.email)"
 		                   [inputType]="'email'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{
@@ -16,7 +16,7 @@
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
-		                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.password)"
+		                   [errorHint]="uiService.validatorHandler.getErrorMessage(auth.controls.password)"
 		                   [inputType]="'password'"
 		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{

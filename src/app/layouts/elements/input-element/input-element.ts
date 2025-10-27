@@ -46,7 +46,7 @@ export class InputElement implements ControlValueAccessor, OnInit {
 	public showFloatedPlaceholder = input<boolean>(true);
 	public isReadOnly = input<boolean>(false);
 	public autocomplete = input<"on" | "off">("off");
-	public inputErrorHint = input<{ key: string; params?: Record<string, unknown> } | null>(null);
+	public errorHint = input<{ key: string; params?: Record<string, unknown> } | null>(null);
 	public focused = signal<boolean>(false);
 	public value = signal<string | null>(null);
 	public valueChange = output<string | null>();

@@ -31,8 +31,6 @@ export const appConfig: ApplicationConfig = {
 		provideAppInitializer(() => inject(LanguageHandlerService).init()),
 		provideTransloco({
 			config: {
-				availableLangs: ["en", "ro", "ru"],
-				fallbackLang: "en",
 				prodMode: !isDevMode(),
 				reRenderOnLangChange: true,
 				failedRetries: 2

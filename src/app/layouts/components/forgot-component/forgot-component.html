@@ -15,7 +15,7 @@
 			                   [clearIconIsVisible]="true"
 			                   [formControlName]="'email'"
 			                   [disabled]="forgot.disabled || forgotService.isExecuting()"
-			                   [inputErrorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.email)"
+			                   [errorHint]="uiService.validatorHandler.getErrorMessage(forgot.controls.email)"
 			                   cdkFocusInitial
 			                   [placeholder]="{
 			                                    iconPath: uiService.buildIconSvgPath('user-email-icon'),
