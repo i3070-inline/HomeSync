@@ -6,7 +6,6 @@
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
-		                   [errorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.email)"
 		                   [inputType]="'email'"
 		                   [placeholder]="{
                                             iconPath: uiService.buildIconSvgPath('user-email-icon'),
@@ -16,7 +15,6 @@
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
-		                   [errorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.password)"
 		                   [inputType]="'password'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [placeholder]="{
@@ -27,7 +25,6 @@
 		</app-input-element>
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'confirmPassword'"
-		                   [errorHint]="uiService.validatorHandler.getErrorMessage(reg.controls.confirmPassword)"
 		                   [inputType]="'password'"
 		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [placeholder]="{

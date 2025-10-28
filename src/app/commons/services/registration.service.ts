@@ -32,11 +32,11 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 	);
 	protected override async onParticularExecution(): Promise<boolean> {
 		try {
-			const user = {
-				"email": this.accountForm().value.email,
-				"username": this.accountForm().value.email,
-				"password": this.accountForm().value.password
-			};
+			const user = (() => {
+				const formValue = this.accountForm().getRawValue();
+				const {confirmPassword, ...rest} = formValue;
+				return {...rest, username: rest.email};
+			})();
 			await firstValueFrom(this.http.post(restEndpoints.user.register, user, {context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}));
 			return true;
 		}

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {AbstractControl} from "@angular/forms";
+import {ValidationErrors} from "@angular/forms";
 import {LangHelper} from "@utils/lang-helper";
 
 @Injectable({
@@ -16,10 +16,10 @@ export class ValidatorHandlerService {
 	};
 	//endregion
 	//region Methods
-	public getErrorMessage(control: AbstractControl): { key: string; params?: Record<string, unknown> } | null {
-		if (!control.errors || !control.dirty) return null;
-		const errorKey = Object.keys(control.errors)[0];
-		const params = control.errors[errorKey] || {};
+	public getErrorMessage(errors: ValidationErrors): { key: string; params?: Record<string, unknown> } | null {
+		if (!errors) return null;
+		const errorKey = Object.keys(errors)[0];
+		const params = errors[errorKey] || {};
 		const key = this.errorMessages[errorKey];
 		if (!key) return null;
 		return {key, params};
