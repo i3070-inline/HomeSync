@@ -1,4 +1,6 @@
 //region Types
+import {notifyType} from "@constants/types";
+
 type SettingsSection = "THEME" | "LANGUAGE" | "ANIMATION";
 type SettingsPart = "DESCRIPTION" | "ACTION";
 type SettingsOption =
@@ -23,7 +25,6 @@ type QuestionPart = "TITLE" | "QUESTION";
 type QuestionActionPart = "ACTION_YES" | "ACTION_NO";
 type EmailResult = "SUCCESS" | "FAILURE";
 type ValidatorField = "REQUIRED" | "MIN_LENGTH" | "PASSWORD_MISMATCH" | "INVALID_EMAIL";
-type NotificationType = "SUCCESS" | "FAILURE";
 type NotificationAccountSection = "SIGN_IN" | "SIGN_UP" | "FORGOT" | "LOGOUT";
 type NotificationAccountField = "START" | "EMAIL_VERIFICATION";
 
@@ -114,8 +115,8 @@ export class LangHelper {
 	}
 	//endregion
 	//region NOTIFICATIONS
-	public static notification(type: NotificationType): string {
-		return this.key("NOTIFICATIONS", type);
+	public static notification(type: notifyType): string {
+		return this.key("NOTIFICATIONS", type.toUpperCase());
 	}
 	public static notificationAccount(section: NotificationAccountSection, field: NotificationAccountField): string {
 		return this.key("NOTIFICATIONS", section, field);

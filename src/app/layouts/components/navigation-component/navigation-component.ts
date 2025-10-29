@@ -53,25 +53,10 @@ export class NavigationComponent {
 				title: this.langHelper.questionComponent("LOGOUT", "TITLE"),
 				question: this.langHelper.questionComponent("LOGOUT", "QUESTION")
 			}).closed)) return;
-		const awaitNotify = this.uiService.notifyHandler.showNotification(
-			"info",
-			this.uiService.translateHandler.translate(this.langHelper.notificationAccount("FORGOT", "START")),
-			0,
-			false);
-		if (await this.authService.logout()) {
-			this.uiService.notifyHandler.closeNotification(awaitNotify);
+		if (!await this.authService.logout()) return
 			this.authService.isRequestedLogout.set(true);
 			await this.router.navigate(["/login"]);
 			this.authService.isRequestedLogout.set(false);
-			this.uiService.notifyHandler.showNotification(
-				"success",
-				this.uiService.translateHandler.translate(this.langHelper.notification("SUCCESS")));
-			return;
-		}
-		this.uiService.notifyHandler.closeNotification(awaitNotify);
-		this.uiService.notifyHandler.showNotification(
-			"error",
-			this.uiService.translateHandler.translate(this.langHelper.notification("FAILURE")));
 	}
 	//endregion
 }

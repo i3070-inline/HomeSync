@@ -4,7 +4,6 @@ import {TranslocoDirective} from "@ngneat/transloco";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {RestBaseService} from "@rest/rest-base.service";
-import {firstValueFrom} from "rxjs";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {LoadPlaceholderComponent} from "@components/load-placeholder-component/load-placeholder.component";
 import {sleep} from "@utils/sleep-helper";
@@ -47,7 +46,7 @@ export class EmailConfirmationPage implements OnInit {
 			const token = this.route.snapshot.queryParamMap.get("token");
 			this.isRequesting.set(true);
 			await sleep(1000);
-			await firstValueFrom(this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`));
+			await this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`);
 			this.isEmailConfirmed.set(true);
 			this.isRequesting.set(false);
 			for (let i = 5; i > 0; i--) {

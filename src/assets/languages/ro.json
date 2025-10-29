@@ -171,6 +171,6 @@
       "START": "Ieșire în curs..."
     },
     "SUCCESS": "Operațiunea a fost finalizată cu succes",
-    "FAILURE": "Operațiunea a eșuat"
+    "ERROR": "Operațiunea a eșuat"
   }
 }

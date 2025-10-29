@@ -26,11 +26,11 @@ export const authRefreshInterceptor: HttpInterceptorFn = (req, next) => {
 		catchError((error: HttpErrorResponse) => {
 			if (error.status === 401) {
 				auth.removeToken();
-				return http.post<{ accessToken: string }>(
+				return from(http.post<{ accessToken: string }>(
 					restEndpoints.user.refreshToken,
 					{},
 					{withCredentials: true, context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}
-				).pipe(
+				)).pipe(
 					switchMap(result => {
 						if (result?.accessToken) {
 							auth.setToken(result.accessToken);

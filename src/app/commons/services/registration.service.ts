@@ -5,7 +5,6 @@ import {AccountBase} from "@services/base/account-base";
 import {controlsOf} from "@constants/types";
 import {matchPasswordValidator, strictEmailValidator} from "@validators/input.validators";
 import {restEndpoints} from "@rest/rest-endpoints";
-import {firstValueFrom} from "rxjs";
 import {HttpContext} from "@angular/common/http";
 import {BYPASS_REFRESH_INTERCEPTOR} from "@interceptors/auth-refresh.interceptor";
 
@@ -37,7 +36,14 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 				const {confirmPassword, ...rest} = formValue;
 				return {...rest, username: rest.email};
 			})();
-			await firstValueFrom(this.http.post(restEndpoints.user.register, user, {context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)}));
+			await this.http.post(restEndpoints.user.register,
+				user,
+				{context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)},
+				{
+					message: this.langHelper.notificationAccount("SIGN_UP", "START"),
+					timeout : 10000
+				}
+			);
 			return true;
 		}
 		catch (error) {

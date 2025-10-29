@@ -1,9 +1,8 @@
 import {inject, Injectable} from "@angular/core";
-import {DeepPartial, INotyfPosition, Notyf} from "notyf";
+import {Notyf} from "notyf";
 import {NotyfNotification} from "notyf/notyf.models";
 import {PlatformService} from "@services/platform.service";
-
-type notifyType = "success" | "error" | "info" | "warning";
+import {INotificationOptions} from "@interfaces/notification-options.interface";
 
 @Injectable({
 	providedIn: "root"
@@ -54,20 +53,17 @@ export class NotifyHandlerService {
 	//endregion
 	//region Overrides
 	//region Methods
-	public showNotification(type: notifyType, message: string, timeout?: number, dismissible?: boolean, opts?: Partial<{
-		position: DeepPartial<INotyfPosition>,
-		dismissible: boolean
-	}>): NotyfNotification {
+	public showNotification(notifyOptions: INotificationOptions): NotyfNotification {
 		this.checkLimitNotifications();
 		const result = this.notify.open({
-			type: type,
-			message: message,
-			duration: timeout ?? 3000,
-			position: opts?.position ?? {
+			type: notifyOptions.type ?? "info",
+			message: notifyOptions.message,
+			duration: notifyOptions.timeout ?? 3000,
+			position: notifyOptions.opts?.position ?? {
 				x: "right",
 				y: "bottom"
 			},
-			dismissible: dismissible ?? true
+			dismissible: notifyOptions.dismissible ?? true
 		});
 		this.notifications.push(result);
 		return result;

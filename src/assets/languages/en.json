@@ -171,6 +171,6 @@
       "START": "Logging out..."
     },
     "SUCCESS": "Operation successfully completed",
-    "FAILURE": "Operation failed"
+    "ERROR": "Operation failed"
   }
 }

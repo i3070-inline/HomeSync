@@ -2,6 +2,7 @@ import {inject, Signal, signal} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {controlsOf} from "@constants/types";
 import {RestBaseService} from "@rest/rest-base.service";
+import {LangHelper} from "@utils/lang-helper";
 
 export abstract class AccountBase<T extends object> {
 	//region Members
@@ -9,6 +10,7 @@ export abstract class AccountBase<T extends object> {
 	public abstract accountForm: Signal<FormGroup<controlsOf<T>>>;
 	public isExecuting = signal<boolean>(false);
 	protected readonly http = inject(RestBaseService);
+	protected readonly langHelper = LangHelper;
 	//endregion
 	//region Methods
 	public isFormValid(): boolean {

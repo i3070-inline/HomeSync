@@ -4,7 +4,6 @@ import {ILoginModel} from "@interfaces/login-model.interface";
 import {AccountBase} from "@services/base/account-base";
 import {controlsOf} from "@constants/types";
 import {strictEmailValidator} from "@validators/input.validators";
-import {firstValueFrom} from "rxjs";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {BYPASS_REFRESH_INTERCEPTOR} from "@interceptors/auth-refresh.interceptor";
 import {HttpContext} from "@angular/common/http";
@@ -33,7 +32,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	}
 	public async loadCurrentUser(): Promise<void> {
 		try {
-			const user = await firstValueFrom(this.http.get<IUserModel>(restEndpoints.user.me));
+			const user = await this.http.get<IUserModel>(restEndpoints.user.me);
 			this._currentUser.set({
 				...user,
 				imageUrl: user.imageUrl ?? "alex"
@@ -45,10 +44,13 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	}
 	public async logout(): Promise<boolean> {
 		try {
-			await firstValueFrom(this.http.post(restEndpoints.user.logout, {}, {
-				withCredentials: true,
-				context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)
-			}));
+			await this.http.post(restEndpoints.user.logout, {}, {
+					withCredentials: true,
+					context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)
+				},
+				{
+					message: this.langHelper.notificationAccount("FORGOT", "START")
+				});
 			this.removeToken();
 			this._currentUser.set(null);
 		}
@@ -65,13 +67,17 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 	}
 	protected override async onParticularExecution(): Promise<boolean> {
 		try {
-			const loginResult = await firstValueFrom(
-				this.http.post<{
-					accessToken: string
-				}>(restEndpoints.user.authentification, this.accountForm().value, {
+			const loginResult = await this.http.post<{ accessToken: string }>(
+				restEndpoints.user.authentification,
+				this.accountForm().value,
+				{
 					withCredentials: true,
 					context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)
-				}));
+				},
+				{
+					message: this.langHelper.notificationAccount("SIGN_IN", "START")
+				}
+			);
 			this.setToken(loginResult.accessToken);
 		}
 		catch (error) {
