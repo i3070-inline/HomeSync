@@ -51,9 +51,6 @@ export const appConfig: ApplicationConfig = {
 		provideZonelessChangeDetection(),
 		provideRouter(routes,
 			withViewTransitions(),
-			withRouterConfig({
-				onSameUrlNavigation: "reload"
-			})
 		),
 		provideClientHydration(withEventReplay()),
 	]

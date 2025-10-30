@@ -2,7 +2,7 @@
 	@if (headerHeight() !== 0) {
 		<header [style.height.rem]="headerHeight()"
 		        class="background__header">
-			<button [routerLink]="'/main/me'"
+			<button (click)="onRefresh()"
 			        type="button"
 			        aria-label="Home"
 			        class="background__header-title">{{settingsService.appDetails.name | titlecase}}
@@ -11,9 +11,9 @@
 				<ng-content select="[header-content]"></ng-content>
 			</div>
 			<button appOverlayDropdownClick
-					type="button"
-					aria-label="Settings"
-					class="background__settings-button">
+			        type="button"
+			        aria-label="Settings"
+			        class="background__settings-button">
 				<svg class="background__settings-icon">
 					<use [attr.href]="uiService.buildIconSvgPath('settings-icon')">
 					</use>
@@ -24,44 +24,44 @@
 				                               overlayX: 'end',
 				                               overlayY: 'top',
 				                               offsetY: 5}]">
-										<div class="background__settings">
-											<div class="background__settings-content">
-												<ng-content select="[settings-container]"></ng-content>
-											</div>
-											<div class="background__settings-tools">
-												@let width = "15rem";
-												<app-select-element
-														[itemSource]="settingsService.themeHandler.options()"
-														[selectedValue]="settingsService.themeHandler.selectedOption()"
-														(selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
-														[placeholder]="{
+					<div class="background__settings">
+						<div class="background__settings-content">
+							<ng-content select="[settings-container]"></ng-content>
+						</div>
+						<div class="background__settings-tools">
+							@let width = "15rem";
+							<app-select-element
+									[itemSource]="settingsService.themeHandler.options()"
+									[selectedValue]="settingsService.themeHandler.selectedOption()"
+									(selectedValueChange)="settingsService.themeHandler.onSelectedOptionChange($event)"
+									[placeholder]="{
 					                                                        iconPath: uiService.buildIconSvgPath('theme-icon'),
 					                                                        description: langHelper.settings('THEME', 'DESCRIPTION') | transloco,
 					                                                        action: langHelper.settings('THEME', 'ACTION') | transloco}"
-														[width]="width">
-												</app-select-element>
-												<app-select-element
-														[itemSource]="settingsService.languageHandler.options()"
-														[selectedValue]="settingsService.languageHandler.selectedOption()"
-														(selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
-														[placeholder]="{
+									[width]="width">
+							</app-select-element>
+							<app-select-element
+									[itemSource]="settingsService.languageHandler.options()"
+									[selectedValue]="settingsService.languageHandler.selectedOption()"
+									(selectedValueChange)="settingsService.languageHandler.onSelectedOptionChange($event)"
+									[placeholder]="{
 					                                                        iconPath: uiService.buildIconSvgPath('language-icon'),
 					                                                        description: langHelper.settings('LANGUAGE', 'DESCRIPTION') | transloco,
 					                                                        action: langHelper.settings('LANGUAGE', 'ACTION') | transloco}"
-														[width]="width">
-												</app-select-element>
-												<app-select-element
-														[itemSource]="settingsService.animationHandler.options()"
-														[selectedValue]="settingsService.animationHandler.selectedOption()"
-														(selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
-														[placeholder]="{
+									[width]="width">
+							</app-select-element>
+							<app-select-element
+									[itemSource]="settingsService.animationHandler.options()"
+									[selectedValue]="settingsService.animationHandler.selectedOption()"
+									(selectedValueChange)="settingsService.animationHandler.onSelectedOptionChange($event)"
+									[placeholder]="{
 					                                                        iconPath: uiService.buildIconSvgPath('animation-icon'),
 					                                                        description: langHelper.settings('ANIMATION', 'DESCRIPTION') | transloco,
 					                                                        action: langHelper.settings('ANIMATION', 'ACTION') | transloco}"
-														[width]="width">
-												</app-select-element>
-											</div>
-										</div>
+									[width]="width">
+							</app-select-element>
+						</div>
+					</div>
 				</app-overlay-container-element>
 			</button>
 		</header>

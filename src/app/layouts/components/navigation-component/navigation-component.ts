@@ -34,9 +34,9 @@ export class NavigationComponent {
 	public maxWidthOpenMenu = input<string>("max-content");
 	protected readonly navigationTopItems = signal<INavigationModel[]>([
 		{
-			link: "/main/me",
+			link: "home",
 			text: this.langHelper.mainPageNavigation("HOME"),
-			iconPath: this.uiService.buildIconSvgPath("home-icon"),
+			iconPath: this.uiService.buildIconSvgPath("home-icon")
 		}]);
 	protected readonly otherBottomItems = signal<INavigationModel[]>([
 		{
@@ -53,10 +53,10 @@ export class NavigationComponent {
 				title: this.langHelper.questionComponent("LOGOUT", "TITLE"),
 				question: this.langHelper.questionComponent("LOGOUT", "QUESTION")
 			}).closed)) return;
-		if (!await this.authService.logout()) return
-			this.authService.isRequestedLogout.set(true);
-			await this.router.navigate(["/login"]);
-			this.authService.isRequestedLogout.set(false);
+		if (!await this.authService.logout()) return;
+		this.authService.isRequestedLogout.set(true);
+		await this.router.navigate(["/login"]);
+		this.authService.isRequestedLogout.set(false);
 	}
 	//endregion
 }

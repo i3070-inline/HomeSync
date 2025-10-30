@@ -12,7 +12,7 @@
 					<a class="content-item"
 					   [class.disabled]="item.isDisabled"
 					   [routerLink]="item.link"
-					   [routerLinkActiveOptions]="{ exact: true }"
+					   [routerLinkActiveOptions]="{ exact: false }"
 					   [routerLinkActive]="['active']">
 						<svg class="content-item__icon">
 							<use [attr.href]="item.iconPath"></use>
@@ -32,7 +32,7 @@
 					<a class="content-item"
 					   [class.disabled]="item.isDisabled"
 					   [routerLink]="item.link"
-					   [routerLinkActiveOptions]="{ exact: true }"
+					   [routerLinkActiveOptions]="{ exact: false }"
 					   [routerLinkActive]="['active']">
 						<svg class="content-item__icon">
 							<use [attr.href]="item.iconPath"></use>

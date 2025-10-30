@@ -34,7 +34,7 @@ export class AuthentificationComponent {
 	protected async onSubmitAuthForm(): Promise<void> {
 		if (!this.authentificationService.isFormValid()) return;
 		if (!await this.authentificationService.onGenericExecution()) return;
-		await this.router.navigate([this.route.snapshot.queryParams["returnUrl"] || "/main/me"]);
+		await this.router.navigate([this.route.snapshot.queryParams["returnUrl"] || "/main"]);
 		this.authentificationService.resetAccountForm();
 	}
 	public onShowForgotForm() {

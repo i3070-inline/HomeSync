@@ -26,6 +26,9 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 			form.controls.confirmPassword.addValidators(
 				matchPasswordValidator(() => form.controls.password.value)
 			);
+			form.controls.password.valueChanges.subscribe(() => {
+				form.controls.confirmPassword.updateValueAndValidity();
+			});
 			return form;
 		})()
 	);
@@ -41,7 +44,7 @@ export class RegistrationService extends AccountBase<IRegisterModel> {
 				{context: new HttpContext().set(BYPASS_REFRESH_INTERCEPTOR, true)},
 				{
 					message: this.langHelper.notificationAccount("SIGN_UP", "START"),
-					timeout : 10000
+					timeout: 10000
 				}
 			);
 			return true;

@@ -18,7 +18,7 @@ export const authRefreshInterceptor: HttpInterceptorFn = (req, next) => {
 		router.navigate(["/login"], {
 			queryParams: {
 				returnUrl: router.url && !router.url.startsWith("/login") &&
-				!router.url.startsWith("/error") ? router.url : "/main/me",
+				!router.url.startsWith("/error") ? router.url : "/main",
 				fi: true
 			}
 		})

@@ -11,7 +11,7 @@ export const routes: Routes = [
 		children: [
 			{
 				path: "",
-				redirectTo: "main/me",
+				redirectTo: "main",
 				pathMatch: "full"
 			},
 			{
@@ -20,12 +20,20 @@ export const routes: Routes = [
 				canActivate: [guestGuard]
 			},
 			{
-				path: "main/me",
+				path: "main",
 				loadComponent: () => import("@pages/main-page/main-page").then(value => value.MainPage),
-				canActivate: [authGuard],
-				runGuardsAndResolvers: "always",
+				canActivateChild: [authGuard],
 				children: [
 					{
+						path: "",
+						redirectTo: "home",
+						pathMatch: "full"
+					},
+					{
+						path: "home",
+						loadComponent: () => import("@main-sub-pages/settings-page/settings-page").then(value => value.SettingsPage),
+					}
+					, {
 						path: "settings",
 						loadComponent: () => import("@main-sub-pages/settings-page/settings-page").then(value => value.SettingsPage)
 					}

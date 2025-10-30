@@ -12,7 +12,6 @@ import {
 import {SelectElement} from "@elements/select-element/select-element";
 import {OverlayContainerElement} from "@elements/overlay-container-element/overlay-container-element";
 import {OverlayDropdownClickDirective} from "@directives/overlay-dropdown-click.directive";
-import {RouterLink} from "@angular/router";
 import {TitleCasePipe} from "@angular/common";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
@@ -26,7 +25,6 @@ import {LangHelper} from "@utils/lang-helper";
 		SelectElement,
 		OverlayContainerElement,
 		OverlayDropdownClickDirective,
-		RouterLink,
 		TitleCasePipe,
 		TranslocoPipe
 	],
@@ -49,6 +47,11 @@ export class TemplateComponent implements AfterViewInit {
 	//region Methods
 	public onScroll() {
 		this.scrollHandler();
+	}
+	public onRefresh() {
+		this.uiService.platformHandler.runOnBrowserPlatform(() => {
+			window.location.reload();
+		});
 	}
 	private scrollHandler() {
 		const scrollContainer = this.scrollContainer()?.nativeElement;
