@@ -1,22 +1,19 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit, signal, ViewEncapsulation} from "@angular/core";
 import {TemplateComponent} from "@components/template-component/template-component";
-import {TranslocoDirective} from "@ngneat/transloco";
+import {TranslocoDirective, TranslocoPipe} from "@ngneat/transloco";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
-import {RestBaseService} from "@rest/rest-base.service";
-import {restEndpoints} from "@rest/rest-endpoints";
-import {LoadPlaceholderComponent} from "@components/load-placeholder-component/load-placeholder.component";
-import {sleep} from "@utils/sleep-helper";
-import {HttpErrorResponse} from "@angular/common/http";
 import {LangHelper} from "@utils/lang-helper";
+import {PlatformService} from "@services/platform.service";
+import {sleep} from "@utils/sleep-helper";
 
 @Component({
 	selector: "app-email-confirmation-page",
 	standalone: true,
 	imports: [
 		TemplateComponent,
-		LoadPlaceholderComponent,
-		TranslocoDirective
+		TranslocoDirective,
+		TranslocoPipe
 	],
 	templateUrl: "./email-confirmation-page.html",
 	styleUrl: "./email-confirmation-page.scss",
@@ -24,51 +21,38 @@ import {LangHelper} from "@utils/lang-helper";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailConfirmationPage implements OnInit {
-	//region Members
-	protected readonly langHelper = LangHelper;
-	private readonly http = inject(RestBaseService);
+	//region Members;
 	private readonly route = inject(ActivatedRoute);
 	private readonly router = inject(Router);
+	private readonly platform = inject(PlatformService);
+	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected isEmailConfirmed = signal<boolean>(false);
 	protected seconds = signal<number | null>(0);
-	protected isRequesting = signal<boolean>(false);
 	//endregion
 	//region Methods
 	protected async onReloadPage(): Promise<void> {
-		await this.onConfirmEmail();
+		this.platform.runOnBrowserPlatform(() => {
+			window.location.reload();
+		});
 	}
 	protected async onLoginPage(): Promise<void> {
 		await this.router.navigate(["/login"]);
 	}
 	private async onConfirmEmail(): Promise<void> {
-		try {
-			const token = this.route.snapshot.queryParamMap.get("token");
-			this.isRequesting.set(true);
-			await sleep(1000);
-			await this.http.post<string>(`${restEndpoints.user.emailConfirmation}${token}`);
-			this.isEmailConfirmed.set(true);
-			this.isRequesting.set(false);
-			for (let i = 5; i > 0; i--) {
-				this.seconds.set(i);
-				await sleep(1000);
-			}
-			this.seconds.set(null);
-			await this.onLoginPage();
-		}
-		catch (e) {
-			if (e instanceof HttpErrorResponse && e.status === 401) {
-				await this.router.navigate(["/error"]);
-				return;
-			}
-			console.error(e);
+		const resultData = this.route.snapshot.data["confirmed"] as { confirmed: boolean };
+		if (!resultData?.confirmed) {
 			this.isEmailConfirmed.set(false);
+			return;
 		}
-		finally {
-			this.isRequesting.set(false);
+		this.isEmailConfirmed.set(true);
+		for (let i = 5; i > 0; i--) {
+			this.seconds.set(i);
+			await sleep(1000);
 		}
+		await this.onLoginPage();
 	}
-	//endregion
+	//endregion;
 	//region Overrides
 	async ngOnInit(): Promise<void> {
 		await this.onConfirmEmail();

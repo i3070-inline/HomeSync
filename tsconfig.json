@@ -37,6 +37,9 @@
       "@guards/*": [
         "app/commons/guards/*"
       ],
+      "@resolvers/*": [
+        "app/commons/resolvers/*"
+      ],
       "@utils/*": [
         "app/commons/utils/*"
       ],

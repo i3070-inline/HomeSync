@@ -74,6 +74,10 @@
   },
   "ERROR_PAGE": {
     "CODES": {
+      "401": {
+        "TITLE": "Unauthorized",
+        "DESCRIPTION": "Access to the requested resource is not allowed without authentication."
+      },
       "400": {
         "TITLE": "Bad Request",
         "DESCRIPTION": "The server could not understand the request due to invalid syntax."
@@ -138,7 +142,7 @@
     },
     "UTILITIES": {
       "TITLE": "Utilities",
-      "NOTIFICATIONS" : "Notifications"
+      "NOTIFICATIONS": "Notifications"
     }
   },
   "QUESTION_COMPONENT": {

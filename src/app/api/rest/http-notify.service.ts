@@ -10,7 +10,7 @@ import {notifyType} from "@constants/types";
 @Injectable({
 	providedIn: "root"
 })
-export class RestBaseService {
+export class HttpNotify {
 	//region Members
 	private readonly http = inject(HttpClient);
 	private readonly uiService = inject(UiFacadeService);

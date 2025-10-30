@@ -78,6 +78,10 @@
         "TITLE": "Cerere invalidă",
         "DESCRIPTION": "Serverul nu a putut înțelege cererea din cauza unei sintaxe invalide."
       },
+      "401": {
+        "TITLE": "Neautorizat",
+        "DESCRIPTION": "Accesul la resursa solicitată nu este permis fără autentificare."
+      },
       "403": {
         "TITLE": "Interzis",
         "DESCRIPTION": "Nu aveți permisiunea de a accesa această resursă."

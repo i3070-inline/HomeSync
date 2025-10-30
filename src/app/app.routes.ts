@@ -2,6 +2,7 @@ import {Routes} from "@angular/router";
 import {App} from "./app";
 import {guestGuard} from "@guards/guest.guard";
 import {authGuard} from "@guards/auth.guard";
+import {emailConfirmationResolver} from "@resolvers/email-confirmation.resolver";
 
 export const routes: Routes = [
 	{
@@ -32,7 +33,8 @@ export const routes: Routes = [
 			},
 			{
 				path: "email-confirmation",
-				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage)
+				loadComponent: () => import("@pages/email-confirmation-page/email-confirmation-page").then(value => value.EmailConfirmationPage),
+				resolve: {confirmed: emailConfirmationResolver}
 			},
 			{
 				path: "error/:code",

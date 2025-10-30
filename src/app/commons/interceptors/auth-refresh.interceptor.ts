@@ -2,7 +2,7 @@ import {HttpContext, HttpContextToken, HttpErrorResponse, HttpInterceptorFn} fro
 import {catchError, EMPTY, from, switchMap} from "rxjs";
 import {inject} from "@angular/core";
 import {Router} from "@angular/router";
-import {RestBaseService} from "@rest/rest-base.service";
+import {HttpNotify} from "@rest/http-notify.service";
 import {restEndpoints} from "@rest/rest-endpoints";
 import {AuthentificationService} from "@services/authentification.service";
 
@@ -12,12 +12,13 @@ export const authRefreshInterceptor: HttpInterceptorFn = (req, next) => {
 		return next(req);
 	}
 	const router = inject(Router);
-	const http = inject(RestBaseService);
+	const http = inject(HttpNotify);
 	const auth = inject(AuthentificationService);
 	const redirectToLogin = () => from(
 		router.navigate(["/login"], {
 			queryParams: {
-				returnUrl: router.url && !router.url.startsWith("/login") ? router.url : "/main/me",
+				returnUrl: router.url && !router.url.startsWith("/login") &&
+				!router.url.startsWith("/error") ? router.url : "/main/me",
 				fi: true
 			}
 		})

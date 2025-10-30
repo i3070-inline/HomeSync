@@ -7,6 +7,7 @@ import {ForgotComponent} from "@components/forgot-component/forgot-component";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {LangHelper} from "@utils/lang-helper";
+import {HttpNotify} from "@rest/http-notify.service";
 
 @Component({
 	selector: "app-authentification-component",
@@ -22,6 +23,7 @@ import {LangHelper} from "@utils/lang-helper";
 })
 export class AuthentificationComponent {
 	//region Members
+	protected http = inject(HttpNotify);
 	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly authentificationService = inject(AuthentificationService);
@@ -31,7 +33,7 @@ export class AuthentificationComponent {
 	//region Methods
 	protected async onSubmitAuthForm(): Promise<void> {
 		if (!this.authentificationService.isFormValid()) return;
-		if(!await this.authentificationService.onGenericExecution()) return
+		if (!await this.authentificationService.onGenericExecution()) return;
 		await this.router.navigate([this.route.snapshot.queryParams["returnUrl"] || "/main/me"]);
 		this.authentificationService.resetAccountForm();
 	}
