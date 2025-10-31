@@ -9,7 +9,6 @@ export const guestGuard: CanActivateFn = async (route, state) => {
 	if (fromInterceptor || auth.isRequestedLogout()) {
 		return true;
 	}
-	await auth.loadCurrentUser();
 	if (auth.isAuthenticated()) {
 		return router.createUrlTree([route.queryParamMap.get("redirectUrl") || "/main"]);
 	}

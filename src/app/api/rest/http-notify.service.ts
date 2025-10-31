@@ -1,5 +1,5 @@
 import {inject, Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {INotificationOptions} from "@interfaces/notification-options.interface";
@@ -53,10 +53,10 @@ export class HttpNotify {
 	}
 	public async get<T>(
 		url: string,
-		params?: HttpParams | { [param: string]: string | number },
+		options?: object,
 		notifyOptions?: INotificationOptions
 	): Promise<T> {
-		return this.executeWithNotification(() => firstValueFrom(this.http.get<T>(url, {params})),
+		return this.executeWithNotification(() => firstValueFrom(this.http.get<T>(url, options)),
 			notifyOptions);
 	}
 	public async put<T>(

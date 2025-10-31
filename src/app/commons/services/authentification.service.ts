@@ -28,11 +28,13 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 		this._accessToken.set(null);
 	}
 	public isAuthenticated(): boolean {
-		return this.accessToken() !== null;
+		return this._accessToken() !== null && this._currentUser() !== null;
 	}
-	public async loadCurrentUser(): Promise<void> {
+	public async init(isUsingNotify?: boolean): Promise<void> {
 		try {
-			const user = await this.http.get<IUserModel>(restEndpoints.user.me);
+			const user = await this.http.get<IUserModel>(restEndpoints.user.me, {}, isUsingNotify ? {
+				message: this.langHelper.notificationAccount("SIGN_IN", "START")
+			} : undefined);
 			this._currentUser.set({
 				...user,
 				imageUrl: user.imageUrl ?? "alex"
@@ -79,6 +81,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 				}
 			);
 			this.setToken(loginResult.accessToken);
+			await this.init();
 		}
 		catch (error) {
 			console.error("Authentication failed:", error);
