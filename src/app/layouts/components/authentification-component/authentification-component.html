@@ -6,7 +6,6 @@
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
 		                   [inputType]="'email'"
-		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{
 		                                    iconPath: uiService.buildIconSvgPath('user-email-icon'),
 		                                    description: langHelper.emailField('DESCRIPTION') | transloco,
@@ -16,20 +15,19 @@
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
 		                   [inputType]="'password'"
-		                   [disabled]="auth.disabled || authentificationService.isExecuting()"
 		                   [placeholder]="{
 		                                    iconPath: uiService.buildIconSvgPath('password-icon'),
 		                                    description: langHelper.passwordField('DESCRIPTION') | transloco,
 		                                    action: langHelper.passwordField('ACTION') | transloco}"
 		                   class="login-password">
 		</app-input-element>
-		<button [class.disabled]="auth.disabled || authentificationService.isExecuting()"
+		<button [class.disabled]="auth.disabled"
 		        (click)="onShowForgotForm()"
 		        type="button"
 		        tabindex="0"
 		        class="forgot-button">{{langHelper.forgotPassword() | transloco}}
 		</button>
-		<button [disabled]="auth.disabled || authentificationService.isExecuting()"
+		<button [disabled]="auth.disabled"
 		        class="login-button"
 		        type="button"
 		        (click)="onSubmitAuthForm()">

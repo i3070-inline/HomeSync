@@ -5,7 +5,6 @@
 		    class="register-text">{{langHelper.loginForm('SIGN_UP', 'TITLE') | transloco}}</h1>
 		<app-input-element [clearIconIsVisible]="true"
 		                   [formControlName]="'email'"
-		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [inputType]="'email'"
 		                   [placeholder]="{
                                             iconPath: uiService.buildIconSvgPath('user-email-icon'),
@@ -16,7 +15,6 @@
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'password'"
 		                   [inputType]="'password'"
-		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [placeholder]="{
                                             iconPath: uiService.buildIconSvgPath('password-icon'),
                                             description: langHelper.passwordField('DESCRIPTION') | transloco,
@@ -26,14 +24,13 @@
 		<app-input-element [eyeIconIsVisible]="true"
 		                   [formControlName]="'confirmPassword'"
 		                   [inputType]="'password'"
-		                   [disabled]="reg.disabled || registerService.isExecuting()"
 		                   [placeholder]="{
                                             iconPath: uiService.buildIconSvgPath('password-icon'),
                                             description: langHelper.confirmPasswordField('DESCRIPTION') | transloco,
                                             action: langHelper.confirmPasswordField('ACTION') | transloco}"
 		                   class="register-confirm-password">
 		</app-input-element>
-		<button [disabled]="reg.disabled || registerService.isExecuting()"
+		<button [disabled]="reg.disabled"
 		        (click)="onSubmitRegisterForm()"
 		        type="button"
 		        class="register-button">{{langHelper.loginForm('SIGN_UP', 'ACTION') | transloco}}

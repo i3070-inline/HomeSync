@@ -14,14 +14,13 @@
 			<app-input-element [inputType]="'email'"
 			                   [clearIconIsVisible]="true"
 			                   [formControlName]="'email'"
-			                   [disabled]="forgot.disabled || forgotService.isExecuting()"
 			                   cdkFocusInitial
 			                   [placeholder]="{
 			                                    iconPath: uiService.buildIconSvgPath('user-email-icon'),
 			                                    description: langHelper.emailField('DESCRIPTION') | transloco,
 			                                    action: langHelper.emailField('ACTION') | transloco}"
 			                   class="forgot__input"></app-input-element>
-			<button [disabled]="forgot.disabled || forgotService.isExecuting()"
+			<button [disabled]="forgot.disabled"
 			        (click)="onSubmitForgotForm()"
 			        type="button"
 			        class="forgot__submit">{{langHelper.loginForm('FORGOT', 'ACTION') | transloco}}

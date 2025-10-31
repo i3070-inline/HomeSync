@@ -42,7 +42,7 @@
 							}}
 						</p>
 						<button class="form-cover__button"
-						        [disabled]="currentForm().isExecuting()"
+						        [disabled]="currentForm().accountForm().disabled"
 						        (click)="onSwitchPage()">{{
 								(currentForm().name() === 'registration' ? langHelper.loginCover("SIGN_UP", "ACTION") :
 										langHelper.loginCover("SIGN_IN", "ACTION")) | transloco

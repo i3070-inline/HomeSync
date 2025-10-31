@@ -1,4 +1,4 @@
-import {inject, Signal, signal} from "@angular/core";
+import {inject, Signal} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {controlsOf} from "@constants/types";
 import {HttpNotify} from "@rest/http-notify.service";
@@ -8,7 +8,6 @@ export abstract class AccountBase<T extends object> {
 	//region Members
 	public abstract get name(): Signal<string>;
 	public abstract accountForm: Signal<FormGroup<controlsOf<T>>>;
-	public isExecuting = signal<boolean>(false);
 	protected readonly http = inject(HttpNotify);
 	protected readonly langHelper = LangHelper;
 	//endregion
@@ -24,9 +23,9 @@ export abstract class AccountBase<T extends object> {
 		disabled ? this.accountForm().disable() : this.accountForm().enable();
 	}
 	public async onGenericExecution<T extends Record<string, unknown>>(): Promise<boolean> {
-		this.isExecuting.set(true);
+		this.accountForm().disable();
 		const result = await this.onParticularExecution();
-		this.isExecuting.set(false);
+		this.accountForm().enable();
 		return result;
 	}
 	protected abstract onParticularExecution(): Promise<boolean>;
