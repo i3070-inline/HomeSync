@@ -22,7 +22,6 @@ import {LanguageHandlerService} from "@services/language-handler.service";
 import {timeoutInterceptor} from "@interceptors/timeout.interceptor";
 import {authRefreshInterceptor} from "@interceptors/auth-refresh.interceptor";
 import {authorizationInterceptor} from "@interceptors/authorization.interceptor";
-import {AuthentificationService} from "@services/authentification.service";
 
 SwiperCore.use([EffectCards]);
 export const appConfig: ApplicationConfig = {
@@ -30,7 +29,6 @@ export const appConfig: ApplicationConfig = {
 		provideAppInitializer(() => inject(ThemeHandlerService).init()),
 		provideAppInitializer(() => inject(AnimationHandlerService).init()),
 		provideAppInitializer(() => inject(LanguageHandlerService).init()),
-		provideAppInitializer(()=> inject(AuthentificationService).init()),
 		provideTransloco({
 			config: {
 				prodMode: !isDevMode(),

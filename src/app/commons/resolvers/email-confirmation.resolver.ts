@@ -35,7 +35,7 @@ export const emailConfirmationResolver: ResolveFn<{ confirmed: boolean }> = asyn
 	catch (error) {
 		console.error("Email confirmation failed:", error);
 		setStateIfServer(false);
-		return error instanceof HttpErrorResponse
+		return error instanceof HttpErrorResponse && error.status === 404
 			? new RedirectCommand(router.parseUrl("/error/404"))
 			: {confirmed: false};
 	}

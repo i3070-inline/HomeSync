@@ -5,9 +5,12 @@ import {AuthentificationService} from "@services/authentification.service";
 export const authGuard: CanActivateFn = async (route, state) => {
 	const router = inject(Router);
 	const auth = inject(AuthentificationService);
-	if (auth.isAuthenticated()) return true;
-	return router.createUrlTree(
-		["/login"],
-		{queryParams: {returnUrl: state.url}}
-	);
+	if (!auth.isAuthenticated()) {
+		await auth.init();
+		return auth.isAuthenticated() ? true : router.createUrlTree(
+			["/login"],
+			{queryParams: {returnUrl: state.url}}
+		);
+	}
+	return true;
 };

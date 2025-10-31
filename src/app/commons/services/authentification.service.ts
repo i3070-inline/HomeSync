@@ -28,7 +28,7 @@ export class AuthentificationService extends AccountBase<ILoginModel> {
 		this._accessToken.set(null);
 	}
 	public isAuthenticated(): boolean {
-		return this._accessToken() !== null && this._currentUser() !== null;
+		return this._accessToken() !== null;
 	}
 	public async init(isUsingNotify?: boolean): Promise<void> {
 		try {

@@ -1,5 +1,5 @@
-@defer (on immediate) {
+@defer (when isHydrated()) {
 	<router-outlet></router-outlet>
-} @placeholder (minimum 500ms) {
+} @placeholder (minimum 200ms) {
 	<app-load-placeholder-component></app-load-placeholder-component>
 }
