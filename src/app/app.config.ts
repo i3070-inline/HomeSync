@@ -9,7 +9,7 @@ import {
 import {provideRouter, withViewTransitions} from "@angular/router";
 import {routes} from "./app.routes";
 import {provideClientHydration, withEventReplay} from "@angular/platform-browser";
-import SwiperCore, { EffectCards } from 'swiper';
+import SwiperCore, {EffectCards} from "swiper";
 import {provideHttpClient, withInterceptors, withInterceptorsFromDi} from "@angular/common/http";
 import {requestLoggingInterceptor} from "@interceptors/request-logging.interceptor";
 import {responseLoggingInterceptor} from "@interceptors/response-logging.intercepter";

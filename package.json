@@ -8,8 +8,9 @@
     "dist:clean": "rimraf dist",
     "inst:clean": "rimraf inst",
     "build": "npm run dist:clean && ng build",
-    "start:csr": "ng serve --no-hmr",
-    "final:ssr": "npm run dist:clean && npm run ng build && node dist/HomeSync/server/server.mjs",
+    "start:csr": "npm run build && ng serve --no-hmr",
+    "start:ssr": "npm run build && node --inspect dist/HomeSync/server/server.mjs",
+    "final:ssr": "npm run build && node dist/HomeSync/server/server.mjs",
     "electron": "npm run inst:clean && ng build --base-href ./ && npx electron-builder",
     "tauri:dev": "npx tauri dev",
     "tauri:build": "npx tauri build"
