@@ -18,7 +18,8 @@ export class CookiesStorageService {
 		partitioned?: boolean;
 	}): void {
 		try {
-			this.cookiesService.set(key, String(value),
+			this.cookiesService.set(key,
+				JSON.stringify(value),
 				options?.expires ?? 7,
 				options?.path ?? "/",
 				options?.domain ?? "",
@@ -34,7 +35,7 @@ export class CookiesStorageService {
 	public getItem<T>(key: string): T | undefined {
 		try {
 			const value = this.cookiesService.get(key);
-			return value as T ?? undefined;
+			return value ? JSON.parse(value) as T : undefined;
 		}
 		catch (error) {
 			console.error(`Failed to get cookie with key "${key}":`, error);

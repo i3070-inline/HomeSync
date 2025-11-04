@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, inject, input, model, signal, ViewEncapsulation} from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	inject,
+	input,
+	model,
+	OnInit,
+	signal,
+	ViewEncapsulation
+} from "@angular/core";
 import {DrawerElement} from "@elements/drawer-element/drawer-element";
 import {LangHelper} from "@utils/lang-helper";
 import {UiFacadeService} from "@services/facade/ui-facade.service";
@@ -9,6 +18,7 @@ import {QuestionComponent} from "@components/question-component/question-compone
 import {IQuestionModel} from "@interfaces/question-model.interface";
 import {firstValueFrom} from "rxjs";
 import {INavigationModel} from "@interfaces/navigation-model.interface";
+import {CookiesStorageService} from "@services/cookies-storage.service";
 
 @Component({
 	selector: "app-navigation-component",
@@ -24,14 +34,17 @@ import {INavigationModel} from "@interfaces/navigation-model.interface";
 	encapsulation: ViewEncapsulation.Emulated,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
 	//region Members
+	private readonly _cookiesKeyIsOpen = "navigation-is-open";
 	protected readonly langHelper = LangHelper;
 	protected readonly router = inject(Router);
 	protected readonly authService = inject(AuthentificationService);
 	protected readonly uiService = inject(UiFacadeService);
+	private readonly cookiesService = inject(CookiesStorageService);
 	public minWidthOpenMenu = input<string>("7rem");
 	public maxWidthOpenMenu = input<string>("max-content");
+	public isOpen = model<boolean>(false);
 	protected readonly navigationTopItems = signal<INavigationModel[]>([
 		{
 			link: "home",
@@ -44,7 +57,6 @@ export class NavigationComponent {
 			text: this.langHelper.mainPageNavigation("SETTINGS"),
 			iconPath: this.uiService.buildIconSvgPath("user-settings-icon")
 		}]);
-	public isOpen = model<boolean>(false);
 	//endregion
 	//region Methods
 	public async onLogout() {
@@ -57,6 +69,16 @@ export class NavigationComponent {
 		this.authService.isRequestedLogout.set(true);
 		await this.router.navigate(["/login"]);
 		this.authService.isRequestedLogout.set(false);
+	}
+	public isOpenChange($event: boolean) {
+		this.isOpen.set($event);
+		this.cookiesService.setItem<boolean>(this._cookiesKeyIsOpen, $event);
+	}
+	//endregion
+	//region Overrides
+	ngOnInit(): void {
+		const isOpenCookie = this.cookiesService.getItem<boolean>(this._cookiesKeyIsOpen);
+		this.isOpenChange(isOpenCookie ?? false);
 	}
 	//endregion
 }

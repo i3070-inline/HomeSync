@@ -17,6 +17,7 @@ import {UiFacadeService} from "@services/facade/ui-facade.service";
 import {SettingsFacadeService} from "@services/facade/settings-facade.service";
 import {TranslocoPipe} from "@ngneat/transloco";
 import {LangHelper} from "@utils/lang-helper";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: "app-template-component",
@@ -38,6 +39,7 @@ export class TemplateComponent implements AfterViewInit {
 	protected readonly langHelper = LangHelper;
 	protected readonly uiService = inject(UiFacadeService);
 	protected readonly settingsService = inject(SettingsFacadeService);
+	private readonly router = inject(Router);
 	private scrollContainer = viewChild<ElementRef>("scrollContainer");
 	public headerHeight = input<number>(4.5);
 	public footerHeight = input<number>(4);
@@ -48,7 +50,8 @@ export class TemplateComponent implements AfterViewInit {
 	public onScroll() {
 		this.scrollHandler();
 	}
-	public onRefresh() {
+	public async onRefresh() {
+		await this.router.navigate(["/"]);
 		this.uiService.platformHandler.runOnBrowserPlatform(() => {
 			window.location.reload();
 		});

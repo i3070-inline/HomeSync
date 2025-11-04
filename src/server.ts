@@ -66,20 +66,24 @@ function getConfigFromCookies(req: express.Request, res: express.Response): {
 	let language = req.cookies[COOKIE_KEYS.LANGUAGE];
 	if (!language) {
 		language = DEFAULT_VALUES.LANGUAGE;
-		res.cookie(COOKIE_KEYS.LANGUAGE, language, {maxAge: COOKIE_MAX_AGE});
+		res.cookie(COOKIE_KEYS.LANGUAGE, JSON.stringify(language), {maxAge: COOKIE_MAX_AGE});
 	}
 	let theme = req.cookies[COOKIE_KEYS.THEME];
 	if (!theme) {
 		theme = DEFAULT_VALUES.THEME;
-		res.cookie(COOKIE_KEYS.THEME, theme, {maxAge: COOKIE_MAX_AGE});
+		res.cookie(COOKIE_KEYS.THEME, JSON.stringify(theme), {maxAge: COOKIE_MAX_AGE});
 	}
 	let animation = req.cookies[COOKIE_KEYS.ANIMATION];
 	if (!animation) {
 		animation = DEFAULT_VALUES.ANIMATION;
-		res.cookie(COOKIE_KEYS.ANIMATION, animation, {maxAge: COOKIE_MAX_AGE});
+		res.cookie(COOKIE_KEYS.ANIMATION, JSON.stringify(animation), {maxAge: COOKIE_MAX_AGE});
 	}
 	console.log("Cookies:", req.cookies);
-	return {language, theme, animation};
+	return {
+		language: JSON.parse(language),
+		theme: JSON.parse(theme),
+		animation: JSON.parse(animation)
+	};
 }
 //endregion
 //region Angular SSR Handler
@@ -103,7 +107,7 @@ app.use((req, res, next) => {
 					.replace(
 						/<html([^>]*)>/i,
 						`<html$1 theme="${theme}" anim="${animation}" lang="${language}" translate="no">`
-					)
+					);
 				const modifiedResponse = new Response(modifiedHtml, {
 					status: response.status,
 					statusText: response.statusText,
