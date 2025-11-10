@@ -59,31 +59,42 @@ app.get("/sitemap.xml", (req, res) => {
 //endregion
 //region Cookie Management
 function getConfigFromCookies(req: express.Request, res: express.Response): {
-	language: string;
-	theme: string;
-	animation: string;
+    language: string;
+    theme: string;
+    animation: string;
 } {
-	let language = req.cookies[COOKIE_KEYS.LANGUAGE];
-	if (!language) {
-		language = DEFAULT_VALUES.LANGUAGE;
-		res.cookie(COOKIE_KEYS.LANGUAGE, JSON.stringify(language), {maxAge: COOKIE_MAX_AGE});
-	}
-	let theme = req.cookies[COOKIE_KEYS.THEME];
-	if (!theme) {
-		theme = DEFAULT_VALUES.THEME;
-		res.cookie(COOKIE_KEYS.THEME, JSON.stringify(theme), {maxAge: COOKIE_MAX_AGE});
-	}
-	let animation = req.cookies[COOKIE_KEYS.ANIMATION];
-	if (!animation) {
-		animation = DEFAULT_VALUES.ANIMATION;
-		res.cookie(COOKIE_KEYS.ANIMATION, JSON.stringify(animation), {maxAge: COOKIE_MAX_AGE});
-	}
-	console.log("Cookies:", req.cookies);
-	return {
-		language: JSON.parse(language),
-		theme: JSON.parse(theme),
-		animation: JSON.parse(animation)
-	};
+    const parseRaw = (raw: unknown, fallback: string): string => {
+        if (raw === undefined || raw === null) return fallback;
+        if (typeof raw === "string") {
+            try {
+                return JSON.parse(raw);
+            } catch {
+                return raw;
+            }
+        }
+        return String(raw);
+    };
+
+    const rawLang = req.cookies[COOKIE_KEYS.LANGUAGE];
+    const rawTheme = req.cookies[COOKIE_KEYS.THEME];
+    const rawAnim = req.cookies[COOKIE_KEYS.ANIMATION];
+
+    const language = parseRaw(rawLang, DEFAULT_VALUES.LANGUAGE);
+    const theme = parseRaw(rawTheme, DEFAULT_VALUES.THEME);
+    const animation = parseRaw(rawAnim, DEFAULT_VALUES.ANIMATION);
+
+    if (rawLang === undefined) {
+        res.cookie(COOKIE_KEYS.LANGUAGE, JSON.stringify(language), { maxAge: COOKIE_MAX_AGE });
+    }
+    if (rawTheme === undefined) {
+        res.cookie(COOKIE_KEYS.THEME, JSON.stringify(theme), { maxAge: COOKIE_MAX_AGE });
+    }
+    if (rawAnim === undefined) {
+        res.cookie(COOKIE_KEYS.ANIMATION, JSON.stringify(animation), { maxAge: COOKIE_MAX_AGE });
+    }
+
+    console.log("Cookies:", req.cookies);
+    return { language, theme, animation };
 }
 //endregion
 //region Angular SSR Handler
