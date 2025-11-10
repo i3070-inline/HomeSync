@@ -75,7 +75,7 @@ function getConfigFromCookies(req: express.Request, res: express.Response): {
         return String(raw);
     };
 
-    const rawLang = req.cookies[COOKIE_KEYS.LANGUAGE];
+    const rawLang =  req.cookies[COOKIE_KEYS.LANGUAGE];
     const rawTheme = req.cookies[COOKIE_KEYS.THEME];
     const rawAnim = req.cookies[COOKIE_KEYS.ANIMATION];
 
